@@ -9,8 +9,8 @@
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <section>   
-        <div>
-            <div class="container" id="nav-box">
+        <div id="box-total">
+            <div id="nav-box">
                 <br>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -34,15 +34,15 @@
                 </ul>
             
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div id="home" class="container tab-pane active"><br>
+                <div class="tab-content" style="width: 960px;">
+                    <div id="home" class="tab-pane active"><br>
                         <h3>원하는 시설을 간편하고 빠르게 찾아보세요.</h3>
                     </div>
-                    <div id="Map" class="container tab-pane fade"><br>
+                    <div id="Map" class=" tab-pane fade"><br>
                         <h1>Map API</h1>
                     </div>
                     
-                    <div id="Category" class="container tab-pane fade"><br>
+                    <div id="Category" class=" tab-pane fade"><br>
                         <form action="#" method="POST">
                             <input type="checkbox" name="total" value="total" id="total" checked><label for="total">전체</label>
                             <br>
@@ -66,12 +66,12 @@
 
  
 
-                <div class="container" style="padding-bottom: 40px;">
+                <div class="box-content" style="padding-bottom: 40px;">
 
                     <h1 style="margin-top: 50px;"><hr>시설 정보</h1>
                     <br>
 
-                    <div class="content-box-outer">
+                    <div class="content-box-outer"><!-- for문 돌려서 페이징 처리해야합니다 pagebarNo=5,numPerpage=5-->
                         <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
                         <div class="bar"></div>
                         <div class="content-box-cotent">
@@ -99,162 +99,12 @@
                                     <td colspan="3"></td>
                                 </tr>
                             </table>
-                        </div>
+                        </div><!-- for문 돌려서 페이징 처리해야합니다 -->
                     </div> <!-- content-box-outer-->
 
                 </div><!-- container -->
 
-                <div class="container" style="padding-bottom: 40px;">
-
-                    <h1 style="margin-top: 50px;"><hr>시설 정보</h1>
-                    <br>
-
-                    <div class="content-box-outer">
-                        <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
-                        <div class="bar"></div>
-                        <div class="content-box-cotent">
-                            <table>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><h2>AB휘트니스클럽</h2></td> <!-- 제목-->
-                                    <td><h2><i class="fas fa-heart"></i></h2></td><!-- 찜목록 ON/OFF-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2">서울 종로구 대학로</td><!-- 위치 API-->
-                                    <td>10.9Km</td><!-- 거리 API-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td><!-- 카테고리-->
-                                    <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
-                                </tr>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div> <!-- content-box-outer-->
-
-                </div><!-- container -->
                 
-                                <div class="container" style="padding-bottom: 40px;">
-
-                    <h1 style="margin-top: 50px;"><hr>시설 정보</h1>
-                    <br>
-
-                    <div class="content-box-outer">
-                        <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
-                        <div class="bar"></div>
-                        <div class="content-box-cotent">
-                            <table>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><h2>AB휘트니스클럽</h2></td> <!-- 제목-->
-                                    <td><h2><i class="fas fa-heart"></i></h2></td><!-- 찜목록 ON/OFF-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2">서울 종로구 대학로</td><!-- 위치 API-->
-                                    <td>10.9Km</td><!-- 거리 API-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td><!-- 카테고리-->
-                                    <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
-                                </tr>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div> <!-- content-box-outer-->
-
-                </div><!-- container -->
-                
-                                <div class="container" style="padding-bottom: 40px;">
-
-                    <h1 style="margin-top: 50px;"><hr>시설 정보</h1>
-                    <br>
-
-                    <div class="content-box-outer">
-                        <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
-                        <div class="bar"></div>
-                        <div class="content-box-cotent">
-                            <table>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><h2>AB휘트니스클럽</h2></td> <!-- 제목-->
-                                    <td><h2><i class="fas fa-heart"></i></h2></td><!-- 찜목록 ON/OFF-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2">서울 종로구 대학로</td><!-- 위치 API-->
-                                    <td>10.9Km</td><!-- 거리 API-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td><!-- 카테고리-->
-                                    <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
-                                </tr>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div> <!-- content-box-outer-->
-
-                </div><!-- container -->
-                
-                                <div class="container" style="padding-bottom: 40px;">
-
-                    <h1 style="margin-top: 50px;"><hr>시설 정보</h1>
-                    <br>
-
-                    <div class="content-box-outer">
-                        <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
-                        <div class="bar"></div>
-                        <div class="content-box-cotent">
-                            <table>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><h2>AB휘트니스클럽</h2></td> <!-- 제목-->
-                                    <td><h2><i class="fas fa-heart"></i></h2></td><!-- 찜목록 ON/OFF-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2">서울 종로구 대학로</td><!-- 위치 API-->
-                                    <td>10.9Km</td><!-- 거리 API-->
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2"><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td><!-- 카테고리-->
-                                    <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
-                                </tr>
-                                <tr>
-                                    <td colspan="3"></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div> <!-- content-box-outer-->
-
-                </div><!-- container -->
 
 
         </div>
