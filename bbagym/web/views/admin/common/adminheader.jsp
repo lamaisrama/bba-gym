@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Main</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css">
-    <script src="../javascript/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 </head>
@@ -35,7 +34,7 @@
 
     <section>
 
-        <div style=" border : 1px solid black">
+        <div>
             <aside id="menu">
 
                 <table>
@@ -46,7 +45,7 @@
                         <td><a class="menu_bar">시설 등록 승인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">프로그램 등록 승인</a></td>
+                        <td><a class="menu_bar">트레이너 등록 승인</a></td>
                     </tr>
                     <tr>
                         <td><a class="menu_bar">회원 관리</a></td>

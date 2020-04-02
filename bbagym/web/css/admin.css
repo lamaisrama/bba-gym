@@ -98,6 +98,8 @@ section>div{
 
 /* 섹션 */
 
+/* 패스워드 */
+
 #password{
     display: block;
     margin-top: 100px;
@@ -106,6 +108,8 @@ section>div{
 }
 
 /* 패스워드 */
+
+/* 센터 */
 
 #center-approve{
     width: 100%;
@@ -125,11 +129,12 @@ section>div{
 }
 
 /* 센터 */
+
+/* 트레이너 */
+
 #trainer-approve{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -146,11 +151,11 @@ section>div{
 
 /* 트레이너 */
 
+/* 회원관리 */
+
 #member-list{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -167,11 +172,12 @@ section>div{
 
 /* 회원관리 */
 
+/* 문의하기 */
+
 #question-list{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+
     flex-direction: column;
 }
 
@@ -187,6 +193,9 @@ section>div{
 }
 
 /* 문의하기 */
+
+/* 문의하기 세부정보 */
+
 #title>h2{
     height: auto;
     font-size: 30px;
@@ -225,9 +234,10 @@ section>div{
     border: 1px solid black;
 }
 
-
-
 /* 문의하기 세부정보 */
+
+/* 게시판 */
+
 #board-list{
     width: 100%;
     display: flex;
@@ -284,6 +294,7 @@ section>div{
     align-items: center;
 }
 
+/* 페이지  */
 
 /* footer */
 
