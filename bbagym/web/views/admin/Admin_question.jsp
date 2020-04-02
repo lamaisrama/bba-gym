@@ -6,7 +6,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
                             <h1>문의 확인</h1>
                             <div> 
-                            페이지수<select value="페이지수"  style=" padding: .3em .5em;">
+                            	페이지수<select value="페이지수"  style=" padding: .3em .5em;">
                                 <option>10</option>
                                 <option>20</option>
                                 <option>30</option>

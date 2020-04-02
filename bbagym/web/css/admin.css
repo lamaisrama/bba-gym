@@ -3,7 +3,7 @@
     font-weight: normal; font-style: normal; }
 
 * {
-     /* border : 1px solid red; */ 
+     /*  border : 1px solid red;  */
     /* font-family: 'GmarketSansMedium'; */
 }
 
@@ -241,8 +241,6 @@ section>div{
 #board-list{
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 

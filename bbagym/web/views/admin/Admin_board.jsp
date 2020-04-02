@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/adminheader.jsp"%>
-	<!--트레이너 등록 승이-->
-
-                    <div id="trainer-approve">
+	 <!--게시글 확인-->
+                    <div id="board-list">
                         <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
-                            <h1>트레이너 등록 승인</h1>
-                            <div> 
-                            	페이지수<select value="페이지수"  style=" padding: .3em .5em;">
+                            <h1>게시글 확인</h1>
+                            <div><!--ajax--> 
+                            	게시글 유형<select value=""  style=" padding: .3em .5em;">
+                                    <option selected>공지사항</option>
+                                    <option>Q/A</option>
+                                    <option>전체</option>
+                                </select>    
+                            	페이지수<select value=""  style=" padding: .3em .5em;">
                                 <option>10</option>
                                 <option>20</option>
                                 <option>30</option>
@@ -16,21 +20,16 @@
                         </div>
                         <table>
                             <thead>
-                                <th>트레이너 이름</th>
-                                <th>트레이너 주소</th>
-                                <th>연락처</th>
-                                <th>사업자승인</th>
-                                <th></th>
+                                <th>제목</th>
+                                <th>글쓴이</th>
+                                <th>작성일</th>
+                                <th>파일</th>
                             </thead>
                             <tr><!-- for{ -->
+                                <td><a href="#">빠짐 이용수칙</a></td>
                                 <td>김범신</td>
-                                <td>인천 서구 마전동 동아아파트 108-1101</td>
-                                <td>010-3597-0663</td>
-                                <td>Y</td>
-                                <td > 
-                                    <button onclick="">승인</button>
-                                    <button onclick="">거절</button>
-                                </td>
+                                <td>2020-04-02</td>
+                                <td></td>
                             </tr><!-- }-->
                         </table>
                         <div id="pageBar"><!-- 페이지바 JSP구현-->
