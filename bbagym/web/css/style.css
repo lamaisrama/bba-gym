@@ -1,0 +1,63 @@
+body{
+	
+}
+.container div{
+    /* border: 1px solid blue */
+    margin: 0 auto;    
+}
+
+label{
+    font-size: 18px;
+    color: slategray;
+    
+    font-weight: bolder;
+  }
+  .form-check-inline label{
+    font-size: 16x;
+    font-weight: 500;
+    color: black;
+  }
+
+  .search-box{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    background-color: yellow;
+    border: 1px solid red;
+    height: 100%;
+    align-items: center;
+}
+.placeholder{
+    position: absolute;
+    left: 20px;
+    top: 0;
+}
+.main-nav{
+    display: inline-block;
+}
+.main-nav ul{
+    display: inline-block;
+}
+.main-nav ul li{
+    display: inline-block;
+}
+.main-nav ul li a{
+    
+}
+
+
+
+.program-add-save{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.info-footer{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+  }
+.info-footer-inner{
+    text-align: center;
+}

@@ -1,0 +1,152 @@
+* {
+     /* border : 1px solid red; */
+     list-style-type: none;
+     font-family: "Noto Sans KR", Helvetica,"Apple SD Gothic Neo", Sans-serif;
+ }
+
+::placeholder{
+    color : white;
+    font-weight: bolder;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+ header{
+    display: flex;
+    color: white;
+ } 
+
+ .container-fiuld{
+     flex : 5;
+     text-align: center;
+     color : white;
+ }
+
+ #leftbar{
+    flex : 1;
+    visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 250px;
+    padding-top:20px;
+    z-index: 1;
+    background-color: rgb(128, 128, 128 , 0.7);
+ }
+ #leftbar ul{
+ 	margin-top:20px;
+ }
+ #leftbar li{
+     color: white;
+     font-size: 20px;
+     padding-top:10px;
+     user-select: none;
+ }
+
+#leftbar>div{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 50%;
+}
+
+
+ #log{
+     cursor: pointer;
+     position: absolute;
+     left: 30px;
+     top : 30px;
+     /* border: 2px solid white;
+     border-radius: 50%; */
+     padding: 20px;
+     user-select: none;
+     z-index: 2;
+ }
+
+#log h2{
+	font-weight:bolder;
+}
+ #content{
+    padding-top: 12%;
+    user-select: none;
+ }
+
+#content p{
+	font-size: 40px;
+}
+
+ #search{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height: 200px;
+ }
+
+ #search>div{
+     border: 2px solid white;
+     padding: 20px 10px 20px 10px;
+ }
+
+ #search input,#login input{
+     outline: none;
+     border: none;
+     background-color: rgb(0,0,0,0.0);
+ }
+
+ #login>div{
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    }
+
+ #id>div,#pw>div {
+    border: 2px solid white;
+    padding: 10px 15px 10px 15px;
+ }
+
+ #box>div{
+     padding : 5px 10px 5px 10px;
+     cursor: pointer;
+ }
+
+
+#backgroundvideo {
+    position: fixed;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -100;
+}
+
+#phone{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: flex;
+}
+  
+#phone select{
+    width: 100px;
+    height: 35px;
+    border: 1px solid rgb(128, 128, 128, 0.5);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#phone div{
+    border: 2px solid rgb(128, 128, 128, 0.3);
+    border-radius: 7%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#phone input{
+    outline: none;
+    border : none;
+}
+
+  
+

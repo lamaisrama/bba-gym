@@ -1,0 +1,92 @@
+@font-face { font-family: 'GmarketSansMedium'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); 
+    font-weight: normal; font-style: normal; }
+
+
+
+/*  section */
+
+
+#box-search{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+#box-search>div{
+    width: 60%;
+}
+
+
+#box-board{
+    margin-top: 150px;
+}
+
+#box-board>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-box-outer{
+    cursor: pointer;
+    border-radius: 20px;
+    width: 30%;
+    height: 400px;
+    overflow: hidden;
+    border-style: unset;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 5px 5px 8px gray;
+    margin: 20px;
+}
+
+.content-box-inner{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: all 1s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.content-box-inner:hover
+{
+     transform: scale(1.04);
+}
+
+.bar{
+    height: 1%;
+    width: 100%;
+    background-color: rgb(255, 145, 0);
+}
+
+.content-box-cotent{
+    height: 30%;
+    width: 100%;
+    background-color: beige;
+}
+.content-box-cotent>table{
+    height: 100%;
+    width: 100%;
+}
+
+.content-box-cotent td{
+    padding-left: 20px;
+}
+
+* {
+    /* border : 1px solid red; */
+    font-family: 'GmarketSansMedium';
+}
+
+
+#pageBar{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

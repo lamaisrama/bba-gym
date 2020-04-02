@@ -1,0 +1,101 @@
+@font-face { font-family: 'GmarketSansMedium'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); 
+    font-weight: normal; font-style: normal; }
+
+
+
+/*  section */
+section{
+    height: 100%;
+    width: auto;
+}
+
+section>div{
+    background-color: white;
+    width: auto;
+    min-height: 100%;
+}
+
+#nav-box {
+    margin-top: 50px;
+    color: black;
+}
+
+#nav-box a{
+    color: rgb(255, 145, 0);
+}
+
+.content-box-outer{
+    cursor: pointer;
+    border-radius: 20px;
+    margin-top: 20px;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-style: unset;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 5px 5px 8px gray;
+}
+
+.content-box-inner{
+    height: 100%;
+    width: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: all 1s ease;
+}
+
+.content-box-inner:hover
+{
+     transform: scale(1.04);
+}
+
+.bar{
+    height: 100%;
+    width: 0.5%;
+    background-color: rgb(255, 145, 0);
+}
+
+.content-box-cotent{
+    float: right;
+    height: 100%;
+    width: 49.5%;
+    background-color: white;
+}
+.content-box-cotent>table{
+    width: 100%;
+    height: 100%;
+    color: rgb(0, 0, 0,0.7);
+    border-collapse: collapse;
+}
+
+.content-box-outer td{
+    width: 160px;
+    padding-left: 40px;
+}
+
+
+
+* {
+    font-family: 'GmarketSansMedium';
+}
+
+
+.content-box-outer a{
+    color: orange;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.content-box-outer a:hover{
+    color: rgb(255, 100, 0);
+    transition: all 0.5s ease;
+}
+
+#pageBar{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
