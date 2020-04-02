@@ -10,6 +10,14 @@ section{
     width: auto;
 }
 
+#box-total{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 section>div{
     background-color: white;
     width: auto;
@@ -76,8 +84,13 @@ section>div{
 }
 
 
+.box-content{
+    width: 960px;
+}
+
 
 * {
+    /* border : 1px solid red;  */
     font-family: 'GmarketSansMedium';
 }
 
