@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/adminheader.jsp"%>
-	<!-- 문의 확인 정보 모습-->
+					<!-- 문의 확인 정보 모습-->
                     <div>
-                        <div id="title"><h2>제목이 안보여요</h2></div>
+                        <div id="title"><h2>제목이 안보여요</h2></div><!-- 타이틀 -->
                         <div id="date">
                             <ul>
                                 <li>문의번호</li>

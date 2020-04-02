@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/adminheader.jsp"%>
-	<!--트레이너 등록 승이-->
+					<!--트레이너 등록 승인-->
 
                     <div id="trainer-approve">
+                    
                         <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
                             <h1>트레이너 등록 승인</h1>
                             <div> 
-                            	페이지수<select value="페이지수"  style=" padding: .3em .5em;">
+                            	페이지수<select value="페이지수"  style=" padding: .3em .5em;"><!-- numPerpage -->
                                 <option>10</option>
                                 <option>20</option>
                                 <option>30</option>
                             </select>
                             </div>
-                        </div>
+                        </div><!-- 상단 -->
+                        
                         <table>
                             <thead>
+                            <tr>
                                 <th>트레이너 이름</th>
                                 <th>트레이너 주소</th>
                                 <th>연락처</th>
                                 <th>사업자승인</th>
                                 <th></th>
+                            </tr>    
                             </thead>
                             <tr><!-- for{ -->
                                 <td>김범신</td>

@@ -19,9 +19,9 @@
 
         <div class="container pt-4">
             <div id="log"> 
-                <img src="<%=request.getContextPath() %>/resources/img/admin/log.png" width="100%" height="100%">
+                <img src="<%=request.getContextPath() %>/resources/img/admin/log.png" width="100%" height="100%"><!-- 관리자페이지 로고 -->
             </div>
-            <div id="welcome">
+            <div id="welcome"><!-- 관리자페이지 타이틀 -->
                 <nav>
                     <h1 style="font-size: 50px; color: white;">빠짐 관리자페이지</h1>
                 </nav>
@@ -35,7 +35,7 @@
     <section>
 
         <div>
-            <aside id="menu">
+            <aside id="menu"><!-- 관리자페이지 메뉴바 -->
 
                 <table>
                     <tr >
