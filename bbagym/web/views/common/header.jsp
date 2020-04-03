@@ -15,9 +15,10 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
   <!-- CSS Files -->
-  <link href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<%=request.getContextPath() %>/assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
   <link href="<%=request.getContextPath() %>/assets/demo/demo.css" rel="stylesheet" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
 <body class="profile-page sidebar-collapse">
@@ -25,7 +26,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="<%=request.getContextPath() %>/index.jsp" rel="tooltip" title="BBAGYM" data-placement="bottom" target="_blank" style="font-size: 18px;">
+        <a class="navbar-brand" href="<%=request.getContextPath() %>/index.jsp" rel="tooltip" title="BBAGYM" data-placement="bottom" target="_self" style="font-size: 18px;">
           <i>빠Gym</i>
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,5 +68,7 @@
     </div>
   </nav>
   <!-- End Navbar -->
-  
-   <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');"></div>
+
+  <!-- 아래 div는 각 jsp마다 제일 위에 붙여줘야 header background가 생깁니다.-->
+  <!-- <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');"></div> --> 
+
