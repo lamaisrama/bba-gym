@@ -24,10 +24,10 @@ public class JDBCTemplate {
 		Connection conn = null;	
 		
 		try {
-			String path=JDBCTemplate.class.getResource("").getPath();
+			String path=JDBCTemplate.class.getResource("/sql/driver/driver.properties").getPath();
 			prop.load(new FileReader(path));
-			Class.forName(prop.getProperty(""));
-			conn = DriverManager.getConnection(prop.getProperty(""),prop.getProperty(""),prop.getProperty(""));
+			Class.forName(prop.getProperty("driver"));
+			conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("user"),prop.getProperty("pw"));
 			conn.setAutoCommit(false);
 			
 			
@@ -62,7 +62,7 @@ public class JDBCTemplate {
 	public static void close(ResultSet rs) {
 			
 			try {
-				if(rs.isClosed() && rs != null){
+				if(!rs.isClosed() && rs != null){
 					rs.close();
 				}
 			}catch(SQLException e) {
@@ -74,7 +74,7 @@ public class JDBCTemplate {
 	public static void close(PreparedStatement pstmt) {
 			
 			try {
-				if(pstmt.isClosed() && pstmt != null){
+				if(!pstmt.isClosed() && pstmt != null){
 					pstmt.close();
 				}
 			}catch(SQLException e) {
@@ -87,7 +87,7 @@ public class JDBCTemplate {
 	public static void commit(Connection conn) {
 			
 			try {
-				if(conn.isClosed() && conn != null){
+				if(!conn.isClosed() && conn != null){
 					conn.commit();
 				}
 			}catch(SQLException e) {
@@ -100,7 +100,7 @@ public class JDBCTemplate {
 	public static void rollback(Connection conn) {
 		
 		try {
-			if(conn.isClosed() && conn != null){
+			if(!conn.isClosed() && conn != null){
 				conn.rollback();
 			}
 		}catch(SQLException e) {
