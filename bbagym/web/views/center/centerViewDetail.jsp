@@ -95,12 +95,30 @@
                               </div>
                         </div>
                     
-                        <div id="section3" class="container-fluid">이용후기
-                            
+                        <div id="section3" class="container-fluid">
+                            <div id="review-zone">
+                                <div class="title-button">
+                                    <div id="review-title"><h5>이용후기</h5></div>
+                                    <div id="review-button">
+                                        <button onclick="inputData();">후기 쓰기</button>
+                                    </div>  
+                                </div>    
+                                <div id="review-content">
+                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+                                </div>
+                                <script>
+                                    function inputData(){
+                                        var text=document.getElementById("content").value;
+                                        document.getElementById("review-content").innerText+=text;
+                                        alert(text);
+                                    }
+                                </script>
+                            </div>
                         </div>
 
                         <div id="section4" class="container-fluid">
-                            <div class="map">지도</div>
+                            <div id="map-title"><h5>위치</h5></div>
+                            <div id="map-api">지도api</div>
                         </div>
 
                     </div><!--bord-section-->

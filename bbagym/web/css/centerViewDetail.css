@@ -7,30 +7,38 @@ body { position: relative;/*시설 이용후기등 메뉴바 클릭시 이동과
 .img-info{border: solid 0px green; width: 450px; height: 450px;}
 .text-info{border: solid 0px hotpink; width: 500px; height: 450px;}
 
-#title{border: solid 0px purple; color: black; margin-left: 30px; margin-bottom: 55px; display: flex; margin-right: 30px; }
+#title{border: solid 0px purple; color: black; margin-left: 30px; margin-bottom: 50px; display: flex; margin-right: 30px; }
 .heart{border: solid 0px red; margin-left: auto; flex: 0.3; font-size: 30px;}/*찜 좋아요 관련*/
 .fa {cursor: pointer; user-select: none;}/*찜 좋아요 관련*/
 .fa:hover {color:red;}/*찜 좋아요 관련*/
-#star-point{border: solid 0px yellow; color: yellow; margin-left: 30px; margin-bottom: 55px; }
-#address-phone{border: solid 0px orange; opacity: 0.6; color: black; margin-left: 30px; margin-bottom: 55px; }
-#choice{border: solid 0px navy; color: black; margin-left: 30px; margin-bottom: 55px; margin-right: 30px; }
-#basket-button{border: solid 0px black; margin-left: 30px; margin-right: 30px; }
+#star-point{border: solid 0px yellow; color: yellow; margin-left: 30px; margin-bottom: 40px; }
+#address-phone{border: solid 0px orange; opacity: 0.6; color: black; margin-left: 30px; margin-bottom: 40px; }
+#choice{border: solid 0px navy; color: black; margin-left: 30px; margin-bottom: 50px; margin-right: 30px; }
+#basket-button{border: solid 0px black; margin-left: 30px; margin-right: 30px; height: 60px; }
 
-#window-menu{border: solid 0px greenyellow; height: 100px; margin-left: 30px; margin-right: 30px; }
+#window-menu{border: solid 1px greenyellow; height: 100px; margin-left: 30px; margin-right: 30px; }
 .nav-item{border: solid 0px red; margin-top: 25px; margin-right: 30px; margin-left: 30px; }
 
-#menu-sebu{border: solid 0px blue; margin-left: 30px; margin-right: 30px; display: flex; }
-.bord-section{border: solid 0px black; flex: 2; margin-left: 30px;}
-#section1{border: solid 0px burlywood; padding-top:70px;padding-bottom:70px;}
-#notice{border: solid 0px green; width: 500px; height: 100px; margin: 0 auto; padding-top:20px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; }
+#menu-sebu{border: solid 1px blue; margin-left: 30px; margin-right: 30px; display: flex; }
+.bord-section{border: solid 1px black; flex: 2; margin-left: 30px;}
+#section1{border: solid 1px burlywood; padding-top:70px;padding-bottom:70px;}
+#notice{border: solid 1px green; width: 500px; height: 100px; margin: 0 auto; padding-top:20px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px; }
 #price{border: solid 0px red; width:500px; height: 200px; }
 
 #section2{border: solid 1px hotpink; padding-top:70px;padding-bottom:70px; display: flex;  }
+
 #section3{border: solid 1px cornflowerblue; padding-top:70px;padding-bottom:70px;}
-#textarea{border: solid 0px black; width: 600px; height: 400px; margin: 0 auto; }
-#section4{border: solid 1px purple; padding-top: 100px; padding-bottom: 100px; }
-.map{border: solid 1px black; width: 700px; height: 400px; margin: 0 auto; }
+#review-zone{border: solid 0px red; margin-left: 30px; margin-right: 30px;}
+.title-button{border: solid 0px black; display: flex;}
+#review-title{border: solid 0px blue; flex: 4;}
+#review-button{border: solid 1px orange; flex: 1; background-color: rgb(255, 255, 255);}
+#review-content{border: solid 1px green; width: 700px; height: 300px; }
+#content{width: 100%; height: 100%;}
+
+#section4{border: solid 1px purple; padding-top: 100px; padding-bottom: 100px;}
+#map-title{border: solid 0px gray; margin-left: 30px; margin-right: 30px; height: 70px;}
+#map-api{border: solid 1px black; width: 700px; height: 400px; margin: 0 auto; }
 
 .aside{border: solid 1px palevioletred; flex: 1; margin-right: 30px; }
-#choice-bar{border: solid 1px black; margin-top: 30px; margin-left: 40px; margin-right: 40px;}
-#basket-button2{border: solid 1px blue; margin: 200px 40px 0 40px ; }
+#choice-bar{border: solid 0px black; margin-top: 30px; margin-left: 40px; margin-right: 40px;}
+#basket-button2{border: solid 0px blue; margin: 200px 40px 0 40px ; }
