@@ -3,6 +3,12 @@
 	
 <%@ include file="/views/common/header.jsp"%>	
 
+<style>
+    h2{
+        margin: 30px 0;
+    }
+</style>
+
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
 	<div class="row">
@@ -14,24 +20,23 @@
                 <div class="table table-responsive">
                     <table class="table">
                         <tr>
-                            <td>작성자</td>
+                            <th>작성자</th>
                             <td>admin</td>
                             <!-- <td><input type="text" class="form-control" name="writer"></td> -->
                         </tr>
                         <tr>
-                            <td>제목</td>
+                            <th>제목</th>
                             <td><input type="text" class="form-control" value="[답변]" name=""></td>
                         </tr>
                         <tr>
-                            <td>글내용</td>
+                            <th>글내용</th>
                             <td><textarea class="form-control" name="" cols="50" rows="10"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
                                 <input type="hidden" name="">
-                                <input type="submit" class="btn btn-success" value="답글등록">
+                                <input type="submit" class="btn btn-primary" value="답글등록" onclick="">
                                 <input type="reset" class="btn btn-warning" value="취소">
-                                <input type="button" class="btn btn-primary" value="글목록" onclick="">
                             </td>
                         </tr>
                     </table>
