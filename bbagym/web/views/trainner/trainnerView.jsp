@@ -14,7 +14,7 @@
 <section>   
 
 
-            <div class="container" id="box-search">
+            <div class="box" id="box-search">
                 <div>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -36,7 +36,7 @@
             <div id="box-board">
                 <!-- for(List a : list){-->
                 <!-- if(num%3=0){-->
-                <div class="container" style="padding-bottom: 40px;">
+                <div class="box" style="padding-bottom: 40px;">
                 <!-- }-->
 
                     <div class="content-box-outer" >

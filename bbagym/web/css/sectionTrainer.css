@@ -5,21 +5,26 @@
 
 
 /*  section */
-
+#section{
+    width: 1366px;
+}
 
 #box-search{
     margin-top: 100px;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
 
 #box-search>div{
-    width: 60%;
+    width: 1050px;
 }
 
 
 #box-board{
     margin-top: 150px;
+    display: flex;
+    justify-content: center;
 }
 
 #box-board>div{
@@ -32,7 +37,7 @@
 .content-box-outer{
     cursor: pointer;
     border-radius: 20px;
-    width: 30%;
+    width: 300px;
     height: 400px;
     overflow: hidden;
     border-style: unset;
@@ -44,7 +49,7 @@
 
 .content-box-inner{
     height: 100%;
-    width: 100%;
+    width: 300px;
     background-size: cover;
     background-position: center;
     transition: all 1s ease;
@@ -60,18 +65,18 @@
 
 .bar{
     height: 1%;
-    width: 100%;
+    width: 300px;
     background-color: rgb(255, 145, 0);
 }
 
 .content-box-cotent{
     height: 30%;
-    width: 100%;
+    width: 300px;
     background-color: beige;
 }
 .content-box-cotent>table{
     height: 100%;
-    width: 100%;
+    width: 300px;
 }
 
 .content-box-cotent td{
@@ -89,4 +94,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.box{
+    width: 960px;
+    display: flex;
+    justify-content: center;
 }
