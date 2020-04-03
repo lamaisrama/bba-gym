@@ -68,4 +68,4 @@
   </nav>
   <!-- End Navbar -->
   
-  <!-- <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');"></div> --> 
+   <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('assets/img/fabio-mangione.jpg');"></div>
