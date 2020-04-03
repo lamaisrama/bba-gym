@@ -78,7 +78,7 @@ public class AESEncrypt {
 		//1.파일저장위치선택 - 객체가 생성 될 때(서버가 실행될때) 받아서 처리
 		//2.저장위치에 SecretKey객체 파일로 저장 - 
 		
-		File f = new File(path+"/secertkey.bs");
+		File f = new File(path+"/secertkey.bbagym");
 		//outputStram -> 객체를 저장 ObjectOutputStream
 		
 		try(ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(f));){
