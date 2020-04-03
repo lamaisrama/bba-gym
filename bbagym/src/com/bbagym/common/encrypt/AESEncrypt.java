@@ -36,7 +36,7 @@ public class AESEncrypt {
 		//secretKey.bs파일이 있으면 파일의 내용을 불러와서 key저장
 		//없으면 생성
 		
-		File f = new File(path+"/secret.bbagym");
+		File f = new File(path+"/secretkey.bbagym");
 		if(f.exists()) {
 			//파일을 읽어오기 Object파일 읽어오기
 			//ObjectInputStream
@@ -78,7 +78,7 @@ public class AESEncrypt {
 		//1.파일저장위치선택 - 객체가 생성 될 때(서버가 실행될때) 받아서 처리
 		//2.저장위치에 SecretKey객체 파일로 저장 - 
 		
-		File f = new File(path+"/secertkey.bbagym");
+		File f = new File(path+"/secretkey.bbagym");
 		//outputStram -> 객체를 저장 ObjectOutputStream
 		
 		try(ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(f));){
