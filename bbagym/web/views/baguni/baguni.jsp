@@ -21,6 +21,8 @@
 
 	<!-- CSS -->
 	 <link href="<%=request.getContextPath() %>/css/baguni.css" rel="stylesheet" />
+	 
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
 
  <div class="container-fluid">
         <div class="d-flex flex-row title-container ">
