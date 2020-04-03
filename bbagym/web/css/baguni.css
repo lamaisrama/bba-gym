@@ -305,7 +305,18 @@ div {
             font-weight: bolder;
             background: none;
             color: #5467f5;
-            margin: 50px 10px 0 265px;
+            margin-left: auto;
+            margin-top: 50px;
+            margin-right: 10px;
+        }
+        
+		.btn-pay {
+            width: 270px;
+            height: 80px;
+            font-weight: bolder;
+            background-color: #5467f5;
+            margin-top: 50px;
+            margin-right: auto;
         }
 
         .btn-more:hover {
@@ -339,14 +350,6 @@ div {
             color: #FFFFFF;
             border-color: #2840f5;
             box-shadow: none;
-        }
-
-        .btn-pay {
-            width: 270px;
-            height: 80px;
-            font-weight: bolder;
-            background-color: #5467f5;
-            margin-top: 50px;
         }
 
         #button-container {
