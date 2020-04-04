@@ -1,5 +1,5 @@
 package com.bbagym.dao;
 
-public class H {
+public class TrainerDao {
 
 }
