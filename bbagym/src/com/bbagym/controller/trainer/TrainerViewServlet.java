@@ -1,5 +1,7 @@
 package com.bbagym.controller.trainer;
 
+import static com.bbagym.common.PageBarTemplate.pageBar;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -8,9 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static com.bbagym.common.PageBarTemplate.pageBar;
 
 import com.bbagym.model.vo.Trainer;
+import com.bbagym.service.TrainerService;
 
 /**
  * Servlet implementation class TrainerViewServlet
