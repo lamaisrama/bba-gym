@@ -36,11 +36,11 @@
 	flex-direction: row;
 }
 
-#search {
+#search-type {
 	flex : 1;
 }
 
-#search+input{
+#search-type+input{
 	flex : 5;
 }
 

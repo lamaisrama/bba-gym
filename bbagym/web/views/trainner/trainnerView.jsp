@@ -18,17 +18,28 @@
                 <div>
                  	<label for="search">Search</label>
 				    <div id="box-search-inline">
-				        <select class="custom-select" id="search">
-				            <option selected>전체</option>
-				            <option value="1">이름</option>
-				            <option value="2">소속</option>
-				            <option value="3">종목</option>
+				        <select class="custom-select" id="search-type">
+				            <option value="total" selected>전체</option>
+				            <option value="userId">이름</option>
+				            <option value="center">소속</option>
+				            <option value="category">종목</option>
 				        </select>
-				        <input type="text" class="form-control " placeholder="트레이너의 소속,이름,종목을 입력해주세요">
+				        <input type="text" class="form-control" id="searchKeyword" placeholder="트레이너의 소속,이름,종목을 입력해주세요">
 				    </div>
                 </div>
             </div>
-
+            <!--  -->
+            <script>
+            	$("#searchKeyword").keydown(function(key){
+            		if(key.keyCode==13){
+            		var type=$("#search-type").find(":selected").val()
+            		var searchKeyword=$("#searchKeyword").val()
+				
+            		location.replace("<%=request.getContextPath() %>/trainer/trainerFind.do?type="+type+"&searchKeyword="+searchKeyword);
+            		
+            		}
+            	});
+            </script>
            
             <div id="box-board">
                 <!-- for(List a : list){-->
