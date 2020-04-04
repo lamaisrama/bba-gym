@@ -8,7 +8,7 @@ public class Trainer {
 	private String t_career;
 	private String business_code;
 	private String t_text;
-	private String approval;
+	private char approval;
 	private String c_code;
 	private String m_code;
 	
@@ -17,7 +17,7 @@ public class Trainer {
 	}
 
 	public Trainer(String t_code, String t_counsel_hours, String t_introduction, String t_career, String business_code,
-			String t_text, String approval, String c_code, String m_code) {
+			String t_text, char approval, String c_code, String m_code) {
 		super();
 		this.t_code = t_code;
 		this.t_counsel_hours = t_counsel_hours;
@@ -78,11 +78,11 @@ public class Trainer {
 		this.t_text = t_text;
 	}
 
-	public String getApproval() {
+	public char getApproval() {
 		return approval;
 	}
 
-	public void setApproval(String approval) {
+	public void setApproval(char approval) {
 		this.approval = approval;
 	}
 
