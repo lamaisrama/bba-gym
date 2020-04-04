@@ -50,7 +50,7 @@ public class TrainerViewServlet extends HttpServlet {
 		String pagebar = pageBar(url, totalData, cPage, numPerpage);
 		request.setAttribute("pageBar", pagebar);
 		request.setAttribute("trainerList", list);
-		request.getRequestDispatcher("/views/trainner/trainnerView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/trainner/trainerView.jsp").forward(request, response);
 	}
 
 	/**
