@@ -42,7 +42,6 @@ public class TrainerDao {
 			pstmt.setInt(2, cPage*numPerpage);
 			
 			rs=pstmt.executeQuery();
-			System.out.println(sql);
 			while(rs.next()) {
 				TrainerView tv = new TrainerView();
 				

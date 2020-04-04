@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List,com.bbagym.model.vo.TrainerView" %>	
 <%@ include file="/views/common/header.jsp"%>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/sectionTrainer.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sectionTrainer.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+<%
+
+	List<TrainerView> list = (List)request.getAttribute("trainerList");
+
+%>
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <section>   
@@ -29,110 +35,60 @@
                 </div>
             </div>
             <!--  -->
-            <script>
-            	$("#searchKeyword").keydown(function(key){
-            		if(key.keyCode==13){
-            		var type=$("#search-type").find(":selected").val()
-            		var searchKeyword=$("#searchKeyword").val()
-				
-            		location.replace("<%=request.getContextPath() %>/trainer/trainerFind.do?type="+type+"&searchKeyword="+searchKeyword);
-            		
-            		}
-            	});
-            </script>
+            
            
             <div id="box-board">
-                <!-- for(List a : list){-->
-                <!-- if(num%3=0){-->
-                <div class="box" style="padding-bottom: 40px;">
-                <!-- }-->
-
+           
+				 <%for(int i=0;i<list.size();i++){ %> 
+				
+					<%if(i%3==0){ %>
+						<div class="box" style="padding-bottom: 40px;">
+					<%} %>
+					
                     <div class="content-box-outer" >
-                        <div class="content-box-inner" style="background-image: url('https://i.ytimg.com/vi/RMeXxJ3Y2KI/maxresdefault.jpg');"><!-- 이미지처리-->
+                        <div class="content-box-inner" style="background-image: url('https://lh3.googleusercontent.com/proxy/uS-RKnA55lQW0WYuA3EC-_jhINsMETch_p-G9AJ0TGHsfDLmXh76mP7D5FQ02yohWW3flh31rlxplObmWzcgPeGJ8w41n8WumN2mC--5GNDKGAFVvVtDstKQmFYIB7JrVg9VNdnr8Md-Pu64Sgs0wzHwD9V2kQINvqTV');"><!-- 이미지처리-->
                             <div class="bar"></div>
                             <div class="content-box-cotent">
                                 <table >
                                     <tr>
-                                        <td>이름 : 김범신</td>
+                                        <td>이름 : <%=list.get(i).getM_name() %>
+                                        	<input type="hidden" value="<%=list.get(i).getT_code() %>">
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>소속 : KH정보교육</td>
+                                        <td>소속 : <%=list.get(i).getC_center() %></td>
                                    </tr>
                                     <tr>
-                                        <td>주소 : 강남구</td>
+                                        <td>주소 : <%=list.get(i).getM_addres2() %></td>
                                     </tr>
                                     <tr>
-                                        <td><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td>
+                                        <td>
+                                        <%for(String s : list.get(i).getBadge()){ %>
+                                        <span class="badge badge-info"><%=s %></span>&nbsp;&nbsp;
+                                        <%} %>
                                     </tr>
                                 </table>
                             </div>
                         </div>  
                     </div> <!-- content-box-outer-->
+					
+					<%if(i%3==2||i==list.size()-1){ %>	
+						</div>
+					 <%} %>
+					<%} %>
 
+              	
+             
 
-                    <div class="content-box-outer">
-                        <div class="content-box-inner">
-                            <div class="bar"></div>
-                            <div class="content-box-cotent">
-                                <table >
-                                    <tr>
-                                        <td>이름 : 김범신</td>
-                                    </tr>
-                                    <tr>
-                                        <td>소속 : KH정보교육</td>
-                                    </tr>
-                                    <tr>
-                                        <td>주소 : 강남구</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>  
-                    </div> <!-- content-box-outer-->
-
-
-                    <div class="content-box-outer">
-                        <div class="content-box-inner">
-                            <div class="bar"></div>
-                            <div class="content-box-cotent">
-                                <table >
-                                    <tr>
-                                        <td>이름 : 김범신</td>
-                                    </tr>
-                                    <tr>
-                                        <td>소속 : KH정보교육</td>
-                                    </tr>
-                                    <tr>
-                                        <td>주소 : 강남구</td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="badge badge-info">헬스</span>&nbsp;&nbsp;<span class="badge badge-info">G.X</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>  
-                    </div> <!-- content-box-outer-->
-                
-                <!-- if(num%3=0){-->    
-                </div><!-- container -->
-                <!-- }-->
-                <!-- }-->
+                    
+             
                 
         </div>
-
+		
+		<script src="<%=request.getContextPath() %>/js/trainerView.js"></script>
         
         <div id="pageBar"><!-- 페이지바 JSP구현-->
-            <div >
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul>
-            </div>
+            <%=request.getAttribute("pageBar") %>
         </div>
 
 </section>
