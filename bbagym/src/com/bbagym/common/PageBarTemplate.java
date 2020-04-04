@@ -1,0 +1,45 @@
+package com.bbagym.common;
+
+public class PageBarTemplate {
+
+
+	public static String pageBar(String url,int totalData,int cPage,int numPerpage) {
+		String pageBar="";
+		int pageBarSize=5;
+		int totalPage = (int) Math.ceil((double)totalData/numPerpage);
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		pageBar += "<div><ul class='pagination'>";
+		
+		if(pageNo==1) {
+			pageBar += "<li class='page-item'>[Frist]</li>";
+		}else {
+			pageBar +="<li class='page-item'><a class='page-link' href='"+url+"?cPage="+(pageNo-1)+"'>[Previous]</a></li>";
+		}
+		
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(pageNo==cPage) {
+				pageBar += "<li class='page-item'>"+pageNo+"</span>";
+			}else {
+				pageBar += "<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"'>"+pageNo+"</a></li>";
+			}
+			pageNo++;
+		}
+		
+		if(pageNo>totalPage) {
+			pageBar += "<li class='page-item'>[End]</li>";
+		}else {
+			pageBar +="<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"'>[Next]</a></li>";
+		}
+		
+		pageBar += "</ul></div>";
+		
+		
+		return pageBar;
+	}
+	
+	
+	
+	
+}
