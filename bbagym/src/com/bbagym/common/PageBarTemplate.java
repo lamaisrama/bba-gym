@@ -1,7 +1,9 @@
 package com.bbagym.common;
 
 public class PageBarTemplate {
-
+	
+	//url 페이징처리하는 서블릿 url
+	
 
 	public static String pageBar(String url,int totalData,int cPage,int numPerpage) {
 		String pageBar="";

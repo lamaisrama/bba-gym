@@ -1,11 +1,16 @@
 package com.bbagym.controller.trainer;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static com.bbagym.common.PageBarTemplate.pageBar;
+
+import com.bbagym.model.vo.Trainer;
 
 /**
  * Servlet implementation class TrainerViewServlet
@@ -27,7 +32,23 @@ public class TrainerViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String url= request.getContextPath()+"/trainer/trainerView.do";
+		int cPage;
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
+		
+		int numPerpage=5;
+		List<Trainer> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
+		int totalData = new TrainerService().AllTrainerDataCount();
+		
+		String pagebar = pageBar(url, totalData, cPage, numPerpage);
+		request.setAttribute("pageBar", pagebar);
+		request.setAttribute("trainerList", list);
+		request.getRequestDispatcher("/views/trainner/trainnerView.jsp").forward(request, response);
 	}
 
 	/**
