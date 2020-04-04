@@ -14,28 +14,25 @@
 <section>   
 
 
-            <div class="box" id="box-search">
+            <div id="box-search-outline">
                 <div>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        <button type="button" class="btn btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                            전체
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">이름</a>
-                            <a class="dropdown-item" href="#">소속</a>
-                            <a class="dropdown-item" href="#">종목</a>
-                        </div>
-                        </div>
-                        <input type="text" class="form-control " placeholder="트레이너의 소속,이름,종목을 입력해주세요">
-                    </div>
+                 	<label for="search">Search</label>
+				    <div id="box-search-inline">
+				        <select class="custom-select" id="search">
+				            <option selected>전체</option>
+				            <option value="1">이름</option>
+				            <option value="2">소속</option>
+				            <option value="3">종목</option>
+				        </select>
+				        <input type="text" class="form-control " placeholder="트레이너의 소속,이름,종목을 입력해주세요">
+				    </div>
                 </div>
             </div>
 
            
             <div id="box-board">
                 <!-- for(List a : list){-->
-                <!-- if(num%3=0){-->
+                <!-- if(num%3=0){-->	
                 <div class="box" style="padding-bottom: 40px;">
                 <!-- }-->
 

@@ -10,6 +10,23 @@
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <section>   
         <div id="box-total">
+        	
+        	<div id="box-search-outline">
+                <div>
+                 	<label for="search">Search</label>
+				    <div id="box-search-inline">
+				        <select class="custom-select" id="search">
+				            <option selected>전체</option>
+				            <option value="1">이름</option>
+				            <option value="2">소속</option>
+				            <option value="3">종목</option>
+				        </select>
+				        <input type="text" class="form-control " placeholder="트레이너의 소속,이름,종목을 입력해주세요">
+				    </div>
+                </div>
+            </div>
+        	
+        
             <div id="nav-box">
                 <br>
                 <!-- Nav tabs -->

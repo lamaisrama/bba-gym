@@ -9,15 +9,28 @@
     width: 1366px;
 }
 
-#box-search{
+#box-search-outline{
     margin-top: 100px;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-#box-search>div{
+#box-search-outline>div{
     width: 1050px;
+}
+
+#box-search-inline{
+	display: flex;
+	flex-direction: row;
+}
+
+#search {
+	flex : 1;
+}
+
+#search+input{
+	flex : 5;
 }
 
 
@@ -96,8 +109,3 @@
     align-items: center;
 }
 
-.box{
-    width: 960px;
-    display: flex;
-    justify-content: center;
-}
