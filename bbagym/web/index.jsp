@@ -25,8 +25,8 @@
 				        <a href="<%=request.getContextPath()%>/views/center/centerView.jsp"> <li>센터 찾기</li></a>
 				        <a href="<%=request.getContextPath()%>/views/center/centerViewDetail.jsp"> <li>센터 상세보기</li></a>
 				        <a href="<%=request.getContextPath()%>/views/center/centerEnroll-1.jsp"> <li>센터 등록</li></a>
-				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerView.jsp"> <li>트레이너 찾기</li></a>
-				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerViewDetail.jsp"> <li>트레이너 상세보기</li></a>
+				        <a href="<%=request.getContextPath()%>/views/trainer/trainerView.jsp"> <li>트레이너 찾기</li></a>
+				        <a href="<%=request.getContextPath()%>/views/trainer/trainerViewDetail.jsp"> <li>트레이너 상세보기</li></a>
 				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerEnroll-1.jsp"> <li>트레이너 등록</li></a>
 				        <a href="<%=request.getContextPath()%>/views/board/notice.jsp"> <li>Notice</li></a>
 				        <a href="#"> <li>Q&A</li></a>

@@ -20,6 +20,29 @@
     width: 1050px;
 }
 
+#box-search-outline{
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#box-search-outline>div{
+    width: 1050px;
+}
+
+#box-search-inline{
+	display: flex;
+	flex-direction: row;
+}
+
+#search-type {
+	flex : 1;
+}
+
+#search-type+input{
+	flex : 5;
+}
 
 #box-board{
     margin-top: 150px;
