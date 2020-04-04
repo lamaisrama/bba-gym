@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 
-	private String m_code;
+	private int m_code;
 	private String m_id;
 	private String m_pw;
 	private String m_name;
@@ -23,7 +23,7 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(String m_code, String m_id, String m_pw, String m_name, String m_email, String m_phone,
+	public Member(int m_code, String m_id, String m_pw, String m_name, String m_email, String m_phone,
 			String m_address, int m_level, Date m_enrolldate, char m_status, String m_image, String m_phone2,
 			String m_address2, char m_gender) {
 		super();
@@ -43,11 +43,11 @@ public class Member {
 		this.m_gender = m_gender;
 	}
 
-	public String getM_code() {
+	public int getM_code() {
 		return m_code;
 	}
 
-	public void setM_code(String m_code) {
+	public void setM_code(int m_code) {
 		this.m_code = m_code;
 	}
 

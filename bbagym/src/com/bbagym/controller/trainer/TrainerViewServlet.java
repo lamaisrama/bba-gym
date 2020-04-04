@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbagym.model.vo.Trainer;
+import com.bbagym.model.vo.TrainerView;
 import com.bbagym.service.TrainerService;
 
 /**
@@ -37,6 +38,7 @@ public class TrainerViewServlet extends HttpServlet {
 		
 		String url= request.getContextPath()+"/trainer/trainerView.do";
 		int cPage;
+		
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -44,13 +46,19 @@ public class TrainerViewServlet extends HttpServlet {
 		}
 		
 		int numPerpage=5;
-		List<Trainer> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
+		List<TrainerView> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
 		int totalData = new TrainerService().AllTrainerDataCount();
+
+	
+		for(TrainerView mv :list) {
+			System.out.println(mv);
+		}
+		
 		
 		String pagebar = pageBar(url, totalData, cPage, numPerpage);
 		request.setAttribute("pageBar", pagebar);
 		request.setAttribute("trainerList", list);
-		request.getRequestDispatcher("/views/trainner/trainerView.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/trainer/trainerView.jsp").forward(request, response);
 	}
 
 	/**

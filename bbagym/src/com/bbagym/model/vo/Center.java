@@ -2,7 +2,7 @@ package com.bbagym.model.vo;
 
 public class Center {
 
-	private String c_code;
+	private int c_code;
 	private String c_name;
 	private String c_address;
 	private String c_phone;
@@ -18,7 +18,7 @@ public class Center {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Center(String c_code, String c_name, String c_address, String c_phone, String c_opearting_hours,
+	public Center(int c_code, String c_name, String c_address, String c_phone, String c_opearting_hours,
 			String c_holiday, String c_schedule, String c_text, String business_code, char approval, String m_code) {
 		super();
 		this.c_code = c_code;
@@ -34,11 +34,11 @@ public class Center {
 		this.m_code = m_code;
 	}
 
-	public String getC_code() {
+	public int getC_code() {
 		return c_code;
 	}
 
-	public void setC_code(String c_code) {
+	public void setC_code(int c_code) {
 		this.c_code = c_code;
 	}
 

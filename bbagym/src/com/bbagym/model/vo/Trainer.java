@@ -2,7 +2,7 @@ package com.bbagym.model.vo;
 
 public class Trainer {
 
-	private String t_code;
+	private int t_code;
 	private String t_counsel_hours;
 	private String t_introduction;
 	private String t_career;
@@ -16,7 +16,7 @@ public class Trainer {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Trainer(String t_code, String t_counsel_hours, String t_introduction, String t_career, String business_code,
+	public Trainer(int t_code, String t_counsel_hours, String t_introduction, String t_career, String business_code,
 			String t_text, char approval, String c_code, String m_code) {
 		super();
 		this.t_code = t_code;
@@ -30,11 +30,11 @@ public class Trainer {
 		this.m_code = m_code;
 	}
 
-	public String getT_code() {
+	public int getT_code() {
 		return t_code;
 	}
 
-	public void setT_code(String t_code) {
+	public void setT_code(int t_code) {
 		this.t_code = t_code;
 	}
 
