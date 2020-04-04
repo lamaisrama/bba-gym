@@ -24,30 +24,6 @@ section>div{
     min-height: 100%;
 }
 
-#box-search-outline{
-    margin-top: 100px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-#box-search-outline>div{
-    width: 1050px;
-}
-
-#box-search-inline{
-	display: flex;
-	flex-direction: row;
-}
-
-#search {
-	flex : 1;
-}
-
-#search+input{
-	flex : 5;
-}
-
 #nav-box {
     margin-top: 50px;
     color: black;
@@ -114,7 +90,7 @@ section>div{
 
 
 * {
-    /* border : 1px solid red;   */
+    /* border : 1px solid red;  */
     font-family: 'GmarketSansMedium';
 }
 

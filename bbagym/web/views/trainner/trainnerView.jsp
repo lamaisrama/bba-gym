@@ -32,7 +32,7 @@
            
             <div id="box-board">
                 <!-- for(List a : list){-->
-                <!-- if(num%3=0){-->	
+                <!-- if(num%3=0){-->
                 <div class="box" style="padding-bottom: 40px;">
                 <!-- }-->
 
