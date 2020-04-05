@@ -35,7 +35,6 @@ public class TrainerViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		String url= request.getContextPath()+"/trainer/trainerView.do";
 		int cPage;
 		
@@ -45,7 +44,7 @@ public class TrainerViewServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerpage=9;
+		int numPerpage=9; //페이지당 9개 데이터 출력
 		List<TrainerView> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
 		int totalData = new TrainerService().AllTrainerDataCount();
 

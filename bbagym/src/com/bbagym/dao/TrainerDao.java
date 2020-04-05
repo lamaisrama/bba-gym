@@ -28,7 +28,8 @@ public class TrainerDao {
 		}
 	}
 	
-	public List<TrainerView> AllTrainerDataList(Connection conn,int cPage,int numPerpage){
+	//모든 트레이너 데이터를 가져오는 dao 페이징처리
+	public List<TrainerView> AllTrainerDataList(Connection conn,int cPage,int numPerpage){ 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -63,7 +64,8 @@ public class TrainerDao {
 		
 	}
 	
-	public List<TrainerView> TrainerBadge(Connection conn,List<TrainerView> list){
+	// list를 보내어  트레이너별 카테고리 다중값을 다시 넣어주는 dao
+	public List<TrainerView> TrainerBadge(Connection conn,List<TrainerView> list){ 
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -106,7 +108,8 @@ public class TrainerDao {
 		
 	}
 	
-	public int AllTrainerDataCount(Connection conn) {
+	//모든 트레이너 데이터를 가져오는 dao 논페이징처리
+	public int AllTrainerDataCount(Connection conn) { 
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		int result =0;
@@ -129,7 +132,7 @@ public class TrainerDao {
 		return result;
 	}
 	
-	
+	// 검색에 타입과 키워드에따라 트레이너 데이터를 가져오는 dao 페이징처리 (이름,소속)
 	public List<TrainerView> searchTrainerData(Connection conn,int cPage,int numPerpage,String type,String searchKeyword){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -165,6 +168,7 @@ public class TrainerDao {
 		
 	}
 	
+	// 검색에 타입과 키워드에따라 트레이너 모든 데이터를 가져오는 dao 논페이징처리 (이름,소속)
 	public int serachTrainerAllData(Connection conn, String type, String searchKeyword) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -188,6 +192,7 @@ public class TrainerDao {
 		return result;
 	}
 	
+	// 검색에 타입과 키워드에따라 트레이너 데이터를 가져오는 dao 페이징처리 (카테고리)
 	public List<TrainerView> searchTrainerData2(Connection conn,int cPage,int numPerpage,String searchKeyword){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -221,6 +226,7 @@ public class TrainerDao {
 		return list;
 	}
 	
+	// 검색에 타입과 키워드에따라 트레이너 모든 데이터를 가져오는 서비스 논페이징처리 (카테고리)
 	public int serachTrainerAllData2(Connection conn, String searchKeyword) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;

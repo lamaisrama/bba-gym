@@ -49,9 +49,9 @@ public class TrainerSearchServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerpage=9;
+		int numPerpage=9; //페이지당 9개의 데이터를 출력
 		
-		if(!type.equals("category_name")) {
+		if(!type.equals("category_name")) { //카테고리같은경우는 카테고리테이블의 name값으로 검색이 되기떄문에  다른 쿼리문을 쓰기에 나뉘었고 category타입은 정해져 type은가져가지않는다
 		 list = new TrainerService().searchTrainerData(cPage,numPerpage,type,searchKeyword);
 		 totalData = new TrainerService().serachTrainerAllData(type,searchKeyword);
 		}else {
@@ -66,7 +66,7 @@ public class TrainerSearchServlet extends HttpServlet {
 		int pageEnd=pageNo+pageBarSize-1;
 		
 		pageBar += "<div><ul class='pagination'>";
-		
+//		search같은 경우는 type과 searchKeyword를 동봉해야하기떄문에 pageBar Template를 쓰지못함
 		if(pageNo==1) {
 			pageBar += "<li class='page-item'><a class='page-link'>[Frist]</a></li>";
 		}else {
