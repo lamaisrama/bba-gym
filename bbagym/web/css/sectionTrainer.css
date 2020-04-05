@@ -42,6 +42,7 @@
 
 #search-type+input{
 	flex : 5;
+	display:none;
 }
 
 #box-board{

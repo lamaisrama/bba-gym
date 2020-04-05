@@ -35,7 +35,7 @@ public class TrainerViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		String url= request.getContextPath()+"/trainer/trainerView.do";
 		int cPage;
 		
@@ -50,8 +50,10 @@ public class TrainerViewServlet extends HttpServlet {
 		int totalData = new TrainerService().AllTrainerDataCount();
 
 
+
 		
-		String pagebar = pageBar(url, totalData, cPage, numPerpage);
+		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
+
 		request.setAttribute("pageBar", pagebar);
 		request.setAttribute("trainerList", list);
 		request.getRequestDispatcher("/views/trainer/trainerView.jsp").forward(request, response);
