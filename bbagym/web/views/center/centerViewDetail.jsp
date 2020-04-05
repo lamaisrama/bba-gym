@@ -62,37 +62,88 @@
                 </div>
                 <div id="menu-sebu">
                     <div class="bord-section">
-                        <div id="section1" class="container-fluid">시설정보
-                            <div id="notice">
-                                <p>서대문역 1번출구 5분거리!! 3개 각층 넓고 쾌적한 VIP휘트니스!!
-                                ▶3층 웨이트 및 P.T존! ▶2층 유산소존! ▶B1층 찜질방 및 G.X존</p>
+                        <div id="section1" class="container-fluid">
+	                    	<div id="notice-zone">
+	                            <div id="notice">
+	                                <p>서대문역 1번출구 5분거리!! 3개 각층 넓고 쾌적한 VIP휘트니스!!
+	                                ▶3층 웨이트 및 P.T존! ▶2층 유산소존! ▶B1층 찜질방 및 G.X존</p>
+	                            </div>
+	                        </div> 
+                            <div id="price-zone">    
+                                <div id="price">
+                                    <div class="price-title"><h5>가격정보</h5></div>
+                                    <div id="price-buga">
+                                        <div class="buga-title"><h6>헬스</h6></div>
+                                        <div id="contentt">
+                                            1개월 3개월 6개월 12개월
+                                        </div>
+                                        <div class="buga-title"><h6>요가</h6></div>
+                                        <div id="contentt">
+                                            1개월 3개월 6개월 12개월
+                                        </div>
+                                        <div class="buga-title"><h6>필라테스</h6></div>
+                                        <div id="contentt">
+                                            1개월 3개월 6개월 12개월
+                                        </div>
+                                        
+                                    </div>    
+                                </div>
                             </div>
-                            <div id="price">
-                                
+                            <div id="notice2-zone">
+                                <div id="notice2">
+                                    <div id="notice2-title"><h5>공지사항</h5></div>
+                                    <div id="notice2-con">
+                                    ※ONLY 다짐에서만 가능한 VIP휘트니스 선착순 우주 최저가 혜택
+                                    -12개월권을 6개월 가격으로! 선착순 5명 (조기소진시 정상가전환)
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="time-zone">
+                                <div id="time">
+                                    <div id="time-play"><h5>운영시간</h5></div>
+                                    <div id="time-con">
+                                        [평　일] 06:00 ~ 23:00<br>
+                                        [토요일] 09:00 ~ 19:00<br>
+                                        [일요일] 12:00 ~ 18:00<br>
+                                        [휴관일] 둘째 ,넷째 주 일요일
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="program-zone">
+                                <div id="program">
+                                    <div class="program-title"><h5>운영프로그램</h5></div>
+                                    <div class="program-sebu">
+                                        유료<Br>
+                                        라커 (월 이용료 10,000원)<br>
+                                        - ※단, 헬스 또는 헬스 + G.X 12개월 이상 등록시 월 5,000원)<br>
+                                        무료<Br>
+                                        찜질방 / 운동복 / 수건 / 주차 3시간 무료
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!--이미지구역-->
                         <div id="section2" class="container-fluid">
-                            <div class="col-lg-3 col-md-4 col-6">
-                                <a href="#" class="d-block mb-4 h-100">
-                                      <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
-                                    </a>
-                              </div>
-                              <div class="col-lg-3 col-md-4 col-6">
-                                <a href="#" class="d-block mb-4 h-100">
-                                      <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/aob0ukAYfuI/400x300" alt="">
-                                    </a>
-                              </div>
-                              <div class="col-lg-3 col-md-4 col-6">
-                                <a href="#" class="d-block mb-4 h-100">
-                                      <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/EUfxH-pze7s/400x300" alt="">
-                                    </a>
-                              </div>
-                              <div class="col-lg-3 col-md-4 col-6">
-                                <a href="#" class="d-block mb-4 h-100">
-                                      <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/M185_qYH8vg/400x300" alt="">
-                                    </a>
-                              </div>
+                            <div id="image-zone">
+                                <div id="image-title"><h5>사진</h5></div>
+                                <div id="image-sebu">    
+                                    <div class="img">
+                                        <div class="col-md-12 ml-auto mr-auto text-center">
+                                            <a href="img/light01_s.jpg"><img src="img/light01.jpg" alt="이미지"></a>
+							                <a href="img/light02_s.jpg"><img src="img/light02.jpg" alt="이미지"></a>
+							                <a href="img/light03_s.jpg"><img src="img/light03.jpg" alt="이미지"></a>
+                                            <a href="img/light04_s.jpg"><img src="img/light04.jpg" alt="이미지"></a>
+                                            <a href="img/light05_s.jpg"><img src="img/light05.jpg" alt="이미지"></a>
+                                            <a href="img/light06_s.jpg"><img src="img/light06.jpg" alt="이미지"></a>
+                                            <a href="img/light07_s.jpg"><img src="img/light07.jpg" alt="이미지"></a>
+                                            <a href="img/light08_s.jpg"><img src="img/light08.jpg" alt="이미지"></a>
+                                            <a href="img/light09_s.jpg"><img src="img/light09.jpg" alt="이미지"></a>
+                                            <a href="img/light10_s.jpg"><img src="img/light10.jpg" alt="이미지"></a>
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="button">펼쳐보기</div>    
+                            </div>
                         </div>
                     
                         <div id="section3" class="container-fluid">
