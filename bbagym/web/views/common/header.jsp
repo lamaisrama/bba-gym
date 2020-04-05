@@ -54,7 +54,7 @@
             <a href="#" class="nav-link" style="font-size: 16px;">&nbsp;시설찾기</a>
           </li>
           <li class="nav-item">
-            <a href="#" target="_blank" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a>
+            <a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a>
           </li>
           <li class="nav-item">
             <a href="#" target="_blank" class="nav-link" style="font-size: 16px;">&nbsp;Board</a>

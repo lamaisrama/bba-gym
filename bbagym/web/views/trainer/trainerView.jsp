@@ -85,7 +85,24 @@
                 
         </div>
 		
-		<script src="<%=request.getContextPath() %>/js/trainerView.js"></script>
+		<script>
+				$("#searchKeyword").keydown(function(key){
+		    		if(key.keyCode==13){
+		    		var type=$("#search-type").find(":selected").val();
+		    		var searchKeyword=$("#searchKeyword").val();
+		    		
+		    		location.replace("<%=request.getContextPath() %>/trainer/trainerFind.do?type="+type+"&searchKeyword="+searchKeyword);
+		    		
+		    		}
+		    	});
+		
+		
+				$(".content-box-outer").on("click",function(){
+				var tcode = $(event.target).find("input").val();
+				location.href="<%=request.getContextPath() %>/trainer/trainerFind.do?tcode="+tcode;
+				})
+
+		</script>
         
         <div id="pageBar"><!-- 페이지바 JSP구현-->
             <%=request.getAttribute("pageBar") %>
