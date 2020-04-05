@@ -17,42 +17,35 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <h2 class="text-center">공지글 작성</h2>
-            <form action="" method="post">
+            <form action="<%=request.getContextPath() %>/board/noticeWriteEnd" method="post" enctype="multipart/form-data">
                 <div class="table table-responsive">
                     <table class="table table-striped text-center">
                         <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" class="form-control">
+                                <input type="text" name="title" class="form-control">
                             </td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td>writer</td>
-                        </tr>
-                        <tr>
-                            <th>작성일</th>
-                            <td>Date</td>
+                            <td><input type="text" name="writer" <%-- value="<%=loginMember!=null?loginMember.getmId():""%>" --%> readonly></td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
-                            <td></td>
+                            <td><input type="file" name="upfile"/></td>
                         </tr>   
                         <tr>
                             <th>내용</th>
-                            <td><textarea type="text" class="form-control" cols="50" rows="10">Content</textarea></td>
+                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
-                                <input type="hidden" name="" value="">
-                                <input type="submit" class="btn btn-primary" onclick="" value="글등록">
+                                <input type="submit" class="btn btn-primary" value="글등록">
                             </td>
                         </tr>
                     </table>
                 </div>
-
             </form>
-
         </div>
     </div>
     
