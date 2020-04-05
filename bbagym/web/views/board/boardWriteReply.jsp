@@ -16,7 +16,7 @@
         <div class="col-md-8">
             <!-- <h1 class="display-4 text-center">답변글 작성</h1> -->
             <h2 class="text-center">답변글 작성</h2>
-            <form action="" method="POST">
+            <form action="" method="post">
                 <div class="table table-responsive">
                     <table class="table">
                         <tr>

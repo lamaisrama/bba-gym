@@ -64,9 +64,10 @@
 	       		<input type="text" name="search" placeholder="어떤 운동을 찾으시나요?" size="50px" background-color:"grey">
 	       </div>
 	   	</div>
-	    <div id="box">
-	        <div><button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" >회원가입</button> &nbsp; <button type="submit" class="btn btn-outline-primary text-white">로그인</button></div>
+	    <div id="box">																															<!-- <button type="submit" class="btn btn-outline-primary text-white">로그인</button> -->
+	        <div><button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" >회원가입</button> &nbsp; <input type="button" value="로그인" onclick="location.replace('<%=request.getContextPath()%>/loginEnroll.do')" class="btn btn-outline-primary text-white"></div>
 	    </div>
+	              
 	         	
 	       	<div style="display:none;">
 	       		<h1><%=session.getAttribute("name") %>님 환영홥니다</h1>
