@@ -44,9 +44,9 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 			return; //return을 넣어서 종료 해야함! 
 		}
 		String path=getServletContext().getRealPath("/upload/center/");
-		System.out.println("CE1S 경로 : "+path);
 		int maxSize=1024*1024*10;
-		MultipartRequest mr = new MultipartRequest(request, path, maxSize, new DefaultFileRenamePolicy());
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
+		
 		String name=mr.getParameter("c-name");
 		String address=mr.getParameter("c-address");
 		String tel = mr.getParameter("c-tel");
@@ -56,7 +56,7 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		String[] facilities = mr.getParameterValues("c-fac");
 		Properties sns = new Properties();
 			for(int i=1;i<5;i++) {
-				sns.put("sns"+i, mr.getParameter("sns")+i);
+				sns.put("sns"+i, mr.getParameter("sns"+i));
 			}
 		String photo=mr.getFilesystemName("c-photo");
 		List<String> photos=new ArrayList();
@@ -71,6 +71,8 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("centerEnroll", c);
+		System.out.println(c);
+		System.out.println(session.getAttribute("centerEnroll"));
 		request.getRequestDispatcher("/views/center/centerEnroll-2.jsp").forward(request, response);
 	}
 
