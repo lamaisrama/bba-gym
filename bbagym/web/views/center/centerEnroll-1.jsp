@@ -2,47 +2,45 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
+<div class="container pt-3 center-info">
+	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post"  encType="multipart/form-data">
 
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
-<div class="img-box" style="width: 100%; height: 280px; background-image: url('<%=request.getContextPath()%>/img/runners-test.gif');">
-</div>
-<div class="container pt-3 center-info ">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h1 class="mt-4" style="text-align: center;">시설 등록</h1>
         <h6 style="text-align: right;"> <span><b>1. 기본 정보 입력</b></span> > <span style="color: grey;">2.상세 정보 입력</span></h6>
         <hr>
-        <form>
           <fieldset>
             <div class="form-group">
               <label for="c-name">센터명</label>
-              <input type="text" class="form-control" id="c-name" placeholder="센터명을 입력하세요">
+              <input type="text" class="form-control" name ="c-name" id="c-name" placeholder="센터명을 입력하세요">
             </div>
             <br>
             <div class="form-group">
               <label for="c-address">센터 주소</label>
-              <input class="form-control" type="text">
+              <input class="form-control" name="c-address" id="c-address" type="text">
             </div>
             <br>
             <div class="form-group">
               <label for="c-tel">센터 연락처</label>
-              <input type="tel" class="form-control">
+              <input type="tel" name="c-tel" id="c-tel" class="form-control">
             </div>
             <br>
             <div class="form-group">
               <label for="c-time">운영시간</label>
-              <input type="text" class="form-control">
+              <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control">
             </div>
             <br>
             <div class="form-group">
               <label for="c-notime">휴무일</label>
-              <input type="text" class="form-control">
+              <input type="text" name="c-holiday" id="c-holiday" class="form-control">
             </div>
             <br>
             <div class="form-group">
               <label>카테고리</label> <br>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-cat-1">
+                <label class="form-check-label" for="c-cat">
                   <input type="checkbox" class="form-check-input" id="c-cat-1" name="c-cat" value="c-cat-1">헬스
                 </label>
               </div>
@@ -81,79 +79,80 @@
             <div class="form-group">
               <label>편의시설</label> <br>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-1">
-                  <input type="checkbox" class="form-check-input" id="c-cat-1" name="c-con" value="c-con-1">샤워시설
+                <label class="form-check-label" for="c-fac-1">
+                  <input type="checkbox" class="form-check-input" id="c-fac-1" name="c-fac" value="c-fac-1">샤워시설
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-2">
-                  <input type="checkbox" class="form-check-input" id="c-con-2" name="c-con" value="c-con-2">수건
+                <label class="form-check-label" for="c-fac-2">
+                  <input type="checkbox" class="form-check-input" id="c-fac-2" name="c-fac" value="c-fac-2">수건
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-3">
-                  <input type="checkbox" class="form-check-input" id="c-con-3" name="c-con" value="c-con-3">운동복
+                <label class="form-check-label" for="c-fac-3">
+                  <input type="checkbox" class="form-check-input" id="c-fac-3" name="c-fac" value="c-fac-3">운동복
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-4">
-                  <input type="checkbox" class="form-check-input" id="c-con-4" name="c-con" value="c-con-4">개인락커
+                <label class="form-check-label" for="c-fac-4">
+                  <input type="checkbox" class="form-check-input" id="c-fac-4" name="c-fac" value="c-fac-4">개인락커
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-5">
-                  <input type="checkbox" class="form-check-input" id="c-con-5" name="c-con" value="c-con-5">인바디
+                <label class="form-check-label" for="c-fac-5">
+                  <input type="checkbox" class="form-check-input" id="c-fac-5" name="c-fac" value="c-fac-5">인바디
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-6">
-                  <input type="checkbox" class="form-check-input" id="c-con-6" name="c-con" value="c-con-6">와이파이
+                <label class="form-check-label" for="c-fac-6">
+                  <input type="checkbox" class="form-check-input" id="c-fac-6" name="c-fac" value="c-fac-6">와이파이
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-7">
-                  <input type="checkbox" class="form-check-input" id="c-con-7" name="c-con" value="c-con-7">주차장
+                <label class="form-check-label" for="c-fac-7">
+                  <input type="checkbox" class="form-check-input" id="c-fac-7" name="c-fac" value="c-fac-7">주차장
                 </label>
               </div>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-con-8">
-                  <input type="checkbox" class="form-check-input" id="c-con-8" name="c-con" value="c-con-8">기타
+                <label class="form-check-label" for="c-fac-8">
+                  <input type="checkbox" class="form-check-input" id="c-fac-8" name="c-fac" value="c-fac-8">기타
                 </label>
               </div>
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-1">홈페이지</label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="sns1" id="c-sns-1">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-2">인스타그램</label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="sns2" id="c-sns-2">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-3">블로그</label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="sns3" id="c-sns-3">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-4">기타 사이트</label>
-              <input class="form-control" type="text">
+              <input class="form-control" type="text" name="sns4" id="c-sns-4">
             </div>
             <br>
             <div class="form-group">
-              <label for="exampleInputFile">대표 사진 등록</label>
-              <input type="file" class="form-control-file" id="c-photos" aria-describedby="fileHelp">
+              <label for="c-photo1">대표 사진 등록</label>
+              <input type="file" class="form-control-file" name="c-photo" id="c-photo0" aria-describedby="fileHelp">
               <small id="fileHelp" class="form-text text-muted">사업자님의 시설을 대표할 수 있는 사진 한 장을 업로드해주세요.</small>
+              <small id="fileHelp" class="form=text text-muted">가로 세로 비율은 2:1이 바람직합니다.</small>
               <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
             </div>
             <br>
             <div class="form-group div-photo">
               <label for="exampleInputFile">사진 등록</label>
               <div class="div-here">
-              <input type="file" class="form-control-file" id="c-photos" aria-describedby="fileHelp">
-              <small id="fileHelp" class="form-text text-muted">사업자님의 시설을 보여줄 수 있는 사진을 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
+              <input type="file" class="form-control-file" name="c-photo0" id="c-photo1" aria-describedby="fileHelp2">
+              <small id="fileHelp2" class="form-text text-muted">사업자님의 시설을 보여줄 수 있는 사진을 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
               <!-- <input type="file" class="form-control-file" name="" id=""> -->
               </div>
               <button type="button" class="btn btn-secondary btn-sm" onclick="addPhoto();">+</button>
@@ -167,20 +166,22 @@
               <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
             </div>
           </fieldset>
-        </form>
-      </div>
+        
+	      </div>
+	    </div>
+	    <hr>
+	    <div class="row">
+	      <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
+	        <div class="info-footer-inner">
+	        	<input type="submit" name="제출" value="다음">
+		    </div>
+	      </div>
+	    </div>
+	  </form>
     </div>
-    <hr>
-    <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
-        <div class="info-footer-inner">
-          <!-- <button type="button" class="btn btn-secondary">저장</button>
-          &nbsp;&nbsp;&nbsp; -->
-          <a href="<%=request.getContextPath()%>/views/center/centerEnroll-2.jsp"><button type="button" class="btn btn-secondary">다음</button></a>
-      </div>
-    </div>
-    <br><br>
-  </div>
-</div>
+	    
+      		
+
+	
 <script src="<%=request.getContextPath()%>/js/script_center.js"></script>
 <%@ include file="/views/common/footer.jsp"%>

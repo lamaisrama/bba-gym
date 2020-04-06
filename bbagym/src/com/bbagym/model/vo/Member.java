@@ -1,168 +1,140 @@
+
 package com.bbagym.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
-
-	private int m_code;
-	private String m_id;
-	private String m_pw;
-	private String m_name;
-	private String m_email;
-	private String m_phone;
-	private String m_address;
-	private int m_level;
-	private Date m_enrolldate;
-	private char m_status;
-	private String m_image;
-	private String m_phone2;
-	private String m_address2;
-	private char m_gender;
-
+	
+	private int M_CODE;
+	private String userId;
+	private String M_PW;
+	private String M_NAME;
+	private String M_EMAIL;
+	private String M_PHONE;
+	private String M_ADDRESS;
+	private int M_LEVEL;
+	private Date M_ENROLLDATE;
+	private char M_STATUS;
+	private String M_IMAGE;
+	private String M_PHONE2;
+	private String M_ADDRESS_2;
+	private char M_GENDER;
 	public Member() {
+		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Member(int m_code, String m_id, String m_pw, String m_name, String m_email, String m_phone,
-			String m_address, int m_level, Date m_enrolldate, char m_status, String m_image, String m_phone2,
-			String m_address2, char m_gender) {
+	public Member(int m_CODE, String userId, String m_PW, String m_NAME, String m_EMAIL, String m_PHONE,
+			String m_ADDRESS, int m_LEVEL, Date m_ENROLLDATE, char m_STATUS, String m_IMAGE, String m_PHONE2,
+			String m_ADDRESS_2, char m_GENDER) {
 		super();
-		this.m_code = m_code;
-		this.m_id = m_id;
-		this.m_pw = m_pw;
-		this.m_name = m_name;
-		this.m_email = m_email;
-		this.m_phone = m_phone;
-		this.m_address = m_address;
-		this.m_level = m_level;
-		this.m_enrolldate = m_enrolldate;
-		this.m_status = m_status;
-		this.m_image = m_image;
-		this.m_phone2 = m_phone2;
-		this.m_address2 = m_address2;
-		this.m_gender = m_gender;
+		M_CODE = m_CODE;
+		this.userId = userId;
+		M_PW = m_PW;
+		M_NAME = m_NAME;
+		M_EMAIL = m_EMAIL;
+		M_PHONE = m_PHONE;
+		M_ADDRESS = m_ADDRESS;
+		M_LEVEL = m_LEVEL;
+		M_ENROLLDATE = m_ENROLLDATE;
+		M_STATUS = m_STATUS;
+		M_IMAGE = m_IMAGE;
+		M_PHONE2 = m_PHONE2;
+		M_ADDRESS_2 = m_ADDRESS_2;
+		M_GENDER = m_GENDER;
 	}
-
-	public int getM_code() {
-		return m_code;
+	public int getM_CODE() {
+		return M_CODE;
 	}
-
-	public void setM_code(int m_code) {
-		this.m_code = m_code;
+	public void setM_CODE(int m_CODE) {
+		M_CODE = m_CODE;
 	}
-
-	public String getM_id() {
-		return m_id;
+	public String getUserId() {
+		return userId;
 	}
-
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-
-	public String getM_pw() {
-		return m_pw;
+	public String getM_PW() {
+		return M_PW;
 	}
-
-	public void setM_pw(String m_pw) {
-		this.m_pw = m_pw;
+	public void setM_PW(String m_PW) {
+		M_PW = m_PW;
 	}
-
-	public String getM_name() {
-		return m_name;
+	public String getM_NAME() {
+		return M_NAME;
 	}
-
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
+	public void setM_NAME(String m_NAME) {
+		M_NAME = m_NAME;
 	}
-
-	public String getM_email() {
-		return m_email;
+	public String getM_EMAIL() {
+		return M_EMAIL;
 	}
-
-	public void setM_email(String m_email) {
-		this.m_email = m_email;
+	public void setM_EMAIL(String m_EMAIL) {
+		M_EMAIL = m_EMAIL;
 	}
-
-	public String getM_phone() {
-		return m_phone;
+	public String getM_PHONE() {
+		return M_PHONE;
 	}
-
-	public void setM_phone(String m_phone) {
-		this.m_phone = m_phone;
+	public void setM_PHONE(String m_PHONE) {
+		M_PHONE = m_PHONE;
 	}
-
-	public String getM_address() {
-		return m_address;
+	public String getM_ADDRESS() {
+		return M_ADDRESS;
 	}
-
-	public void setM_address(String m_address) {
-		this.m_address = m_address;
+	public void setM_ADDRESS(String m_ADDRESS) {
+		M_ADDRESS = m_ADDRESS;
 	}
-
-	public int getM_level() {
-		return m_level;
+	public int getM_LEVEL() {
+		return M_LEVEL;
 	}
-
-	public void setM_level(int m_level) {
-		this.m_level = m_level;
+	public void setM_LEVEL(int m_LEVEL) {
+		M_LEVEL = m_LEVEL;
 	}
-
-	public Date getM_enrolldate() {
-		return m_enrolldate;
+	public Date getM_ENROLLDATE() {
+		return M_ENROLLDATE;
 	}
-
-	public void setM_enrolldate(Date m_enrolldate) {
-		this.m_enrolldate = m_enrolldate;
+	public void setM_ENROLLDATE(Date m_ENROLLDATE) {
+		M_ENROLLDATE = m_ENROLLDATE;
 	}
-
-	public char getM_status() {
-		return m_status;
+	public char getM_STATUS() {
+		return M_STATUS;
 	}
-
-	public void setM_status(char m_status) {
-		this.m_status = m_status;
+	public void setM_STATUS(char m_STATUS) {
+		M_STATUS = m_STATUS;
 	}
-
-	public String getM_image() {
-		return m_image;
+	public String getM_IMAGE() {
+		return M_IMAGE;
 	}
-
-	public void setM_image(String m_image) {
-		this.m_image = m_image;
+	public void setM_IMAGE(String m_IMAGE) {
+		M_IMAGE = m_IMAGE;
 	}
-
-	public String getM_phone2() {
-		return m_phone2;
+	public String getM_PHONE2() {
+		return M_PHONE2;
 	}
-
-	public void setM_phone2(String m_phone2) {
-		this.m_phone2 = m_phone2;
+	public void setM_PHONE2(String m_PHONE2) {
+		M_PHONE2 = m_PHONE2;
 	}
-
-	public String getM_address2() {
-		return m_address2;
+	public String getM_ADDRESS_2() {
+		return M_ADDRESS_2;
 	}
-
-	public void setM_address2(String m_address2) {
-		this.m_address2 = m_address2;
+	public void setM_ADDRESS_2(String m_ADDRESS_2) {
+		M_ADDRESS_2 = m_ADDRESS_2;
 	}
-
-	public char getM_gender() {
-		return m_gender;
+	public char getM_GENDER() {
+		return M_GENDER;
 	}
-
-	public void setM_gender(char m_gender) {
-		this.m_gender = m_gender;
+	public void setM_GENDER(char m_GENDER) {
+		M_GENDER = m_GENDER;
 	}
-
 	@Override
 	public String toString() {
-		return "Member [m_code=" + m_code + ", m_id=" + m_id + ", m_pw=" + m_pw + ", m_name=" + m_name + ", m_email="
-				+ m_email + ", m_phone=" + m_phone + ", m_address=" + m_address + ", m_level=" + m_level
-				+ ", m_enrolldate=" + m_enrolldate + ", m_status=" + m_status + ", m_image=" + m_image + ", m_phone2="
-				+ m_phone2 + ", m_address2=" + m_address2 + ", m_gender=" + m_gender + "]";
+		return "Member [M_CODE=" + M_CODE + ", userId=" + userId + ", M_PW=" + M_PW + ", M_NAME=" + M_NAME
+				+ ", M_EMAIL=" + M_EMAIL + ", M_PHONE=" + M_PHONE + ", M_ADDRESS=" + M_ADDRESS + ", M_LEVEL=" + M_LEVEL
+				+ ", M_ENROLLDATE=" + M_ENROLLDATE + ", M_STATUS=" + M_STATUS + ", M_IMAGE=" + M_IMAGE + ", M_PHONE2="
+				+ M_PHONE2 + ", M_ADDRESS_2=" + M_ADDRESS_2 + ", M_GENDER=" + M_GENDER + "]";
 	}
 	
 	
-
 }
+
+

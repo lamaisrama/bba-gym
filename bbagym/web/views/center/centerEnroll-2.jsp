@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
- <form>
+ <form method="post" action="<%=request.getContextPath()%>/centerEnrollEnd">
   <div class="container div-here">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
@@ -18,7 +18,7 @@
         <div class="col-lg-8 col-md-9 col-sm-12">
           <div class="form-group">
             <label for="exampleTextarea">시설 소개</label>
-            <textarea class="form-control" name="center_text" id="exampleTextarea" rows="3" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요."></textarea>
+            <textarea class="form-control" name="c-text" id="c-text" rows="5" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요."></textarea>
           </div>
         </div>
       </div>
@@ -27,29 +27,29 @@
           <table class="table striped">
             <tr>
               <td colspan="2"> 
-                  <label for="">프로그램명</label>
+                  <label for="">첫번째 프로그램명</label>
                   <!-- <span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span> -->
-                  <input type="text" class="form-control">
+                  <input type="text" name="cp0" class="form-control">
               </td>
             </tr>
             <tr>
               <td>
                 <label for="">1개월 가격</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="cp0p0">
               </td>
               <td>
                 <label for="">3개월 가격</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="cp0p1">
               </td>
             </tr>
             <tr>
               <td>
                 <label for="">6개월 가격</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="cp0p2">
               </td>
               <td> 
                 <label for="">12개월 가격</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="cp0p3">
               </td>
             </tr>
           </table>

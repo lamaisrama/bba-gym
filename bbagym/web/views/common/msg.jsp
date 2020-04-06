@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8"%>
 <% 
 	String script = (String)request.getAttribute("script");
@@ -16,6 +17,7 @@
 		<%=script!=null?script:""%>
 	
 		location.replace('<%=request.getContextPath()%><%=(String)request.getAttribute("loc")%>');
+
 	</script>
 </body>
 </html>
