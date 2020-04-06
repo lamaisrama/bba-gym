@@ -35,7 +35,7 @@ function addProgram(){
     // div_2.classList.add("col-md-9");
     // div_2.classList.add("col-sm-12");
     
-    const tabletag=`<table class="table striped"><tr><td colspan="2"> <label for="">${count+1}번째 프로그램명</label><span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span><input type="text" class="form-control" style="clear:both;" name="cp${count}"></td></tr><tr><td><label for="">1개월 가격</label><input type="text" class="form-control" name="cp${count}p0"></td><td><label for="">3개월 가격</label><input type="text" class="form-control" name="cp${count}p1"></td></tr><tr><td><label for="">6개월 가격</label><input type="text" class="form-control" name="cp${count}p2"></td><td> <label for="">12개월 가격</label><input type="text" class="form-control" name="cp${count}p3"></td></tr></table>`;
+    const tabletag=`<table class="table striped"><tr><td colspan="2"> <label for="">${count+1}번째 프로그램명</label><span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span><input type="text" class="form-control" style="clear:both;" name="cp"></td></tr><tr><td><label for="">1개월 가격</label><input type="text" class="form-control" name="cp${count}p0"></td><td><label for="">3개월 가격</label><input type="text" class="form-control" name="cp${count}p1"></td></tr><tr><td><label for="">6개월 가격</label><input type="text" class="form-control" name="cp${count}p2"></td><td> <label for="">12개월 가격</label><input type="text" class="form-control" name="cp${count}p3"></td></tr></table>`;
 
     div_new.html($(tabletag));
     div_new.appendTo(div_row);
