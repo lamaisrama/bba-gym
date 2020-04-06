@@ -135,5 +135,3 @@ public class Member {
 	
 	
 }
-
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
