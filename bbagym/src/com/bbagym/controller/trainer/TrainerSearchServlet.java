@@ -1,3 +1,4 @@
+
 package com.bbagym.controller.trainer;
 
 import static com.bbagym.common.PageBarTemplate.pageBar;
@@ -105,4 +106,9 @@ public class TrainerSearchServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
