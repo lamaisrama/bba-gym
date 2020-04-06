@@ -28,27 +28,27 @@
              <td colspan="2"> 
                  <label for="">첫번째 프로그램명</label>
                  <!-- <span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span> -->
-                 <input type="text" name="cp0" class="form-control">
+                 <input type="text" name="cp" class="form-control">
              </td>
            </tr>
            <tr>
              <td>
                <label for="">1개월 가격</label>
-               <input type="text" class="form-control" name="cp0p0">
+               <input type="text" class="form-control" name="cp0p">
              </td>
              <td>
                <label for="">3개월 가격</label>
-               <input type="text" class="form-control" name="cp0p1">
+               <input type="text" class="form-control" name="cp0p">
              </td>
            </tr>
            <tr>
              <td>
                <label for="">6개월 가격</label>
-               <input type="text" class="form-control" name="cp0p2">
+               <input type="text" class="form-control" name="cp0p">
              </td>
              <td> 
                <label for="">12개월 가격</label>
-               <input type="text" class="form-control" name="cp0p3">
+               <input type="text" class="form-control" name="cp0p">
              </td>
            </tr>
          </table>
