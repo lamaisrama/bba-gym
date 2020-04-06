@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
 <div class="container pt-3 center-info">
 	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post"  encType="multipart/form-data">
+
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
         <h1 class="mt-4" style="text-align: center;">시설 등록</h1>

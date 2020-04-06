@@ -1,3 +1,4 @@
+
 package com.bbagym.controller.trainer;
 
 import static com.bbagym.common.PageBarTemplate.pageBar;
@@ -106,3 +107,4 @@ public class TrainerSearchServlet extends HttpServlet {
 	}
 
 }
+
