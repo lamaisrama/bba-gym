@@ -23,9 +23,8 @@
 				
 					<label for="c-name">아이디</label>
 					<div class="form-group" style="display: flex">
-
-						<!-- <input type="text" class="form-control" style="width: 100%;"  name="userId" id="userId_" 
-							>  -->
+  				<input type="text"  style="width: 100%;" >
+				<table><tr><td><%=m.getM_ID()%></td></tr></table>
 						
 					</div>
 					
