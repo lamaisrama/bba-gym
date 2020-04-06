@@ -6,7 +6,7 @@
   <div class="container pt-3 center-info ">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
-        <h1 class="mt-4" style="text-align: center;">시설 등록</h1>
+        <h1 class="mt-4" style="text-align: center;">트레이너 등록</h1>
         <h6 style="text-align: right;"> <span><b>1. 기본 정보 입력</b></span> > <span style="color: grey;">2.상세 정보 입력</span></h6>
         <hr>
         <form>
