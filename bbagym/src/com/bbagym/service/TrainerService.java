@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.bbagym.dao.TrainerDao;
+import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.TrainerView;
 
 public class TrainerService {
@@ -65,5 +66,18 @@ public class TrainerService {
 		return result;
 	}
 	
+	public List<Center> searchCenter() {
+		Connection conn = getConnection();
+		List<Center> list = dao.searchCenter(conn);
+		close(conn);
+		return list;
+	}
+	
+	public List<Center> searchCenterName(String address) {
+		Connection conn = getConnection();
+		List<Center> name = dao.searchCenterName(conn,address);
+		close(conn);
+		return name;
+	}
 	
 }
