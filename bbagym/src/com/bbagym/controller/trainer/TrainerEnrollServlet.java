@@ -27,7 +27,7 @@ public class TrainerEnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/trainner/trainnerEnroll-1.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/trainer/trainerEnroll-1.jsp").forward(request, response);
 	}
 
 	/**
