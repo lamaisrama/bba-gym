@@ -110,5 +110,5 @@ import com.bbagym.model.vo.Member;
 		}
 		return result;
 	}
-	
-}
+
+	}

@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page
 	import="com.bbagym.model.vo.Member"%>
+	<%
+   Member m=(Member)request.getAttribute("member");
+	%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
 
@@ -120,7 +123,7 @@
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageUser.do">My Page</a>
-              <a class="dropdown-item" href="#">회원 정보수정</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollModify.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
@@ -140,7 +143,8 @@
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
-              <a class="dropdown-item" href="#">회원 정보수정</a>
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollModify.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+              
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>

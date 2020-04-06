@@ -122,6 +122,9 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollModify.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
 			        		  	  </div>
 			      				</div>	
 			      				
