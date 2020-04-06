@@ -46,7 +46,7 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		int maxSize = 1024*1024*10;
 		
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new MyFileRenamePolicy());
-		Notice n = new Notice(null, mr.getParameter("title"), mr.getParameter("content"), 
+		Notice n = new Notice(0, mr.getParameter("title"), mr.getParameter("content"), 
 								null, mr.getOriginalFileName("upfile"), mr.getFilesystemName("upfile"),
 								0, mr.getParameter("writer"), 'Y');
 		

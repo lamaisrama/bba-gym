@@ -41,7 +41,7 @@ public class NoticeDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Notice n = new Notice();
-				n.setnCode(rs.getString("n_code"));
+				n.setnCode(rs.getInt("n_code"));
 				n.setTitle(rs.getString("title"));
 				n.setnContent(rs.getString("n_content"));
 				n.setnDate(rs.getDate("n_date"));

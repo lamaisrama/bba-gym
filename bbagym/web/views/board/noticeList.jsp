@@ -25,8 +25,8 @@
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
-                    <option value="">Tip</option>
-                    <option value="">Talk</option>
+                    <option value="">Notice</option>
+                    <option value="">Event</option>
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
