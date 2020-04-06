@@ -52,7 +52,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
-		String userId =mr.getParameter("M_ID");
+		String userId =mr.getParameter("userId");  //오류수정
 		String pw = mr.getParameter("M_PW");
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
