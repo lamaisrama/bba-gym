@@ -57,9 +57,8 @@
                 </form>
             </div>
         </div>
+        <h1 style="margin-top: 50px; text-align:center;">시설 정보</h1>
         <div class="row box-content" >
-            <h1 style="margin-top: 50px;">시설 정보</h1>
-            <br>
             <div class="content-box-outer"><!-- for문 돌려서 페이징 처리해야합니다 pagebarNo=5,numPerpage=5-->
                 <div class="content-box-inner" style="background-image: url('https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile24.uf.tistory.com%2Fimage%2F2579B237591E58961E0693');"> </div>
                 <div class="bar"></div>
@@ -89,7 +88,8 @@
                         </tr>
                     </table>
                 </div><!-- for문 돌려서 페이징 처리해야합니다 -->
-            </div>
+            </div><!-- row box-content div 끝 -->
+
         </div>
         <div id="pageBar"><!-- 페이지바 JSP구현-->
             <div >
