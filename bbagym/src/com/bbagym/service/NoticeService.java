@@ -37,6 +37,21 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
+	public Notice selectNotice(int no, boolean hasRead) {
+		Connection conn = getConnection();
+		Notice n = dao.selectNotice(conn, no);
+		
+		if(!hasRead && n!=null) { 
+			int result = dao.updateReadCount(conn, no);
+			if(result>0) {
+				commit(conn);
+				n.setReadCount(dao.selectNotice(conn, no).getReadCount());	
+			}else rollback(conn);
+		}
+		close(conn);
+		return n;
+	}
 	
 	
 	

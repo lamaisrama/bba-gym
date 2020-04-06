@@ -36,7 +36,7 @@ public class NoticeWriteEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "공지사항 작성 오류");
+			request.setAttribute("msg", "공지사항 작성 오류[enctype]");
 			request.setAttribute("loc", "/board/noticeWrite");
 			request.getRequestDispatcher("/views/common/msg/jsp").forward(request, response);
 			return;

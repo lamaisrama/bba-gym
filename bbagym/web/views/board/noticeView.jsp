@@ -22,53 +22,61 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <h2 class="text-center">공지사항</h2>
-                <form action="<%=request.getContextPath() %>/board/noticeWriteEnd" method="post" enctype="multipart/form-data">
                     <div class="table table-responsive">
                         <table class="table table-striped text-center">
                             <tr>
                                 <th>제목</th>
                                 <td>	
                                 	<a href="<%=request.getContextPath()%>">
-                        				<%=n.getTitle() %>
+                        			<%-- 	<%=n.getTitle()%> --%>
                         			</a>
                         		</td>
                             </tr>
                             <tr>
                                 <th class="">작성자</th>
-                                <td><%=n.getnCode() %></td>
+                                <td><%-- <%=n.getnCode() %> --%></td>
                             </tr>
                             <tr>
                                 <th class="">작성일</th>
-                                <td><%=n.getnDate() %></td>
+                                <td><%-- <%=n.getnDate() %> --%></td>
                             </tr>
                             <tr>
                                 <th>첨부파일</th>
                                 <td>
-                                	<%if(n.getOriFileName()!=null){ %>
+                                	<%-- <%if(n.getOriFileName()!=null){ %>
                                 	<a href="javascript:void(0);" onclick="fileDownload('<%=n.getOriFileName()%>','<%=n.getNewFileName()%>');">
-                                		<img src="<%=request.getContextPath()%>/img/file.png">
-										<span><%=n.getOriFileName() %></span>                                		
+                                		<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+										<span><%=n.getOriFileName()%></span>                                		
                                 	</a>
-                                	<%} %>
+                                	<%} %> --%>
                                 </td>
                             </tr>   
                             <tr>
                                 <th colspan="2">내용</th>
-                                
                             </tr>
                             <tr><td colspan="2">Content</td></tr>
                             <tr>
+                            <%-- <%if(loginMember!=null && loginMember.getUserId().equals("admin")) {%> --%>
                                 <td colspan="2" class="text-center">
-                                    <input type="hidden" name="" value="">
-                                    <input type="button" class="btn btn-warning" onclick="" value="글수정">
-                                    <input type="button" class="btn btn-primary" onclick="" value="글삭제">
+                                    <input type="button" class="btn btn-warning" onclick="" value="글수정" >
+                                    <input type="button" class="btn btn-primary" onclick="" value="글삭제" >
+                                    <%-- 
+                                    <input type="button" class="btn btn-warning" onclick="" value="글수정" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getmCode()%>')">
+                                    <input type="button" class="btn btn-primary" onclick="" value="글삭제" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getmCode()%>&fileName=<%=n.getOriFileName()%>')"> 
+                                    --%>
                                 </td>
+                            <%-- <%} %>  --%>   
                             </tr>
                         </table>
                     </div>
-                </form>
             </div>
         </div>
-    </section>   
+</section>   
+
+<script>
+	function fileDownload(ori, rename){
+		location.href="<%=request.getContextPath()%>/board/noticeDownload?ori=" + ori + "&rename=" + rename;
+	}
+</script>
 
 <%@ include file="/views/common/footer.jsp"%>

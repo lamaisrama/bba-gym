@@ -100,6 +100,53 @@ public class NoticeDao {
 		}
 		return result;
 	}
+
+	public Notice selectNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice n = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				n = new Notice();
+				n.setnCode(rs.getInt("n_code"));
+				n.setTitle(rs.getString("title"));
+				n.setnContent(rs.getString("n_content"));
+				n.setnDate(rs.getDate("n_date"));
+				n.setOriFileName(rs.getString("ori_filename"));
+				n.setNewFileName(rs.getString("new_filename"));
+				n.setmCode(rs.getString("m_code"));
+				n.setReadCount(rs.getInt("readcount"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return n;
+	}
+
+	public int updateReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReadCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	
