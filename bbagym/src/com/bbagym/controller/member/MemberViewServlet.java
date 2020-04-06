@@ -16,14 +16,14 @@ import com.bbagym.model.vo.Member;
 /**
  * Servlet implementation class MemberEnrollModify
  */
-@WebServlet("/member/memberEnrollModify.do")
-public class MemberEnrollModifyServlet extends HttpServlet {
+@WebServlet("/member/memberEnrollView.do")
+public class MemberViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberEnrollModifyServlet() {
+    public MemberViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,10 +34,23 @@ public class MemberEnrollModifyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		 
-		request.getRequestDispatcher("/views/member/memberEnrollModify.jsp").forward(request, response);
+		//로그인이 된 사용자만 이용할 수 있게 
+		HttpSession session=request.getSession();
+	      if(session.getAttribute("logginMember")==null) {
+	         request.setAttribute("msg", "잘못된 접근입니다.");
+	         request.setAttribute("loc", "/");
+	         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	      }
+	      else {
+	    	  String userId=request.getParameter("userId");
+	    	  
+	    	  Member m=new MemberService().selectMemberId(userId);
+	    	  
+	    	  request.setAttribute("member", m);
+	    	  
+		request.getRequestDispatcher("/views/member/memberEnrollView.jsp").forward(request, response);
 	}
-	
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

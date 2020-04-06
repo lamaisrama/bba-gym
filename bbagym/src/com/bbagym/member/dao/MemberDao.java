@@ -111,4 +111,39 @@ import com.bbagym.model.vo.Member;
 		return result;
 	}
 
+	public Member selectMemberId(Connection conn, String userId) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m=null;
+		String sql=prop.getProperty("duplicate");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				m=new Member();
+				m.setM_CODE(rs.getInt("M_CODE"));
+				m.setM_ID(rs.getString("M_ID"));
+				m.setM_NAME(rs.getString("M_NAME"));
+				m.setM_EMAIL(rs.getString("M_EMAIL"));
+				m.setM_PHONE(rs.getString("M_PHONE"));
+				m.setM_ADDRESS(rs.getString("M_ADDRESS"));
+				m.setM_LEVEL(rs.getInt("M_LEVEL"));
+				m.setM_ENROLLDATE(rs.getDate("M_ENROLLDATE"));
+				m.setM_STATUS(rs.getString("M_STATUS").charAt(0));
+				m.setM_IMAGE(rs.getString("M_IMAGE"));
+				m.setM_PHONE2(rs.getString("M_PHONE_2"));
+				m.setM_ADDRESS_2(rs.getString("M_ADDRESS_2"));
+				m.setM_GENDER(rs.getString("M_GENDER").charAt(0));
+				m.setM_AGE(rs.getInt("M_AGE"));
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m;
+	}
+
 	}

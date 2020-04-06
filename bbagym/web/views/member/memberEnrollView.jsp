@@ -19,60 +19,46 @@
 			</h6>
 			<hr>
 			
-			<form action="" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
+			<form action="<%=request.getContextPath() %>/member/updateMember.do" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
 				
 					<label for="c-name">아이디</label>
 					<div class="form-group" style="display: flex">
 
-						<input type="text" class="form-control" 
-							style="width: 80%;" placeholder="4글자 이상 입력하세요" name="userId" id="userId_" required> 
-							<input type="button" onclick="fn_duplicateId();" style="width: 20%;" value="중복확인">
-									<script>
-               		function fn_duplicateId(){
-                	  var userId=$("#userId_").val();
-                  	  if(userId.trim().length<4){
-                      alert("아이디를 4글자 이상 입력하세요!");
-                     return;
-                  }
-                  
-                  const url="<%=request.getContextPath()%>/member/userIdCheck.do?M_ID="+ userId;
-				  var status = "height=200px, width=300px";
-				  open(url, "_blank", status);
-
-						}
-				</script>
+						<!-- <input type="text" class="form-control" style="width: 100%;"  name="userId" id="userId_" 
+							>  -->
+						
 					</div>
 					
 					<br> <label for="c-tel">이름</label>
 					<div class="form-group" style="display: flex">
 
-						<input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_">
-						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0"
-							value="M" checked> 
+						<!-- <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"> -->
+						<!-- <input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0"
+							value="M" checked> --> 
 							<label for="M_GENDER0">남</label> 
-							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> <label for="M_GENDER1">여</label>
+						<!-- 	<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> --> <label for="M_GENDER1">여</label>
 					</div>
 					<br>
 					<div class="form-group">
-					<label for="c-time">나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE"><br>
-						<label for="c-time">이메일</label> <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL">
+					<label for="c-time">나이</label><!-- <input type="number"class="form-control" name="M_AGE" id="M_AGE"> --><br>
+						<label for="c-time">이메일</label><!--  <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"> -->
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">주소</label> <input type="text"
+						<label for="c-time">주소</label> <!-- <input type="text"
 							class="form-control" name="M_ADDRESS"
-					id="M_ADDRESS">
+					id="M_ADDRESS"> -->
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">PHONE</label> <input type="text"
-							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE" id="M_PHONE">
+						<label for="c-time">PHONE</label> <!-- <input type="text"
+							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE" id="M_PHONE"> -->
 					</div>
 					<br>
 					<div class="form-group div-photo">
 						<label for="exampleInputFile">사진 등록</label>
 						<div class="div-here">
-							<input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE"> 
+							<!-- <input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE">  -->
 								<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
 							
 					<br>
