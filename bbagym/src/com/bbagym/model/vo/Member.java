@@ -1,3 +1,4 @@
+
 package com.bbagym.model.vo;
 
 import java.sql.Date;
@@ -135,4 +136,5 @@ public class Member {
 	
 	
 }
+
 

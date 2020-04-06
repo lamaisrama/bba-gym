@@ -19,7 +19,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <h2 class="text-center">공지사항</h2>
-                <form action="" method="post">
+                <form action="<%=request.getContextPath() %>/board/noticeWriteEnd" method="post" enctype="multipart/form-data">
                     <div class="table table-responsive">
                         <table class="table table-striped text-center">
                             <tr>

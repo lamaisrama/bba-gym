@@ -66,23 +66,24 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
+
          <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
-        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerSearch.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
                   <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
          <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>	
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
  		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerSearch.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
 		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
 		  <%}else {%>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerSearch.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
           
@@ -111,6 +112,7 @@
 	     <%
 					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1){
 				%>
+
           <!-- HelloUser Dropdown -->
     <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">

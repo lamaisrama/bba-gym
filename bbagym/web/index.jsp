@@ -37,11 +37,12 @@
 	</video>
 	        <div id="leftbar"> 
 	        	<div>
+
 				    <ul>	<!--로그인한멤버 -->		        
 				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
 				          <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-				         <a href="<%=request.getContextPath()%>/trainer/trainerSearch.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
+				         <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>		 
@@ -49,7 +50,7 @@
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-				         <a href="<%=request.getContextPath()%>/trainer/trainerSearch.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
+				         <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한사업자 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
@@ -57,11 +58,11 @@
 				   
 				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
-<!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerSearch.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
+<!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				     <%} %>
-				        
+
 				   <%-- <a href="<%=request.getContextPath()%>/views/center/centerViewDetail.jsp"> <li>센터 상세보기</li></a>
 				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerViewDetail.jsp"> <li>트레이너 상세보기</li></a> --%>
 				        
@@ -94,6 +95,7 @@
 	       		<input type="text" name="search" placeholder="어떤 운동을 찾으시나요?" size="50px" background-color:"grey">
 	       </div>
 	   	</div>
+
 	   	
 	    <div id="box">
 	    <%
@@ -125,6 +127,7 @@
 			<%
 					}
 				%>
+
 		</div>	<!-- 첫 div 끝 -->
 	</section>
 
