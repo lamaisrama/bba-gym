@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
-
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <div class="img-box" style="width: 100%; height: 280px; background-image: url('<%=request.getContextPath()%>/img/runners-test.gif');">
-</div>
 <div class="container pt-3 center-info ">
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">

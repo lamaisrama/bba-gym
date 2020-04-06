@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page
+	import="com.bbagym.model.vo.Member"%>
+<%
+	Member logginMember = (Member) session.getAttribute("logginMember");
+
+	Cookie[] cookies = request.getCookies();
+	String saveId = "";
+	if (cookies != null) {
+		for (Cookie c : cookies) {
+			if (c.getName().equals("saveId")) {
+				saveId = c.getValue();
+			}
+		}
+	}
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +44,7 @@
   <script src="<%=request.getContextPath()%>/assets/js/core/popper.min.js" type="text/javascript"></script>
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="<%=request.getContextPath()%>/assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+  <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
   
   
   
@@ -50,36 +66,113 @@
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="#" class="nav-link" style="font-size: 16px;">&nbsp;시설찾기</a>
-          </li>
-          <li class="nav-item">
-            <a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" target="_blank" class="nav-link" style="font-size: 16px;">&nbsp;Board</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" target="_blank" class="nav-link" style="font-size: 16px;">&nbsp;Board</a>
-          </li>
-         
+
+         <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
+         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
+                  <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+         <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>	
+         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
+ 		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
+		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+		  <%}else {%>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+          
+            <%} %>
+           
+           <div id="box">
+            <%
+					if (logginMember == null) {
+				%>
+				<form action="<%=request.getContextPath()%>/member/login.do" method="post" onsubmit="return invalidate();">
+	        <div>
+	        	<input type="text" name="userId" id="userId" placeholder="ID" value="<%=saveId%>" style="width:90px">
+	        	<input type="password" name="M_PW" id="M_PW" placeholder="PW"style="width:80px">
+	        	<button type="submit" class="btn btn-outline-primary text-red">로그인</button>
+	        	<input type="button"class="btn btn-outline-primary text-red" value="회원가입" 
+	        	onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />
+	        	&nbsp; 
+	 		 	  <td colspan="2">
+	 					<input type="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> />
+						<label for="saveId" style="color:blue">아이디 저장</label> 
+				  </td>
+	 		</div>
+			
+	   			 </form>
+	    
+	     <%
+					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1){
+				%>
+
           <!-- HelloUser Dropdown -->
-          <li class="nav-item dropdown">
+    <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
-            Hello! User!
+           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">My Page</a>
-              <a class="dropdown-item" href="#">찜 내역</a>
-              <a class="dropdown-item" href="#">장바구니</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageUser.do">My Page</a>
+              <a class="dropdown-item" href="#">회원 정보수정</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Log-out</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
             </div>
+          
           </li>
+          <%
+			}
+					else if(logginMember!=null&&logginMember.getM_LEVEL()==2)
+			
+			{
+		  %>
+		   <!-- HelloUser Dropdown -->
+   		 <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
+           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
+          </a>
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
+              <a class="dropdown-item" href="#">회원 정보수정</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
+            </div>
+            <%} %>
+          </li>
+		</div>
+				
         </ul>
       </div>
     </div>
   </nav>
+  <script>
+			$(function() {//onload;
+
+			});
+			function invalidate() {
+				const userId = $("#userId").val();
+				const password = $("#M_PW").val();
+				if (userId.trim().length == 0) {
+					alert("아이디를 입력하세요");
+					$("#userId").focus();
+					return false;//전송중단!
+				}
+				if (password.trim().length == 0) {
+					alert("비밀번호를 입력하세요");
+					$("#M_PW").focus();
+					return false;
+				}
+				return true;
+			}
+		</script>
   <!-- End Navbar -->
 
   <!-- 아래 div는 각 jsp마다 제일 위에 붙여줘야 header background가 생깁니다.-->
