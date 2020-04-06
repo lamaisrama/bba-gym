@@ -52,16 +52,17 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
-		String userId =mr.getParameter("userId");
+		String userId =mr.getParameter("M_ID");
 		String pw = mr.getParameter("M_PW");
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
+		int age = Integer.parseInt(mr.getParameter("M_AGE"));
 		String email = mr.getParameter("M_EMAIL");
 		String address = mr.getParameter("M_ADDRESS");
 		String phone = mr.getParameter("M_PHONE"); 						
 	    String image=mr.getFilesystemName("M_IMAGE");
 	    
-	      Member m = new Member(0,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender);
+	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age);
 	      int result=new MemberService().insertMember(m);
 		
 		String msg="";

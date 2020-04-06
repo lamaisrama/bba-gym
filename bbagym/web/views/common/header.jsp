@@ -95,7 +95,7 @@
 				%>
 				<form action="<%=request.getContextPath()%>/member/login.do" method="post" onsubmit="return invalidate();">
 	        <div>
-	        	<input type="text" name="userId" id="userId" placeholder="ID" value="<%=saveId%>" style="width:90px">
+	        	<input type="text" name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>" style="width:90px">
 	        	<input type="password" name="M_PW" id="M_PW" placeholder="PW"style="width:80px">
 	        	<button type="submit" class="btn btn-outline-primary text-red">로그인</button>
 	        	<input type="button"class="btn btn-outline-primary text-red" value="회원가입" 
@@ -103,7 +103,7 @@
 	        	&nbsp; 
 	 		 	  <td colspan="2">
 	 					<input type="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> />
-						<label for="saveId" style="color:blue">아이디 저장</label> 
+						<label for="saveId" style="color:blue">아이디 저장</label>
 				  </td>
 	 		</div>
 			
@@ -158,11 +158,11 @@
 
 			});
 			function invalidate() {
-				const userId = $("#userId").val();
+				const userId = $("#M_ID").val();
 				const password = $("#M_PW").val();
 				if (userId.trim().length == 0) {
 					alert("아이디를 입력하세요");
-					$("#userId").focus();
+					$("#M_ID").focus();
 					return false;//전송중단!
 				}
 				if (password.trim().length == 0) {

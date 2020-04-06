@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
       <% 
     	boolean isUseable=(boolean)request.getAttribute("isUseable"); 
-    	String userId=request.getParameter("userId");
+    	String userId=request.getParameter("M_ID");
     %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@
 				alert("아이디를 4글자 이상 입력하세요.");
 			return;
 			}
-		location.replace('<%=request.getContextPath()%>/member/userIdCheck.do?userId='+id);
+		location.replace('<%=request.getContextPath()%>/member/userIdCheck.do?M_ID='+id);
 	}
 		
 		function setUserId(){

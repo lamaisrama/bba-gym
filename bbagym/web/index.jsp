@@ -45,7 +45,7 @@
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
-				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>		 
+				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li>		 </a>
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
@@ -118,10 +118,11 @@
 	             <div id="box">
 			             		  <div>
 			               			<button type="button" class="btn btn-outline-primary text-white"
-			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getUserId()%>')"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
 			        		  	  </div>
 			      				</div>	
+			      				
 	         </nav>
 	     </div>
 			<%
