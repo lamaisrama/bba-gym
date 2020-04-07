@@ -12,7 +12,10 @@ import java.util.Properties;
 
 import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.Trainer;
+import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerView;
+
+import static com.bbagym.common.JDBCTemplate.close;
 
 public class TrainerDao {
 
@@ -48,7 +51,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -152,7 +155,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -212,7 +215,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -249,20 +252,23 @@ public class TrainerDao {
 		
 		return result;
 	}
-	//트레이너 등록시 소속입력을 위해 필요한 센터 주소 중봇없이 가져오는 메소드
-	public List<Center> searchCenter(Connection conn) {
+
+	
+	public List<Center> searchCenterName(Connection conn,String name) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		List<Center> list = new ArrayList<Center>();
-		String sql =prop.getProperty("searchCenter");
+		String sql =prop.getProperty("searchCenterName");
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-
+			pstmt.setString(1, "%"+name+"%");
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Center c= new Center();
+				Center c = new Center();
+				c.setC_code(rs.getInt("C_CODE"));
+				c.setC_name(rs.getString("C_NAME"));
 				c.setC_address(rs.getString("C_ADDRESS"));
 				list.add(c);
 			}
@@ -273,33 +279,65 @@ public class TrainerDao {
 		
 		
 		return list;
-
 	}
 	
-	public List<Center> searchCenterName(Connection conn,String address) {
+	public TrainerDetail trainerViewDetail(Connection conn, int t_code) {
 		PreparedStatement pstmt = null;
-		ResultSet rs=null;
-		List<Center> list = new ArrayList<Center>();
-		String sql =prop.getProperty("searchCenterName");
+		ResultSet rs = null;
+		String sql = prop.getProperty("trainerDetail");
+		TrainerDetail td=null;
 		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, address);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, t_code);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				td = new TrainerDetail();
+				td.setProf_img(rs.getString("t_img"));
+				td.setT_name(rs.getString("m_name"));
+				td.setT_intro(rs.getString("t_introduction"));
+				td.setM_phone_2(rs.getString("M_PHONE_2"));
+				td.setM_address_2(rs.getString("M_ADDRESS_2"));
+				td.setT_text(rs.getString("t_text"));
+				td.setT_career(rs.getString("T_CAREER"));
+				td.setT_counsel_hours(rs.getString("T_COUNSEL_HOURS"));
+				td.setC_name(rs.getString("C_NAME"));
+				td.setT_sns_url(rs.getString("SNS_URL"));
+				td.setT_sns_type(rs.getString("SNS_TYPE"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(td);
+		return td;
+		
+	}
+	
+	public void trainerViewDetailPrograms(Connection conn, int t_code,TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		td.setT_program_name(new ArrayList());//리스트 초기값 세팅
+		
+		String sql = prop.getProperty("getTrainerPrograms");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, t_code);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
-				Center c = new Center();
-				c.setC_code(rs.getInt("C_CODE"));
-				c.setC_name(rs.getString("C_NAME"));
-				list.add(c);
+				//List<String> temp=td.getT_program_name();
+				td.getT_program_name().add(rs.getString("p_name"));
+				td.getT_price().add(rs.getInt("price"));
 			}
-			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
-		
-		
-		return list;
 	}
 	
 }

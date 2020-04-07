@@ -13,92 +13,94 @@
 	          <fieldset>
 	            <div class="form-group">
 		              <label for="c-name">트레이너명</label>
-		              <input type="text" class="form-control" id="c-name" placeholder="센터명을 입력하세요" name="t_name">
+		              <input type="text" class="form-control" id="c-name" placeholder="트레이너명을 입력하세요" name="t_name" required>
 		            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-address">수업 주소</label>
-			              <input class="form-control" type="text" name="c_address">
+			              <button type="button" class="btn btn-warning" onclick="goPopup()">수업주소</button>
+			              <input type="text" class="form-control" type="text" name="c_address" id="c_address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-address">소속 센터</label>
 			              <br>
-			              <button class="btn btn-warning btn-sm" type="button" onclick="searchcenter();">찾기</button>
+			              <button class="btn btn-warning btn-sm" type="button" onclick="searchcenter();">찾기</button><!-- 자바스크립트를 통해 open 을한다  -->
+			              <input type="text" class="form-control" name="c_name" id="c_name" style="margin-top:10px" readonly >
+			              <input type="hidden" class="form-control" name="c_code" id="c_code" readonly>
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-tel">연락처</label>
-			              <input type="tel" class="form-control" name="c_phone">
+			              <input type="tel" class="form-control" name="t_phone" required>
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-time">상담 가능 시간</label>
-			              <input type="text" class="form-control" name="counsel">
+			              <input type="text" class="form-control" name="t_counsel">
 			            </div>
 		            <br>
 		            <div class="form-group">
 		              <label>카테고리</label> <br>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-1">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-1" name="c-cat" value="1">헬스
+			                  <input type="checkbox" class="form-check-input" id="c-cat-1" name="t-cat" value="1">헬스
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-2">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-2" name="c-cat" value="2">수영
+			                  <input type="checkbox" class="form-check-input" id="c-cat-2" name="t-cat" value="2">수영
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-3">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-3" name="c-cat" value="3">필라테스
+			                  <input type="checkbox" class="form-check-input" id="c-cat-3" name="t-cat" value="3">필라테스
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-4">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="c-cat" value="4">요가
+			                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="t-cat" value="4">요가
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-5">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-5" name="c-cat" value="5">스쿼시
+			                  <input type="checkbox" class="form-check-input" id="c-cat-5" name="t-cat" value="5">스쿼시
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-6">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-6" name="c-cat" value="6">격투기
+			                  <input type="checkbox" class="form-check-input" id="c-cat-6" name="t-cat" value="6">격투기
 			                </label>
 			              </div>
 			              <div class="form-check-inline">
 			                <label class="form-check-label" for="c-cat-7">
-			                  <input type="checkbox" class="form-check-input" id="c-cat-7" name="c-cat" value="7">기타
+			                  <input type="checkbox" class="form-check-input" id="c-cat-7" name="t-cat" value="7">기타
 		                </label>
 		              </div>
 		            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-sns-1">홈페이지</label>
-			              <input class="form-control" type="text" name="homepage">
+			              <input class="form-control" type="text" name="t_homepage">
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-sns-2">인스타그램</label>
-			              <input class="form-control" type="text" name="instagram">
+			              <input class="form-control" type="text" name="t_instagram">
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-sns-3">블로그</label>
-			              <input class="form-control" type="text" name="blog">
+			              <input class="form-control" type="text" name="t_blog">
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="c-sns-4">기타 사이트</label>
-			              <input class="form-control" type="text" name="etcpart">
+			              <input class="form-control" type="text" name="t_etcpart">
 			            </div>
 		            <br>
 			            <div class="form-group">
 			              <label for="exampleInputFile">대표 사진 등록</label>
-			              <input type="file" class="form-control-file" id="photo-main" name="photo_main" aria-describedby="fileHelp">
+			              <input type="file" class="form-control-file" id="photo-main" name="t_photo_main" aria-describedby="fileHelp">
 			              <small id="fileHelp" class="form-text text-muted">트레이너님을 대표할 수 있는 사진을 업로드해주세요.</small>
 			            </div>
 		            <br>
@@ -132,9 +134,24 @@
 			const url= "<%=request.getContextPath() %>/trainer/serachCenter.do";
 			var status="height=500px, width=500px";
 			console.log(url);
-			open(url,"_blank",status);
+			open(url,"_blank",status); /* 소속센터를 찾기위해서 open하는 자바스크립트 */
 			
 		}
+	    
+	    function goPopup(){
+	    	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	    	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    	
+	    	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/arerddrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	    }
+
+	    function jusoCallBack(roadFullAddr){
+	    		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
+	    		document.getElementById('c_address').value = roadFullAddr;
+
+	    }
 
     
     

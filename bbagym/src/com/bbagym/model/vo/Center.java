@@ -1,135 +1,174 @@
 package com.bbagym.model.vo;
 
 public class Center {
-
-	private int c_code;
-	private String c_name;
-	private String c_address;
-	private String c_phone;
-	private String c_opearting_hours;
-	private String c_holiday;
-	private String c_schedule;
-	private String c_text;
-	private String business_code;
-	private char approval;
-	private String m_code;
+	private int cCode;
+	private String cName;
+	private String cAddress;
+	private String cPhone;
+	private String cOperatingtime;
+	private String cHoliday;
+	private String cText;
+	private String cMainImage;
+	private String cBusinessCode;
+	private String cApproval;
+	private int memberCode;
+	private String snsHome;
+	private String snsInsta;
+	private String snsBlog;
+	private String snsEtc;
 	
 	public Center() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Center(int c_code, String c_name, String c_address, String c_phone, String c_opearting_hours,
-			String c_holiday, String c_schedule, String c_text, String business_code, char approval, String m_code) {
+	public Center(int cCode, String cName, String cAddress, String cPhone, String cOperatingtime, String cHoliday,
+			String cText, String cMainImage, String cBusinessCode, String cApproval, int memberCode, String snsHome,
+			String snsInsta, String snsBlog, String snsEtc) {
 		super();
-		this.c_code = c_code;
-		this.c_name = c_name;
-		this.c_address = c_address;
-		this.c_phone = c_phone;
-		this.c_opearting_hours = c_opearting_hours;
-		this.c_holiday = c_holiday;
-		this.c_schedule = c_schedule;
-		this.c_text = c_text;
-		this.business_code = business_code;
-		this.approval = approval;
-		this.m_code = m_code;
+		this.cCode = cCode;
+		this.cName = cName;
+		this.cAddress = cAddress;
+		this.cPhone = cPhone;
+		this.cOperatingtime = cOperatingtime;
+		this.cHoliday = cHoliday;
+		this.cText = cText;
+		this.cMainImage = cMainImage;
+		this.cBusinessCode = cBusinessCode;
+		this.cApproval = cApproval;
+		this.memberCode = memberCode;
+		this.snsHome = snsHome;
+		this.snsInsta = snsInsta;
+		this.snsBlog = snsBlog;
+		this.snsEtc = snsEtc;
 	}
 
-	public int getC_code() {
-		return c_code;
+	public int getcCode() {
+		return cCode;
 	}
 
-	public void setC_code(int c_code) {
-		this.c_code = c_code;
+	public void setcCode(int cCode) {
+		this.cCode = cCode;
 	}
 
-	public String getC_name() {
-		return c_name;
+	public String getcName() {
+		return cName;
 	}
 
-	public void setC_name(String c_name) {
-		this.c_name = c_name;
+	public void setcName(String cName) {
+		this.cName = cName;
 	}
 
-	public String getC_address() {
-		return c_address;
+	public String getcAddress() {
+		return cAddress;
 	}
 
-	public void setC_address(String c_address) {
-		this.c_address = c_address;
+	public void setcAddress(String cAddress) {
+		this.cAddress = cAddress;
 	}
 
-	public String getC_phone() {
-		return c_phone;
+	public String getcPhone() {
+		return cPhone;
 	}
 
-	public void setC_phone(String c_phone) {
-		this.c_phone = c_phone;
+	public void setcPhone(String cPhone) {
+		this.cPhone = cPhone;
 	}
 
-	public String getC_opearting_hours() {
-		return c_opearting_hours;
+	public String getcOperatingtime() {
+		return cOperatingtime;
 	}
 
-	public void setC_opearting_hours(String c_opearting_hours) {
-		this.c_opearting_hours = c_opearting_hours;
+	public void setcOperatingtime(String cOperatingtime) {
+		this.cOperatingtime = cOperatingtime;
 	}
 
-	public String getC_holiday() {
-		return c_holiday;
+	public String getcHoliday() {
+		return cHoliday;
 	}
 
-	public void setC_holiday(String c_holiday) {
-		this.c_holiday = c_holiday;
+	public void setcHoliday(String cHoliday) {
+		this.cHoliday = cHoliday;
 	}
 
-	public String getC_schedule() {
-		return c_schedule;
+	public String getcText() {
+		return cText;
 	}
 
-	public void setC_schedule(String c_schedule) {
-		this.c_schedule = c_schedule;
+	public void setcText(String cText) {
+		this.cText = cText;
 	}
 
-	public String getC_text() {
-		return c_text;
+	public String getcMainImage() {
+		return cMainImage;
 	}
 
-	public void setC_text(String c_text) {
-		this.c_text = c_text;
+	public void setcMainImage(String cMainImage) {
+		this.cMainImage = cMainImage;
 	}
 
-	public String getBusiness_code() {
-		return business_code;
+	public String getcBusinessCode() {
+		return cBusinessCode;
 	}
 
-	public void setBusiness_code(String business_code) {
-		this.business_code = business_code;
+	public void setcBusinessCode(String cBusinessCode) {
+		this.cBusinessCode = cBusinessCode;
 	}
 
-	public char getApproval() {
-		return approval;
+	public String getcApproval() {
+		return cApproval;
 	}
 
-	public void setApproval(char approval) {
-		this.approval = approval;
+	public void setcApproval(String cApproval) {
+		this.cApproval = cApproval;
 	}
 
-	public String getM_code() {
-		return m_code;
+	public int getMemberCode() {
+		return memberCode;
 	}
 
-	public void setM_code(String m_code) {
-		this.m_code = m_code;
+	public void setMemberCode(int memberCode) {
+		this.memberCode = memberCode;
+	}
+
+	public String getSnsHome() {
+		return snsHome;
+	}
+
+	public void setSnsHome(String snsHome) {
+		this.snsHome = snsHome;
+	}
+
+	public String getSnsInsta() {
+		return snsInsta;
+	}
+
+	public void setSnsInsta(String snsInsta) {
+		this.snsInsta = snsInsta;
+	}
+
+	public String getSnsBlog() {
+		return snsBlog;
+	}
+
+	public void setSnsBlog(String snsBlog) {
+		this.snsBlog = snsBlog;
+	}
+
+	public String getSnsEtc() {
+		return snsEtc;
+	}
+
+	public void setSnsEtc(String snsEtc) {
+		this.snsEtc = snsEtc;
 	}
 
 	@Override
 	public String toString() {
-		return "Center [c_code=" + c_code + ", c_name=" + c_name + ", c_address=" + c_address + ", c_phone=" + c_phone
-				+ ", c_opearting_hours=" + c_opearting_hours + ", c_holiday=" + c_holiday + ", c_schedule=" + c_schedule
-				+ ", c_text=" + c_text + ", business_code=" + business_code + ", approval=" + approval + ", m_code="
-				+ m_code + "]";
+		return "Center [cCode=" + cCode + ", cName=" + cName + ", cAddress=" + cAddress + ", cPhone=" + cPhone
+				+ ", cOperatingtime=" + cOperatingtime + ", cHoliday=" + cHoliday + ", cText=" + cText + ", cMainImage="
+				+ cMainImage + ", cBusinessCode=" + cBusinessCode + ", cApproval=" + cApproval + ", memberCode="
+				+ memberCode + ", snsHome=" + snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc="
+				+ snsEtc + "]";
 	}
-	
-	
 	
 }
