@@ -43,7 +43,7 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 			System.out.println(pnames[i]+"의 pcost"+pcost);
 			program.put(pnames[i], pcost);
 		}
-		c.setProgram(program);
+		//c.setProgram(program);
 		int result=new CenterService().enrollCenter(c);
 		String msg="", loc="";
 		if(result>0) {

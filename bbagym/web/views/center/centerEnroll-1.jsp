@@ -123,22 +123,22 @@
             <br>
             <div class="form-group">
               <label for="c-sns-1">홈페이지</label>
-              <input class="form-control" type="text" name="sns1" id="c-sns-1">
+              <input class="form-control" type="text" name="sns-homepage" id="c-sns-1">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-2">인스타그램</label>
-              <input class="form-control" type="text" name="sns2" id="c-sns-2">
+              <input class="form-control" type="text" name="sns-insta" id="c-sns-2">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-3">블로그</label>
-              <input class="form-control" type="text" name="sns3" id="c-sns-3">
+              <input class="form-control" type="text" name="sns-blog" id="c-sns-3">
             </div>
             <br>
             <div class="form-group">
               <label for="c-sns-4">기타 사이트</label>
-              <input class="form-control" type="text" name="sns4" id="c-sns-4">
+              <input class="form-control" type="text" name="sns-etc" id="c-sns-4">
             </div>
             <br>
             <div class="form-group">

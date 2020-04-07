@@ -3,7 +3,6 @@ package com.bbagym.controller.center;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,17 +46,24 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		int maxSize=1024*1024*10;
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
 		
-		String name=mr.getParameter("c-name");
-		String address=mr.getParameter("c-address");
-		String tel = mr.getParameter("c-tel");
-		String ophr = mr.getParameter("c-operating-hr");
-		String holiday=mr.getParameter("c-holiday");
-		String[] categories = mr.getParameterValues("c-cat"); 
-		String[] facilities = mr.getParameterValues("c-fac");
-		Properties sns = new Properties();
-			for(int i=1;i<5;i++) {
-				sns.put("sns"+i, mr.getParameter("sns"+i));
-			}
+		CenterEnroll c= new CenterEnroll();
+		c.setName(mr.getParameter("c-name"));
+		c.setAddress(mr.getParameter("c-address"));
+		c.setTel(mr.getParameter("c-tel"));
+		c.setOpHr(mr.getParameter("c-operating-hr"));
+		c.setHoliday(mr.getParameter("c-holiday"));
+		String[] cat=mr.getParameterValues("c-cat");
+		String[] fac=mr.getParameterValues("c-fac");
+		for(String s : cat) {
+			c.getCategories().add(s);
+		}
+		for(String s : fac) {
+			c.getFacilities().add(s);
+		}
+		c.setSnsHome(mr.getParameter("sns-homepage"));
+		c.setSnsInsta(mr.getParameter("sns-insta"));
+		c.setSnsBlog(mr.getParameter("sns-blog"));
+		c.setSnsEtc(mr.getParameter("sns-etc"));
 		String photo=mr.getFilesystemName("c-photo");
 		List<String> photos=new ArrayList();
 		photos.add(mr.getFilesystemName("c-photo0"));
@@ -66,8 +72,6 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 				photos.add(mr.getFilesystemName("c-photo"+(i+1)));
 			}
 		}
-		CenterEnroll c= new CenterEnroll(name, address, tel, ophr, holiday,
-				categories, facilities, sns, photo, photos);
 		
 		HttpSession session=request.getSession();
 		session.setAttribute("centerEnroll", c);

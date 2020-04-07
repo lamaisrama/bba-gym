@@ -75,9 +75,10 @@
 							
 					<br>
 					<div class="info-footer-inner">
-						<a href="<%=request.getContextPath()%>"><button type="button"
-								class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
-						<input class="btn btn-secondary" type="submit" value="수정"> 
+						<a href="<%=request.getContextPath()%>">
+						<button type="button" class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
+						<input class="btn btn-secondary" type="submit" value="수정"> &nbsp;&nbsp;&nbsp;
+						<a href=""><button type="button" class="btn btn-secondary">비밀번호변경</button></a>
 					</div>
 				
 			</form>
