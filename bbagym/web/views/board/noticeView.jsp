@@ -23,6 +23,7 @@
             <div class="col-md-8">
                 <h2 class="text-center">공지사항</h2>
                     <div class="table table-responsive">
+	                    <input type="hidden" name="no" value="<%=n.getnCode() %>">
                         <table class="table table-striped text-center">
                             <tr>
                                 <th>제목</th>
@@ -33,11 +34,11 @@
                         		</td>
                             </tr>
                             <tr>
-                                <th class="">작성자</th>
+                                <th>작성자</th>
                                 <td><%=n.getmCode() %></td>
                             </tr>
                             <tr>
-                                <th class="">작성일</th>
+                                <th>작성일</th>
                                 <td><%=n.getnDate() %></td>
                             </tr>
                             <tr>
@@ -59,8 +60,8 @@
                             <tr>
                             <%-- <%if(loginMember!=null && loginMember.getUserId().equals("admin")) {%> --%>
                                 <td colspan="2" class="text-center">
-                                    <input type="button" class="btn btn-warning" value="수정" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">
-                                    <input type="button" class="btn btn-primary" value="삭제" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')"> 
+                                    <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">수정</button>
+                                    <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')">삭제</button> 
                                 </td>
                             <%-- <%} %>  --%>   
                             </tr>

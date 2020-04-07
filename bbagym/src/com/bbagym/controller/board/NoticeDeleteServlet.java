@@ -35,6 +35,8 @@ public class NoticeDeleteServlet extends HttpServlet {
 		
 		int result = new NoticeService().deleteNotice(no);
 		
+		System.out.println(no);
+		
 		String path = getServletContext().getRealPath("/upload/notice/");
 		File f = new File(path + fileName);
 		if(f.exists()) {
