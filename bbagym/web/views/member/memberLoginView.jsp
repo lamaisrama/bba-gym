@@ -59,7 +59,8 @@
     border-bottom: 1px solid #999;
     outline: none;
     background: transparent;
-}
+ }
+
 .submit {
     
     width: 85%;
@@ -143,5 +144,5 @@ span {
 				return true;
 			}
 		</script>
-            
+            <br><br><br><br>
 	<%@ include file="/views/common/footer.jsp"%>
