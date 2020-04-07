@@ -45,8 +45,30 @@
 					<br> <label for="c-address"><pre style="color:red ; display:inline-block">*</pre>패스워드</label>
 					<div class="form-group" style="display: flex">
 						<input class="form-control" style="width: 50%;" type=password placeholder="패스워드" name="M_PW" id="password_" required> 
-						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required>
+						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required><br>
 					</div>
+					<span id="result"></span>
+					 <script>
+        var pwck=document.getElementById("password_2");
+        pwck.onkeyup=function(){
+            var pw=document.getElementById("password_");
+            var span=document.getElementById("result");
+
+            if(pw.value==this.value){
+                span.innerHTML="비밀번호가 일치합니다.";
+                span.style.color="green";
+                span.style.fontWeight="bolder";
+            }else{
+                span.innerHTML="비밀번호가 일치하지 않습니다.";
+                span.style.color="red";
+                span.style.fontWeight="bolder";
+                // this.value="";
+            }
+        }
+					</script>
+					
+					
+					
 					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
 					<div class="form-group" style="display: flex">
 
