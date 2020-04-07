@@ -180,8 +180,27 @@ div {
             background: #5467f5;
         }
 
-        .dropdown-item {
+        .dropdown-menu .dropdown-item {
             width: 200px;
+
+        }
+
+        .dropdown-menu .dropdown-item:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .dropdown-menu .dropdown-item:last-child {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus {
+            background-color: #f9f9f9;
+            color: black !important;
+            opacity: 1;
+            text-decoration: none;
         }
 
         .gym-search-container {
@@ -228,21 +247,35 @@ div {
             padding-top: 30px;
         }
 
-        #month-container {
+        .month-container {
             border: 1px solid #736F6E;
             width: 80%;
             text-align: center;
             font-family: 'Nanum Square', Dotum, sans-serif;
             color: #736F6E;
+            font-size: 30px;
         }
 
-        #month-container>h4 {
+        .month-container-notclick {
+            background-color: white;
+            /* transition: .5s; */
+            cursor: pointer;
+        }
+
+        .month-container>div {
             line-height: 55px;
         }
 
-        #month-container:hover {
+        .month-container:hover {
             background-color: #ffbf00;
             transition: .5s;
+            cursor: pointer;
+        }
+
+        .month-container-click {
+            background-color: #ffbf00;
+            color: white;
+            font-weight: bolder;
             cursor: pointer;
         }
 
@@ -309,8 +342,8 @@ div {
             margin-top: 50px;
             margin-right: 10px;
         }
-        
-		.btn-pay {
+
+        .btn-pay {
             width: 270px;
             height: 80px;
             font-weight: bolder;
@@ -331,8 +364,8 @@ div {
             transition: all .2s ease-in-out;
             background: #5467f5;
         }
-        
-                .btn:focus,
+
+        /* .btn:focus,
         .btn:active,
         .btn.active,
         .btn:active:focus,
@@ -350,11 +383,10 @@ div {
             color: #FFFFFF;
             border-color: #2840f5;
             box-shadow: none;
-        }
+        } */
 
         #button-container {
             min-width: 920px;
             margin-left: 200px;
             margin-right: 200px;
         }
-        
