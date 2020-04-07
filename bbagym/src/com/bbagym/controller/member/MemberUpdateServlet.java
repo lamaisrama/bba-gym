@@ -12,6 +12,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.bbagym.member.service.MemberService;
 import com.bbagym.model.vo.Member;
+import com.bbagym.common.encrypt.AESEncrypt;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -57,6 +58,8 @@ public class MemberUpdateServlet extends HttpServlet {
 		String M_IMAGE=mr.getFilesystemName("M_IMAGE");
 		
 		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,0,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE);
+		
+		
 		int result=new MemberService().updateMember(m);
 		  System.out.println("멤버코드"+M_CODE);
 		  System.out.println("멤버아이디"+M_ID);

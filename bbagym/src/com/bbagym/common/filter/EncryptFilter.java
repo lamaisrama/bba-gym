@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 		servletNames = { 
 				"UdpatePasswordEndServlet", 
 				"LoginServlet", 
-				"MemberEnrollEndServlet",
-				"MemberEnrollServlet",
-				"MemberLoginEnrollServlet",
-				"/admin/memberlist"
+				"MemberEnrollEndServlet"
 		})
 public class EncryptFilter implements Filter {
 
@@ -46,7 +43,7 @@ public class EncryptFilter implements Filter {
 		// place your code here
 		//getParameter를 재정의하여 처리하자!
 		MyEncryptWrapper mew = new MyEncryptWrapper((HttpServletRequest)request);
-		
+		mew.getParameter("M_PW");
 		// pass the request along the filter chain
 		chain.doFilter(mew, response);
 	}
