@@ -48,7 +48,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -152,7 +152,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -212,7 +212,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));

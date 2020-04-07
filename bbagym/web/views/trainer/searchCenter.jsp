@@ -34,10 +34,11 @@
 					dataType : "json",
 					type : "post",
 					data : name,
-					success : data =>{
+					success : function(data){
 						let table=$("<table>").attr("id","table");
 						let th=$("<tr>").append($("<th>").html("센터 이름"))
-										.append($("<th>").html("센터 주소"));
+										.append($("<th>").html("센터 주소"))
+										.append($("<th>").html("선택"));
 						table.append(th);
 						for(let i=0;i<data.length;i++){
 						let tr=$("<tr>").append($("<td>").html(data[i]["c_name"]))
