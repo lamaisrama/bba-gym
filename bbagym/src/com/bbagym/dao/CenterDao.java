@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.CenterEnroll;
 
 public class CenterDao {
@@ -33,10 +32,18 @@ public class CenterDao {
 	public int enrollCenter(Connection conn, CenterEnroll c) { 
 		PreparedStatement pstmt=null;
 		String sql=prop.getProperty("enrollCenter");
+		//c_name, c_addr, c_phone, c_ophr, c_holi, c_sch, c_text, c_main, m_code, ?, ?, ?, ?);
+		//insert into center values(seq_c.nextval, ?, ?, ?, ?, ?, ?, ?, ?, 'N', ?, ?, ?, ?, ?);
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
-
+			pstmt.setString(1, c.getName()); pstmt.setString(2, c.getAddress()); 
+			pstmt.setString(3, c.getTel()); pstmt.setString(4, c.getOpHr());
+			pstmt.setString(5, c.getHoliday()); pstmt.setString(6, c.getSchedulePath());
+			pstmt.setString(7, c.getText()); pstmt.setString(8, c.getMainImage());
+			pstmt.setInt(9, c.getMemberCode()); pstmt.setString(10, c.getSnsHome());
+			pstmt.setString(11, c.getSnsInsta()); pstmt.setString(12, c.getSnsBlog());
+			pstmt.setString(13, c.getSnsEtc());
 			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -135,5 +142,24 @@ public class CenterDao {
 			close(pstmt);
 		}
 		
+	}
+	
+	public int selectCcode(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int cCode=0;
+		String sql = "SELECT SEQ_C.CURRVAL FROM DUAL";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			rs.next();
+			cCode=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cCode;
 	}
 }
