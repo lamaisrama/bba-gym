@@ -4,6 +4,7 @@ import static com.bbagym.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,7 @@ import java.util.Properties;
 
 import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.TrainerView;
 
 public class CenterDao {
 	private Properties prop=new Properties();
@@ -22,7 +24,7 @@ public class CenterDao {
 	public CenterDao() {
 		try {
 			String path=CenterDao.class.getResource("/sql/center/center_query.properties").getPath();
-			prop.load(new FileInputStream(path));
+			prop.load(new FileReader(path));
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
@@ -75,11 +77,12 @@ public class CenterDao {
 		return list;
 	}
 	
+	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 메소드
 	public int selectCountCenter(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		String sql = "select count(*) from center";
+		String sql = prop.getProperty("selectCountCenter");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -116,6 +119,36 @@ public class CenterDao {
 
 	}
 	
+	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
+	public List<CenterEnroll> FindCatergoryList(Connection conn,int cPage,int numPerpage,List<CenterEnroll> list){
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<String> category=new ArrayList<String>();
+		String sql=prop.getProperty("FindCatergoryList");
+		try {
+			
+			for(int i=0;i<list.size();i++) {
+			category.clear();
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, list.get(i).getCode());
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				category.add(rs.getString("CATEGORY_NAME"));
+			}
+
+
+			list.get(i).setCategories(category);
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public void findFacility(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -134,6 +167,38 @@ public class CenterDao {
 			close(rs);
 			close(pstmt);
 		}
+		
+	}
+	
+	public List<CenterEnroll> centerMainPageData(Connection conn,int cPage,int numPerpage){ 
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("centerMainPageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
 		
 	}
 }

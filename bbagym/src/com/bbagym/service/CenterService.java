@@ -49,4 +49,16 @@ public class CenterService {
 		}
 		return result;
 	}
+	
+	public List<CenterEnroll> centerMainPageData(int cPage,int numPerpage){
+		Connection conn=getConnection();
+		List<CenterEnroll> list =dao.centerMainPageData(conn,cPage,numPerpage);
+		if(!list.isEmpty()) {
+			list = dao.FindCatergoryList(conn,cPage,numPerpage,list);
+		}
+		close(conn);
+		return list;
+	}
+	
+	
 }
