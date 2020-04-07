@@ -54,7 +54,6 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		
 		String userId =mr.getParameter("userId");  //오류수정
 		String pw = mr.getParameter("M_PW");
-		pw=AESEncrypt.encrypt(pw);
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
 		int age = Integer.parseInt(mr.getParameter("M_AGE"));
