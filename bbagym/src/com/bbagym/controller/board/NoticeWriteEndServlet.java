@@ -48,7 +48,7 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new MyFileRenamePolicy());
 		Notice n = new Notice(0, mr.getParameter("title"), mr.getParameter("content"), 
 								null, mr.getOriginalFileName("upfile"), mr.getFilesystemName("upfile"),
-								0, Integer.parseInt(mr.getParameter("writer")), 'Y');
+								0, Integer.parseInt(mr.getParameter("mcode")), 'Y');
 		
 		int result = new NoticeService().insertNotice(n);
 		

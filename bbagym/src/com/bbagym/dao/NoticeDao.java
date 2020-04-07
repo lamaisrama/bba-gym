@@ -85,13 +85,14 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertNotice");
+		//INSERT INTO NOTICE VALUES(SEQ_NCODE.NEXTVAL,?,?,DEFAULT,?,?,DEFAULT,?,'Y')
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getTitle());
-			pstmt.setInt(2, n.getmCode());
-			pstmt.setString(3, n.getnContent());
-			pstmt.setString(4, n.getOriFileName());
-			pstmt.setString(5, n.getNewFileName());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getOriFileName());
+			pstmt.setString(4, n.getNewFileName());
+			pstmt.setInt(5, n.getmCode());
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -151,14 +152,15 @@ public class NoticeDao {
 	public int noticeUpdate(Connection conn, Notice n) {
 		PreparedStatement pstmt =  null;
 		int result = 0;
-		String sql = prop.getProperty("boardUpdate");
-		
+		String sql = prop.getProperty("updateNotice");
+		//UPDATE NOTICE SET TITLE=?, N_CONTENT=?, ORI_FILENAME=?, M_CODE=? WHERE N_CODE=?
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getTitle());
 			pstmt.setString(2, n.getnContent());
 			pstmt.setString(3, n.getOriFileName());
 			pstmt.setInt(4, n.getmCode());
+			
 			pstmt.setInt(5, n.getnCode());
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {

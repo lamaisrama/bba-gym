@@ -59,8 +59,8 @@
                             <tr>
                             <%-- <%if(loginMember!=null && loginMember.getUserId().equals("admin")) {%> --%>
                                 <td colspan="2" class="text-center">
-                                    <input type="button" class="btn btn-warning" onclick="" value="글수정" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">
-                                    <input type="button" class="btn btn-primary" onclick="" value="글삭제" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')"> 
+                                    <input type="button" class="btn btn-warning" value="수정" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">
+                                    <input type="button" class="btn btn-primary" value="삭제" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')"> 
                                 </td>
                             <%-- <%} %>  --%>   
                             </tr>

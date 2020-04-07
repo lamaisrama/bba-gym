@@ -21,7 +21,7 @@
             <h2 class="text-center">공지글 수정</h2>
             <form action="<%=request.getContextPath() %>/board/noticeUpdateEnd" method="post" enctype="multipart/form-data">
                 <div class="table table-responsive">
-                    <input type="hidden" name="no" value="<%=n.getTitle() %>">
+                    <input type="hidden" name="no" value="<%=n.getnCode() %>">
                     <table class="table table-striped text-center">
                         <tr>
                             <th>제목</th>
@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="writer" value="<%=n.getmCode() %>" class="form-control" readonly></td>
+                            <td><input type="text" name="writer" value="<%=logginMember.getM_CODE() %>" class="form-control" readonly></td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
@@ -50,7 +50,7 @@
                             <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"><%=n.getnContent() %></textarea></td>
                         </tr>
                         <tr>
-                        <%-- <%if(loginMember!=null && loginMember.gemCode().equals(n.getmCode())){ %> --%>
+                        <%-- <%if(logginMember!=null && logginMember.getM_CODE().equals(n.getmCode())){ %> --%>
                             <td colspan="2" class="text-center">
                                 <input type="submit" class="btn btn-primary" value="글등록">
                             </td>
