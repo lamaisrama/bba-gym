@@ -100,7 +100,8 @@
 	   	</div>
 
 	   	
-	    <div id="box">
+	    <div id
+	    ="box">
 	    <%
 			if (logginMember == null) {
 		%>

@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8" %>
 	<%@ page
 	import="com.bbagym.model.vo.Member"%>
-	
+<%
+   Member m=(Member)request.getAttribute("member");
+%>
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -14,12 +16,15 @@
 		<div class="col-lg-8 col-md-8 col-sm-12">
 			<h1 class="mt-4" style="text-align: center;">회원정보수정</h1>
 			<h6 style="text-align: right;">
+			
+			
 				<span><b>1. 기본 정보 입력</b></span>
 			</h6>
 			<hr>
 			
 			<form action="<%=request.getContextPath()%>/member/updateMember.do" method="post"  enctype="multipart/form-data">
-				
+				<input type="hidden" name="M_CODE" value="<%=m.getM_CODE()%>"/>
+				<input type="hidden" name="M_LEVEL" value="<%=m.getM_LEVEL()%>"/>
 					<label for="c-name">아이디</label>
 					<div class="form-group" style="display: flex">
   					<input type="text" class="form-control" style="width: 100%;" name="id" value="<%=m.getM_ID()%>" readonly>

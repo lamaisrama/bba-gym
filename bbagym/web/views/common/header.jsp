@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page
 	import="com.bbagym.model.vo.Member"%>
-	<%
-   Member m=(Member)request.getAttribute("member");
-	%>
+
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
 
