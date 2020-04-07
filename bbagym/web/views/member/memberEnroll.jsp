@@ -63,7 +63,7 @@
 					</div>
 					<br>
 					<div class="form-group">
-						 <button type="button" class="btn btn-warning" onclick="goPopup()">수업주소</button>
+						 <button type="button" class="btn btn-warning" onclick="goPopup()">주소</button>
 			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 					<div class="form-group">
