@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8" %>
 	<%@ page
 	import="com.bbagym.model.vo.Member"%>
-	
+<%
+   Member m=(Member)request.getAttribute("member");
+%>
 <%@ include file="/views/common/header.jsp"%>
 
 
@@ -14,15 +16,18 @@
 		<div class="col-lg-8 col-md-8 col-sm-12">
 			<h1 class="mt-4" style="text-align: center;">회원정보수정</h1>
 			<h6 style="text-align: right;">
+			
+			
 				<span><b>1. 기본 정보 입력</b></span>
 			</h6>
 			<hr>
 			
 			<form action="<%=request.getContextPath()%>/member/updateMember.do" method="post"  enctype="multipart/form-data">
-				
+				<input type="hidden" name="M_CODE" value="<%=m.getM_CODE()%>"/>
+				<input type="hidden" name="M_LEVEL" value="<%=m.getM_LEVEL()%>"/>
 					<label for="c-name">아이디</label>
 					<div class="form-group" style="display: flex">
-  					<input type="text"  style="width: 100%;" name="id" value="<%=m.getM_ID()%>">
+  					<input type="text" class="form-control" style="width: 100%;" name="id" value="<%=m.getM_ID()%>" readonly>
 				
 						
 					</div>
@@ -30,7 +35,7 @@
 					<br> <label for="c-tel">이름</label>
 					<div class="form-group" style="display: flex" >
 
-					 <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"  value="<%=m.getM_NAME()%>">
+					 <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"  value="<%=m.getM_NAME()%>" >
 					 <input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M"  <%=m.getM_GENDER()=='M'?"checked":"" %>> 
 							<label for="M_GENDER0">남</label> 
 						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F" <%=m.getM_GENDER()=='F'?"checked":"" %>> 
@@ -38,18 +43,20 @@
 					</div>
 					<br>
 					<div class="form-group">
-					<label for="c-time">나이</label> <input type="number"class="form-control" name="M_AGE" id="M_AGE"  <%=m.getM_AGE()%>> <br>
-						<label for="c-time">이메일</label>  <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"  <%=m.getM_EMAIL()%>> 
+					<label for="c-time">나이</label> 
+					<input type="number"class="form-control" name="M_AGE" id="M_AGE"  value="<%=m.getM_AGE()%>"> <br>
+						<label for="c-time">이메일</label>  
+					<input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"  value="<%=m.getM_EMAIL()%>" readonly> 
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="c-time">주소</label> 
-						<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" <%=m.getM_ADDRESS()%>> 
+					<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" value="<%=m.getM_ADDRESS()%>"> 
 					</div>
 					<br>
 					<div class="form-group">
 						<label for="c-time">PHONE</label>
-						<input type="text" class="form-control" name="M_PHONE" id="M_PHONE" <%=m.getM_PHONE()%>> 
+						<input type="text" class="form-control" name="M_PHONE" id="M_PHONE" value="<%=m.getM_PHONE()%>"> 
 					</div>
 					<br>
 					<div class="form-group div-photo">

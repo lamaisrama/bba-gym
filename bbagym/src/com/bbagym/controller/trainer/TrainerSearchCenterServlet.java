@@ -33,9 +33,6 @@ public class TrainerSearchCenterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		List<Center> list = new TrainerService().searchCenter();
-		
-		request.setAttribute("centerinfo", list);
 		request.getRequestDispatcher("/views/trainer/searchCenter.jsp").forward(request, response);
 	}
 

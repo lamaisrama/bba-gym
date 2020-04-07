@@ -6,54 +6,51 @@ import java.util.Map;
 import java.util.Properties;
 
 public class CenterEnroll {
+	private int code;
 	private String name;
 	private String address;
 	private String tel;
 	private String opHr;
 	private String holiday;
-	private String[] categories;
-	private String[] facilities;
-	private Properties sns;
-	private String photo;
-	private List<String> photos;
+	private String schedulePath;
 	private String text;
+	private String mainImagePath;
+	private List<String> photos;
+	private List<String> categories;
+	private List<String> facilities;
+	private Properties sns;
 	private Properties program;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CenterEnroll(String name, String address, String tel, String opHr, String holiday, String[] categories,
-			String[] facilities, Properties sns, String photo, List<String> photos, String text,
-			Properties program) {
+	public CenterEnroll(int code, String name, String address, String tel, String opHr, String holiday,
+			String schedulePath, String text, String mainImagePath, List<String> photos, List<String> categories,
+			List<String> facilities, Properties sns, Properties program) {
 		super();
+		this.code = code;
 		this.name = name;
 		this.address = address;
 		this.tel = tel;
 		this.opHr = opHr;
 		this.holiday = holiday;
+		this.schedulePath = schedulePath;
+		this.text = text;
+		this.mainImagePath = mainImagePath;
+		this.photos = photos;
 		this.categories = categories;
 		this.facilities = facilities;
 		this.sns = sns;
-		this.photo = photo;
-		this.photos = photos;
-		this.text = text;
 		this.program = program;
 	}
 
-	public CenterEnroll(String name, String address, String tel, String opHr, String holiday, String[] categories,
-			String[] facilities, Properties sns, String photo, List<String> photos) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.tel = tel;
-		this.opHr = opHr;
-		this.holiday = holiday;
-		this.categories = categories;
-		this.facilities = facilities;
-		this.sns = sns;
-		this.photo = photo;
-		this.photos = photos;
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 	public String getName() {
@@ -96,36 +93,28 @@ public class CenterEnroll {
 		this.holiday = holiday;
 	}
 
-	public String[] getCategories() {
-		return categories;
+	public String getSchedulePath() {
+		return schedulePath;
 	}
 
-	public void setCategories(String[] categories) {
-		this.categories = categories;
+	public void setSchedulePath(String schedulePath) {
+		this.schedulePath = schedulePath;
 	}
 
-	public String[] getFacilities() {
-		return facilities;
+	public String getText() {
+		return text;
 	}
 
-	public void setFacilities(String[] facilities) {
-		this.facilities = facilities;
+	public void setText(String text) {
+		this.text = text;
 	}
 
-	public Properties getSns() {
-		return sns;
+	public String getMainImagePath() {
+		return mainImagePath;
 	}
 
-	public void setSns(Properties sns) {
-		this.sns = sns;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setMainImagePath(String mainImagePath) {
+		this.mainImagePath = mainImagePath;
 	}
 
 	public List<String> getPhotos() {
@@ -136,12 +125,28 @@ public class CenterEnroll {
 		this.photos = photos;
 	}
 
-	public String getText() {
-		return text;
+	public List<String> getCategories() {
+		return categories;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setCategories(List<String> categories) {
+		this.categories = categories;
+	}
+
+	public List<String> getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(List<String> facilities) {
+		this.facilities = facilities;
+	}
+
+	public Properties getSns() {
+		return sns;
+	}
+
+	public void setSns(Properties sns) {
+		this.sns = sns;
 	}
 
 	public Properties getProgram() {
@@ -154,11 +159,15 @@ public class CenterEnroll {
 
 	@Override
 	public String toString() {
-		return "CenterEnroll [name=" + name + ", address=" + address + ", tel=" + tel + ", opHr=" + opHr + ", holiday="
-				+ holiday + ", categories=" + Arrays.toString(categories) + ", facilities="
-				+ Arrays.toString(facilities) + ", sns=" + sns + ", photo=" + photo + ", photos=" + photos + ", text="
-				+ text + ", program=" + program + "]";
+		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr="
+				+ opHr + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" + text
+				+ ", mainImagePath=" + mainImagePath + ", photos=" + photos + ", categories=" + categories
+				+ ", facilities=" + facilities + ", sns=" + sns + ", program=" + program + "]";
 	}
+
+
+
+	
 	
 	
 	

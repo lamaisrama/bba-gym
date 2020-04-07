@@ -67,13 +67,15 @@ public class TrainerService {
 		return result;
 	}
 	
-	public List<Center> searchCenter() {
+	
+	public List<Center> searchCenterName(String name) {
 		Connection conn = getConnection();
-		List<Center> list = dao.searchCenter(conn);
+		List<Center> list = dao.searchCenterName(conn,name);
 		close(conn);
 		return list;
 	}
 	
+
 	public List<Center> searchCenterName(String address) {
 		Connection conn = getConnection();
 		List<Center> name = dao.searchCenterName(conn,address);
@@ -93,4 +95,5 @@ public class TrainerService {
 	}
 
 	
+
 }

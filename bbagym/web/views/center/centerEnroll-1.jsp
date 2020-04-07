@@ -19,7 +19,8 @@
             <br>
             <div class="form-group">
               <label for="c-address">센터 주소</label>
-              <input class="form-control" name="c-address" id="c-address" type="text">
+              <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
+              <input type="text" class="form-control" type="text" name="c_address" id="c_address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
             </div>
             <br>
             <div class="form-group">
@@ -28,50 +29,50 @@
             </div>
             <br>
             <div class="form-group">
-              <label for="c-time">운영시간</label>
+              <label for="c-operating-hr">운영시간</label>
               <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control">
             </div>
             <br>
             <div class="form-group">
-              <label for="c-notime">휴무일</label>
+              <label for="c-holiday">휴무일</label>
               <input type="text" name="c-holiday" id="c-holiday" class="form-control">
             </div>
             <br>
             <div class="form-group">
               <label>카테고리</label> <br>
               <div class="form-check-inline">
-                <label class="form-check-label" for="c-cat">
-                  <input type="checkbox" class="form-check-input" id="c-cat-1" name="c-cat" value="c-cat-1">헬스
+                <label class="form-check-label" for="c-cat-1">
+                  <input type="checkbox" class="form-check-input" id="c-cat-1" name="c-cat" value="1">수영
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-2">
-                  <input type="checkbox" class="form-check-input" id="c-cat-2" name="c-cat" value="c-cat-2">수영
+                  <input type="checkbox" class="form-check-input" id="c-cat-2" name="c-cat" value="2">GX
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-3">
-                  <input type="checkbox" class="form-check-input" id="c-cat-3" name="c-cat" value="c-cat-3">필라테스
+                  <input type="checkbox" class="form-check-input" id="c-cat-3" name="c-cat" value="3">헬스
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-4">
-                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="c-cat" value="c-cat-4">요가
+                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="c-cat" value="4">골프
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-5">
-                  <input type="checkbox" class="form-check-input" id="c-cat-5" name="c-cat" value="c-cat-5">스쿼시
+                  <input type="checkbox" class="form-check-input" id="c-cat-5" name="c-cat" value="5">필라테스
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-6">
-                  <input type="checkbox" class="form-check-input" id="c-cat-6" name="c-cat" value="c-cat-6">격투기
+                  <input type="checkbox" class="form-check-input" id="c-cat-6" name="c-cat" value="6">요가
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-7">
-                  <input type="checkbox" class="form-check-input" id="c-cat-7" name="c-cat" value="c-cat-7">기타
+                  <input type="checkbox" class="form-check-input" id="c-cat-7" name="c-cat" value="7">테니스
                 </label>
               </div>
             </div>
@@ -80,42 +81,42 @@
               <label>편의시설</label> <br>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-1">
-                  <input type="checkbox" class="form-check-input" id="c-fac-1" name="c-fac" value="c-fac-1">샤워시설
+                  <input type="checkbox" class="form-check-input" id="c-fac-1" name="c-fac" value="1">샤워시설
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-2">
-                  <input type="checkbox" class="form-check-input" id="c-fac-2" name="c-fac" value="c-fac-2">수건
+                  <input type="checkbox" class="form-check-input" id="c-fac-2" name="c-fac" value="2">운동복
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-3">
-                  <input type="checkbox" class="form-check-input" id="c-fac-3" name="c-fac" value="c-fac-3">운동복
+                  <input type="checkbox" class="form-check-input" id="c-fac-3" name="c-fac" value="3">수건
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-4">
-                  <input type="checkbox" class="form-check-input" id="c-fac-4" name="c-fac" value="c-fac-4">개인락커
+                  <input type="checkbox" class="form-check-input" id="c-fac-4" name="c-fac" value="4">개인락커
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-5">
-                  <input type="checkbox" class="form-check-input" id="c-fac-5" name="c-fac" value="c-fac-5">인바디
+                  <input type="checkbox" class="form-check-input" id="c-fac-5" name="c-fac" value="5">인바디
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-6">
-                  <input type="checkbox" class="form-check-input" id="c-fac-6" name="c-fac" value="c-fac-6">와이파이
+                  <input type="checkbox" class="form-check-input" id="c-fac-6" name="c-fac" value="6">와이파이
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-7">
-                  <input type="checkbox" class="form-check-input" id="c-fac-7" name="c-fac" value="c-fac-7">주차장
+                  <input type="checkbox" class="form-check-input" id="c-fac-7" name="c-fac" value="7">주차장
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-fac-8">
-                  <input type="checkbox" class="form-check-input" id="c-fac-8" name="c-fac" value="c-fac-8">기타
+                  <input type="checkbox" class="form-check-input" id="c-fac-8" name="c-fac" value="8">기타
                 </label>
               </div>
             </div>
@@ -180,6 +181,24 @@
 	  </form>
     </div>
 	    
+	    <script>
+	    
+	    function goPopup(){
+	    	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	    	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    	
+	    	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/arerddrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	    }
+
+	    function jusoCallBack(roadFullAddr){
+	    		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
+	    		document.getElementById('c_address').value = roadFullAddr;
+
+	    }
+	    
+	    </script>
       		
 
 	

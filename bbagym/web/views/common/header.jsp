@@ -2,22 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ page
 	import="com.bbagym.model.vo.Member"%>
-	<%
-   Member m=(Member)request.getAttribute("member");
-	%>
+
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
 
-	Cookie[] cookies = request.getCookies();
-	String saveId = "";
-	if (cookies != null) {
-		for (Cookie c : cookies) {
-			if (c.getName().equals("saveId")) {
-				saveId = c.getValue();
-			}
+Cookie[] cookies = request.getCookies();
+String saveId = "";
+if (cookies != null) {
+	for (Cookie c : cookies) {
+		if (c.getName().equals("saveId")) {
+			saveId = c.getValue();
 		}
 	}
-%>    
+}
+%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,21 +94,17 @@
             <%
 					if (logginMember == null) {
 				%>
-				<form action="<%=request.getContextPath()%>/member/login.do" method="post" onsubmit="return invalidate();">
+				
 	        <div>
-	        	<input type="text" name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>" style="width:90px">
-	        	<input type="password" name="M_PW" id="M_PW" placeholder="PW"style="width:80px">
-	        	<button type="submit" class="btn btn-outline-primary text-red">로그인</button>
-	        	<input type="button"class="btn btn-outline-primary text-red" value="회원가입" 
-	        	onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />
+	        
+	       <input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
+	       <input type="button" class="btn btn-outline-primary text-red" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />
+	        	
 	        	&nbsp; 
-	 		 	  <td colspan="2">
-	 					<input type="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> />
-						<label for="saveId" style="color:blue">아이디 저장</label>
-				  </td>
+	 		 	 
 	 		</div>
 			
-	   			 </form>
+	   			 
 	    
 	     <%
 					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1){
@@ -157,26 +151,7 @@
       </div>
     </div>
   </nav>
-  <script>
-			$(function() {//onload;
-
-			});
-			function invalidate() {
-				const userId = $("#M_ID").val();
-				const password = $("#M_PW").val();
-				if (userId.trim().length == 0) {
-					alert("아이디를 입력하세요");
-					$("#M_ID").focus();
-					return false;//전송중단!
-				}
-				if (password.trim().length == 0) {
-					alert("비밀번호를 입력하세요");
-					$("#M_PW").focus();
-					return false;
-				}
-				return true;
-			}
-		</script>
+ 
   <!-- End Navbar -->
 
   <!-- 아래 div는 각 jsp마다 제일 위에 붙여줘야 header background가 생깁니다.-->
