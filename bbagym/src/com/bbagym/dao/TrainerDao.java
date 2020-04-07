@@ -267,9 +267,9 @@ public class TrainerDao {
 			
 			while(rs.next()) {
 				Center c = new Center();
-				c.setC_code(rs.getInt("C_CODE"));
-				c.setC_name(rs.getString("C_NAME"));
-				c.setC_address(rs.getString("C_ADDRESS"));
+				c.setcCode(rs.getInt("C_CODE"));
+				c.setcName(rs.getString("C_NAME"));
+				c.setcAddress(rs.getString("C_ADDRESS"));
 				list.add(c);
 			}
 			

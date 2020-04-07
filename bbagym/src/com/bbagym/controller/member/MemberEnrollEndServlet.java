@@ -54,6 +54,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		
 		String userId =mr.getParameter("userId");  //오류수정
 		String pw = mr.getParameter("M_PW");
+		pw=AESEncrypt.encrypt(pw);
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
 		int age = Integer.parseInt(mr.getParameter("M_AGE"));
@@ -61,6 +62,9 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		String address = mr.getParameter("M_ADDRESS");
 		String phone = mr.getParameter("M_PHONE"); 						
 	    String image=mr.getFilesystemName("M_IMAGE");
+	    
+	   
+		
 	    
 	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age);
 	      int result=new MemberService().insertMember(m);
