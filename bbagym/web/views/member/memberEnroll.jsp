@@ -15,13 +15,13 @@
 		<div class="col-lg-8 col-md-8 col-sm-12">
 			<h1 class="mt-4" style="text-align: center;">회원가입</h1>
 			<h6 style="text-align: right;">
-				<span><b>1. 기본 정보 입력</b></span>
+				<span><b>1. 기본 정보 입력</b><p style="color:red;">* 필수입력</p></span>
 			</h6>
 			<hr>
 			
 			<form action="<%=request.getContextPath()%>/member/memberEnrollEnd" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
 				
-					<label for="c-name">아이디</label>
+					<label for="c-name"><pre style="color:red ; display:inline-block">*</pre>아이디</label>
 					<div class="form-group" style="display: flex">
 
 						<input type="text" class="form-control" 
@@ -42,12 +42,12 @@
 						}
 				</script>
 					</div>
-					<br> <label for="c-address">패스워드</label>
+					<br> <label for="c-address"><pre style="color:red ; display:inline-block">*</pre>패스워드</label>
 					<div class="form-group" style="display: flex">
 						<input class="form-control" style="width: 50%;" type=password placeholder="패스워드" name="M_PW" id="password_" required> 
 						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required>
 					</div>
-					<br> <label for="c-tel">이름</label>
+					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
 					<div class="form-group" style="display: flex">
 
 						<input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_">
@@ -58,18 +58,18 @@
 					</div>
 					<br>
 					<div class="form-group">
-					<label for="c-time">나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE"><br>
-						<label for="c-time">이메일</label> <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL">
+					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE"><br>
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">주소</label> <input type="text"
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소</label> <input type="text"
 							class="form-control" name="M_ADDRESS"
 					id="M_ADDRESS">
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">PHONE</label> <input type="text"
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>PHONE</label> <input type="text"
 							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE" id="M_PHONE">
 					</div>
 					<br>

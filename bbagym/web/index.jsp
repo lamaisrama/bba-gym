@@ -11,6 +11,7 @@
 	if (cookies != null) {
 		for (Cookie c : cookies) {
 			if (c.getName().equals("saveId")) {
+			
 				saveId = c.getValue();
 			}
 		}
@@ -99,13 +100,16 @@
 	   	</div>
 
 	   	
-	    <div id="box">
+	    <div id
+	    ="box">
 	    <%
 			if (logginMember == null) {
 		%>
-	        <div>
-	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" >회원가입</button> &nbsp; 
-	        	<input type="button" class="btn btn-outline-primary text-white" value="로그인"">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
+	        <div>																								
+	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />회원가입</button> &nbsp; 
+	        	
+	        	
+	        	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
 
 	        	</div>
 	    	</div>
@@ -122,6 +126,9 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
 			        		  	  </div>
 			      				</div>	
 			      				
