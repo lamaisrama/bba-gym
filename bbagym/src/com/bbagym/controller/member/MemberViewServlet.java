@@ -45,6 +45,7 @@ public class MemberViewServlet extends HttpServlet {
 	    	  String userId=request.getParameter("M_ID");
 	    	  
 	    	  Member m=new MemberService().selectMemberId(userId);
+	    	 
 	    	  
 	    	  request.setAttribute("member", m);
 	    	  
