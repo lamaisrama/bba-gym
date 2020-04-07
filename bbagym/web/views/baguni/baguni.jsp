@@ -92,19 +92,19 @@
         <div id="selectmonth-container">
             <h4 id="selectmonth-title">등록기간선택</h4>
             <div id="table-container" class="flex-row d-flex">
-                <div class="month1 month-container month-container-click month-container-notclick"
+                <div class="month-container month-container-click month-container-notclick"
                     style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
-                    <h4 id="month">1개월</h4>
+                    <div id="month">1개월</div>
                 </div>
-                <div class="month13 month-container month-container-click month-container-notclick ">
-                    <h4 id="month3">3개월</h4>
+                <div class="month-container month-container-click month-container-notclick ">
+                    <div id="month3">3개월</div>
                 </div>
-                <div class="month6 month-container month-container-click month-container-notclick ">
-                    <h4 id="month6">6개월</h4>
+                <div class="month-container month-container-click month-container-notclick ">
+                    <div id="month6">6개월</div>
                 </div>
-                <div class="month12 month-container month-container-click month-container-notclick "
+                <div class="month-container month-container-click month-container-notclick "
                     style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                    <h4 id="month12">12개월</h4>
+                    <div id="month12">12개월</div>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
         </div>
     </div>
     
-        <script>
+       <script>
         $(".month-container").removeClass("month-container-click");
 
         $(".month-container").on("click", function () {
@@ -145,6 +145,5 @@
         })
 
     </script>
-
 
 <%@ include file="/views/common/footer.jsp"%>
