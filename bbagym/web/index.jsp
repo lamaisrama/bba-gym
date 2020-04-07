@@ -55,7 +55,7 @@
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한사업자 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
-				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
+				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
 				   

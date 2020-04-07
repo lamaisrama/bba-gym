@@ -36,7 +36,7 @@ public class NoticeWriteEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "공지사항 작성 오류[enctype]");
+			request.setAttribute("msg", "공지사항 작성 오류[form:enctype]");
 			request.setAttribute("loc", "/board/noticeWrite");
 			request.getRequestDispatcher("/views/common/msg/jsp").forward(request, response);
 			return;
@@ -48,17 +48,17 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new MyFileRenamePolicy());
 		Notice n = new Notice(0, mr.getParameter("title"), mr.getParameter("content"), 
 								null, mr.getOriginalFileName("upfile"), mr.getFilesystemName("upfile"),
-								0, mr.getParameter("writer"), 'Y');
+								0, Integer.parseInt(mr.getParameter("writer")), 'Y');
 		
 		int result = new NoticeService().insertNotice(n);
 		
 		String msg ="";
 		String loc ="";
 		if(result>0) {
-			msg = "게시글 등록 성공!";
+			msg = "공지사항 등록 성공!";
 			loc = "/board/noticeList";
 		}else {
-			msg = "게시글 등록 실패!";
+			msg = "공지사항 등록 실패!";
 			loc = "/board/noticeWrite";
 		}
 		

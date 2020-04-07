@@ -48,7 +48,7 @@ public class NoticeDao {
 				n.setOriFileName(rs.getString("ori_filename"));
 				n.setNewFileName(rs.getString("new_filename"));
 				n.setReadCount(rs.getInt("readcount"));
-				n.setmCode(rs.getString("m_code"));
+				n.setmCode(rs.getInt("m_code"));
 				n.setnStatus(rs.getString("n_status").charAt(0));
 				list.add(n);
 			}
@@ -88,7 +88,7 @@ public class NoticeDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getTitle());
-			pstmt.setString(2, n.getmCode());
+			pstmt.setInt(2, n.getmCode());
 			pstmt.setString(3, n.getnContent());
 			pstmt.setString(4, n.getOriFileName());
 			pstmt.setString(5, n.getNewFileName());
@@ -119,7 +119,7 @@ public class NoticeDao {
 				n.setnDate(rs.getDate("n_date"));
 				n.setOriFileName(rs.getString("ori_filename"));
 				n.setNewFileName(rs.getString("new_filename"));
-				n.setmCode(rs.getString("m_code"));
+				n.setmCode(rs.getInt("m_code"));
 				n.setReadCount(rs.getInt("readcount"));
 			}
 		}catch(SQLException e) {
@@ -158,7 +158,7 @@ public class NoticeDao {
 			pstmt.setString(1, n.getTitle());
 			pstmt.setString(2, n.getnContent());
 			pstmt.setString(3, n.getOriFileName());
-			pstmt.setString(4, n.getmCode());
+			pstmt.setInt(4, n.getmCode());
 			pstmt.setInt(5, n.getnCode());
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {

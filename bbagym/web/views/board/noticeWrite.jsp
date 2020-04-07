@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ include file="/views/common/header.jsp"%>	
 
 <style>
@@ -28,7 +28,7 @@
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="writer" <%-- value="<%=loginMember!=null?loginMember.getmId():""%>" --%> readonly></td>
+                            <td><input type="text" name="writer" value="<%=logginMember.getM_NAME()%>" readonly></td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>

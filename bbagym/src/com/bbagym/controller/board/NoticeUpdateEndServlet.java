@@ -68,7 +68,7 @@ public class NoticeUpdateEndServlet extends HttpServlet {
 			fileName = oriFile;
 		}
 		
-		Notice n = new Notice(noticeNo, title, content, null, fileName, null, 0, writer, 'Y');
+		Notice n = new Notice(noticeNo, title, content, null, fileName, null, 0, Integer.parseInt(writer), 'Y');
 		int result = new NoticeService().updateNotice(n);
 		
 		String msg = "";
