@@ -14,35 +14,21 @@ public class CenterEnroll {
 	private String holiday;
 	private String schedulePath;
 	private String text;
-	private String mainImagePath;
+	private String mainImage;
+	private String businessCode;
+	private String approval;
+	private int memberCode;
+	private String snsHome;
+	private String snsInsta;
+	private String snsBlog;
+	private String snsEtc;
 	private List<String> photos;
 	private List<String> categories;
 	private List<String> facilities;
-	private Properties sns;
-	private Properties program;
+	private List<Program> program; 
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public CenterEnroll(int code, String name, String address, String tel, String opHr, String holiday,
-			String schedulePath, String text, String mainImagePath, List<String> photos, List<String> categories,
-			List<String> facilities, Properties sns, Properties program) {
-		super();
-		this.code = code;
-		this.name = name;
-		this.address = address;
-		this.tel = tel;
-		this.opHr = opHr;
-		this.holiday = holiday;
-		this.schedulePath = schedulePath;
-		this.text = text;
-		this.mainImagePath = mainImagePath;
-		this.photos = photos;
-		this.categories = categories;
-		this.facilities = facilities;
-		this.sns = sns;
-		this.program = program;
 	}
 
 	public int getCode() {
@@ -109,12 +95,68 @@ public class CenterEnroll {
 		this.text = text;
 	}
 
-	public String getMainImagePath() {
-		return mainImagePath;
+	public String getMainImage() {
+		return mainImage;
 	}
 
-	public void setMainImagePath(String mainImagePath) {
-		this.mainImagePath = mainImagePath;
+	public void setMainImage(String mainImage) {
+		this.mainImage = mainImage;
+	}
+
+	public String getBusinessCode() {
+		return businessCode;
+	}
+
+	public void setBusinessCode(String businessCode) {
+		this.businessCode = businessCode;
+	}
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval = approval;
+	}
+
+	public int getMemberCode() {
+		return memberCode;
+	}
+
+	public void setMemberCode(int memberCode) {
+		this.memberCode = memberCode;
+	}
+
+	public String getSnsHome() {
+		return snsHome;
+	}
+
+	public void setSnsHome(String snsHome) {
+		this.snsHome = snsHome;
+	}
+
+	public String getSnsInsta() {
+		return snsInsta;
+	}
+
+	public void setSnsInsta(String snsInsta) {
+		this.snsInsta = snsInsta;
+	}
+
+	public String getSnsBlog() {
+		return snsBlog;
+	}
+
+	public void setSnsBlog(String snsBlog) {
+		this.snsBlog = snsBlog;
+	}
+
+	public String getSnsEtc() {
+		return snsEtc;
+	}
+
+	public void setSnsEtc(String snsEtc) {
+		this.snsEtc = snsEtc;
 	}
 
 	public List<String> getPhotos() {
@@ -141,34 +183,23 @@ public class CenterEnroll {
 		this.facilities = facilities;
 	}
 
-	public Properties getSns() {
-		return sns;
-	}
-
-	public void setSns(Properties sns) {
-		this.sns = sns;
-	}
-
-	public Properties getProgram() {
+	public List<Program> getProgram() {
 		return program;
 	}
 
-	public void setProgram(Properties program) {
+	public void setProgram(List<Program> program) {
 		this.program = program;
 	}
 
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr="
-				+ opHr + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" + text
-				+ ", mainImagePath=" + mainImagePath + ", photos=" + photos + ", categories=" + categories
-				+ ", facilities=" + facilities + ", sns=" + sns + ", program=" + program + "]";
+				+ opHr + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" + text + ", mainImage="
+				+ mainImage + ", businessCode=" + businessCode + ", approval=" + approval + ", memberCode=" + memberCode
+				+ ", snsHome=" + snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" + snsEtc
+				+ ", photos=" + photos + ", categories=" + categories + ", facilities=" + facilities + ", program="
+				+ program + "]";
 	}
 
-
-
-	
-	
-	
-	
 }
+

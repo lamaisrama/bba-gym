@@ -63,7 +63,7 @@ public class CenterDao {
 				c.setCode(rs.getInt("c_code"));
 				c.setName(rs.getString("c_name"));
 				c.setAddress(rs.getString("c_address"));
-				c.setMainImagePath(rs.getString("c_main_image"));
+				c.setMainImage(rs.getString("c_main_image"));
 				list.add(c);
 			}
 		}catch(SQLException e) {
