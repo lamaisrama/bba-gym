@@ -180,8 +180,27 @@ div {
             background: #5467f5;
         }
 
-        .dropdown-item {
+ 		.dropdown-menu .dropdown-item {
             width: 200px;
+
+        }
+        
+		.dropdown-menu .dropdown-item:first-child {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .dropdown-menu .dropdown-item:last-child {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .dropdown-menu .dropdown-item:hover,
+        .dropdown-menu .dropdown-item:focus {
+            background-color: #f9f9f9;
+            color: black !important;
+            opacity: 1;
+            text-decoration: none;
         }
 
         .gym-search-container {
@@ -243,6 +262,18 @@ div {
         #month-container:hover {
             background-color: #ffbf00;
             transition: .5s;
+            cursor: pointer;
+        }
+        
+		.month-container-click {
+            background-color: #ffbf00;
+            color: white;
+            transition: .5s;
+            cursor: pointer;
+        }
+        
+		.month-container-notclick {
+            background-color: white;
             cursor: pointer;
         }
 
@@ -330,26 +361,6 @@ div {
             font-size: 1.5rem;
             transition: all .2s ease-in-out;
             background: #5467f5;
-        }
-        
-                .btn:focus,
-        .btn:active,
-        .btn.active,
-        .btn:active:focus,
-        .btn:active:hover,
-        .btn.active:focus {
-            background: #2840f5;
-        }
-
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .show>.btn.dropdown-toggle {
-            background-color: #2840f5;
-            color: #FFFFFF;
-            border-color: #2840f5;
-            box-shadow: none;
         }
 
         #button-container {
