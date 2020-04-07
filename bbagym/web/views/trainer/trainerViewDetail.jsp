@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.bbagym.model.vo.TrainerDetail" %>
 <%@ include file="/views/common/header.jsp"%>
+
+<%
+	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
+%>
 
  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');">
     <div class="filter"></div>
@@ -12,7 +17,7 @@
           <img src="<%=request.getContextPath()%>/assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
         </div>
         <div class="name">
-          <h4 class="title">Jane Faker
+          <h4 class="title"><%=td.getT_name() %>
             <br />
           </h4>
           <h6 class="description">manager</h6>
@@ -21,11 +26,10 @@
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
-            선릉바디스페이스 팀장 최승호입니다. <BR>
-            항상 진정성을 가지고 임하는 트레이너입니다. <br><br>
-            <strong>전화번호</strong>&nbsp;&nbsp;0504-3145-6060 <br>
-            <strong>근무지</strong>&nbsp;&nbsp;선릉 바디스페이스 24시<br>
-            서울특별시 강남구 테헤란로 311 지하1층
+            	<%=td.getT_intro() %><br><br>
+            <strong>전화번호</strong>&nbsp;&nbsp;<%=td.getM_phone_2() %> <br>
+            <strong>근무지</strong>&nbsp;&nbsp; <%=td.getC_name() %><br>
+            <%=td.getM_address_2() %>
           </p>
           <br />
           <btn class="btn btn-outline-default btn-round">Personal Training</btn>
@@ -54,9 +58,11 @@
               <h5>P.T
                 <br/>
                 <small>
-                  <del>정상가 1회 99,000원</del><br>
-                  빠짐회원가 회당 99,000원<br><br>
-                  <del>정상가 10회 800,000원</del><br>
+                <%for(int i=0; i<td.getT_program_name().size(); i++) {%>
+                  <del>정상가 <%=td.getT_program_name()%> <%=td.getT_price() %>원</del><br>
+                 	 빠짐회원가 회당 99,000원<br><br>
+                  <%} %>
+<!--                   <del>정상가 10회 800,000원</del><br>
                   빠짐회원가 10회 700,000원<br>
                   <mark>회당 70,000원</mark><br><br>
                   <del>정상가 20회 1,500,000원</del><br>
@@ -64,7 +70,7 @@
                   <mark>회당 65,000원</mark><br><br>
                   <del>정상가 30회 2,100,000원</del><br>
                   빠짐회원가 30회 1,800,000원<br>
-                  <mark>회당 60,000원</mark><br>
+                  <mark>회당 60,000원</mark><br> -->
                 </small>
               </h5>
             </div>

@@ -32,8 +32,8 @@ public class TrainerViewDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-//		int t_code = Integer.parseInt(request.getParameter("tcode")); //TrainerView에서 받아와야 함
-		int t_code = 1;
+		int t_code = Integer.parseInt(request.getParameter("tcode")); //TrainerView에서 받아와야 함
+//		int t_code = 1;
 		TrainerDetail td = new TrainerService().trainerViewDetail(t_code);
 		
 		request.setAttribute("td", td);
