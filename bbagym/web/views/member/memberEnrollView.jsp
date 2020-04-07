@@ -78,7 +78,7 @@
 						<a href="<%=request.getContextPath()%>">
 						<button type="button" class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
 						<input class="btn btn-secondary" type="submit" value="수정"> &nbsp;&nbsp;&nbsp;
-						<a href=""><button type="button" class="btn btn-secondary">비밀번호변경</button></a>
+						<input class="btn btn-secondary" type="button" value="비밀번호 수정" onclick="open('<%=request.getContextPath()%>/member/updatePassword.do?M_ID=<%=m.getM_ID()%>','_blank','width=400px,height=210px');"/> 
 					</div>
 				
 			</form>
