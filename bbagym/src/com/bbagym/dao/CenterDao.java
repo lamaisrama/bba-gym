@@ -64,9 +64,6 @@ public class CenterDao {
 				c.setName(rs.getString("c_name"));
 				c.setAddress(rs.getString("c_address"));
 				c.setMainImagePath(rs.getString("c_main_image"));
-				String[] categories = findCategory(conn, c.getCode());
-				c.setCategories(categories);
-				c.setFacilities(findFacility(conn, c.getCode()));
 				list.add(c);
 			}
 		}catch(SQLException e) {
@@ -81,15 +78,20 @@ public class CenterDao {
 	public int selectCountCenter(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		int result=0;
 		String sql = "select count(*) from center";
 		try {
-			
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			rs.next();
+			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
 		}
+		return result;
 	}
 	
 	public void findCategory(Connection conn, CenterEnroll ce) {
@@ -114,18 +116,17 @@ public class CenterDao {
 
 	}
 	
-	public void findFacility(Connection conn, int cCode) {
-		List<String> list = new ArrayList();
+	public void findFacility(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		ce.setFacilities(new ArrayList());
 		String sql = "SELECT * FROM CENTER_FACILITY JOIN FACILITY USING(F_CODE) WHERE C_CODE=?";
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, cCode);
+			pstmt.setInt(1, ce.getCode());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				String cat = rs.getString("category_name");
-				list.add(cat);
+				ce.getFacilities().add(rs.getString("f_name"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -133,10 +134,6 @@ public class CenterDao {
 			close(rs);
 			close(pstmt);
 		}
-		String[] facilities =new String[list.size()];
-		for(int i=0;i<facilities.length;i++) {
-			facilities[i]=list.get(i);
-		}
-		return facilities;
+		
 	}
 }
