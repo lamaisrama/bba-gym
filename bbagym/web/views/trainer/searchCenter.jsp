@@ -41,10 +41,10 @@
 										.append($("<th>").html("선택"));
 						table.append(th);
 						for(let i=0;i<data.length;i++){
-						let tr=$("<tr>").append($("<td>").html(data[i]["c_name"]))
-										.append($("<td>").html(data[i]["c_address"]))
-										.append($("<input>").attr({"type":"hidden","value":data[i]["c_name"]}))
-										.append($("<input>").attr({"type":"hidden","value":data[i]["c_code"]}))
+						let tr=$("<tr>").append($("<td>").html(data[i]["cName"]))
+										.append($("<td>").html(data[i]["cAddress"]))
+										.append($("<input>").attr({"type":"hidden","value":data[i]["cName"]}))
+										.append($("<input>").attr({"type":"hidden","value":data[i]["cCode"]}))
 										.append($("<td>").append($("<button>").attr({"onclick":"setupName();","type":"button"}).html("버튼")));
 							table.append(tr);
 						}
