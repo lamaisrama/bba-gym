@@ -7,7 +7,7 @@ import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 import static com.bbagym.common.JDBCTemplate.close;
-import static com.bbagym.common.JDBCTemplate.getConnection;
+
 
 import java.sql.Connection;
 
@@ -50,6 +50,15 @@ public class MemberService {
 
 		close(conn);
 		return result;
+	}
+
+
+	public Member selectMemberId(String userId) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		Member m = dao.selectMemberId(conn, userId);
+		close(conn);
+		return m;
 	}
 
 }

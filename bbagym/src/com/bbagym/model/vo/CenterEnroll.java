@@ -17,7 +17,7 @@ public class CenterEnroll {
 	private String photo;
 	private List<String> photos;
 	private String text;
-	private Map<String, int[]> program;
+	private Properties program;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
@@ -25,7 +25,7 @@ public class CenterEnroll {
 
 	public CenterEnroll(String name, String address, String tel, String opHr, String holiday, String[] categories,
 			String[] facilities, Properties sns, String photo, List<String> photos, String text,
-			Map<String, int[]> program) {
+			Properties program) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -144,11 +144,11 @@ public class CenterEnroll {
 		this.text = text;
 	}
 
-	public Map<String, int[]> getProgram() {
+	public Properties getProgram() {
 		return program;
 	}
 
-	public void setProgram(Map<String, int[]> program) {
+	public void setProgram(Properties program) {
 		this.program = program;
 	}
 

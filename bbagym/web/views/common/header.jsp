@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page
 	import="com.bbagym.model.vo.Member"%>
+	<%
+   Member m=(Member)request.getAttribute("member");
+	%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
 
@@ -70,20 +73,20 @@
          <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
-        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
                   <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
          <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>	
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
  		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
 		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
 		  <%}else {%>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerSearch.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerFind.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
           
@@ -95,7 +98,7 @@
 				%>
 				<form action="<%=request.getContextPath()%>/member/login.do" method="post" onsubmit="return invalidate();">
 	        <div>
-	        	<input type="text" name="userId" id="userId" placeholder="ID" value="<%=saveId%>" style="width:90px">
+	        	<input type="text" name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>" style="width:90px">
 	        	<input type="password" name="M_PW" id="M_PW" placeholder="PW"style="width:80px">
 	        	<button type="submit" class="btn btn-outline-primary text-red">로그인</button>
 	        	<input type="button"class="btn btn-outline-primary text-red" value="회원가입" 
@@ -103,7 +106,7 @@
 	        	&nbsp; 
 	 		 	  <td colspan="2">
 	 					<input type="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> />
-						<label for="saveId" style="color:blue">아이디 저장</label> 
+						<label for="saveId" style="color:blue">아이디 저장</label>
 				  </td>
 	 		</div>
 			
@@ -120,7 +123,7 @@
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageUser.do">My Page</a>
-              <a class="dropdown-item" href="#">회원 정보수정</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
@@ -140,7 +143,8 @@
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
-              <a class="dropdown-item" href="#">회원 정보수정</a>
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+              
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
@@ -158,11 +162,11 @@
 
 			});
 			function invalidate() {
-				const userId = $("#userId").val();
+				const userId = $("#M_ID").val();
 				const password = $("#M_PW").val();
 				if (userId.trim().length == 0) {
 					alert("아이디를 입력하세요");
-					$("#userId").focus();
+					$("#M_ID").focus();
 					return false;//전송중단!
 				}
 				if (password.trim().length == 0) {

@@ -11,6 +11,7 @@
 	if (cookies != null) {
 		for (Cookie c : cookies) {
 			if (c.getName().equals("saveId")) {
+			
 				saveId = c.getValue();
 			}
 		}
@@ -42,15 +43,17 @@
 				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
 				          <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-				         <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
+
+				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
+
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
-				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>		 
+				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li>		 </a>
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-				         <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
+				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한사업자 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
@@ -58,7 +61,7 @@
 				   
 				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
-<!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerFind.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
+<!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				     <%} %>
@@ -101,8 +104,8 @@
 	    <%
 			if (logginMember == null) {
 		%>
-	        <div>
-	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" >회원가입</button> &nbsp; 
+	        <div>																								
+	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />회원가입</button> &nbsp; 
 	        	<input type="button" class="btn btn-outline-primary text-white" value="로그인"">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
 
 	        	</div>
@@ -118,10 +121,14 @@
 	             <div id="box">
 			             		  <div>
 			               			<button type="button" class="btn btn-outline-primary text-white"
-			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getUserId()%>')"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
 			        		  	  </div>
 			      				</div>	
+			      				
 	         </nav>
 	     </div>
 			<%

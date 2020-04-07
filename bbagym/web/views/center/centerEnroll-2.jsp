@@ -13,66 +13,65 @@
       </div>
     </div>
     <hr>
-    
-      <div class="row">
-        <div class="col-lg-8 col-md-9 col-sm-12">
-          <div class="form-group">
-            <label for="exampleTextarea">시설 소개</label>
-            <textarea class="form-control" name="c-text" id="c-text" rows="5" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요."></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row program-0">
-        <div class="col-lg-8 col-md-8 col-sm-12 ">
-          <table class="table striped">
-            <tr>
-              <td colspan="2"> 
-                  <label for="">첫번째 프로그램명</label>
-                  <!-- <span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span> -->
-                  <input type="text" name="cp0" class="form-control">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="">1개월 가격</label>
-                <input type="text" class="form-control" name="cp0p0">
-              </td>
-              <td>
-                <label for="">3개월 가격</label>
-                <input type="text" class="form-control" name="cp0p1">
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="">6개월 가격</label>
-                <input type="text" class="form-control" name="cp0p2">
-              </td>
-              <td> 
-                <label for="">12개월 가격</label>
-                <input type="text" class="form-control" name="cp0p3">
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12" style="text-align: center;">
-          <button type="button" class="btn btn-warning btn-sm" onclick="addProgram();">프로그램 추가</button>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
-          <div class="info-footer-inner">
-            <a href="<%=request.getContextPath()%>/views/center/centerEnroll-1.jsp"><button type="button" class="btn btn-secondary">이전</button></a>
-            &nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary">미리보기</button>
-          &nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-secondary">등록</button>
-        </div>
-      </div>
+     <div class="row">
+       <div class="col-lg-8 col-md-9 col-sm-12">
+         <div class="form-group">
+           <label for="exampleTextarea">시설 소개</label>
+           <textarea class="form-control" name="c-text" id="c-text" rows="5" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요."></textarea>
+         </div>
+       </div>
+     </div>
+     <div class="row program-0">
+       <div class="col-lg-8 col-md-8 col-sm-12 ">
+         <table class="table striped">
+           <tr>
+             <td colspan="2"> 
+                 <label for="">첫번째 프로그램명</label>
+                 <!-- <span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span> -->
+                 <input type="text" name="cp" class="form-control">
+             </td>
+           </tr>
+           <tr>
+             <td>
+               <label for="">1개월 가격</label>
+               <input type="text" class="form-control" name="cp0p">
+             </td>
+             <td>
+               <label for="">3개월 가격</label>
+               <input type="text" class="form-control" name="cp0p">
+             </td>
+           </tr>
+           <tr>
+             <td>
+               <label for="">6개월 가격</label>
+               <input type="text" class="form-control" name="cp0p">
+             </td>
+             <td> 
+               <label for="">12개월 가격</label>
+               <input type="text" class="form-control" name="cp0p">
+             </td>
+           </tr>
+         </table>
+       </div>
+     </div>
+   </div>
+   <div class="container">
+     <div class="row">
+       <div class="col-lg-8 col-md-8 col-sm-12" style="text-align: center;">
+         <button type="button" class="btn btn-warning btn-sm" onclick="addProgram();">프로그램 추가</button>
+       </div>
+     </div>
+     <hr>
+     <div class="row">
+       <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
+         <div class="info-footer-inner">
+           <a href="<%=request.getContextPath()%>/views/center/centerEnroll-1.jsp"><button type="button" class="btn btn-secondary">이전</button></a>
+           &nbsp;&nbsp;&nbsp;
+           <button type="button" class="btn btn-secondary">미리보기</button>
+         &nbsp;&nbsp;&nbsp;
+           <input type="submit" class="btn btn-secondary" value="등록"></button>
+       </div>
+     </div>
 
   </div> <!--container 끝-->
 </form>

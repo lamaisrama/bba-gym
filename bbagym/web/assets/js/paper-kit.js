@@ -110,10 +110,10 @@ $(document).ready(function() {
     }
   }
   // Activate Carousel
-  $('.carousel').carousel({
+  /*$('.carousel').carousel({
     interval: 4000
   });
-
+*/
 });
 
 $(document).on('click', '.navbar-toggler', function() {

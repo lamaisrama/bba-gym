@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id=request.getParameter("userId");
+		String id=request.getParameter("M_ID");
 		String pw=request.getParameter("M_PW");
 		
 		Member m=new MemberService().login(id,pw);
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 			
 			session.setAttribute("logginMember", m);
 			String saveId=request.getParameter("saveId");
-			Cookie c=new Cookie("saveId",m.getUserId());
+			Cookie c=new Cookie("saveId",m.getM_ID());
 			if(saveId!=null) {
 				c.setMaxAge(3*24*60*60);
 				response.addCookie(c);
