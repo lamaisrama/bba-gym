@@ -33,10 +33,12 @@ public class TrainerSearchCenterNameServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String address=request.getParameter("address");
-		List<Center> name=new TrainerService().searchCenterName(address);
+		String name=request.getParameter("name").trim();
+		
+		
+		List<Center> list=new TrainerService().searchCenterName(name);
 
-		new Gson().toJson(name,response.getWriter());
+		new Gson().toJson(list,response.getWriter());
 	}
 
 	/**

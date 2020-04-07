@@ -41,36 +41,35 @@ public class TrainerEnrollServletEnd extends HttpServlet {
 			return;
 		}
 		
-		String path=getServletContext().getRealPath("/upload/tariner/");
+		String path=getServletContext().getRealPath("/upload/trainer/");
 		int maxsize=1024*1024*100;
 		
-		MultipartRequest mr = new MultipartRequest(request,path,maxsize,"utf-8",new DefaultFileRenamePolicy()); 
-		String t_name=mr.getParameter("t_name");
+		MultipartRequest mr = new MultipartRequest(request,path,maxsize,"utf-8",new DefaultFileRenamePolicy());
+	
+		String c_code=mr.getParameter("c_code");
 		String c_address=mr.getParameter("c_address");
-		String c_phone=mr.getParameter("c_phone");
-		String counsel=mr.getParameter("counsel");
-		String[] category=mr.getParameterValues("c-cat");
-		String homepage=mr.getParameter("homepage");
-		String instagram=mr.getParameter("instagram");
-		String blog=mr.getParameter("blog");
-		String etcpart=mr.getParameter("etcpart");
-		String photo_main=mr.getFilesystemName("photo_main");
+		String c_name=mr.getParameter("c_name");
+		String t_name=mr.getParameter("t_name");
+		String c_phone=mr.getParameter("t_phone");
+		String counsel=mr.getParameter("t_counsel");
+		String[] category=mr.getParameterValues("t-cat");
+		String homepage=mr.getParameter("t_homepage");
+		String instagram=mr.getParameter("t_instagram");
+		String blog=mr.getParameter("t_blog");
+		String etcpart=mr.getParameter("t_etcpart");
+		String photo_main=mr.getFilesystemName("t_photo_main");
 		int i=0;
 		for(;i<4;i++) {
 			if(mr.getFilesystemName("photo-"+i)==null) break;
-		}
-
-			String[] photo= new String[i];
-			
-			if(i>0) {
+			}
+		String[] photo= new String[i];	
+		if(i>0) {
 				for(int j=0;j<i;j++) {
 					photo[j]=mr.getFilesystemName("photo-"+j);
 				}
 			}
 			
-			
-			
-			
+		
 		
 		
   	}

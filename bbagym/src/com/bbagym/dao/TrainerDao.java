@@ -48,7 +48,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -152,7 +152,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -212,7 +212,7 @@ public class TrainerDao {
 				TrainerView tv = new TrainerView();
 				
 				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_img"));
+				tv.setT_img(rs.getString("t_main_img"));
 				tv.setM_name(rs.getString("m_name"));
 				tv.setC_center(rs.getString("c_name"));
 				tv.setM_addres2(rs.getString("m_address_2"));
@@ -249,34 +249,9 @@ public class TrainerDao {
 		
 		return result;
 	}
-	//트레이너 등록시 소속입력을 위해 필요한 센터 주소 중봇없이 가져오는 메소드
-	public List<Center> searchCenter(Connection conn) {
-		PreparedStatement pstmt = null;
-		ResultSet rs=null;
-		List<Center> list = new ArrayList<Center>();
-		String sql =prop.getProperty("searchCenter");
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
 
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				Center c= new Center();
-				c.setC_address(rs.getString("C_ADDRESS"));
-				list.add(c);
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return list;
-
-	}
 	
-	public List<Center> searchCenterName(Connection conn,String address) {
+	public List<Center> searchCenterName(Connection conn,String name) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
 		List<Center> list = new ArrayList<Center>();
@@ -284,13 +259,14 @@ public class TrainerDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, address);
+			pstmt.setString(1, "%"+name+"%");
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Center c = new Center();
 				c.setC_code(rs.getInt("C_CODE"));
 				c.setC_name(rs.getString("C_NAME"));
+				c.setC_address(rs.getString("C_ADDRESS"));
 				list.add(c);
 			}
 			
