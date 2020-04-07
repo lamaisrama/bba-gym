@@ -185,7 +185,7 @@ div {
 
         }
         
-		.dropdown-menu .dropdown-item:first-child {
+/* 		.dropdown-menu .dropdown-item:first-child {
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
@@ -201,7 +201,7 @@ div {
             color: black !important;
             opacity: 1;
             text-decoration: none;
-        }
+        } */
 
         .gym-search-container {
             height: 64px;
