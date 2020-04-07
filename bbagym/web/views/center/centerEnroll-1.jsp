@@ -19,7 +19,8 @@
             <br>
             <div class="form-group">
               <label for="c-address">센터 주소</label>
-              <input class="form-control" name="c-address" id="c-address" type="text">
+              <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
+              <input type="text" class="form-control" type="text" name="c_address" id="c_address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
             </div>
             <br>
             <div class="form-group">
@@ -180,6 +181,24 @@
 	  </form>
     </div>
 	    
+	    <script>
+	    
+	    function goPopup(){
+	    	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+	    	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	    	
+	    	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/arerddrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+	        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+	    }
+
+	    function jusoCallBack(roadFullAddr){
+	    		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
+	    		document.getElementById('c_address').value = roadFullAddr;
+
+	    }
+	    
+	    </script>
       		
 
 	

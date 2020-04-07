@@ -17,7 +17,7 @@ import com.bbagym.model.vo.Member;
 /**
  * Servlet Filter implementation class LoginCheckFilter
  */
-@WebFilter(urlPatterns = { "/board/*", "/notice/*",/* "/trainer/trainerEnroll.do" */})
+@WebFilter(urlPatterns = { "/board/*", "/notice/*","/trainer/trainerEnroll.do"})
 public class LoginCheckFilter implements Filter {
 
     /**
