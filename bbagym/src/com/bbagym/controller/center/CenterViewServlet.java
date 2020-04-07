@@ -45,6 +45,7 @@ public class CenterViewServlet extends HttpServlet {
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		String pageBar="";
+		
 	}
 
 	/**

@@ -18,15 +18,16 @@ public class CenterService {
 	public List<CenterEnroll> centerView(int cPage, int numPerPage){
 		Connection conn=getConnection();
 		//데이터를 numPErPage 만큼 뽑아오는 method
-		List<CenterEnroll> centerEnroll = dao.centerView(conn, cPage, numPerPage);
-		if(list.size()>0) {
-			for(CenterEnroll c : centerEnroll) {
+		List<CenterEnroll> centerEnrollList = dao.centerView(conn, cPage, numPerPage);
+		if(centerEnrollList.size()>0) {
+			for(CenterEnroll c : centerEnrollList) {
 				dao.findCategory(conn, c);
+				dao.findFacility(conn, c);
 			}
 		}
-		System.out.println(centerEnroll);
+		System.out.println(centerEnrollList);
 		close(conn);
-		return centerEnroll;
+		return centerEnrollList;
 	}
 	
 	public int selectCountCenter() {
