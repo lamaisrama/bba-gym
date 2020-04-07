@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bbagym.member.service.CenterService;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.service.CenterService;
 
 /**
  * Servlet implementation class CenterEnrollFinalServlet
