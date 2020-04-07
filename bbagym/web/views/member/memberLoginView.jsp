@@ -115,7 +115,7 @@ span {
 				<div>
                 <input type="text" class="input-field" placeholder="UserId" name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>" required>
                 <input type="password" class="input-field" placeholder="Enter Password" name="M_PW" id="M_PW" placeholder="PW" placeholder="비밀번호입력" required>
-                <input type="checkbox" class="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> >Remember ID
+                <input type="checkbox" class="checkbox" name="saveId" id="saveId" <%=!saveId.equals("") ? "checked" : ""%> >아이디 저장
                 <button class="submit">Login</button>
                 <br>
                 <input type="button" class="find" value="아이디/비밀번호 찾기">
