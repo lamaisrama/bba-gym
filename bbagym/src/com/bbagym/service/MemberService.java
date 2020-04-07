@@ -1,4 +1,4 @@
-package com.bbagym.member.service;
+package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.getConnection;
@@ -12,8 +12,8 @@ import static com.bbagym.common.JDBCTemplate.close;
 
 import java.sql.Connection;
 
+import com.bbagym.dao.MemberDao;
 import com.bbagym.model.vo.Member;
-import com.bbagym.member.dao.MemberDao;
 
 public class MemberService {
 	

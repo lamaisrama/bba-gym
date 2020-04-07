@@ -1,4 +1,4 @@
-package com.bbagym.member.dao;
+package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.bbagym.member.dao.MemberDao;
+import com.bbagym.dao.MemberDao;
 import com.bbagym.model.vo.Member;
 
 	public class MemberDao {

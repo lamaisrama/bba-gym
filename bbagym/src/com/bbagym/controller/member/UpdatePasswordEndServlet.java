@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbagym.member.service.MemberService;
+import com.bbagym.service.MemberService;
 
 /**
  * Servlet implementation class UpdatePasswordEndServlet

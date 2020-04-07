@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.bbagym.common.encrypt.AESEncrypt;
-import com.bbagym.member.service.MemberService;
 import com.bbagym.model.vo.Member;
+import com.bbagym.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
