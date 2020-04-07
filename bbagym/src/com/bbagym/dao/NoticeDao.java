@@ -175,7 +175,8 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("deleteNotice");
-		
+		//DELETE FROM NOTICE WHERE N_CODE=?
+		//UPDATE NOTICE SET N_STATUS='N' WHERE N_CODE=?
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);

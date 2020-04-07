@@ -36,7 +36,7 @@ public class NoticeFileDownloadServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String fileName = request.getParameter("fileName");
 		
-		String path = getServletContext().getRealPath("upload/notice/");
+		String path = getServletContext().getRealPath("/upload/notice/");
 		
 		File f = new File(path + fileName);
 		
