@@ -147,6 +147,44 @@ public class NoticeDao {
 		}
 		return result;
 	}
+
+	public int noticeUpdate(Connection conn, Notice n) {
+		PreparedStatement pstmt =  null;
+		int result = 0;
+		String sql = prop.getProperty("boardUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getTitle());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getOriFileName());
+			pstmt.setString(4, n.getmCode());
+			pstmt.setInt(5, n.getnCode());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	
