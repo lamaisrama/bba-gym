@@ -41,7 +41,7 @@ import com.bbagym.model.vo.Member;
 			if(rs.next()) {
 				m=new Member();
 				m.setM_CODE(rs.getInt("M_CODE"));
-				m.setUserId(rs.getString("userId"));
+				m.setM_ID(rs.getString("M_ID"));
 				m.setM_NAME(rs.getString("M_NAME"));
 				m.setM_EMAIL(rs.getString("M_EMAIL"));
 				m.setM_PHONE(rs.getString("M_PHONE"));
@@ -53,6 +53,7 @@ import com.bbagym.model.vo.Member;
 				m.setM_PHONE2(rs.getString("M_PHONE_2"));
 				m.setM_ADDRESS_2(rs.getString("M_ADDRESS_2"));
 				m.setM_GENDER(rs.getString("M_GENDER").charAt(0));
+				m.setM_AGE(rs.getInt("M_AGE"));
 			
 			}
 		}catch(SQLException e) {
@@ -89,15 +90,18 @@ import com.bbagym.model.vo.Member;
 		String sql=prop.getProperty("insertMember");
 		try {
 			pstmt=conn.prepareStatement(sql);  
-			pstmt.setString(1, m.getUserId());
+			pstmt.setString(1, m.getM_ID());
 			pstmt.setString(2, m.getM_PW());
-			pstmt.setString(3,m.getM_NAME());
-			pstmt.setString(4,m.getM_EMAIL());
+			pstmt.setString(3, m.getM_NAME());
+			pstmt.setString(4, m.getM_EMAIL());
 			pstmt.setString(5, m.getM_PHONE());
 			pstmt.setString(6, m.getM_ADDRESS());
 			pstmt.setString(7, m.getM_IMAGE());;
 			pstmt.setString(8,String.valueOf(m.getM_GENDER()));
+			pstmt.setInt(9,m.getM_AGE());
 			result=pstmt.executeUpdate();			
+	
+
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

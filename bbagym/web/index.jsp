@@ -45,7 +45,7 @@
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
-				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>		 
+				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li>		 </a>
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
@@ -55,7 +55,6 @@
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
-				   
 				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
@@ -119,16 +118,17 @@
 	             <div id="box">
 			             		  <div>
 			               			<button type="button" class="btn btn-outline-primary text-white"
-			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getUserId()%>')"
+			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
 			        		  	  </div>
 			      				</div>	
+			      				
 	         </nav>
 	     </div>
 			<%
 					}
 				%>
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
+
 		</div>	<!-- 첫 div 끝 -->
 	</section>
 

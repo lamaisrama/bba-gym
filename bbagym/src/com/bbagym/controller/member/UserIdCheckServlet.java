@@ -29,7 +29,7 @@ public class UserIdCheckServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id=request.getParameter("userId");	
+		String id=request.getParameter("M_ID");	
 		boolean isUseable=new MemberService().userIdDuplicate(id);
 		request.setAttribute("isUseable", isUseable);
 	

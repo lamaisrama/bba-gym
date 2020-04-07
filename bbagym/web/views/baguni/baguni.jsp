@@ -6,7 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" rel="stylesheet">
-    <script src="js/jquery-3.4.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -27,7 +26,7 @@
  <div class="container-fluid">
         <div class="d-flex flex-row title-container ">
             <div class="title p-2 w-10 h-100 text-wrap">
-                		카트
+                카트
             </div>
             <div class="sub-title p-2 text-wrap">회원권선택</div>
 
@@ -72,9 +71,9 @@
                     <div class="dropdown">
                         <button class="option-btn btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            		옵션 변경
+                            옵션 변경
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="width: 200px;">
                             <button class="dropdown-item" type="button">헬스 정원제</button>
                             <button class="dropdown-item" type="button">헬스+G.X.</button>
                             <button class="dropdown-item" type="button">헬스</button>
@@ -84,7 +83,7 @@
             </div>
         </div>
         <div class="gym-search-container text1" onclick="location.href='https://www.da-gym.co.kr/dagym-list'">
-            		마음에 드는 운동시설을 더 추가해보세요.
+            마음에 드는 운동시설을 더 추가해보세요.
 
             <span class="text2">함께 다닐수록 할인율이 올라가요!</span>
             <i class="fas fa-chevron-right" id="link-arrow"></i>
@@ -92,19 +91,19 @@
         <div id="selectmonth-container">
             <h4 id="selectmonth-title">등록기간선택</h4>
             <div id="table-container" class="flex-row d-flex">
-                <div id="month-container" class="month1"
+                <div class="month-container month-container-click month-container-notclick"
                     style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
-                    <h4 id="month">1개월</h4>
+                    <div id="month">1개월</div>
                 </div>
-                <div id="month-container" class="month3">
-                    <h4 id="month3">3개월</h4>
+                <div class="month-container month-container-click month-container-notclick ">
+                    <div id="month3">3개월</div>
                 </div>
-                <div id="month-container" class="month6">
-                    <h4 id="month6">6개월</h4>
+                <div class="month-container month-container-click month-container-notclick ">
+                    <div id="month6">6개월</div>
                 </div>
-                <div id="month-container" class="month12"
+                <div class="month-container month-container-click month-container-notclick "
                     style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                    <h4 id="month12">12개월</h4>
+                    <div id="month12">12개월</div>
                 </div>
             </div>
         </div>
@@ -125,11 +124,25 @@
         </div>
         <div id="button-container" class="d-flex flex-row">
             <button class="btn-center btn-more btn btn-primary btn-lg" routerlink="">
-                		더 돌아보기
+                더 돌아보기
             </button>
             <button class="btn-center btn-pay btn btn-block btn-primary btn-lg">결제하기</button>
         </div>
     </div>
+    
+       <script>
+        $(".month-container").removeClass("month-container-click");
 
+        $(".month-container").on("click", function () {
+            $(this).addClass("month-container-click");
+            $(this).siblings().removeClass("month-container-click");
+
+        });
+
+        $(".close").on("click", function () {
+            $(this).parent().parent().parent().remove();
+        })
+
+    </script>
 
 <%@ include file="/views/common/footer.jsp"%>

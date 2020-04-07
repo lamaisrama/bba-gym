@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.Trainer;
 import com.bbagym.model.vo.TrainerView;
 
@@ -247,6 +248,58 @@ public class TrainerDao {
 		
 		
 		return result;
+	}
+	//트레이너 등록시 소속입력을 위해 필요한 센터 주소 중봇없이 가져오는 메소드
+	public List<Center> searchCenter(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		List<Center> list = new ArrayList<Center>();
+		String sql =prop.getProperty("searchCenter");
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Center c= new Center();
+				c.setC_address(rs.getString("C_ADDRESS"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+
+	}
+	
+	public List<Center> searchCenterName(Connection conn,String address) {
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		List<Center> list = new ArrayList<Center>();
+		String sql =prop.getProperty("searchCenterName");
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, address);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Center c = new Center();
+				c.setC_code(rs.getInt("C_CODE"));
+				c.setC_name(rs.getString("C_NAME"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
 	}
 	
 }

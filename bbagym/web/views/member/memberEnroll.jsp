@@ -35,7 +35,7 @@
                      return;
                   }
                   
-                  const url="<%=request.getContextPath()%>/member/userIdCheck.do?userId="+ userId;
+                  const url="<%=request.getContextPath()%>/member/userIdCheck.do?M_ID="+ userId;
 				  var status = "height=200px, width=300px";
 				  open(url, "_blank", status);
 
@@ -58,9 +58,8 @@
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">이메일</label> <input type="text"
-							class="form-control" name="M_EMAIL"
-					id="M_EMAIL">
+					<label for="c-time">나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE"><br>
+						<label for="c-time">이메일</label> <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL">
 					</div>
 					<br>
 					<div class="form-group">

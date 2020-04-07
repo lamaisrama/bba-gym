@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Member {
 	
 	private int M_CODE;
-	private String userId;
+	private String M_ID;
 	private String M_PW;
 	private String M_NAME;
 	private String M_EMAIL;
@@ -18,16 +18,18 @@ public class Member {
 	private String M_PHONE2;
 	private String M_ADDRESS_2;
 	private char M_GENDER;
+	private int M_AGE;
+	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Member(int m_CODE, String userId, String m_PW, String m_NAME, String m_EMAIL, String m_PHONE,
-			String m_ADDRESS, int m_LEVEL, Date m_ENROLLDATE, char m_STATUS, String m_IMAGE, String m_PHONE2,
-			String m_ADDRESS_2, char m_GENDER) {
+	public Member(int m_CODE, String m_ID, String m_PW, String m_NAME, String m_EMAIL, String m_PHONE, String m_ADDRESS,
+			int m_LEVEL, Date m_ENROLLDATE, char m_STATUS, String m_IMAGE, String m_PHONE2, String m_ADDRESS_2,
+			char m_GENDER, int m_AGE) {
 		super();
 		M_CODE = m_CODE;
-		this.userId = userId;
+		M_ID = m_ID;
 		M_PW = m_PW;
 		M_NAME = m_NAME;
 		M_EMAIL = m_EMAIL;
@@ -40,6 +42,7 @@ public class Member {
 		M_PHONE2 = m_PHONE2;
 		M_ADDRESS_2 = m_ADDRESS_2;
 		M_GENDER = m_GENDER;
+		M_AGE = m_AGE;
 	}
 	public int getM_CODE() {
 		return M_CODE;
@@ -47,11 +50,11 @@ public class Member {
 	public void setM_CODE(int m_CODE) {
 		M_CODE = m_CODE;
 	}
-	public String getUserId() {
-		return userId;
+	public String getM_ID() {
+		return M_ID;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setM_ID(String m_ID) {
+		M_ID = m_ID;
 	}
 	public String getM_PW() {
 		return M_PW;
@@ -125,13 +128,18 @@ public class Member {
 	public void setM_GENDER(char m_GENDER) {
 		M_GENDER = m_GENDER;
 	}
+	public int getM_AGE() {
+		return M_AGE;
+	}
+	public void setM_AGE(int m_AGE) {
+		M_AGE = m_AGE;
+	}
 	@Override
 	public String toString() {
-		return "Member [M_CODE=" + M_CODE + ", userId=" + userId + ", M_PW=" + M_PW + ", M_NAME=" + M_NAME
-				+ ", M_EMAIL=" + M_EMAIL + ", M_PHONE=" + M_PHONE + ", M_ADDRESS=" + M_ADDRESS + ", M_LEVEL=" + M_LEVEL
+		return "Member [M_CODE=" + M_CODE + ", M_ID=" + M_ID + ", M_PW=" + M_PW + ", M_NAME=" + M_NAME + ", M_EMAIL="
+				+ M_EMAIL + ", M_PHONE=" + M_PHONE + ", M_ADDRESS=" + M_ADDRESS + ", M_LEVEL=" + M_LEVEL
 				+ ", M_ENROLLDATE=" + M_ENROLLDATE + ", M_STATUS=" + M_STATUS + ", M_IMAGE=" + M_IMAGE + ", M_PHONE2="
-				+ M_PHONE2 + ", M_ADDRESS_2=" + M_ADDRESS_2 + ", M_GENDER=" + M_GENDER + "]";
+				+ M_PHONE2 + ", M_ADDRESS_2=" + M_ADDRESS_2 + ", M_GENDER=" + M_GENDER + ", M_AGE=" + M_AGE + "]";
 	}
-	
 	
 }

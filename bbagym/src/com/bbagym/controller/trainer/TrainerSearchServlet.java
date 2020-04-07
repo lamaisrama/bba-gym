@@ -105,10 +105,4 @@ public class TrainerSearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-<<<<<<< HEAD
 }
-=======
-}
-
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
