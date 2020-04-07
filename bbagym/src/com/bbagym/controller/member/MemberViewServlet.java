@@ -42,7 +42,7 @@ public class MemberViewServlet extends HttpServlet {
 	         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	      }
 	      else {
-	    	  String userId=request.getParameter("userId");
+	    	  String userId=request.getParameter("M_ID");
 	    	  
 	    	  Member m=new MemberService().selectMemberId(userId);
 	    	  

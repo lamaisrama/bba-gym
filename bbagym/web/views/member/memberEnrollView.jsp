@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" %>
 	<%@ page
 	import="com.bbagym.model.vo.Member"%>
-
 	
 <%@ include file="/views/common/header.jsp"%>
 
@@ -19,46 +18,53 @@
 			</h6>
 			<hr>
 			
-			<form action="<%=request.getContextPath() %>/member/updateMember.do" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/member/updateMember.do" method="post"  enctype="multipart/form-data">
 				
 					<label for="c-name">아이디</label>
 					<div class="form-group" style="display: flex">
-  				<input type="text"  style="width: 100%;" >
-				<table><tr><td><%=m.getM_ID()%></td></tr></table>
+  					<input type="text"  style="width: 100%;" name="id" value="<%=m.getM_ID()%>">
+				
 						
 					</div>
 					
 					<br> <label for="c-tel">이름</label>
-					<div class="form-group" style="display: flex">
+					<div class="form-group" style="display: flex" >
 
-						<!-- <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"> -->
-						<!-- <input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0"
-							value="M" checked> --> 
+					 <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"  value="<%=m.getM_NAME()%>">
+					 <input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M"  <%=m.getM_GENDER()=='M'?"checked":"" %>> 
 							<label for="M_GENDER0">남</label> 
-						<!-- 	<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> --> <label for="M_GENDER1">여</label>
+						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F" <%=m.getM_GENDER()=='F'?"checked":"" %>> 
+						    <label for="M_GENDER1">여</label>
 					</div>
 					<br>
 					<div class="form-group">
-					<label for="c-time">나이</label><!-- <input type="number"class="form-control" name="M_AGE" id="M_AGE"> --><br>
-						<label for="c-time">이메일</label><!--  <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"> -->
+					<label for="c-time">나이</label> <input type="number"class="form-control" name="M_AGE" id="M_AGE"  <%=m.getM_AGE()%>> <br>
+						<label for="c-time">이메일</label>  <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"  <%=m.getM_EMAIL()%>> 
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">주소</label> <!-- <input type="text"
-							class="form-control" name="M_ADDRESS"
-					id="M_ADDRESS"> -->
+						<label for="c-time">주소</label> 
+						<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" <%=m.getM_ADDRESS()%>> 
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">PHONE</label> <!-- <input type="text"
-							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE" id="M_PHONE"> -->
+						<label for="c-time">PHONE</label>
+						<input type="text" class="form-control" name="M_PHONE" id="M_PHONE" <%=m.getM_PHONE()%>> 
 					</div>
 					<br>
 					<div class="form-group div-photo">
 						<label for="exampleInputFile">사진 등록</label>
 						<div class="div-here">
-							<!-- <input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE">  -->
-								<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
+							<%if(m.getM_IMAGE()!=null) { %>
+        				 <input class="form-control-file" aria-describedby="fileHelp" type="file" name="M_IMAGE"/>
+         					<span id="fname"><%=m.getM_IMAGE() %></span>
+        				 <%} else{ %>
+        				 <input class="form-control-file" aria-describedby="fileHelp" type="file" name="M_IMAGE"/>
+         					<%} %>
+         				<input class="form-control-file" aria-describedby="fileHelp" type="hidden" name="M_IMAGE" value="<%=m.getM_IMAGE() %>"/>
+         				
+						<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
+								
 							
 					<br>
 					<div class="info-footer-inner">
@@ -71,34 +77,6 @@
 		</div>
 	</div>
 	<hr>
-<script>
-	function fn_enroll_validate() {
-		//아이디가 4글자이상 입력되었는지
-		//패스워드가맞는지
-		var userId = $("#userId_").val();
-		var pw = $("#password_").val();
-		var pwck = $("#password_2").val();
-		//현재text에 입력되어 있는 값
 
-		//정규표현식
-		/* var reg=/[a-zA-Z0-9]{8,13}/
-		//아이디가 4글자 이상 입력됬는지
-		if(!reg.test(userId.trim())){
-			alert("영문자(대소)나 숫자로 이루어진 8글자이상 13글자 이하로 작성하세요");
-		} */
-
-		if (userId.trim().length < 4) {
-			alert("아이디를 4글자이상입력하세요.");
-			$("#userId_").focus();
-			return false;
-		} else if (pw.trim() != pwck.trim()) {
-			alert("패스워드가 일치하지 않습니다.");
-			$("password_").focus();
-			return false;
-		}
-
-		return true;
-	}
-</script>
 	
 	<%@ include file="/views/common/footer.jsp"%>
