@@ -47,6 +47,7 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
 		
 		CenterEnroll c= new CenterEnroll();
+		c.setMemberCode(Integer.parseInt(mr.getParameter("m-code")));
 		c.setName(mr.getParameter("c-name"));
 		c.setAddress(mr.getParameter("c-address"));
 		c.setTel(mr.getParameter("c-tel"));
@@ -54,6 +55,8 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		c.setHoliday(mr.getParameter("c-holiday"));
 		String[] cat=mr.getParameterValues("c-cat");
 		String[] fac=mr.getParameterValues("c-fac");
+		c.setCategories(new ArrayList());
+		c.setFacilities(new ArrayList());
 		for(String s : cat) {
 			c.getCategories().add(s);
 		}
@@ -64,19 +67,17 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		c.setSnsInsta(mr.getParameter("sns-insta"));
 		c.setSnsBlog(mr.getParameter("sns-blog"));
 		c.setSnsEtc(mr.getParameter("sns-etc"));
-		String photo=mr.getFilesystemName("c-photo");
-		List<String> photos=new ArrayList();
-		photos.add(mr.getFilesystemName("c-photo0"));
-		for(int i=0;i<4;i++) {
-			if(mr.getFilesystemName("c-photo"+(i+1))!=null){
-				photos.add(mr.getFilesystemName("c-photo"+(i+1)));
+		c.setMainImage(mr.getFilesystemName("c-photo0"));
+		c.setPhotos(new ArrayList());
+		c.getPhotos().add(mr.getFilesystemName("c-photo1"));
+		for(int i=0;i<4;i++) {	
+			if(mr.getFilesystemName("c-photo"+(i+2))!=null){
+				c.getPhotos().add(mr.getFilesystemName("c-photo"+(i+1)));
 			}
 		}
-		
+		c.setSchedulePath(mr.getParameter("c-timetable"));
 		HttpSession session=request.getSession();
 		session.setAttribute("centerEnroll", c);
-		System.out.println(c);
-		System.out.println(session.getAttribute("centerEnroll"));
 		request.getRequestDispatcher("/views/center/centerEnroll-2.jsp").forward(request, response);
 	}
 
