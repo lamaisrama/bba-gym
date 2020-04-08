@@ -59,7 +59,8 @@
 	             BBAGYM
 	         </h2></nav> -->
 		         <nav>
-		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px">
+		          <a class="navbar-brand" href="<%=request.getContextPath() %>/index.jsp" >
+		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
 		         </nav>       
 	   		</div>
 			

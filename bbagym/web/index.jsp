@@ -137,4 +137,6 @@
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>
+<br>
+<br><br>
 <%@ include file="/views/common/footer.jsp"%>
