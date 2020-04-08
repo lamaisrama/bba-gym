@@ -154,15 +154,31 @@ public class NoticeDao {
 		int result = 0;
 		String sql = prop.getProperty("updateNotice");
 		//UPDATE NOTICE SET TITLE=?, N_CONTENT=?, ORI_FILENAME=?, M_CODE=? WHERE N_CODE=?
+		
+		if(!n.getOriFileName().equals("null")) {
+			sql = prop.getProperty("updateNotice");
+		}else {
+			sql = prop.getProperty("updateNotice2");
+		}
+		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, n.getTitle());
-			pstmt.setString(2, n.getnContent());
-			pstmt.setString(3, n.getOriFileName());
-			pstmt.setInt(4, n.getmCode());
+			if(!n.getOriFileName().equals("null")) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, n.getTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setString(3, n.getOriFileName());
+				pstmt.setInt(4, n.getmCode());
+				pstmt.setInt(5, n.getnCode());
+			}else {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, n.getTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setInt(3, n.getmCode());
+				pstmt.setInt(4, n.getnCode());
+			}
 			
-			pstmt.setInt(5, n.getnCode());
 			result = pstmt.executeUpdate();
+
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
