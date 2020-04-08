@@ -10,8 +10,7 @@ public class TrainerDetail {
 	private String t_intro;
 	private String m_phone_2;
 	private String m_address_2;
-	private List<String> t_program_name;
-	private List<Integer> t_price;
+	private List<TrainerProgram> trainerPrograms;
 	private String t_text;
 	private String t_career;
 	private String t_counsel_hours;
@@ -27,17 +26,15 @@ public class TrainerDetail {
 	}
 
 	public TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
-			List<String> t_program_name, List<Integer> t_price, String t_text, String t_career, String t_counsel_hours,
-			String c_name, List<String> t_img, String sns_homepage, String sns_instagram, String sns_blog,
-			String sns_etc) {
+			List<TrainerProgram> trainerPrograms, String t_text, String t_career, String t_counsel_hours, String c_name,
+			List<String> t_img, String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
 		this.t_intro = t_intro;
 		this.m_phone_2 = m_phone_2;
 		this.m_address_2 = m_address_2;
-		this.t_program_name = t_program_name;
-		this.t_price = t_price;
+		this.trainerPrograms = trainerPrograms;
 		this.t_text = t_text;
 		this.t_career = t_career;
 		this.t_counsel_hours = t_counsel_hours;
@@ -89,20 +86,12 @@ public class TrainerDetail {
 		this.m_address_2 = m_address_2;
 	}
 
-	public List<String> getT_program_name() {
-		return t_program_name;
+	public List<TrainerProgram> getTrainerPrograms() {
+		return trainerPrograms;
 	}
 
-	public void setT_program_name(List<String> t_program_name) {
-		this.t_program_name = t_program_name;
-	}
-
-	public List<Integer> getT_price() {
-		return t_price;
-	}
-
-	public void setT_price(List<Integer> t_price) {
-		this.t_price = t_price;
+	public void setTrainerPrograms(List<TrainerProgram> trainerPrograms) {
+		this.trainerPrograms = trainerPrograms;
 	}
 
 	public String getT_text() {
@@ -180,11 +169,12 @@ public class TrainerDetail {
 	@Override
 	public String toString() {
 		return "TrainerDetail [prof_img=" + prof_img + ", t_name=" + t_name + ", t_intro=" + t_intro + ", m_phone_2="
-				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", t_program_name=" + t_program_name + ", t_price="
-				+ t_price + ", t_text=" + t_text + ", t_career=" + t_career + ", t_counsel_hours=" + t_counsel_hours
-				+ ", c_name=" + c_name + ", t_img=" + t_img + ", sns_homepage=" + sns_homepage + ", sns_instagram="
-				+ sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
+				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", trainerPrograms=" + trainerPrograms + ", t_text="
+				+ t_text + ", t_career=" + t_career + ", t_counsel_hours=" + t_counsel_hours + ", c_name=" + c_name
+				+ ", t_img=" + t_img + ", sns_homepage=" + sns_homepage + ", sns_instagram=" + sns_instagram
+				+ ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
 	}
-	
 
+	
+	
 }
