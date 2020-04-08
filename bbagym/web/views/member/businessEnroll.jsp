@@ -81,7 +81,7 @@
 						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0"
 							value="M" checked> 
 							<label for="M_GENDER0">남</label> 
-							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> <label for="M_GENDER1">여</label>
+							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F" > <label for="M_GENDER1">여</label>
 					</div>
 					<br>
 					<div class="form-group">
@@ -89,9 +89,9 @@
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL"required>
 					</div>
 					<br>
-					<div class="form-group">
-						 <button type="button" class="btn btn-warning" onclick="goPopup()">주소</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
+						 <button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" required> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 					<div class="form-group">
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>PHONE</label> <input type="text"
@@ -107,12 +107,12 @@
 					<br>
 						<div class="form-group">
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>트레이너 PHONE</label> <input type="text"
-							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE2" id="M_PHONE2" required>
+							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE2" id="M_PHONE2">
 					</div>
 					<br>
 					<div class="form-group">
 						 <button type="button" class="btn btn-warning" onclick="goPopup2()">트레이너 주소</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요" required  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 		
 					<div class="info-footer-inner">
