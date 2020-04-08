@@ -2,7 +2,6 @@ package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.TrainerView;
 
 public class CenterDao {
 	private Properties prop=new Properties();
@@ -288,6 +287,49 @@ public class CenterDao {
 		}
 		
 		return result;
+		
+	}
+	
+	public CenterDetail centerViewDetail(Connection conn, int cCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CenterDetail cd = null;
+		
+		String sql = prop.getProperty("centerDetail");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cd= new CenterDetail();
+				cd.setCenterMainImg(rs.getString("C_MAIN_IMAGE"));
+				cd.setCenterName(rs.getString("C_NAME"));
+				cd.setCenterAddr(rs.getString("C_ADDRESS"));
+				cd.setCenterPhone(rs.getString("C_PHONE"));
+				cd.setCenterIntro(rs.getString("C_TEXT"));
+				cd.setCenterOpenHours(rs.getString("C_OPERATING_HOURS"));
+				cd.setCenterHolidays(rs.getString("C_HOLIDAY"));
+				cd.setCenterSchedule(rs.getString("C_SCHEDULE"));
+				cd.setSns_homepage(rs.getString("SNS_HOMEPAGE"));
+				cd.setSns_instagram(rs.getString("SNS_INSTAGRAM"));
+				cd.setSns_blog(rs.getString("SNS_BLOG"));
+				cd.setSns_etc(rs.getString("SNS_ETC"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cd;
+	}
+	
+	public void centerViewDetailPrograms(Connection conn, int cCode, CenterDetail cd) {
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		cd.setCenterPrograms(new ArrayList());
 		
 	}
 	

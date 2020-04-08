@@ -11,6 +11,7 @@ public class TrainerDetail {
 	private String m_phone_2;
 	private String m_address_2;
 	private List<TrainerProgram> trainerPrograms;
+	private List<String> trainerCategory;
 	private String t_text;
 	private String t_career;
 	private String t_counsel_hours;
@@ -25,9 +26,10 @@ public class TrainerDetail {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
-			List<TrainerProgram> trainerPrograms, String t_text, String t_career, String t_counsel_hours, String c_name,
-			List<String> t_img, String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
+	TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
+			List<TrainerProgram> trainerPrograms, List<String> trainerCategory, String t_text, String t_career,
+			String t_counsel_hours, String c_name, List<String> t_img, String sns_homepage, String sns_instagram,
+			String sns_blog, String sns_etc) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
@@ -35,6 +37,7 @@ public class TrainerDetail {
 		this.m_phone_2 = m_phone_2;
 		this.m_address_2 = m_address_2;
 		this.trainerPrograms = trainerPrograms;
+		this.trainerCategory = trainerCategory;
 		this.t_text = t_text;
 		this.t_career = t_career;
 		this.t_counsel_hours = t_counsel_hours;
@@ -92,6 +95,14 @@ public class TrainerDetail {
 
 	public void setTrainerPrograms(List<TrainerProgram> trainerPrograms) {
 		this.trainerPrograms = trainerPrograms;
+	}
+
+	public List<String> getTrainerCategory() {
+		return trainerCategory;
+	}
+
+	public void setTrainerCategory(List<String> trainerCategory) {
+		this.trainerCategory = trainerCategory;
 	}
 
 	public String getT_text() {
@@ -169,12 +180,13 @@ public class TrainerDetail {
 	@Override
 	public String toString() {
 		return "TrainerDetail [prof_img=" + prof_img + ", t_name=" + t_name + ", t_intro=" + t_intro + ", m_phone_2="
-				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", trainerPrograms=" + trainerPrograms + ", t_text="
-				+ t_text + ", t_career=" + t_career + ", t_counsel_hours=" + t_counsel_hours + ", c_name=" + c_name
-				+ ", t_img=" + t_img + ", sns_homepage=" + sns_homepage + ", sns_instagram=" + sns_instagram
-				+ ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
+				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", trainerPrograms=" + trainerPrograms
+				+ ", trainerCategory=" + trainerCategory + ", t_text=" + t_text + ", t_career=" + t_career
+				+ ", t_counsel_hours=" + t_counsel_hours + ", c_name=" + c_name + ", t_img=" + t_img + ", sns_homepage="
+				+ sns_homepage + ", sns_instagram=" + sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc
+				+ "]";
 	}
-
+	
 	
 	
 }

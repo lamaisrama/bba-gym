@@ -98,7 +98,7 @@
                             	<span class="badge badge-info"><%=s %></span>&nbsp;<!-- 카테고리-->
                             <%} %>
                             </td>
-                            <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
+                            <td style="padding: 0;"><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=c.getCode()%>">정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
                         </tr>
                         <tr>
                             <td colspan="3"></td>

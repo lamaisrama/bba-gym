@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bbagym.dao.CenterDao;
-import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
 
 public class CenterService {
@@ -126,6 +126,19 @@ public class CenterService {
 				return true; 
 		  }
 		
+	}
+	
+	public CenterDetail centerViewDetail(int cCode) {
+		Connection conn = getConnection();
+		CenterDetail cd = dao.centerViewDetail(conn, cCode);
+		if(cd!=null) {
+			dao.centerViewDetailPrograms(conn, cCode, cd);
+			dao.centerViewDetailPrices(conn, cCode, cd);
+			dao.centerViewDetailImgs(conn, cCode, cd);
+		}
+		System.out.println(cd);
+		close(conn);
+		return cd;
 	}
 	
 }
