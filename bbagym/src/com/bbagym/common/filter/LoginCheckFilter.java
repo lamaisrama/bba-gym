@@ -45,7 +45,7 @@ public class LoginCheckFilter implements Filter {
       Member login=(Member)session.getAttribute("logginMember");
       if(login==null) {
          request.setAttribute("msg", "로그인 후 이용가능합니다.");
-         request.setAttribute("loc", "/");
+         request.setAttribute("loc", "/member/membeLoginView.do");
          request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
       }else {
          chain.doFilter(request, response);
