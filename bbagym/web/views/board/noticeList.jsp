@@ -71,12 +71,12 @@
             <!-- 게시판테이블 end -->
             
             <!-- 글쓰기버튼 -->
-            <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")) {%>
+            <%-- <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")) {%> --%>
             <div align="right">
            		<input type="button" value="글쓰기" class="btn btn-sm btn-outline-secondary" 
            			onclick="location.replace('<%=request.getContextPath()%>/board/noticeWrite')">
             </div>
-            <%} %>
+            <%-- <%} %> --%>
             <br>
             
             <!-- 페이징 start -->

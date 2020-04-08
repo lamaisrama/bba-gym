@@ -5,7 +5,7 @@ import java.util.Date;
 public class Board {
 
 	private int qaCode;
-	private String tilte;
+	private String title;
 	private String qaContent;
 	private Date qaDate;
 	private String oriFileName;
@@ -17,11 +17,11 @@ public class Board {
 		super();
 	}
 	
-	public Board(int qaCode, String tilte, String qaContent, Date qaDate, String oriFileName, String newFileName,
+	public Board(int qaCode, String title, String qaContent, Date qaDate, String oriFileName, String newFileName,
 			int readCount, int mCode) {
 		super();
 		this.qaCode = qaCode;
-		this.tilte = tilte;
+		this.title = title;
 		this.qaContent = qaContent;
 		this.qaDate = qaDate;
 		this.oriFileName = oriFileName;
@@ -36,11 +36,11 @@ public class Board {
 	public void setQaCode(int qaCode) {
 		this.qaCode = qaCode;
 	}
-	public String getTilte() {
-		return tilte;
+	public String getTitle() {
+		return title;
 	}
-	public void setTilte(String tilte) {
-		this.tilte = tilte;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getQaContent() {
 		return qaContent;
@@ -81,7 +81,7 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [qaCode=" + qaCode + ", tilte=" + tilte + ", qaContent=" + qaContent + ", qaDate=" + qaDate
+		return "Board [qaCode=" + qaCode + ", title=" + title + ", qaContent=" + qaContent + ", qaDate=" + qaDate
 				+ ", oriFileName=" + oriFileName + ", newFileName=" + newFileName + ", readCount=" + readCount
 				+ ", mCode=" + mCode + "]";
 	}

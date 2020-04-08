@@ -24,8 +24,9 @@
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
-                    <option value="">Tip</option>
-                    <option value="">Talk</option>
+                    <option value="">Center</option>
+                    <option value="">Trainer</option>
+                    <option value="">Bbagym</option>
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
@@ -36,20 +37,21 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Title</th>
+                        <!-- <th scope="col">Category</th> -->
+                        <th scope="col" width="50%">Title</th>
                         <th scope="col">Writer</th>
+                        <th scope="col">File</th>
                         <th scope="col">Date</th>
                         <th scope="col">rCount</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <%if(list!=null){ %>
+                <%if(list!=null){ %>
                 	<%for(Board b : list) {%>
                     <tr>
-                        <td scope="row"><%=b.getnCode() %></td>
+                        <td scope="row"><%=b.getQaCode() %></td>
                         <td>
-                        	<a href="<%=request.getContextPath()%>/board/noticeView?no=<%=b.getnCode()%>">
+                        	<a href="<%=request.getContextPath()%>/board/boardView?no=<%=b.getQaCode()%>">
                         		<%=b.getTitle() %>
                         	</a>
                        	</td>
@@ -59,7 +61,7 @@
                         	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
 							<%} %>
 						</td>
-                        <td><%=b.getnDate() %></td>
+                        <td><%=b.getQaDate() %></td>
                         <td><%=b.getReadCount() %></td>
                     </tr>
                     <%} %>
@@ -68,7 +70,12 @@
             </table>
             <!-- 게시판테이블 end -->
             <!-- 글쓰기버튼 -->
-            <div align="right"><button type="button" class="btn btn-sm btn-outline-secondary">Write</button></div>
+            <div align="right">
+            	<button type="button" class="btn btn-sm btn-outline-secondary"
+            		onclick="location.replace('<%=request.getContextPath() %>/board/boardWrite')">	
+           			Write
+           		</button>
+           	</div>
             <br>
             <!-- 페이징 start -->
             <nav aria-label="Page navigation example">
