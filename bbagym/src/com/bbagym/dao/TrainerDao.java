@@ -61,6 +61,9 @@ public class TrainerDao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
@@ -104,6 +107,9 @@ public class TrainerDao {
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 
@@ -130,6 +136,9 @@ public class TrainerDao {
 			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
@@ -165,6 +174,9 @@ public class TrainerDao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
@@ -190,6 +202,9 @@ public class TrainerDao {
 			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
@@ -224,6 +239,9 @@ public class TrainerDao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
@@ -247,13 +265,16 @@ public class TrainerDao {
 			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		
 		return result;
 	}
 
-	
+	//ajax처리를 통해 트레이너 소속을 정하기 위해 센터코드,센터이름,주소를 가져오는 메소드
 	public List<Center> searchCenterName(Connection conn,String name) {
 		PreparedStatement pstmt = null;
 		ResultSet rs=null;
@@ -275,6 +296,9 @@ public class TrainerDao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
 		}
 		
 		

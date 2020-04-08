@@ -17,10 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 		servletNames = { 
 				"UdpatePasswordEndServlet", 
 				"LoginServlet", 
-				"MemberEnrollEndServlet",
-				"MemberEnrollServlet",
-				"MemberLoginEnrollServlet",
-				"/admin/memberlist"
+				"MemberEnrollEndServlet"
 		})
 public class EncryptFilter implements Filter {
 

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bbagym.common.encrypt.AESEncrypt;
-import com.bbagym.member.service.MemberService;
 import com.bbagym.model.vo.Member;
+import com.bbagym.service.MemberService;
 
 /**
  * Servlet implementation class MemberEnrollModify
@@ -45,6 +45,7 @@ public class MemberViewServlet extends HttpServlet {
 	    	  String userId=request.getParameter("M_ID");
 	    	  
 	    	  Member m=new MemberService().selectMemberId(userId);
+	    	 
 	    	  
 	    	  request.setAttribute("member", m);
 	    	  

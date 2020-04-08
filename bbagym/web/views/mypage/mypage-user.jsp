@@ -448,7 +448,7 @@ h3 span {
 			</div>
 			<div>
 				<hr />
-				<a class="updateMyProfile" href="" onclick="updateMyProfile()">회원정보수정</a>
+				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
 				<a class="updateMyProfile" href="" onclick="updateMyProfile()">회원탈퇴</a>
 			</div>
 

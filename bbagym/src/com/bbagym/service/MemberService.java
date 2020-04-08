@@ -1,4 +1,4 @@
-package com.bbagym.member.service;
+package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.getConnection;
@@ -6,13 +6,14 @@ import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
+
 import static com.bbagym.common.JDBCTemplate.close;
 
 
 import java.sql.Connection;
 
+import com.bbagym.dao.MemberDao;
 import com.bbagym.model.vo.Member;
-import com.bbagym.member.dao.MemberDao;
 
 public class MemberService {
 	
@@ -69,6 +70,25 @@ public class MemberService {
 			commit(conn);
 		else
 			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+
+	public int updatePassword(String id, String pw, String changePw) {
+		// TODO Auto-generated method stub
+		Connection conn=getConnection();
+		Member m = dao.login(conn,id,pw);
+		
+		
+		int result=-1;
+		if(m !=null) {
+			result=dao.updatePassword(conn, id, changePw);
+			if (result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

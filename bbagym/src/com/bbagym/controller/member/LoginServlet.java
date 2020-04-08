@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bbagym.model.vo.Member;
-import com.bbagym.member.service.MemberService;
+import com.bbagym.service.MemberService;
 
 /**
  * Servlet implementation class LoginServlet
