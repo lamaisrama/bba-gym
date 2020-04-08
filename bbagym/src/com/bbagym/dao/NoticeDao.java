@@ -41,14 +41,14 @@ public class NoticeDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Notice n = new Notice();
-				n.setnCode(rs.getString("n_code"));
+				n.setnCode(rs.getInt("n_code"));
 				n.setTitle(rs.getString("title"));
 				n.setnContent(rs.getString("n_content"));
 				n.setnDate(rs.getDate("n_date"));
 				n.setOriFileName(rs.getString("ori_filename"));
 				n.setNewFileName(rs.getString("new_filename"));
 				n.setReadCount(rs.getInt("readcount"));
-				n.setmCode(rs.getString("m_code"));
+				n.setmCode(rs.getInt("m_code"));
 				n.setnStatus(rs.getString("n_status").charAt(0));
 				list.add(n);
 			}
@@ -85,13 +85,117 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertNotice");
+		//INSERT INTO NOTICE VALUES(SEQ_NCODE.NEXTVAL,?,?,DEFAULT,?,?,DEFAULT,?,'Y')
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, n.getTitle());
-			pstmt.setString(2, n.getmCode());
-			pstmt.setString(3, n.getnContent());
-			pstmt.setString(4, n.getOriFileName());
-			pstmt.setString(5, n.getNewFileName());
+			pstmt.setString(2, n.getnContent());
+			pstmt.setString(3, n.getOriFileName());
+			pstmt.setString(4, n.getNewFileName());
+			pstmt.setInt(5, n.getmCode());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Notice selectNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Notice n = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				n = new Notice();
+				n.setnCode(rs.getInt("n_code"));
+				n.setTitle(rs.getString("title"));
+				n.setnContent(rs.getString("n_content"));
+				n.setnDate(rs.getDate("n_date"));
+				n.setOriFileName(rs.getString("ori_filename"));
+				n.setNewFileName(rs.getString("new_filename"));
+				n.setmCode(rs.getInt("m_code"));
+				n.setReadCount(rs.getInt("readcount"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return n;
+	}
+
+	public int updateReadCount(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateReadCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int noticeUpdate(Connection conn, Notice n) {
+		PreparedStatement pstmt =  null;
+		int result = 0;
+		String sql = prop.getProperty("updateNotice");
+		//UPDATE NOTICE SET TITLE=?, N_CONTENT=?, ORI_FILENAME=?, M_CODE=? WHERE N_CODE=?
+		
+		if(!n.getOriFileName().equals("null")) {
+			sql = prop.getProperty("updateNotice");
+		}else {
+			sql = prop.getProperty("updateNotice2");
+		}
+		
+		try {
+			if(!n.getOriFileName().equals("null")) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, n.getTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setString(3, n.getOriFileName());
+				pstmt.setInt(4, n.getmCode());
+				pstmt.setInt(5, n.getnCode());
+			}else {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, n.getTitle());
+				pstmt.setString(2, n.getnContent());
+				pstmt.setInt(3, n.getmCode());
+				pstmt.setInt(4, n.getnCode());
+			}
+			
+			result = pstmt.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteNotice(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteNotice");
+		//DELETE FROM NOTICE WHERE N_CODE=?
+		//UPDATE NOTICE SET N_STATUS='N' WHERE N_CODE=?
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();

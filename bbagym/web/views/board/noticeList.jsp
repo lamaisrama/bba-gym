@@ -4,6 +4,7 @@
 <%@ page import="java.util.List, com.bbagym.model.vo.Notice" %>
 <%
 	List<Notice> list = (List)request.getAttribute("list"); 
+	String pageBar = (String)request.getAttribute("pageBar");
 %>	
 	
 <%@ include file="/views/common/header.jsp"%>
@@ -25,8 +26,8 @@
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
-                    <option value="">Tip</option>
-                    <option value="">Talk</option>
+                    <option value="">Notice</option>
+                    <option value="">Event</option>
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
@@ -45,56 +46,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<%-- <%for(Notice n : list) {%> --%>
+                <%if(list!=null){ %>
+                	<%for(Notice n : list) {%>
                     <tr>
-                        <th scope="row">#<%-- <%=n.getnCode() %> --%></th>
-                        <td>title
-                        	<%-- <a href="<%=request.getContextPath()%>">
+                        <td scope="row"><%=n.getnCode() %></td>
+                        <td>
+                        	<a href="<%=request.getContextPath()%>/board/noticeView?no=<%=n.getnCode()%>">
                         		<%=n.getTitle() %>
-                        	</a> --%>
+                        	</a>
                        	</td>
-                        <td>admin</td>
+                        <td><%=n.getmCode() %></td>
                         <td><img src="/resources/img/file.png">
-                        	<%-- <%if(n.getOriFileName()!=null) {%>
-                        	<img src="<%=request.getContextPath()%>/resources/img/file.png">
-							<%} %> --%>
+                        	<%if(n.getOriFileName()!=null) {%>
+                        	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+							<%} %>
 						</td>
-                        <td>01-01-20<%-- <%=n.getnDate() %> --%></td>
-                        <td>0<%-- <%=n.getReadCount() %> --%></td>
+                        <td><%=n.getnDate() %></td>
+                        <td><%=n.getReadCount() %></td>
                     </tr>
-                    <%-- <%} %> --%>
+                    <%} %>
+                 <%} %>
                 </tbody>
             </table>
             <!-- 게시판테이블 end -->
             
             <!-- 글쓰기버튼 -->
-            <%-- <%if(loginMember!=null&&loginMember.getmId().equals("admin")) {%> --%>
+            <%-- <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")) {%> --%>
             <div align="right">
            		<input type="button" value="글쓰기" class="btn btn-sm btn-outline-secondary" 
-           			onclick="location.replace('<%=request.getContextPath()%>/notice/noticeWrite.do')">
+           			onclick="location.replace('<%=request.getContextPath()%>/board/noticeWrite')">
             </div>
             <%-- <%} %> --%>
             <br>
             
             <!-- 페이징 start -->
-            <%-- <div><%=request.getAttribute("pageBar") %></div> --%>
-            
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                </ul>
+                <%=pageBar %>
             </nav>
             <!-- 페이징 end -->
         </div>    
