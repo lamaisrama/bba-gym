@@ -17,16 +17,19 @@ public class TrainerDetail {
 	private String t_counsel_hours;
 	private String c_name;
 	private List<String> t_img;
-	private String t_sns_url;
-	private String t_sns_type;
+	private String sns_homepage;
+	private String sns_instagram;
+	private String sns_blog;
+	private String sns_etc;
 	
 	public TrainerDetail() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
 			List<String> t_program_name, List<Integer> t_price, String t_text, String t_career, String t_counsel_hours,
-			String c_name, List<String> t_img, String t_sns_url, String t_sns_type) {
+			String c_name, List<String> t_img, String sns_homepage, String sns_instagram, String sns_blog,
+			String sns_etc) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
@@ -40,8 +43,10 @@ public class TrainerDetail {
 		this.t_counsel_hours = t_counsel_hours;
 		this.c_name = c_name;
 		this.t_img = t_img;
-		this.t_sns_url = t_sns_url;
-		this.t_sns_type = t_sns_type;
+		this.sns_homepage = sns_homepage;
+		this.sns_instagram = sns_instagram;
+		this.sns_blog = sns_blog;
+		this.sns_etc = sns_etc;
 	}
 
 	public String getProf_img() {
@@ -140,20 +145,36 @@ public class TrainerDetail {
 		this.t_img = t_img;
 	}
 
-	public String getT_sns_url() {
-		return t_sns_url;
+	public String getSns_homepage() {
+		return sns_homepage;
 	}
 
-	public void setT_sns_url(String t_sns_url) {
-		this.t_sns_url = t_sns_url;
+	public void setSns_homepage(String sns_homepage) {
+		this.sns_homepage = sns_homepage;
 	}
 
-	public String getT_sns_type() {
-		return t_sns_type;
+	public String getSns_instagram() {
+		return sns_instagram;
 	}
 
-	public void setT_sns_type(String t_sns_type) {
-		this.t_sns_type = t_sns_type;
+	public void setSns_instagram(String sns_instagram) {
+		this.sns_instagram = sns_instagram;
+	}
+
+	public String getSns_blog() {
+		return sns_blog;
+	}
+
+	public void setSns_blog(String sns_blog) {
+		this.sns_blog = sns_blog;
+	}
+
+	public String getSns_etc() {
+		return sns_etc;
+	}
+
+	public void setSns_etc(String sns_etc) {
+		this.sns_etc = sns_etc;
 	}
 
 	@Override
@@ -161,10 +182,9 @@ public class TrainerDetail {
 		return "TrainerDetail [prof_img=" + prof_img + ", t_name=" + t_name + ", t_intro=" + t_intro + ", m_phone_2="
 				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", t_program_name=" + t_program_name + ", t_price="
 				+ t_price + ", t_text=" + t_text + ", t_career=" + t_career + ", t_counsel_hours=" + t_counsel_hours
-				+ ", c_name=" + c_name + ", t_img=" + t_img + ", t_sns_url=" + t_sns_url + ", t_sns_type=" + t_sns_type
-				+ "]";
+				+ ", c_name=" + c_name + ", t_img=" + t_img + ", sns_homepage=" + sns_homepage + ", sns_instagram="
+				+ sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
 	}
-	
 	
 
 }

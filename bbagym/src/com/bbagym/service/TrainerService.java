@@ -81,6 +81,7 @@ public class TrainerService {
 		TrainerDetail td = dao.trainerViewDetail(conn, t_code);
 		if(td!=null) {
 			dao.trainerViewDetailPrograms(conn, t_code, td);
+			dao.trainerViewDetailImgs(conn, t_code, td);
 		}
 		System.out.println(td);
 		close(conn);

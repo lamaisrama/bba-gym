@@ -292,7 +292,7 @@ public class TrainerDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				td = new TrainerDetail();
-				td.setProf_img(rs.getString("t_img"));
+				td.setProf_img(rs.getString("t_main_img"));
 				td.setT_name(rs.getString("m_name"));
 				td.setT_intro(rs.getString("t_introduction"));
 				td.setM_phone_2(rs.getString("M_PHONE_2"));
@@ -301,8 +301,10 @@ public class TrainerDao {
 				td.setT_career(rs.getString("T_CAREER"));
 				td.setT_counsel_hours(rs.getString("T_COUNSEL_HOURS"));
 				td.setC_name(rs.getString("C_NAME"));
-				td.setT_sns_url(rs.getString("SNS_URL"));
-				td.setT_sns_type(rs.getString("SNS_TYPE"));
+				td.setSns_homepage(rs.getString("SNS_HOMEPAGE"));
+				td.setSns_instagram(rs.getString("SNS_INSTAGRAM"));
+				td.setSns_blog(rs.getString("SNS_BLOG"));
+				td.setSns_etc(rs.getString("SNS_ETC"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -340,6 +342,28 @@ public class TrainerDao {
 		}
 	}
 	
+	public void trainerViewDetailImgs(Connection conn, int t_code, TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		td.setT_program_name(new ArrayList());
+		
+		String sql = prop.getProperty("getTrainerImgs");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, t_code);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				td.getT_img().add(rs.getString("t_image"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+	}
 }
 
 
