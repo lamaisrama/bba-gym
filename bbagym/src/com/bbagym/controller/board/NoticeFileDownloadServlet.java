@@ -34,31 +34,34 @@ public class NoticeFileDownloadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String fileName = request.getParameter("fileName");
+		String ori = request.getParameter("ori");
+		String rename = request.getParameter("rename");
+		System.out.println(ori);
+		System.out.println(rename);
 		
 		String path = getServletContext().getRealPath("/upload/notice/");
 		
-		File f = new File(path + fileName);
+		File f = new File(path + rename);
 		
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(f));
 		
 		ServletOutputStream sos = response.getOutputStream(); 
 		BufferedOutputStream bos = new BufferedOutputStream(sos);
 		
-		String resFileName = "";
+		String renameFile = "";
 		
 		boolean isMSIE = request.getHeader("user-agent").indexOf("MSIE") != -1 ||
 							request.getHeader("user-agent").indexOf("Trident") != -1; 
 	
 		if(isMSIE) {
-			resFileName = URLEncoder.encode(fileName, "UTF-8").replaceAll("\\+", "%20");
+			renameFile = URLEncoder.encode(ori, "UTF-8").replaceAll("\\+", "%20");
 		}else {
-			resFileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+			renameFile = new String(ori.getBytes("UTF-8"), "ISO-8859-1");
 		}
 		
 		// response 설정
 		response.setContentType("application/octet-stream");
-		response.setHeader("Content-Disposition", "attachment;fileName=" + resFileName);
+		response.setHeader("Content-Disposition", "attachment;fileName=" + rename);
 		
 		// 전송
 		int read = -1;

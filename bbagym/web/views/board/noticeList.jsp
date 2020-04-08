@@ -4,6 +4,7 @@
 <%@ page import="java.util.List, com.bbagym.model.vo.Notice" %>
 <%
 	List<Notice> list = (List)request.getAttribute("list"); 
+	String pageBar = (String)request.getAttribute("pageBar");
 %>	
 	
 <%@ include file="/views/common/header.jsp"%>
@@ -70,7 +71,7 @@
             <!-- 게시판테이블 end -->
             
             <!-- 글쓰기버튼 -->
-            <%-- <%if(loginMember!=null&&loginMember.getmId().equals("admin")) {%> --%>
+            <%-- <%if(loginMember!=null&&loginMember.getM_ID().equals("admin")) {%> --%>
             <div align="right">
            		<input type="button" value="글쓰기" class="btn btn-sm btn-outline-secondary" 
            			onclick="location.replace('<%=request.getContextPath()%>/board/noticeWrite')">
@@ -79,25 +80,9 @@
             <br>
             
             <!-- 페이징 start -->
-            <div><%=request.getAttribute("pageBar") %></div>
-            
-            <!-- <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                </ul>
-            </nav> -->
+            <nav aria-label="Page navigation example">
+                <%=pageBar %>
+            </nav>
             <!-- 페이징 end -->
         </div>    
 	</section>

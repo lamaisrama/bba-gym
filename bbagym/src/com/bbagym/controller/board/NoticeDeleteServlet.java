@@ -35,8 +35,6 @@ public class NoticeDeleteServlet extends HttpServlet {
 		
 		int result = new NoticeService().deleteNotice(no);
 		
-		System.out.println(no);
-		
 		String path = getServletContext().getRealPath("/upload/notice/");
 		File f = new File(path + fileName);
 		if(f.exists()) {
@@ -47,10 +45,10 @@ public class NoticeDeleteServlet extends HttpServlet {
 		String msg = "";
 		String loc = "";
 		if(result>0){
-			msg = "공지글 삭제 성공!";
+			msg = "공지글 삭제 성공! 짝짝짝! ㅊㅋㅊㅋ";
 			loc = "/board/noticeList";
 		}else {
-			msg = "공지글 삭제 실패!";
+			msg = "공지글 삭제 실패! 응~ 못지워~";
 			loc = "/board/noticeView?no=" + no;
 		}
 		request.setAttribute("msg", msg);

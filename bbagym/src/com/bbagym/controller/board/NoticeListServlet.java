@@ -48,30 +48,47 @@ public class NoticeListServlet extends HttpServlet {
 		int totalPage = (int)Math.ceil((double)totalData/numPerPage);
 		
 		String pageBar = "";
-		int pageBarSize = 3;
-		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd = pageNo+pageBarSize-1;
+		pageBar+= "<ul class='pagination justify-content-center'>";
 		
-		if(pageNo==1) {
-			pageBar+="<span>[이전]</span>";
-		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/board/noticeList?cPage="+(pageNo-1)+"'>[이전]</a>";
+		int pageBarSize = 3;
+		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;	// 시작
+		int pageEnd = pageNo+pageBarSize-1;	// 끝
+		
+		
+		// prev
+		if(pageNo==1) { // 페이지가 1 
+			pageBar+="<li class='page-item'><a class='page-link' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
+		}else { // 현재페이지가 2이상이면 prev클릭시 -1페이지로 이동
+			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath()
+						+ "/board/noticeList?cPage=" + (pageNo-1)
+						+ "&numPerPage=" + numPerPage 
+						+ "'aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}
 		
-		
+		// page
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
+				
+				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
+				
 			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/board/noticeList?cPage="+pageNo+"'>"+pageNo+"</a>";
+				pageBar+="<li><a class='page-link' href='"+request.getContextPath()
+							+"/board/noticeList?cPage=" + pageNo 
+							+"&numPerPage=" + numPerPage
+							+ "'>"+pageNo + "</a></li>";
 			}
 			pageNo++;
 		}
 		
+		
+		// next
 		if(pageNo>totalPage) {
-			pageBar+="<span>[다음]</span>";
+			pageBar+="<li class='page-item'><a class='page-link' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/board/noticeList?cPage="+pageNo+"'>[다음]</a>";
+			pageBar+="<a class='page-link' href='"+request.getContextPath()
+						+"/board/noticeList?cPage="+pageNo
+						+"&numPerPage="+numPerPage
+						+"'aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
 		}
 		
 		request.setAttribute("pageBar", pageBar);
