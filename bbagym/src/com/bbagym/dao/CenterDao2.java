@@ -4,7 +4,6 @@ import static com.bbagym.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,15 +14,16 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.TrainerView;
+import com.bbagym.model.vo.Price;
+import com.bbagym.model.vo.Program;
 
-public class CenterDao {
+public class CenterDao2 {
 	private Properties prop=new Properties();
 	
-	public CenterDao() {
+	public CenterDao2() {
 		try {
-			String path=CenterDao.class.getResource("/sql/center/center_query.properties").getPath();
-			prop.load(new FileReader(path));
+			String path=CenterDao2.class.getResource("/sql/center/center_query.properties").getPath();
+			prop.load(new FileInputStream(path));
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
@@ -35,7 +35,7 @@ public class CenterDao {
 		PreparedStatement pstmt=null;
 		String sql=prop.getProperty("enrollCenter");
 		//c_name, c_addr, c_phone, c_ophr, c_holi, c_sch, c_text, c_main, m_code, ?, ?, ?, ?);
-		//insert into center values(seq_c.nextval, ?, ?, ?, ?, ?, ?, ?, ?, 'N', ?, ?, ?, ?, ?);
+		//insert into center values(seq_c.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?);
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -76,8 +76,7 @@ public class CenterDao {
 				list.add(c);
 			}
 		}catch(SQLException e) {
-			list.clear();
-			return list; //오류시 list 비움
+			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -85,12 +84,11 @@ public class CenterDao {
 		return list;
 	}
 	
-	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 메소드
 	public int selectCountCenter(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		String sql = prop.getProperty("selectCountCenter");
+		String sql = "select count(*) from center";
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -103,7 +101,7 @@ public class CenterDao {
 			close(pstmt);
 		}
 		return result;
-		}
+	}
 	
 	public void findCategory(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
@@ -127,7 +125,6 @@ public class CenterDao {
 
 	}
 	
-
 	public void findFacility(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -149,101 +146,6 @@ public class CenterDao {
 		
 	}
 	
-
-	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
-		public List<CenterEnroll> findCatergoryList(Connection conn,List<CenterEnroll> list){
-			
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			List<String> category=new ArrayList<String>();
-			String sql=prop.getProperty("FindCatergoryList");
-			try {
-				
-				for(int i=0;i<list.size();i++) {
-				category.clear();
-				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, list.get(i).getCode());
-				
-				rs=pstmt.executeQuery();
-				
-				while(rs.next()) {
-					category.add(rs.getString("CATEGORY_NAME"));
-				}
-
-
-				list.get(i).setCategories(category);
-				
-				}
-			}catch(SQLException e) {
-				e.printStackTrace();
-			}
-			return list;
-		}
-	
-	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 
-	public List<CenterEnroll> centerMainPageData(Connection conn,int cPage,int numPerpage){ 
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
-		String sql =prop.getProperty("centerMainPageData");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage-1)*numPerpage+1);
-			pstmt.setInt(2, cPage*numPerpage);
-			
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				CenterEnroll c =new CenterEnroll();
-				
-				c.setCode(rs.getInt("C_CODE"));
-				c.setName(rs.getString("C_NAME"));
-				c.setAddress(rs.getString("C_ADDRESS"));
-				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
-				list.add(c);
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return list;
-		
-	}
-	
-	//찜하기를 체크하는 dao 메소드
-	public void checkPerfer(Connection conn,List<CenterEnroll> list,int mcode){
-		PreparedStatement pstmt = null;
-		ResultSet rs =null;
-		String sql =prop.getProperty("checkPerfer");
-		
-		try {
-			
-			for(int i=0;i<list.size();i++) {
-				
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mcode);
-			pstmt.setInt(2, list.get(i).getCode()); //mcode와 code가 같은경우 count(*)를센다 즉 찜하기면 1 아니면 0 반환
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				if(rs.getInt(1)==1) { // 1일경우 찜하기이므로 boolean 형을 true로 변환
-					list.get(i).setPrefer(true);
-				}else {
-					list.get(i).setPrefer(false);
-				}
-			}
-			
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		
-
-
-	}
-	
 	public int selectCcode(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -261,35 +163,117 @@ public class CenterDao {
 			close(pstmt);
 		}
 		return cCode;
-
 	}
-	
-	public int insertDeletePerfer(Connection conn,int ccode,int mcode,boolean flag) {
+
+	public int insertCenterCategory(Connection conn, CenterEnroll c) {
 		PreparedStatement pstmt = null;
+		String sql = "insert into c_category values(?, ?)";
 		int result=0;
-		String sql="";
-		if(flag) {
-			 sql=prop.getProperty("DeletePrefer");
-		}else {
-			 sql=prop.getProperty("InsertPrefer");
-		}
-		
 		try {
-			pstmt= conn.prepareStatement(sql);
-			pstmt.setInt(1, mcode);
-			pstmt.setInt(2, ccode);
-			
-			result=pstmt.executeUpdate();
-			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(2, c.getCode());
+			List<String> categories = c.getCategories();
+			for(String s : categories) {
+				pstmt.setInt(1, Integer.parseInt(s));
+				result+=pstmt.executeUpdate();
+			}
 		}catch(SQLException e) {
-			
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
-		
 		return result;
-		
 	}
-	
-	
+
+	public int insertCenterFacility(Connection conn, CenterEnroll c) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into center_facility values(?, ?)";
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			List<String> facilities = c.getFacilities();
+			for(String s : facilities) {
+				pstmt.setInt(2, Integer.parseInt(s));
+				result+=pstmt.executeUpdate();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertCenterImage(Connection conn, CenterEnroll c) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into c_image values(?, ?)";
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			for(String s : c.getPhotos()) {
+				pstmt.setString(2, s);
+				result+=pstmt.executeUpdate();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int insertProgram(Connection conn, CenterEnroll c) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into c_program values(seq_c_prog.nextval, ?, ?)";
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			List<Program> programs= c.getProgram();
+			for(Program p : programs) {
+				pstmt.setString(1, p.getProgramName());
+				pstmt.setInt(2, c.getCode());
+				result+=pstmt.executeUpdate();
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int selectPcode(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int pCode=0;
+		String sql = "SELECT SEQ_C_PROG.CURRVAL FROM DUAL";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			rs.next();
+			pCode=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return pCode;
+	}
+
+	public int insertProgramPrice(Connection conn, int pCode, Price price) {
+		PreparedStatement pstmt = null;
+		String sql = "insert into c_price values(?, ?, ?)";
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, pCode);
+			pstmt.setInt(2, price.getPrice());
+			pstmt.setInt(3, price.getMonth());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

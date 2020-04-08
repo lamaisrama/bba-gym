@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,com.bbagym.model.vo.CenterEnroll" %>	
+<%@ page import="java.util.List,com.bbagym.model.vo.*" %>	
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 
+	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
 
 %>
@@ -71,15 +72,15 @@
                 <div class="content-box-cotent">
                     <table>
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="3"><input type="hidden" value="<%=c.getCode() %>"></td>
                         </tr>
                         <tr>
                             <td colspan="2"><h2><%=c.getName() %></h2></td> <!-- 제목-->
                             <td><h2>
                             <%if(c.getPrefer()==false){ %>
-                            <i class="far fa-heart">
+                            <i class="far fa-heart" style='color:red'>
                             <%}else{ %>
-                            <i class='fas fa-heart' style='color:red'></i>
+                            <i class='fas fa-heart'  style='color:red'></i>
                             <%} %>
                             </i></h2></td><!-- 찜목록 ON/OFF-->
                         </tr>
@@ -124,9 +125,34 @@
 			 <%-- <%=centerList.get(i).getMainImage() %> --%> 
 		<%} }%>
 		/* 이미지 넣어주기 */
+	
+		/* 찜하기 ajax */
+		<%if(logginMember!=null){%>
+		$(".fa-heart").parent().on("click",function(){
+			var code = {ccode:$(this).parents(".content-box-cotent").find("input[type=hidden]").val()};
+			var i= $(this).find("i");
+			 $.ajax({
+				url : "<%=request.getContextPath() %>/center/centerPrefer.do",
+				data : code,
+				type : "post",
+				success : function(data){
+					if(data=="true"){
+						i.removeClass('far');
+						i.addClass('fas');
+					}else{
+						i.removeClass('fas');
+						i.addClass('far');
+					}
+				}
+			}) 
+		});
+		<%} else{ %>
+			$(".fa-heart").parent().on("click",function(){
+		        alert("로그인후 이용하세요");
+			});
+		<%}%>
 		
-
-		
+		/* 찜하기 ajax */
 		
     </script>
 

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
 <div class="container pt-3 center-info">
-	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post"  encType="multipart/form-data">
+	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post" encType="multipart/form-data">
 
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
@@ -15,28 +16,29 @@
           	<input type="hidden" name="m-code" value="<%=logginMember.getM_CODE()%>">
             <div class="form-group">
               <label for="c-name">센터명</label>
-              <input type="text" class="form-control" name ="c-name" id="c-name" placeholder="센터명을 입력하세요">
+              <input type="text" class="form-control" name ="c-name" id="c-name" placeholder="센터명을 입력하세요" required>
             </div>
             <br>
             <div class="form-group">
               <label for="c-address">센터 주소</label>
               <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
-              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required> 
+              <!-- 주소 api를 통해 오는 데이터   -->
             </div>
             <br>
             <div class="form-group">
               <label for="c-tel">센터 연락처</label>
-              <input type="tel" name="c-tel" id="c-tel" class="form-control">
+              <input type="tel" name="c-tel" id="c-tel" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
               <label for="c-operating-hr">운영시간</label>
-              <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control">
+              <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
               <label for="c-holiday">휴무일</label>
-              <input type="text" name="c-holiday" id="c-holiday" class="form-control">
+              <input type="text" name="c-holiday" id="c-holiday" class="form-control" required>
             </div>
             <br>
             <div class="form-group">
@@ -144,7 +146,7 @@
             <br>
             <div class="form-group">
               <label for="c-photo1">대표 사진 등록</label>
-              <input type="file" class="form-control-file" name="c-photo" id="c-photo0" aria-describedby="fileHelp">
+              <input type="file" class="form-control-file" name="c-photo" id="c-photo0" aria-describedby="fileHelp" required>
               <small id="fileHelp" class="form-text text-muted">사업자님의 시설을 대표할 수 있는 사진 한 장을 업로드해주세요.</small>
               <small id="fileHelp" class="form=text text-muted">가로 세로 비율은 2:1이 바람직합니다.</small>
               <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
@@ -153,8 +155,8 @@
             <div class="form-group div-photo">
               <label for="exampleInputFile">사진 등록</label>
               <div class="div-here">
-              <input type="file" class="form-control-file" name="c-photo0" id="c-photo1" aria-describedby="fileHelp2">
-              <small id="fileHelp2" class="form-text text-muted">사업자님의 시설을 보여줄 수 있는 사진을 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
+              <input type="file" class="form-control-file" name="c-photo0" id="c-photo1" aria-describedby="fileHelp2" required>
+              <small id="fileHelp2" class="form-text text-muted">사업자님의 시설을 보여줄 수 있는 사진을 한 장 이상 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
               <!-- <input type="file" class="form-control-file" name="" id=""> -->
               </div>
               <button type="button" class="btn btn-secondary btn-sm" onclick="addPhoto();">+</button>
@@ -183,7 +185,7 @@
     </div>
 	    
 	<script>
-	
+		
 		function goPopup(){
 		// 주소검색을 수행할 팝업 페이지를 호출합니다.
 		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
