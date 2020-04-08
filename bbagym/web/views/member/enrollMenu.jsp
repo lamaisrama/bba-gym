@@ -84,7 +84,7 @@
 	        	
 	        	<button type="button" class="btn b text-white" data-toggle="modal" data-target="#join"
 	        	style="width:320px; height:320px; margin:45px; padding-bottom: 20px; border-radius: 50%;border: 5px solid #e7e7e7;"  
-	        	onclick="" /><h2><strong>&nbsp사업자 회원가입</strong></h2></button> &nbsp; 
+	        	onclick="location.replace('<%=request.getContextPath()%>/member/businessEnroll.do')" /><h2><strong>&nbsp사업자 회원가입</strong></h2></button> &nbsp; 
 	      	</div>
 	    </div>
 	    	
