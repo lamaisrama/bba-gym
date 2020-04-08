@@ -43,10 +43,8 @@
 				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
 				          <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
-
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li>		 </a>
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
@@ -58,7 +56,6 @@
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
-				   
 				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
@@ -66,6 +63,7 @@
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				     <%} %>
 
+				        
 				   <%-- <a href="<%=request.getContextPath()%>/views/center/centerViewDetail.jsp"> <li>센터 상세보기</li></a>
 				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerViewDetail.jsp"> <li>트레이너 상세보기</li></a> --%>
 				        
@@ -100,13 +98,16 @@
 	   	</div>
 
 	   	
-	    <div id="box">
+	    <div id
+	    ="box">
 	    <%
 			if (logginMember == null) {
 		%>
-	        <div>
-	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')">회원가입</button> &nbsp; 
-	        	<input type="button" class="btn btn-outline-primary text-white" value="로그인"" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
+	        <div>																								
+	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />회원가입</button> &nbsp; 
+	        	
+	        	
+	        	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
 
 	        	</div>
 	    	</div>
@@ -128,7 +129,6 @@
 			               			>정보수정</button>
 			        		  	  </div>
 			      				</div>	
-			      				
 	         </nav>
 	     </div>
 			<%
