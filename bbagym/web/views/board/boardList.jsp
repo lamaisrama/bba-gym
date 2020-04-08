@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, com.bbagym.model.vo.Board" %>
+<%
+	List<Board> list = (List)request.getAttribute("list"); 
+	String pageBar = (String)request.getAttribute("pageBar");
+%>		
 <%@ include file="/views/common/header.jsp"%>
 
 <style>
@@ -15,7 +20,7 @@
             <br>
             <br>
             <!-- 검색 -->
-            <div align="right">
+            <!-- <div align="right">
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
@@ -24,7 +29,7 @@
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
-            </div>
+            </div> -->
 
             <!-- 게시판테이블 start -->
             <table class="table table-hover">
@@ -39,46 +44,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%if(list!=null){ %>
+                	<%for(Board b : list) {%>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Tip</td>
-                        <td>TitleTitleTitleTitleTitleTitle</td>
-                        <td>Otto</td>
-                        <td>31-03-20</td>
-                        <td>0</td>
+                        <td scope="row"><%=b.getnCode() %></td>
+                        <td>
+                        	<a href="<%=request.getContextPath()%>/board/noticeView?no=<%=b.getnCode()%>">
+                        		<%=b.getTitle() %>
+                        	</a>
+                       	</td>
+                        <td><%=b.getmCode() %></td>
+                        <td><img src="/resources/img/file.png">
+                        	<%if(b.getOriFileName()!=null) {%>
+                        	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+							<%} %>
+						</td>
+                        <td><%=b.getnDate() %></td>
+                        <td><%=b.getReadCount() %></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Review</td>
-                        <td>TitleTitleTitleTitleTitleTitleTitleTitle</td>
-                        <td>Thornton</td>
-                        <td>310320</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Talk</td>
-                        <td>TitleTitleTitleTitleTitleTitle</td>
-                        <td>the Bird</td>
-                        <td>310320</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Tip</td>
-                        <td>TitleTitleTitleTitleTitleTitleTitleTitle</td>
-                        <td>the Bird</td>
-                        <td>310320</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Tip</td>
-                        <td>TitleTitleTitleTitleTitleTitle</td>
-                        <td>Otto</td>
-                        <td>31-03-20</td>
-                        <td>0</td>
-                    </tr>
+                    <%} %>
+                 <%} %>
                 </tbody>
             </table>
             <!-- 게시판테이블 end -->
@@ -87,21 +72,7 @@
             <br>
             <!-- 페이징 start -->
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                </ul>
+                <%=pageBar %>
             </nav>
             <!-- 페이징 end -->
         </div>    
