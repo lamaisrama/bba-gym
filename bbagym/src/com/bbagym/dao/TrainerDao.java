@@ -13,6 +13,7 @@ import java.util.Properties;
 import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.Trainer;
 import com.bbagym.model.vo.TrainerDetail;
+import com.bbagym.model.vo.TrainerProgram;
 import com.bbagym.model.vo.TrainerView;
 
 import static com.bbagym.common.JDBCTemplate.close;
@@ -344,7 +345,7 @@ public class TrainerDao {
 	public void trainerViewDetailPrograms(Connection conn, int t_code,TrainerDetail td) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		td.setT_program_name(new ArrayList());//리스트 초기값 세팅
+		td.setTrainerPrograms(new ArrayList());//리스트 초기값 세팅
 		
 		String sql = prop.getProperty("getTrainerPrograms");
 		
@@ -355,8 +356,10 @@ public class TrainerDao {
 			
 			while(rs.next()) {
 				//List<String> temp=td.getT_program_name();
-				td.getT_program_name().add(rs.getString("p_name"));
-				td.getT_price().add(rs.getInt("price"));
+				TrainerProgram tp=new TrainerProgram();
+				tp.setName(rs.getString("p_name"));
+				tp.setPrice(rs.getInt("price"));
+				td.getTrainerPrograms().add(tp);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -369,7 +372,7 @@ public class TrainerDao {
 	public void trainerViewDetailImgs(Connection conn, int t_code, TrainerDetail td) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		td.setT_program_name(new ArrayList());
+		td.setT_img(new ArrayList());
 		
 		String sql = prop.getProperty("getTrainerImgs");
 		
