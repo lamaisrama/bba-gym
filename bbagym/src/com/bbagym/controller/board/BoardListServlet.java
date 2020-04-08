@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbagym.model.vo.Notice;
-import com.bbagym.service.NoticeService;
+import com.bbagym.model.vo.Board;
+import com.bbagym.service.BoardService;
 
 /**
- * Servlet implementation class NoticeListServlet
+ * Servlet implementation class BoardListServlet
  */
-@WebServlet("/board/noticeList")
-public class NoticeListServlet extends HttpServlet {
+@WebServlet("/board/boardList")
+public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListServlet() {
+    public BoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +31,8 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		
 		int cPage;
 		
 		try {
@@ -42,9 +43,9 @@ public class NoticeListServlet extends HttpServlet {
 		
 		int numPerPage = 5;
 		
-		List<Notice> list = new NoticeService().selectNoticeList(cPage, numPerPage);
+		List<Board> list = new BoardService().selectBoardList(cPage, numPerPage);
 		
-		int totalData = new NoticeService().selectNoticeCount();
+		int totalData = new BoardService().selectBoardCount();
 		int totalPage = (int)Math.ceil((double)totalData/numPerPage);
 		
 		String pageBar = "";
@@ -73,7 +74,7 @@ public class NoticeListServlet extends HttpServlet {
 				
 			}else {
 				pageBar+="<li><a class='page-link' href='"+request.getContextPath()
-							+"/board/noticeList?cPage=" + pageNo 
+							+"/board/boardList?cPage=" + pageNo 
 							+"&numPerPage=" + numPerPage
 							+ "'>"+pageNo + "</a></li>";
 			}
@@ -86,17 +87,16 @@ public class NoticeListServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
 		}else {
 			pageBar+="<a class='page-link' href='"+request.getContextPath()
-						+"/board/noticeList?cPage="+pageNo
+						+"/board/boardList?cPage="+pageNo
 						+"&numPerPage="+numPerPage
 						+"'aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>";
 		}
 		
 		request.setAttribute("pageBar", pageBar);
-		System.out.println(list.size());
+		
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/board/noticeList.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
 		
 	}
 

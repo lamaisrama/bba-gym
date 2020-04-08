@@ -5,7 +5,7 @@ import java.util.Date;
 public class Notice {
 	
 	//공지게시판 코드
-	private String nCode;
+	private int nCode;
 	//공지게시판 제목
 	private String title;
 	//공지게시판 내용
@@ -19,7 +19,7 @@ public class Notice {
 	//공지게시판 조회수
 	private int readCount;
 	//공지게시판_멤버코드
-	private String mCode;
+	private int mCode;
 	//공지게시판 상태
 	private char nStatus;
 	
@@ -27,8 +27,8 @@ public class Notice {
 		super();
 	}
 
-	public Notice(String nCode, String title, String nContent, Date nDate, String oriFileName, String newFileName,
-			int readCount, String mCode, char nStatus) {
+	public Notice(int nCode, String title, String nContent, Date nDate, String oriFileName, String newFileName,
+			int readCount, int mCode, char nStatus) {
 		super();
 		this.nCode = nCode;
 		this.title = title;
@@ -41,11 +41,11 @@ public class Notice {
 		this.nStatus = nStatus;
 	}
 
-	public String getnCode() {
+	public int getnCode() {
 		return nCode;
 	}
 
-	public void setnCode(String nCode) {
+	public void setnCode(int nCode) {
 		this.nCode = nCode;
 	}
 
@@ -97,11 +97,11 @@ public class Notice {
 		this.readCount = readCount;
 	}
 
-	public String getmCode() {
+	public int getmCode() {
 		return mCode;
 	}
 
-	public void setmCode(String mCode) {
+	public void setmCode(int mCode) {
 		this.mCode = mCode;
 	}
 

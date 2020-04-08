@@ -75,8 +75,7 @@ public class CenterDao {
 				list.add(c);
 			}
 		}catch(SQLException e) {
-			list.clear();
-			return list; //오류시 list 비움
+			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -150,7 +149,7 @@ public class CenterDao {
 	
 
 	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
-		public List<CenterEnroll> findCatergoryList(Connection conn,List<CenterEnroll> list){
+		public void findCatergoryList(Connection conn,List<CenterEnroll> list){
 			
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -168,7 +167,7 @@ public class CenterDao {
 				while(rs.next()) {
 					category.add(rs.getString("CATEGORY_NAME"));
 				}
-
+				
 
 				list.get(i).setCategories(category);
 				
@@ -176,7 +175,7 @@ public class CenterDao {
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			return list;
+			
 		}
 	
 	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 
@@ -290,6 +289,7 @@ public class CenterDao {
 		
 	}
 	
+
 	public CenterDetail centerViewDetail(Connection conn, int cCode) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -331,6 +331,63 @@ public class CenterDao {
 		ResultSet rs = null;
 		cd.setCenterPrograms(new ArrayList());
 		
+
+	public void getScore(Connection conn,List<CenterEnroll> list) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("getScore");
+		try {
+			
+			for(CenterEnroll c: list) {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			c.setScore(rs.getDouble(1));
+			
+			
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public List<CenterEnroll> SearchCategoryPageData(Connection conn,int cPage,int numPerpage,String[] category){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("SearchCategoryPageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+
 	}
 	
 	

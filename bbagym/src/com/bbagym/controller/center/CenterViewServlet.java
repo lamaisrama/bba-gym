@@ -56,10 +56,12 @@ public class CenterViewServlet extends HttpServlet {
 
 		int numPerpage=3; //페이지당 3개 데이터 출력
 		List<CenterEnroll> list = new CenterService().centerMainPageData(cPage,numPerpage,m);
-		
 
-		
 		int totalData = new CenterService().selectCountCenter();
+		
+		for(CenterEnroll c : list) {
+			System.out.println(c);
+		}
 		
 		
 		
