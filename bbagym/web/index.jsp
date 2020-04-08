@@ -57,7 +57,7 @@
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
-				     <%}else {%>				     	
+				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
@@ -114,6 +114,7 @@
 			<div id="content">
 	         <nav>
 	             <p>
+	
 	             <b><%=logginMember.getM_NAME()%>님 </b>환영합니다
 	             </p>
 	             <div id="box">
@@ -121,16 +122,21 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			 <%if (logginMember.getM_LEVEL()==1) {%>
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>정보수정</button>
+			               			<%}else if (logginMember.getM_LEVEL()==2) {%>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
+			               			<%}else %>
+			               			<%} %>
+			               			
 			        		  	  </div>
 			      				</div>	
 	         </nav>
 	     </div>
-			<%
-					}
-				%>
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>

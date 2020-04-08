@@ -137,7 +137,7 @@ if (cookies != null) {
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
               
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>
