@@ -41,7 +41,7 @@
 
 				    <ul>	<!--로그인한멤버 -->		        
 				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
-				          <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
+				          <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
@@ -51,7 +51,7 @@
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li>		 </a>
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
-				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
+				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한사업자 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
@@ -60,7 +60,7 @@
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
 				   
 				     <%}else {%>
-				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
+				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->

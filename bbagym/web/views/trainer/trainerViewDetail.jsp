@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.bbagym.model.vo.TrainerDetail" %>
+<%@ page import="com.bbagym.model.vo.TrainerDetail, com.bbagym.model.vo.TrainerProgram" %>
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
-%>
+%>	
 
  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');">
     <div class="filter"></div>
@@ -58,9 +58,9 @@
               <h5>P.T
                 <br/>
                 <small>
-                <%for(int i=0; i<td.getT_program_name().size(); i++) {%>
-                  <del>정상가 <%=td.getT_program_name()%> <%=td.getT_price() %>원</del><br>
-                 	 빠짐회원가 회당 99,000원<br><br>
+                <%for(TrainerProgram tp : td.getTrainerPrograms()){%>
+                  <del>정상가 <%=tp.getName()%> <%=(int)(tp.getPrice()+(tp.getPrice()*0.1))%>원</del><br>
+                 	 빠짐회원가 회당 <%=tp.getPrice() %>원<br><br>
                   <%} %>
 <!--                   <del>정상가 10회 800,000원</del><br>
                   빠짐회원가 10회 700,000원<br>
@@ -130,28 +130,28 @@
           <hr>
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
-              <h5>소셜미디어
+              <h5 style="width:600px;">소셜미디어
                 <br/>
-                <%if(td.getSns_homepage()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
-                <%}else { %>
-                <small></small>
-                <%} %>
                 <%if(td.getSns_instagram()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
-                <%}else { %>
+                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/instagramlogo1.png" style="height: 52.5px;">인스타그램</a></small>
+				<%}else { %>
                 <small></small>
                 <%} %>
-                 <%if(td.getSns_blog()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
-                <%}else { %>
+                  <%if(td.getSns_homepage()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/homebutton1.png" style="height: 52.5px">홈페이지</a></small>
+ 				<%}else { %>
                 <small></small>
-                <%} %>
+                 <%} %>
+                <%if(td.getSns_blog()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/blogicon1.jpg" style="height: 52.5px">블로그</a></small>
+                 <%}else { %> 
+                 <small></small>
+                 <%} %>
                 <%if(td.getSns_etc()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
-                <%}else { %>
-                <small></small>
-                <%} %>
+                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/othericon1.jpg" style="height: 52.5px">기타</a></small>
+                 <%}else { %> 
+                 <small></small>
+                 <%} %> 
               </h5>
             </div>  
           </div>

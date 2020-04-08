@@ -103,7 +103,7 @@ public class CenterDao {
 			close(pstmt);
 		}
 		return result;
-	}
+		}
 	
 	public void findCategory(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
@@ -214,7 +214,7 @@ public class CenterDao {
 	}
 	
 	//찜하기를 체크하는 dao 메소드
-	public List<CenterEnroll> checkPerfer(Connection conn,List<CenterEnroll> list,int mcode){
+	public void checkPerfer(Connection conn,List<CenterEnroll> list,int mcode){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		String sql =prop.getProperty("checkPerfer");
@@ -230,6 +230,8 @@ public class CenterDao {
 			while(rs.next()) {
 				if(rs.getInt(1)==1) { // 1일경우 찜하기이므로 boolean 형을 true로 변환
 					list.get(i).setPrefer(true);
+				}else {
+					list.get(i).setPrefer(false);
 				}
 			}
 			
@@ -238,8 +240,7 @@ public class CenterDao {
 			e.printStackTrace();
 		}
 		
-		
-		return list;
+
 
 	}
 	
@@ -262,4 +263,33 @@ public class CenterDao {
 		return cCode;
 
 	}
+	
+	public int insertDeletePerfer(Connection conn,int ccode,int mcode,boolean flag) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql="";
+		if(flag) {
+			 sql=prop.getProperty("DeletePrefer");
+		}else {
+			 sql=prop.getProperty("InsertPrefer");
+		}
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, mcode);
+			pstmt.setInt(2, ccode);
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	
 }
