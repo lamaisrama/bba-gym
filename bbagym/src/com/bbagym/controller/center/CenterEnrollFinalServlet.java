@@ -74,7 +74,7 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 			loc="/index.jsp";
 		}else {
 			msg="등록 실패, 관리자에게 문의하세요";
-			loc="/index.jsp";
+			loc="/center/centerEnroll.do";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

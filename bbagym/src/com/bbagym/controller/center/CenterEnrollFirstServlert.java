@@ -57,11 +57,15 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		String[] fac=mr.getParameterValues("c-fac");
 		c.setCategories(new ArrayList());
 		c.setFacilities(new ArrayList());
-		for(String s : cat) {
-			c.getCategories().add(s);
+		if(cat!=null) {
+			for(String s : cat) {
+				c.getCategories().add(s);
+			}
 		}
-		for(String s : fac) {
-			c.getFacilities().add(s);
+		if(fac!=null) {
+			for(String s : fac) {
+				c.getFacilities().add(s);
+			}			
 		}
 		c.setSnsHome(mr.getParameter("sns-homepage"));
 		c.setSnsInsta(mr.getParameter("sns-insta"));
