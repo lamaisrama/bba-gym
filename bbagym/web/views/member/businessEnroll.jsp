@@ -19,13 +19,13 @@
 			</h6>
 			<hr>
 			
-			<form action="<%=request.getContextPath()%>/member/memberEnrollEnd" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/business/memberEnrollEnd" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
 				<div class="form-group"style="text-align:center;">
 						<label for="c-time" ><pre style="color:green ; display:inline-block">*</pre>사업자 등록 번호</label><input type="text"class="form-control"placeholder="business_code입력하세요" 
 							style="width:40%;margin-left:215px;text-align:center;" name="BUSINESS_CODE" id="BUSINESS_CODE" required><br>
 						
 					</div>
-				
+				<hr>
 				<br>
 					<label for="c-name"><pre style="color:red ; display:inline-block">*</pre>아이디</label>
 					<div class="form-group" style="display: flex">
@@ -99,12 +99,22 @@
 					</div>
 					<br>
 					<div class="form-group div-photo">
-						<label for="exampleInputFile">사진 등록</label>
+						<label for="exampleInputFile">프로필 사진등록</label>
 						<div class="div-here">
 							<input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE"> 
 								<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
 							
 					<br>
+						<div class="form-group">
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>트레이너 PHONE</label> <input type="text"
+							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE2" id="M_PHONE2" required>
+					</div>
+					<br>
+					<div class="form-group">
+						 <button type="button" class="btn btn-warning" onclick="goPopup2()">트레이너 주소</button>
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요" required  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+					<br>
+		
 					<div class="info-footer-inner">
 						<a href="<%=request.getContextPath()%>"><button type="button"
 								class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
@@ -157,8 +167,23 @@
     function jusoCallBack(roadFullAddr){
     		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
     		document.getElementById('M_ADDRESS').value = roadFullAddr;
-
+   
     }
+    function goPopup2(){
+    	// 주소검색을 수행할 팝업 페이지를 호출합니다.
+    	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup2.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+    	
+    	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/arerddrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+    }
+
+    function jusoCallBack2(roadFullAddr){
+    		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
+    		document.getElementById('M_ADDRESS_2').value = roadFullAddr;
+   
+    }
+    
 </script>
 	
 	<%@ include file="/views/common/footer.jsp"%>

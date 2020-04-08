@@ -93,6 +93,22 @@ public class MemberService {
 		return result;
 	}
 	//pusth
+
+
+	public int insertBusiness(Member m) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int result = dao.insertBusiness(conn, m); 
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		rollback(conn);
+
+		close(conn);
+		return result;
+	}
+		
 	
 
 }

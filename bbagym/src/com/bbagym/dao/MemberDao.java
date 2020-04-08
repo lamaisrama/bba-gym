@@ -96,9 +96,41 @@ import com.bbagym.model.vo.Member;
 			pstmt.setString(4, m.getM_EMAIL());
 			pstmt.setString(5, m.getM_PHONE());
 			pstmt.setString(6, m.getM_ADDRESS());
-			pstmt.setString(7, m.getM_IMAGE());;
+			pstmt.setString(7, m.getM_IMAGE());
 			pstmt.setString(8,String.valueOf(m.getM_GENDER()));
 			pstmt.setInt(9,m.getM_AGE());
+			result=pstmt.executeUpdate();			
+	
+
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	//business 회원가입 등록
+	public int insertBusiness(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("inserBusiness");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);  
+			pstmt.setString(1, m.getM_ID());
+			pstmt.setString(2, m.getM_PW());
+			pstmt.setString(3, m.getM_NAME());
+			pstmt.setString(4, m.getM_EMAIL());
+			pstmt.setString(5, m.getM_PHONE());
+			pstmt.setString(6, m.getM_ADDRESS());
+			pstmt.setString(7, m.getM_IMAGE());
+			pstmt.setString(8, m.getM_PHONE2());
+			pstmt.setString(9, m.getM_ADDRESS_2());
+			pstmt.setString(10,String.valueOf(m.getM_GENDER()));
+			pstmt.setInt(11,m.getM_AGE());
+			pstmt.setString(12, m.getBUSINESS_CODE());
+			
 			result=pstmt.executeUpdate();			
 	
 
@@ -179,5 +211,7 @@ import com.bbagym.model.vo.Member;
 			close(pstmt);
 		}return result;
 	}//push
+
+
 
 	}

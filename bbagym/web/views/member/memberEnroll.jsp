@@ -94,7 +94,7 @@
 					</div>
 					<br>
 					<div class="form-group div-photo">
-						<label for="exampleInputFile">사진 등록</label>
+						<label for="exampleInputFile">프로필 사진등록</label>
 						<div class="div-here">
 							<input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE"> 
 								<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
