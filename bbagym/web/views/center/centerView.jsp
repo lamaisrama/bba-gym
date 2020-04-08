@@ -7,7 +7,7 @@
 
 	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
-
+	int score=1;
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
@@ -47,7 +47,7 @@
                 <h3>map api 넣을 구역</h3>
             </div>
             <div class="tab-pane container" id="category">
-                <form action="#" method="POST">
+                <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
                     <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
                     <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
                     <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
@@ -89,7 +89,15 @@
                             <td>10.9Km</td><!-- 거리 API-->
                         </tr>
                         <tr>
-                            <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
+                            <td colspan="2">
+                            	<%for(;score<=c.getScore();score++){ %>
+                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+                            	<%} 
+                            	if(score-c.getScore()<0.5){%>
+                            		<i class="fa fa-star-half"></i>
+                            	<%} score=1;%>
+                            	<%=c.getScore()==0 ?  "0" : c.getScore() %>
+                            </td><!-- 평점 점수에따른 이미지변경-->
                             <td></td>
                         </tr>
                         <tr>

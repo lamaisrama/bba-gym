@@ -27,12 +27,31 @@ public class CenterEnroll {
 	private List<String> facilities;
 	private List<Program> program;
 	private boolean prefer;
+	private double score;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
+    
+	
+	
+	public double getScore() {
+		return score;
+	}
+
+
+
+
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
+
+
+
 
 	public boolean getPrefer() {
 		return prefer;
@@ -206,15 +225,27 @@ public class CenterEnroll {
 		this.program = program;
 	}
 
+
+
+
+
 	@Override
 	public String toString() {
-		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr="
-				+ opHr + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" + text + ", mainImage="
-				+ mainImage + ", businessCode=" + businessCode + ", approval=" + approval + ", memberCode=" + memberCode
-				+ ", snsHome=" + snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" + snsEtc
-				+ ", photos=" + photos + ", categories=" + categories + ", facilities=" + facilities + ", program="
-				+ program + "]";
+		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories
+				+ ", prefer=" + prefer + ", score=" + score + "]";
 	}
 
+	/*
+	 * @Override public String toString() { return "CenterEnroll [code=" + code +
+	 * ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr=" + opHr
+	 * + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" +
+	 * text + ", mainImage=" + mainImage + ", businessCode=" + businessCode +
+	 * ", approval=" + approval + ", memberCode=" + memberCode + ", snsHome=" +
+	 * snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" +
+	 * snsEtc + ", photos=" + photos + ", categories=" + categories +
+	 * ", facilities=" + facilities + ", program=" + program + "]"; }
+	 */
+	
+	
 }
 

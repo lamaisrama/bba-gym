@@ -76,8 +76,7 @@ public class CenterDao {
 				list.add(c);
 			}
 		}catch(SQLException e) {
-			list.clear();
-			return list; //오류시 list 비움
+			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -151,7 +150,7 @@ public class CenterDao {
 	
 
 	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
-		public List<CenterEnroll> findCatergoryList(Connection conn,List<CenterEnroll> list){
+		public void findCatergoryList(Connection conn,List<CenterEnroll> list){
 			
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -169,7 +168,7 @@ public class CenterDao {
 				while(rs.next()) {
 					category.add(rs.getString("CATEGORY_NAME"));
 				}
-
+				
 
 				list.get(i).setCategories(category);
 				
@@ -177,7 +176,7 @@ public class CenterDao {
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			return list;
+			
 		}
 	
 	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 
@@ -288,6 +287,32 @@ public class CenterDao {
 		}
 		
 		return result;
+		
+	}
+	
+	public void getScore(Connection conn,List<CenterEnroll> list) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("getScore");
+		try {
+			
+			for(CenterEnroll c: list) {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			c.setScore(rs.getDouble(1));
+			
+			
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

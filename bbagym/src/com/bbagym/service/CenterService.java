@@ -83,10 +83,9 @@ public class CenterService {
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerMainPageData(conn,cPage,numPerpage); //기본 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			list = dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
-			if(!list.isEmpty()&&mcode!=0) { //로그인상태이면서 위에서 오류가 뜨지않을경우 들어가게 로직
-				dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
-			}
+			dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
+			dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+			dao.getScore(conn,list);
 		}
 		close(conn);
 		return list;
