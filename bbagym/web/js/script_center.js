@@ -5,7 +5,7 @@
 		function addPhoto(){
 		    count_photo++;
 		    if(count_photo<4){
-		        const area=$(".div-here");
+		        const area=$(".div-photo");
 		        const new_Input=$("<input>").attr("class","form-control-file photo-").attr("name","c-photo"+count_photo).attr("type","file");
 		        //지우는 버튼 추가 해야함
 		        $(new_Input).appendTo($(area));
@@ -41,7 +41,7 @@
 		    div_new.html($(tabletag));
 		    div_new.appendTo(div_row);
 		    div_row.appendTo(area);
-		    console.log('추가 후 '+count);
+
 		}
 
 		function deleteProgram(){
