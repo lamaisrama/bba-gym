@@ -10,10 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Price;
 import com.bbagym.model.vo.Program;
 import com.bbagym.service.CenterService2;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class CenterEnrollFinalServlet
@@ -36,12 +40,33 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		CenterEnroll c = (CenterEnroll)session.getAttribute("centerEnroll");
-		c.setText(request.getParameter("c-text"));
+		
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg", "센터 등록 오류[form:encType] 관리자에게문의하세요");
+			request.setAttribute("loc", "/centerView");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			return; //return을 넣어서 종료 해야함! 
+		}
+		
+		String path=getServletContext().getRealPath("/upload/center/");
+		int maxSize=1024*1024*10;
+		
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
+		c.setMainImage(mr.getFilesystemName("c-photo0"));
+		c.setPhotos(new ArrayList());
+		c.getPhotos().add(mr.getFilesystemName("c-photo1"));
+		for(int i=0;i<4;i++) {	
+			if(mr.getFilesystemName("c-photo"+(i+2))!=null){
+				c.getPhotos().add(mr.getFilesystemName("c-photo"+(i+1)));
+			}
+		}
+		c.setSchedulePath(mr.getParameter("c-timetable"));
+		c.setText(mr.getParameter("c-text"));
 		c.setProgram(new ArrayList());
-		String[] pnames=request.getParameterValues("cp");
+		String[] pnames=mr.getParameterValues("cp");
 		for(int i=0;i<pnames.length;i++) {
 			c.getProgram().add(new Program(pnames[i]));
-			String[] pcosts=request.getParameterValues("cp"+i+"p");
+			String[] pcosts=mr.getParameterValues("cp"+i+"p");
 			for(int j=0;j<4;j++) {
 				switch(j) {
 					case 0: {

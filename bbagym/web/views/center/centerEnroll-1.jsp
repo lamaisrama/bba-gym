@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
 <div class="container pt-3 center-info">
-	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post" encType="multipart/form-data">
+	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post">
 
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12">
@@ -144,31 +144,6 @@
               <input class="form-control" type="text" name="sns-etc" id="c-sns-4">
             </div>
             <br>
-            <div class="form-group">
-              <label for="c-photo1">대표 사진 등록</label>
-              <input type="file" class="form-control-file" name="c-photo" id="c-photo0" aria-describedby="fileHelp" required>
-              <small id="fileHelp" class="form-text text-muted">사업자님의 시설을 대표할 수 있는 사진 한 장을 업로드해주세요.</small>
-              <small id="fileHelp" class="form=text text-muted">가로 세로 비율은 2:1이 바람직합니다.</small>
-              <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
-            </div>
-            <br>
-            <div class="form-group div-photo">
-              <label for="exampleInputFile">사진 등록</label>
-              <div class="div-here">
-              <input type="file" class="form-control-file" name="c-photo0" id="c-photo1" aria-describedby="fileHelp2" required>
-              <small id="fileHelp2" class="form-text text-muted">사업자님의 시설을 보여줄 수 있는 사진을 한 장 이상 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
-              <!-- <input type="file" class="form-control-file" name="" id=""> -->
-              </div>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="addPhoto();">+</button>
-              <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
-            </div>
-            <br>
-            <div class="form-group">
-              <label for="exampleInputFile">시간표 등록</label>
-              <input type="file" class="form-control-file" name="c-timetable" id="c-timetable" aria-describedby="fileHelp2">
-              <small id="fileHelp2" class="form-text text-muted">센터 내의 프로그램에 대한 시간표가 있다면 업로드 해주세요.</small>
-              <!-- <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small> -->
-            </div>
           </fieldset>
         
 	      </div>
