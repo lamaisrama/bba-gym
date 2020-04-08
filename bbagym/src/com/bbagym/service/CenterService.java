@@ -6,6 +6,7 @@ import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bbagym.dao.CenterDao;
@@ -30,6 +31,7 @@ public class CenterService {
 		return centerEnrollList;
 	}
 	
+	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 서비스
 	public int selectCountCenter() {
 		Connection conn = getConnection();
 		int count = dao.selectCountCenter(conn);
@@ -83,12 +85,47 @@ public class CenterService {
 		if(!list.isEmpty()) {
 			list = dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
 			if(!list.isEmpty()&&mcode!=0) { //로그인상태이면서 위에서 오류가 뜨지않을경우 들어가게 로직
-				list=dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+				dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
 			}
 		}
 		close(conn);
 		return list;
 	}
 	
+	//찜하기메소드
+	public boolean CenterPreferFind(int ccode,int mcode) {
+		Connection conn = getConnection();
+		List<CenterEnroll> boguni = new ArrayList<CenterEnroll>();
+		CenterEnroll c = new CenterEnroll();
+		c.setCode(ccode);
+		boguni.add(c);
+		dao.checkPerfer(conn,boguni,mcode);
+		boolean flag = boguni.get(0).getPrefer();
+		
+		
+		if(flag) {
+			
+			  int result=dao.insertDeletePerfer(conn,ccode,mcode,flag); // flag가 true이면 찜이 되있는것으로 삭제를하고 false를보낸다
+			  
+			  	if(result>0) {
+				  commit(conn); 
+				} else{ 
+					rollback(conn); 
+				} 
+			  	close(conn);
+				return false; 
+		  }else {
+			  int result=dao.insertDeletePerfer(conn,ccode,mcode,flag); // flag가 false이면 찜을하고 true를 보낸다
+			  
+			  if(result>0) {
+				  commit(conn); 
+				} else{ 
+					rollback(conn); 
+				} 
+			    close(conn);
+				return true; 
+		  }
+		
+	}
 	
 }
