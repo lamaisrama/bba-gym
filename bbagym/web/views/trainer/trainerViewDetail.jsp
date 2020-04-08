@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.bbagym.model.vo.TrainerDetail" %>
 <%@ include file="/views/common/header.jsp"%>
+
+<%
+	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
+%>
 
  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');">
     <div class="filter"></div>
@@ -12,7 +17,7 @@
           <img src="<%=request.getContextPath()%>/assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
         </div>
         <div class="name">
-          <h4 class="title">Jane Faker
+          <h4 class="title"><%=td.getT_name() %>
             <br />
           </h4>
           <h6 class="description">manager</h6>
@@ -21,11 +26,10 @@
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
-            선릉바디스페이스 팀장 최승호입니다. <BR>
-            항상 진정성을 가지고 임하는 트레이너입니다. <br><br>
-            <strong>전화번호</strong>&nbsp;&nbsp;0504-3145-6060 <br>
-            <strong>근무지</strong>&nbsp;&nbsp;선릉 바디스페이스 24시<br>
-            서울특별시 강남구 테헤란로 311 지하1층
+            	<%=td.getT_intro() %><br><br>
+            <strong>전화번호</strong>&nbsp;&nbsp;<%=td.getM_phone_2() %> <br>
+            <strong>근무지</strong>&nbsp;&nbsp; <%=td.getC_name() %><br>
+            <%=td.getM_address_2() %>
           </p>
           <br />
           <btn class="btn btn-outline-default btn-round">Personal Training</btn>
@@ -54,9 +58,11 @@
               <h5>P.T
                 <br/>
                 <small>
-                  <del>정상가 1회 99,000원</del><br>
-                  빠짐회원가 회당 99,000원<br><br>
-                  <del>정상가 10회 800,000원</del><br>
+                <%for(int i=0; i<td.getT_program_name().size(); i++) {%>
+                  <del>정상가 <%=td.getT_program_name()%> <%=td.getT_price() %>원</del><br>
+                 	 빠짐회원가 회당 99,000원<br><br>
+                  <%} %>
+<!--                   <del>정상가 10회 800,000원</del><br>
                   빠짐회원가 10회 700,000원<br>
                   <mark>회당 70,000원</mark><br><br>
                   <del>정상가 20회 1,500,000원</del><br>
@@ -64,7 +70,7 @@
                   <mark>회당 65,000원</mark><br><br>
                   <del>정상가 30회 2,100,000원</del><br>
                   빠짐회원가 30회 1,800,000원<br>
-                  <mark>회당 60,000원</mark><br>
+                  <mark>회당 60,000원</mark><br> -->
                 </small>
               </h5>
             </div>
@@ -75,18 +81,7 @@
               <h5>트레이너소개
                 <br/>
                 <small>
-                  생활체육지도사 2급 (보디빌딩) <br>
-                  스포츠마사지 2급<br>
-                  척추파운데이션 교육 이수<br>
-                  Personal Training 교육 이수<br>
-                  IFSH 스포츠테이핑 교육 이수<br>
-                  응급처치 교육이수<br>
-                  <br>
-                  2014.04 ~ 2017.03 구미바디플래닛짐 팀장<br>
-                  2018.03 피트니스스타 내셔널리그 스포츠모델 5위<br>
-                  2019.04 나바 WFF Asia open 스포츠모델 top 10<br>
-                  2019.04 World Natural Chapmionship 스포츠모델 2위<br>
-                  2019.05 PCA 스포츠모델 top 10
+                  <%=td.getT_text() %>
                 </small>
               </h5>
             </div>
@@ -96,7 +91,7 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>자격 및 경력사항
                 <br/>
-                <small>맞춤형 다이어트 / 재활 / 체형교정</small>
+                <small><%=td.getT_career() %></small>
               </h5>
             </div>
           </div>
@@ -105,7 +100,7 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>상담 가능 시간
                 <br/>
-                <small>평일 12:00 ~ 22:00</small>
+                <small><%=td.getT_counsel_hours() %></small>
               </h5>
             </div>
           </div>
@@ -114,7 +109,7 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>소속
                 <br/>
-                <small><a href="#">선릉 바디스페이스 24시</a></small>
+                <small><a href="#"><%=td.getC_name() %></a></small>
               </h5>
             </div>  
           </div>
@@ -137,7 +132,26 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>소셜미디어
                 <br/>
-                <small><a href="https://www.instagram.com"><img src="assets/img/instagram_logo.png">인스타그램</a></small>
+                <%if(td.getSns_homepage()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
+                <%}else { %>
+                <small></small>
+                <%} %>
+                <%if(td.getSns_instagram()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
+                <%}else { %>
+                <small></small>
+                <%} %>
+                 <%if(td.getSns_blog()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
+                <%}else { %>
+                <small></small>
+                <%} %>
+                <%if(td.getSns_etc()!=null) { %>
+                <small><a href="https://www.instagram.com"><img src="/assets/img/instagram_logo.png">인스타그램</a></small>
+                <%}else { %>
+                <small></small>
+                <%} %>
               </h5>
             </div>  
           </div>

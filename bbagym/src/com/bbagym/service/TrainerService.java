@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.bbagym.dao.TrainerDao;
 import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerView;
 
 public class TrainerService {
@@ -66,12 +67,27 @@ public class TrainerService {
 		return result;
 	}
 	
-	
-	public List<Center> searchCenterName(String name) {
+
+
+	public List<Center> searchCenterName(String address) {
 		Connection conn = getConnection();
-		List<Center> list = dao.searchCenterName(conn,name);
+		List<Center> name = dao.searchCenterName(conn,address);
 		close(conn);
-		return list;
+		return name;
 	}
 	
+	public TrainerDetail trainerViewDetail(int t_code) {
+		Connection conn = getConnection();
+		TrainerDetail td = dao.trainerViewDetail(conn, t_code);
+		if(td!=null) {
+			dao.trainerViewDetailPrograms(conn, t_code, td);
+			dao.trainerViewDetailImgs(conn, t_code, td);
+		}
+		System.out.println(td);
+		close(conn);
+		return td;
+	}
+
+	
+
 }

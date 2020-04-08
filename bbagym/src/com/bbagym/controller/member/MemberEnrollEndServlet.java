@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.bbagym.common.encrypt.AESEncrypt;
-import com.bbagym.member.service.MemberService;
 import com.bbagym.model.vo.Member;
+import com.bbagym.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -61,6 +61,9 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		String address = mr.getParameter("M_ADDRESS");
 		String phone = mr.getParameter("M_PHONE"); 						
 	    String image=mr.getFilesystemName("M_IMAGE");
+	    
+	   
+		
 	    
 	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age);
 	      int result=new MemberService().insertMember(m);

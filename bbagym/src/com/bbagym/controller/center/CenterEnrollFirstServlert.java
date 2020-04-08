@@ -3,7 +3,6 @@ package com.bbagym.controller.center;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,32 +46,38 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		int maxSize=1024*1024*10;
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
 		
-		String name=mr.getParameter("c-name");
-		String address=mr.getParameter("c-address");
-		String tel = mr.getParameter("c-tel");
-		String ophr = mr.getParameter("c-operating-hr");
-		String holiday=mr.getParameter("c-holiday");
-		String[] categories = mr.getParameterValues("c-cat"); 
-		String[] facilities = mr.getParameterValues("c-fac");
-		Properties sns = new Properties();
-			for(int i=1;i<5;i++) {
-				sns.put("sns"+i, mr.getParameter("sns"+i));
-			}
-		String photo=mr.getFilesystemName("c-photo");
-		List<String> photos=new ArrayList();
-		photos.add(mr.getFilesystemName("c-photo0"));
-		for(int i=0;i<4;i++) {
-			if(mr.getFilesystemName("c-photo"+(i+1))!=null){
-				photos.add(mr.getFilesystemName("c-photo"+(i+1)));
+		CenterEnroll c= new CenterEnroll();
+		c.setMemberCode(Integer.parseInt(mr.getParameter("m-code")));
+		c.setName(mr.getParameter("c-name"));
+		c.setAddress(mr.getParameter("c-address"));
+		c.setTel(mr.getParameter("c-tel"));
+		c.setOpHr(mr.getParameter("c-operating-hr"));
+		c.setHoliday(mr.getParameter("c-holiday"));
+		String[] cat=mr.getParameterValues("c-cat");
+		String[] fac=mr.getParameterValues("c-fac");
+		c.setCategories(new ArrayList());
+		c.setFacilities(new ArrayList());
+		for(String s : cat) {
+			c.getCategories().add(s);
+		}
+		for(String s : fac) {
+			c.getFacilities().add(s);
+		}
+		c.setSnsHome(mr.getParameter("sns-homepage"));
+		c.setSnsInsta(mr.getParameter("sns-insta"));
+		c.setSnsBlog(mr.getParameter("sns-blog"));
+		c.setSnsEtc(mr.getParameter("sns-etc"));
+		c.setMainImage(mr.getFilesystemName("c-photo0"));
+		c.setPhotos(new ArrayList());
+		c.getPhotos().add(mr.getFilesystemName("c-photo1"));
+		for(int i=0;i<4;i++) {	
+			if(mr.getFilesystemName("c-photo"+(i+2))!=null){
+				c.getPhotos().add(mr.getFilesystemName("c-photo"+(i+1)));
 			}
 		}
-		CenterEnroll c= new CenterEnroll(name, address, tel, ophr, holiday,
-				categories, facilities, sns, photo, photos);
-		
+		c.setSchedulePath(mr.getParameter("c-timetable"));
 		HttpSession session=request.getSession();
 		session.setAttribute("centerEnroll", c);
-		System.out.println(c);
-		System.out.println(session.getAttribute("centerEnroll"));
 		request.getRequestDispatcher("/views/center/centerEnroll-2.jsp").forward(request, response);
 	}
 
