@@ -53,6 +53,7 @@ import com.bbagym.model.vo.Member;
 				m.setM_ADDRESS_2(rs.getString("M_ADDRESS_2"));
 				m.setM_GENDER(rs.getString("M_GENDER").charAt(0));
 				m.setM_AGE(rs.getInt("M_AGE"));
+				m.setBUSINESS_CODE(rs.getString("BUSINESS_CODE"));
 			
 			}
 		}catch(SQLException e) {

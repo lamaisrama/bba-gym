@@ -29,7 +29,7 @@
 			<h1 class="mt-4" style="text-align: center;">로그인</h1>
 			<br>
 			<h6 style="text-align: center;">
-				<b>Member Login</b>
+				<b>BBAGYM Login</b>
 			</h6>
 
 
@@ -40,17 +40,21 @@
 						name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>"
 						required> <input type="password" class="input-field"
 						placeholder="Enter Password" name="M_PW" id="M_PW"
-						placeholder="PW" placeholder="비밀번호입력" required> <input
+						placeholder="PW" placeholder="비밀번호입력" required> <br><br><input
 						type="checkbox" style="float: left" name="saveId" id="saveId"
-						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장 <br>
-
+						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
+						<div style="float:right">
+						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인(보류)">
+						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_naver_login.gif" alt="네이버 로그인">
+</div>
+						 <br>
+<br>
 					<button class="submit" style="">Login</button>
 					<br> <input type="button" class="find" value="아이디/비밀번호 찾기">
 
 
 
-
-<!-- 카카오톡로그인 -->
+<!-- 카카오톡로그인 
 
 
 					<a id="kakao-login-btn"></a> 
@@ -73,7 +77,7 @@
 							}
 						});
 						//
-					</script>
+					</script>-->
 				</div>
 			</form>
 
