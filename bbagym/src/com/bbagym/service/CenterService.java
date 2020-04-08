@@ -31,7 +31,7 @@ public class CenterService {
 		return centerEnrollList;
 	}
 	
-	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 서비스
+	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 서비스-bs
 	public int selectCountCenter() {
 		Connection conn = getConnection();
 		int count = dao.selectCountCenter(conn);
@@ -40,7 +40,7 @@ public class CenterService {
 	}
 	
 	
-	//centerview에 보여줄 데이터를 가져오는 서비스
+	//centerview에 보여줄 데이터를 가져오는 서비스-bs
 	public List<CenterEnroll> centerMainPageData(int cPage,int numPerpage,int mcode){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerMainPageData(conn,cPage,numPerpage); //기본 센터 정보를 가져오는 서비스
@@ -55,7 +55,7 @@ public class CenterService {
 		return list;
 	}
 	
-	//찜하기메소드
+	//찜하기 추가 또는 삭제 서비스 -bs
 	public boolean CenterPreferFind(int ccode,int mcode) {
 		Connection conn = getConnection();
 		List<CenterEnroll> boguni = new ArrayList<CenterEnroll>();
@@ -103,8 +103,9 @@ public class CenterService {
 		System.out.println(cd);
 		close(conn);
 		return cd;
+	}
 
-	//category serach한 데이터를 가져오는 서비스
+	//category serach한 데이터를 가져오는 서비스-bs
 	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String[] category){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.SearchCategoryPageData(conn,cPage,numPerpage,category); //cateogry 정렬 센터 정보를 가져오는 서비스
@@ -123,6 +124,27 @@ public class CenterService {
 		return 0;
 		
 
+	}
+	
+	public List<CenterEnroll> searchKeywordPageData(int cPage,int numPerpage,int mcode,String keyword){
+		Connection conn=getConnection();
+		List<CenterEnroll> list =dao.searchKeywordPageData(conn,cPage,numPerpage,keyword); //기본 센터 정보를 가져오는 서비스
+		if(!list.isEmpty()) {
+			dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
+			dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
+			if(mcode!=0) {
+				dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+			}
+		}
+		close(conn);
+		return list;
+	}
+	
+	public int searchCountCenter(String keyword) {
+		Connection conn = getConnection();
+		int count = dao.searchCountCenter(conn,keyword);
+		close(conn);
+		return count;
 	}
 	
 }

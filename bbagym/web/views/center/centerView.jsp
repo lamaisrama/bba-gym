@@ -4,10 +4,9 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%
-
-	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
 	int score=1;
+	String keyword=(String)request.getAttribute("keyword");
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
@@ -18,8 +17,8 @@
     <div class="container outer">
         <div class="row">
             <div class="searchBox">
-                <input type="text" name="search" placeholder="시설명, 주소로 검색해보세요" size="30">
-                <button class="btn btn-warning btn-sm">Find!</button>
+                <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
+                <button class="btn btn-warning btn-sm" onclick="serachKeyword();">Find!</button>
             </div>
         </div>
         <div class="row">
@@ -47,7 +46,7 @@
                 <h3>map api 넣을 구역</h3>
             </div>
             <div class="tab-pane container" id="category">
-                <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
+                <form action="<%=request.getContextPath() %>/center/sortCategory.do?keyword=<%=keyword!=null ? keyword : null %>" method="POST">
                     <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
                     <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
                     <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
@@ -162,6 +161,13 @@
 		
 		/* 찜하기 ajax */
 		
+		/* 키워드 검색 */
+		function serachKeyword(){
+            		var search=$("#search").val();
+            		location.href="<%=request.getContextPath() %>/center/search.do?keyword="+search;
+            	}
+		/* 키워드 검색 */
+
     </script>
 
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>
