@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Price;
 import com.bbagym.model.vo.Program;
-import com.bbagym.service.CenterService;
+import com.bbagym.service.CenterService2;
 
 /**
  * Servlet implementation class CenterEnrollFinalServlet
@@ -35,29 +36,49 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 		CenterEnroll c = (CenterEnroll)session.getAttribute("centerEnroll");
-		c.setText(request.getParameter("cText"));
+		c.setText(request.getParameter("c-text"));
 		c.setProgram(new ArrayList());
 		String[] pnames=request.getParameterValues("cp");
 		for(int i=0;i<pnames.length;i++) {
+			c.getProgram().add(new Program(pnames[i]));
 			String[] pcosts=request.getParameterValues("cp"+i+"p");
-			int[] cost = new int[4];
 			for(int j=0;j<4;j++) {
-				cost[j]=Integer.parseInt(pcosts[j]);
+				switch(j) {
+					case 0: {
+						Price p = new Price(1, Integer.parseInt(pcosts[j]));
+						c.getProgram().get(i).getPrices().add(p);
+						break;
+					}
+					case 1: {
+						Price p = new Price(3, Integer.parseInt(pcosts[j]));
+						c.getProgram().get(i).getPrices().add(p);
+						break; 
+					}
+					case 2: {
+						Price p = new Price(6, Integer.parseInt(pcosts[j]));
+						c.getProgram().get(i).getPrices().add(p);
+						break;
+					}
+					case 3: {
+						Price p = new Price(12, Integer.parseInt(pcosts[j]));
+						c.getProgram().get(i).getPrices().add(p);
+						break; 
+					}
+				}
 			}
-			c.getProgram().add(new Program(pnames[i],cost[0],cost[1],cost[2],cost[3]));
 		}
-		int result=new CenterService().enrollCenter(c);
-		
+		int result=new CenterService2().enrollCenter(c);
 		String msg="", loc="";
 		if(result==1) {
-			msg="등록 완료, 관리자의 승인이 되면 자동으로 시설 찾기에 업로드 됩니다. 자세한 사항은 마이페이지의 등록 현황을 확인해주세요";
-			loc="/views/index.jsp";
-			
+			msg="등록 완료! 관리자의 승인이 완료되면 자동으로 시설 찾기에 업로드 됩니다. 자세한 사항은 마이페이지의 등록 현황을 확인해주세요";
+			loc="/index.jsp";
 		}else {
-			msg="등록 실페, 관리자에게 문의하세요";
-			loc="/views/index.jsp";
+			msg="등록 실패, 관리자에게 문의하세요";
+			loc="/index.jsp";
 		}
-		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

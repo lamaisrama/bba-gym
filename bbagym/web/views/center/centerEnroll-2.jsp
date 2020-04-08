@@ -17,7 +17,7 @@
        <div class="col-lg-8 col-md-9 col-sm-12">
          <div class="form-group">
            <label for="exampleTextarea">시설 소개</label>
-           <textarea class="form-control" name="c-text" id="c-text" rows="5" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요."></textarea>
+           <textarea class="form-control" name="c-text" id="c-text" rows="5" placeholder="시설에 대한 소개를 자세히 작성하여 사업자님의 시설을 어필해주세요." required></textarea>
          </div>
        </div>
      </div>
@@ -28,27 +28,27 @@
              <td colspan="2"> 
                  <label for="">첫번째 프로그램명</label>
                  <!-- <span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span> -->
-                 <input type="text" name="cp" class="form-control">
+                 <input type="text" name="cp" class="form-control" required>
              </td>
            </tr>
            <tr>
              <td>
                <label for="">1개월 가격</label>
-               <input type="text" class="form-control" name="cp0p">
+               <input type="text" class="form-control" name="cp0p" required>
              </td>
              <td>
                <label for="">3개월 가격</label>
-               <input type="text" class="form-control" name="cp0p">
+               <input type="text" class="form-control" name="cp0p" required>
              </td>
            </tr>
            <tr>
              <td>
                <label for="">6개월 가격</label>
-               <input type="text" class="form-control" name="cp0p">
+               <input type="text" class="form-control" name="cp0p" required>
              </td>
              <td> 
                <label for="">12개월 가격</label>
-               <input type="text" class="form-control" name="cp0p">
+               <input type="text" class="form-control" name="cp0p" required>
              </td>
            </tr>
          </table>
@@ -65,11 +65,9 @@
      <div class="row">
        <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
          <div class="info-footer-inner">
-           <a href="<%=request.getContextPath()%>/views/center/centerEnroll-1.jsp"><button type="button" class="btn btn-secondary">이전</button></a>
-           &nbsp;&nbsp;&nbsp;
            <button type="button" class="btn btn-secondary">미리보기</button>
          &nbsp;&nbsp;&nbsp;
-           <input type="submit" class="btn btn-secondary" value="등록"></button>
+           <input type="submit" class="btn btn-secondary" value="enroll"></button>
        </div>
      </div>
 

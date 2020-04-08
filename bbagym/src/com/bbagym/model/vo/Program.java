@@ -1,11 +1,12 @@
 package com.bbagym.model.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Program {
+	private int pCode;
 	private String programName;
-	private int cost1mth;
-	private int cost3mth;
-	private int cost6mth;
-	private int cost12mth;
+	private List<Price> prices = new ArrayList();
 	
 
 	public Program() {
@@ -13,13 +14,27 @@ public class Program {
 	}
 
 
-	public Program(String programName, int cost1mth, int cost3mth, int cost6mth, int cost12mth) {
+	public Program(String programName) {
 		super();
 		this.programName = programName;
-		this.cost1mth = cost1mth;
-		this.cost3mth = cost3mth;
-		this.cost6mth = cost6mth;
-		this.cost12mth = cost12mth;
+	}
+
+
+	public Program(int pCode, String programName, List<Price> prices) {
+		super();
+		this.pCode = pCode;
+		this.programName = programName;
+		this.prices = prices;
+	}
+
+
+	public int getpCode() {
+		return pCode;
+	}
+
+
+	public void setpCode(int pCode) {
+		this.pCode = pCode;
 	}
 
 
@@ -33,51 +48,21 @@ public class Program {
 	}
 
 
-	public int getCost1mth() {
-		return cost1mth;
+	public List<Price> getPrices() {
+		return prices;
 	}
 
 
-	public void setCost1mth(int cost1mth) {
-		this.cost1mth = cost1mth;
-	}
-
-
-	public int getCost3mth() {
-		return cost3mth;
-	}
-
-
-	public void setCost3mth(int cost3mth) {
-		this.cost3mth = cost3mth;
-	}
-
-
-	public int getCost6mth() {
-		return cost6mth;
-	}
-
-
-	public void setCost6mth(int cost6mth) {
-		this.cost6mth = cost6mth;
-	}
-
-
-	public int getCost12mth() {
-		return cost12mth;
-	}
-
-
-	public void setCost12mth(int cost12mth) {
-		this.cost12mth = cost12mth;
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Program [programName=" + programName + ", cost1mth=" + cost1mth + ", cost3mth=" + cost3mth
-				+ ", cost6mth=" + cost6mth + ", cost12mth=" + cost12mth + "]";
+		return "Program [pCode=" + pCode + ", programName=" + programName + ", prices=" + prices + "]";
 	}
-	
+
+
 	
 }

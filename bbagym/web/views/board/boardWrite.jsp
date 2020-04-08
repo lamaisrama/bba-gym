@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	
 <%@ include file="/views/common/header.jsp"%>	
 
 <style>
@@ -16,8 +16,8 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <h2 class="text-center">공지글 작성</h2>
-            <form action="<%=request.getContextPath() %>/board/noticeWriteEnd" method="post" enctype="multipart/form-data">
+            <h2 class="text-center">게시글 작성</h2>
+            <form action="<%=request.getContextPath() %>/board/boardWriteEnd" method="post" enctype="multipart/form-data">
                 <div class="table table-responsive">
                     <table class="table table-striped text-center">
                         <tr>
@@ -52,4 +52,4 @@
         </div>
     </div>
     
-<%@ include file="/views/common/footer.jsp"%>
+<%@ include file="/views/common/footer.jsp"%>	

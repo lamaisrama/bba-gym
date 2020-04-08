@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,com.bbagym.model.vo.CenterEnroll" %>	
+<%@ page import="java.util.List,com.bbagym.model.vo.*" %>	
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 
+	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
-
+	int score=1;
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
@@ -46,7 +47,7 @@
                 <h3>map api 넣을 구역</h3>
             </div>
             <div class="tab-pane container" id="category">
-                <form action="#" method="POST">
+                <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
                     <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
                     <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
                     <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
@@ -71,15 +72,15 @@
                 <div class="content-box-cotent">
                     <table>
                         <tr>
-                            <td colspan="3"></td>
+                            <td colspan="3"><input type="hidden" value="<%=c.getCode() %>"></td>
                         </tr>
                         <tr>
                             <td colspan="2"><h2><%=c.getName() %></h2></td> <!-- 제목-->
                             <td><h2>
                             <%if(c.getPrefer()==false){ %>
-                            <i class="far fa-heart">
+                            <i class="far fa-heart" style='color:red'>
                             <%}else{ %>
-                            <i class='fas fa-heart' style='color:red'></i>
+                            <i class='fas fa-heart'  style='color:red'></i>
                             <%} %>
                             </i></h2></td><!-- 찜목록 ON/OFF-->
                         </tr>
@@ -88,7 +89,15 @@
                             <td>10.9Km</td><!-- 거리 API-->
                         </tr>
                         <tr>
-                            <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
+                            <td colspan="2">
+                            	<%for(;score<=c.getScore();score++){ %>
+                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+                            	<%} 
+                            	if(score-c.getScore()<0.5){%>
+                            		<i class="fa fa-star-half"></i>
+                            	<%} score=1;%>
+                            	<%=c.getScore()==0 ?  "0" : c.getScore() %>
+                            </td><!-- 평점 점수에따른 이미지변경-->
                             <td></td>
                         </tr>
                         <tr>
@@ -124,9 +133,34 @@
 			 <%-- <%=centerList.get(i).getMainImage() %> --%> 
 		<%} }%>
 		/* 이미지 넣어주기 */
+	
+		/* 찜하기 ajax */
+		<%if(logginMember!=null){%>
+		$(".fa-heart").parent().on("click",function(){
+			var code = {ccode:$(this).parents(".content-box-cotent").find("input[type=hidden]").val()};
+			var i= $(this).find("i");
+			 $.ajax({
+				url : "<%=request.getContextPath() %>/center/centerPrefer.do",
+				data : code,
+				type : "post",
+				success : function(data){
+					if(data=="true"){
+						i.removeClass('far');
+						i.addClass('fas');
+					}else{
+						i.removeClass('fas');
+						i.addClass('far');
+					}
+				}
+			}) 
+		});
+		<%} else{ %>
+			$(".fa-heart").parent().on("click",function(){
+		        alert("로그인후 이용하세요");
+			});
+		<%}%>
 		
-
-		
+		/* 찜하기 ajax */
 		
     </script>
 
