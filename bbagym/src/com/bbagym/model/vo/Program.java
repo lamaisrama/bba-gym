@@ -6,6 +6,7 @@ import java.util.List;
 public class Program {
 	private int pCode;
 	private String programName;
+	private String status;
 	private List<Price> prices = new ArrayList();
 	
 
@@ -24,6 +25,14 @@ public class Program {
 		super();
 		this.pCode = pCode;
 		this.programName = programName;
+		this.prices = prices;
+	}
+
+	public Program(int pCode, String programName, String status, List<Price> prices) {
+		super();
+		this.pCode = pCode;
+		this.programName = programName;
+		this.status = status;
 		this.prices = prices;
 	}
 
@@ -58,11 +67,22 @@ public class Program {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Program [pCode=" + pCode + ", programName=" + programName + ", prices=" + prices + "]";
+	public String getStatus() {
+		return status;
 	}
 
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Program [pCode=" + pCode + ", programName=" + programName + ", status=" + status + ", prices=" + prices
+				+ "]";
+	}
+	
+	
 	
 }
