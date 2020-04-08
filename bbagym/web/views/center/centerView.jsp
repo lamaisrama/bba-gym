@@ -75,7 +75,13 @@
                         </tr>
                         <tr>
                             <td colspan="2"><h2><%=c.getName() %></h2></td> <!-- 제목-->
-                            <td><h2><i class="fas fa-heart"></i></h2></td><!-- 찜목록 ON/OFF-->
+                            <td><h2>
+                            <%if(c.getPrefer()==false){ %>
+                            <i class="far fa-heart">
+                            <%}else{ %>
+                            <i class='fas fa-heart' style='color:red'></i>
+                            <%} %>
+                            </i></h2></td><!-- 찜목록 ON/OFF-->
                         </tr>
                         <tr>
                             <td colspan="2"><%=c.getAddress() %></td><!-- 위치 API-->

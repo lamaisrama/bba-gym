@@ -69,7 +69,8 @@ public class CenterDao {
 				list.add(c);
 			}
 		}catch(SQLException e) {
-			e.printStackTrace();
+			list.clear();
+			return list; //오류시 list 비움
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -119,36 +120,7 @@ public class CenterDao {
 
 	}
 	
-	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
-	public List<CenterEnroll> FindCatergoryList(Connection conn,int cPage,int numPerpage,List<CenterEnroll> list){
-		
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<String> category=new ArrayList<String>();
-		String sql=prop.getProperty("FindCatergoryList");
-		try {
-			
-			for(int i=0;i<list.size();i++) {
-			category.clear();
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, list.get(i).getCode());
-			
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				category.add(rs.getString("CATEGORY_NAME"));
-			}
 
-
-			list.get(i).setCategories(category);
-			
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-	
 	public void findFacility(Connection conn, CenterEnroll ce) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -170,6 +142,37 @@ public class CenterDao {
 		
 	}
 	
+	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
+		public List<CenterEnroll> findCatergoryList(Connection conn,List<CenterEnroll> list){
+			
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			List<String> category=new ArrayList<String>();
+			String sql=prop.getProperty("FindCatergoryList");
+			try {
+				
+				for(int i=0;i<list.size();i++) {
+				category.clear();
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, list.get(i).getCode());
+				
+				rs=pstmt.executeQuery();
+				
+				while(rs.next()) {
+					category.add(rs.getString("CATEGORY_NAME"));
+				}
+
+
+				list.get(i).setCategories(category);
+				
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			return list;
+		}
+	
+	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 
 	public List<CenterEnroll> centerMainPageData(Connection conn,int cPage,int numPerpage){ 
 		
 		PreparedStatement pstmt = null;
@@ -200,5 +203,33 @@ public class CenterDao {
 		
 		return list;
 		
+	}
+	//찜하기를 체크하는 dao 메소드
+	public List<CenterEnroll> checkPerfer(Connection conn,List<CenterEnroll> list,int mcode){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql =prop.getProperty("checkPerfer");
+		
+		try {
+			
+			for(int i=0;i<list.size();i++) {
+				
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mcode);
+			pstmt.setInt(2, list.get(i).getCode()); //mcode와 code가 같은경우 count(*)를센다 즉 찜하기면 1 아니면 0 반환
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				if(rs.getInt(1)==1) { // 1일경우 찜하기이므로 boolean 형을 true로 변환
+					list.get(i).setPrefer(true);
+				}
+			}
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
 	}
 }

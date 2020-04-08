@@ -10,11 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.TrainerView;
+import com.bbagym.model.vo.Member;
 import com.bbagym.service.CenterService;
-import com.bbagym.service.TrainerService;
 
 /**
  * Servlet implementation class CenterSearchServlet
@@ -46,10 +46,18 @@ public class CenterSearchServlet extends HttpServlet {
 			cPage=1;
 		}
 		
+		HttpSession session = request.getSession();
+		int m;
+		try {
+			m=((Member)session.getAttribute("logginMember")).getM_CODE();
+		}catch(NullPointerException e) {
+			m=0;
+		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
+
 		int numPerpage=3; //페이지당 3개 데이터 출력
-		List<CenterEnroll> list = new CenterService().centerMainPageData(cPage,numPerpage);
+		List<CenterEnroll> list = new CenterService().centerMainPageData(cPage,numPerpage,m);
 		
-		
+
 		
 		int totalData = new CenterService().selectCountCenter();
 		

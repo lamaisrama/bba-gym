@@ -25,11 +25,26 @@ public class CenterEnroll {
 	private List<String> photos;
 	private List<String> categories;
 	private List<String> facilities;
-	private List<Program> program; 
+	private List<Program> program;
+	private boolean prefer;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public boolean getPrefer() {
+		return prefer;
+	}
+
+
+
+	public void setPrefer(boolean prefer) {
+		this.prefer = prefer;
+	}
+
+
 
 	public int getCode() {
 		return code;
