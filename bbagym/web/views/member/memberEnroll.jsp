@@ -81,7 +81,7 @@
 					<br>
 					<div class="form-group">
 					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE" required><br>
-						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"required>
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL"required>
 					</div>
 					<br>
 					<div class="form-group">
