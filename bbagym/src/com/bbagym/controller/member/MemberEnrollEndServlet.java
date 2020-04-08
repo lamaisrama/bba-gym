@@ -65,7 +65,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 	   
 		
 	    
-	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age);
+	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age,null);
 	      int result=new MemberService().insertMember(m);
 		
 		String msg="";

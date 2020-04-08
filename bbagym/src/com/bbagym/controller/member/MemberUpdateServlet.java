@@ -57,7 +57,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		String M_PHONE=mr.getParameter("M_PHONE");
 		String M_IMAGE=mr.getFilesystemName("M_IMAGE");
 		
-		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,0,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE);
+		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,0,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE,null);
 		
 		
 		int result=new MemberService().updateMember(m);

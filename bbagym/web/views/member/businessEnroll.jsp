@@ -13,14 +13,20 @@
 <div class="container pt-3 center-info ">
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-12">
-			<h1 class="mt-4" style="text-align: center;">일반 회원가입</h1>
+			<h1 class="mt-4" style="text-align: center;">사업자 회원가입</h1>
 			<h6 style="text-align: right;">
 				<span><b>1. 기본 정보 입력</b><p style="color:red;">* 필수입력</p></span>
 			</h6>
 			<hr>
 			
 			<form action="<%=request.getContextPath()%>/member/memberEnrollEnd" method="post" onsubmit="return fn_enroll_validate();" enctype="multipart/form-data">
+				<div class="form-group"style="text-align:center;">
+						<label for="c-time" ><pre style="color:green ; display:inline-block">*</pre>사업자 등록 번호</label><input type="text"class="form-control"placeholder="business_code입력하세요" 
+							style="width:40%;margin-left:215px;text-align:center;" name="BUSINESS_CODE" id="BUSINESS_CODE" required><br>
+						
+					</div>
 				
+				<br>
 					<label for="c-name"><pre style="color:red ; display:inline-block">*</pre>아이디</label>
 					<div class="form-group" style="display: flex">
 
@@ -66,10 +72,9 @@
             }
         }
 					</script>
-					
-					
-					
-					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
+
+					<br> 
+					<label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
 					<div class="form-group" style="display: flex">
 
 						<input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_" required>
