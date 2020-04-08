@@ -57,7 +57,7 @@
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
-				     <%}else {%>
+				     <%}else {%>				     	
 				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
