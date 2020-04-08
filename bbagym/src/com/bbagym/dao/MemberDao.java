@@ -177,6 +177,6 @@ import com.bbagym.model.vo.Member;
 		}finally {
 			close(pstmt);
 		}return result;
-	}
+	}//push
 
 	}

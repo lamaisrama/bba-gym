@@ -19,6 +19,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 
+import com.bbagym.model.vo.Member;
+
 
 public class AESEncrypt {
 
@@ -146,7 +148,6 @@ public class AESEncrypt {
 		return new String(decryptStr,"utf-8");
 		
 	}
-	
 	
 	
 	
