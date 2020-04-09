@@ -62,9 +62,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		String phone = mr.getParameter("M_PHONE"); 						
 	    String image=mr.getFilesystemName("M_IMAGE");
 	    
-	   
-		
-	    
+
 	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age,null);
 	      int result=new MemberService().insertMember(m);
 		

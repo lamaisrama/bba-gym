@@ -32,10 +32,10 @@
 						
 					</div>
 					
-					<br> <label for="c-tel">이름</label>
+					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
 					<div class="form-group" style="display: flex" >
 
-					 <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"  value="<%=m.getM_NAME()%>" >
+					 <input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_"  value="<%=m.getM_NAME()%>" required >
 					 <input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M"  <%=m.getM_GENDER()=='M'?"checked":"" %>> 
 							<label for="M_GENDER0">남</label> 
 						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F" <%=m.getM_GENDER()=='F'?"checked":"" %>> 
@@ -43,20 +43,20 @@
 					</div>
 					<br>
 					<div class="form-group">
-					<label for="c-time">나이</label> 
-					<input type="number"class="form-control" name="M_AGE" id="M_AGE"  value="<%=m.getM_AGE()%>"> <br>
+					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label> 
+					<input type="number"class="form-control" name="M_AGE" id="M_AGE"  value="<%=m.getM_AGE()%>"required> <br>
 						<label for="c-time">이메일</label>  
 					<input type="text"class="form-control" name="M_EMAIL" id="M_EMAIL"  value="<%=m.getM_EMAIL()%>" readonly> 
 					</div>
 					<br>
-					<div class="form-group">
-						<button type="button" class="btn btn-warning" onclick="goPopup()">주소</button>
-					<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" value="<%=m.getM_ADDRESS()%>"> 
+					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
+						<button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
+					<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요"  style="margin-top:10px;" value="<%=m.getM_ADDRESS()%>" required> 
 					</div>
 					<br>
 					<div class="form-group">
-						<label for="c-time">PHONE</label>
-						<input type="text" class="form-control" name="M_PHONE" id="M_PHONE" value="<%=m.getM_PHONE()%>"> 
+						<label for="c-time"><pre style="color:red ; display:inline-block" >*</pre>PHONE</label>
+						<input type="text" class="form-control" name="M_PHONE" id="M_PHONE" value="<%=m.getM_PHONE()%>" required> 
 					</div>
 					<br>
 					<div class="form-group div-photo">

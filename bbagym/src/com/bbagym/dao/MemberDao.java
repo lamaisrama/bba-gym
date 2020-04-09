@@ -2,7 +2,6 @@ package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -270,6 +269,21 @@ import com.bbagym.model.vo.Member;
 			close(pstmt);
 		}return result;
 	}//push
+
+	public int memberDelete(Connection conn, String userId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("memberDeleteUpdate");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
 
 	
 
