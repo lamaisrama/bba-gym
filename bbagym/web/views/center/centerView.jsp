@@ -4,10 +4,9 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%
-
-	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
 	int score=1;
+	String keyword=(String)request.getAttribute("keyword");
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
@@ -18,8 +17,8 @@
     <div class="container outer">
         <div class="row">
             <div class="searchBox">
-                <input type="text" name="search" placeholder="시설명, 주소로 검색해보세요" size="30">
-                <button class="btn btn-warning btn-sm">Find!</button>
+                <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
+                <button class="btn btn-warning btn-sm" onclick="serachKeyword();">Find!</button>
             </div>
         </div>
         <div class="row">
@@ -57,6 +56,7 @@
                     <input type="checkbox" name="category" value="5" id="plites"><label for="plites">필라테스</label>
                     <input type="checkbox" name="category" value="6" id="yoga"><label for="yoga">요가</label>
                     <input type="checkbox" name="category" value="7" id="etc"><label for="etc">기타</label><br>
+                    <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
             </div>
@@ -162,6 +162,17 @@
 		
 		/* 찜하기 ajax */
 		
+		/* 키워드 검색 */
+		function serachKeyword(){
+            		var search=$("#search").val();
+            		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
+            	}
+		/* 키워드 검색 */
+
+		/* 검색창 정보 가져오는 이벤트 */
+		$("#search").on("keyup",function(){
+			$("#keyword").attr("value",$("#search").val());
+		})
     </script>
 
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>

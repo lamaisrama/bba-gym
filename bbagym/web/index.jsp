@@ -91,7 +91,7 @@
 	
 	    <div id="search">
 	       <div>
-	       		<input type="text" name="search" placeholder="어떤 운동을 찾으시나요?" size="50px" background-color:"grey">
+	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="50px" background-color:"grey">
 	       </div>
 	   	</div>
 
@@ -140,6 +140,18 @@
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
+	
+	<script>
+		
+
+		$("#search1").keydown(function(key){
+    		if(key.keyCode==13){ /* 엔터일경우가 13   */
+    			var search=$(this).val();
+    			location.href="<%=request.getContextPath() %>/center/search.do?keyword="+search;
+    		}
+		
+		});
+	</script>
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>

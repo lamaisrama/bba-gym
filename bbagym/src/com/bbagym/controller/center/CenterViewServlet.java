@@ -59,12 +59,7 @@ public class CenterViewServlet extends HttpServlet {
 
 		int totalData = new CenterService().selectCountCenter();
 		
-		for(CenterEnroll c : list) {
-			System.out.println(c);
-		}
-		
-		
-		
+
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
 
 		request.setAttribute("pageBar", pagebar);
