@@ -55,7 +55,7 @@
                         		<%=n.getTitle() %>
                         	</a>
                        	</td>
-                        <td><%=n.getmCode() %></td>
+                        <td><%=n.getmId() %></td>
                         <td><img src="/resources/img/file.png">
                         	<%if(n.getOriFileName()!=null) {%>
                         	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">

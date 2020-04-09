@@ -41,7 +41,7 @@ public class BoardListServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerPage = 5;
+		int numPerPage = 10;
 		
 		List<Board> list = new BoardService().selectBoardList(cPage, numPerPage);
 		

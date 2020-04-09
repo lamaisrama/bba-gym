@@ -16,7 +16,7 @@
    th{
        width: 150px;
    }
-   /*댓글테이블*/
+   /*댓글*/
    #comment-container{text-align: center;}
 	table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
 	table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
@@ -42,7 +42,7 @@
                 <h2 class="text-center"><i class="fa fa-heart heart"></i>&nbsp;&nbsp;Q&A<i class="fa fa-heart heart"></i></h2>
                     <div class="table table-responsive">
 	                    <input type="hidden" name="no" value="<%=b.getQaCode() %>">
-                        <table class="table table-striped text-center">
+                        <table class="table table-striped text-center" style="margin-bottom:200px;">
                             <tr>
                                 <th>제목</th>
                                 <td>	
@@ -76,18 +76,18 @@
                             </tr>
                             <tr><td colspan="2"><%=b.getQaContent() %></td></tr>
                             <tr>
-                            <%-- <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%> --%>
+                            <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(b.getmId())){%>
                                 <td colspan="2" class="text-center">
                                     <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/boardUpdate?no=<%=b.getQaCode()%>')">수정</button>
                                     <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/boardDelete?no=<%=b.getQaCode()%>&fileName=<%=b.getOriFileName()%>')">삭제</button> 
                                 </td>
-                            <%-- <%} %>  --%>   
+                            <%} %>    
                             </tr>
                         </table>
                     </div>
             </div>
         </div>
-        
+
         <!-- 댓글 -->
   		
   		<div id="comment-container">
@@ -111,7 +111,7 @@
 					if(bc.getQaCommentLevel()==1){%>
 				<tr class="level1">
 					<td>
-						<sub class="comment-writer"><%--<%=bc.getmId() %><%=logginMember.getM_ID()%>--%> <%=bc.getmCode() %> </sub>
+						<sub class="comment-writer"><%=logginMember.getM_ID()%></sub>
 						<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
 						<br>
 						<%=bc.getQaCommentContent() %>
@@ -123,7 +123,7 @@
 				<%}else{%>
 					<tr class="level2">
 						<td>
-							<sub><%=bc.getmCode() %></sub>
+							<sub><%=logginMember.getM_ID()%></sub>
 							<sub><%=bc.getQaCommentDate() %></sub>
 							<br>
 							<%=bc.getQaCommentContent() %>
@@ -166,7 +166,7 @@
 													"name":"commentContent"});
 				const button=$("<input>").attr({"type":"submit","value":"답글"});
 				const writer=$("<input>").attr({"type":"hidden",
-									"name":"commentWriter","value":"<%=logginMember.getM_ID()%>"});
+									"name":"commentWriter","value":"<%=logginMember.getM_CODE()%>"});
 				const boardRef=$("<input>").attr({"type":"hidden",
 					"name":"boardRef","value":"<%=b.getQaCode()%>"});
 				const level=$("<input>").attr({"type":"hidden",

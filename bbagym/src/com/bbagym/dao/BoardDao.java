@@ -222,7 +222,6 @@ public class BoardDao {
 			pstmt.setString(3, bc.getQaCommentContent());
 			pstmt.setInt(4, bc.getQaCode());
 			pstmt.setInt(5, bc.getmCode());
-			//pstmt.setString(5, bc.getmId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -255,7 +254,6 @@ public class BoardDao {
 				bc.setQaCommentDate(rs.getDate("qa_comment_date"));
 				bc.setQaCode(rs.getInt("qa_code"));
 				bc.setmCode(rs.getInt("m_code"));
-//				bc.setmId(rs.getString("m_id"));
 				
 				list.add(bc);
 			}

@@ -31,7 +31,10 @@
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="writer" value="<%=logginMember.getM_CODE() %>" class="form-control" readonly></td>
+                            <td>
+                            	<input type="hidden" name="writer" value="<%=n.getmCode() %>" class="form-control">
+                            	<input type="text" value="<%=logginMember.getM_ID() %>" class="form-control" readonly>
+                           	</td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>

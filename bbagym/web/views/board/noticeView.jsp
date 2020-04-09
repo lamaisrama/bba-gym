@@ -8,7 +8,7 @@
 
 <style>
    h2{
-       margin: 30px 0;
+       margin: 60px 0;
    }
    th{
        width: 150px;
@@ -21,10 +21,10 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2 class="text-center">공지사항</h2>
+                <h2 class="text-center"><i class="fa fa-heart heart"></i>&nbsp;&nbsp;공지사항<i class="fa fa-heart heart"></i></h2>
                     <div class="table table-responsive">
 	                    <input type="hidden" name="no" value="<%=n.getnCode() %>">
-                        <table class="table table-striped text-center">
+                        <table class="table table-striped text-center" style="margin-bottom:200px;">
                             <tr>
                                 <th>제목</th>
                                 <td>	
@@ -35,7 +35,7 @@
                             </tr>
                             <tr>
                                 <th>작성자</th>
-                                <td><%=n.getmCode() %></td>
+                                <td><%=n.getmId() %></td>
                             </tr>
                             <tr>
                                 <th>작성일</th>
@@ -58,12 +58,12 @@
                             </tr>
                             <tr><td colspan="2"><%=n.getnContent() %></td></tr>
                             <tr>
-                            <%-- <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%> --%>
+                            <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%>
                                 <td colspan="2" class="text-center">
                                     <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">수정</button>
                                     <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')">삭제</button> 
                                 </td>
-                            <%-- <%} %>  --%>   
+                            <%} %>    
                             </tr>
                         </table>
                     </div>
