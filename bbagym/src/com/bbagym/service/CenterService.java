@@ -92,13 +92,17 @@ public class CenterService {
 	}
 	
 
-	public CenterDetail centerViewDetail(int cCode) {
+	public CenterDetail centerViewDetail(int cCode, int mCode) {
 		Connection conn = getConnection();
 		CenterDetail cd = dao.centerViewDetail(conn, cCode);
+		
 		if(cd!=null) {
 			dao.centerViewDetailPrograms(conn, cCode, cd);
-			dao.centerViewDetailPrices(conn, cCode, cd);
 			dao.centerViewDetailImgs(conn, cCode, cd);
+			dao.centerViewDetailFacility(conn, cCode, cd);
+			List<CenterDetail> list = new ArrayList<CenterDetail>();
+			list.add(cd);
+			dao.checkPerfer2(conn, list, cCode, mCode);
 		}
 		System.out.println(cd);
 		close(conn);

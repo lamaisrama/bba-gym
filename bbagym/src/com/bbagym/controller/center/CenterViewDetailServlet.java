@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bbagym.model.vo.CenterDetail;
+import com.bbagym.model.vo.Member;
 import com.bbagym.service.CenterService;
 
 /**
@@ -32,13 +34,20 @@ public class CenterViewDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int cCode = Integer.parseInt(request.getParameter("cCode"));
-		System.out.println(cCode);
+		HttpSession session=request.getSession();
 		
-		CenterDetail cd = new CenterService().centerViewDetail(cCode);
+		int mCode = ((Member)session.getAttribute("logginMember")).getM_CODE();
 		
-		request.setAttribute("cd", cd);
-		request.getRequestDispatcher("/views/center/centerViewDetail.jsp").forward(request, response);
+		
+		
+			
+			int cCode = Integer.parseInt(request.getParameter("cCode"));
+			System.out.println(cCode);
+			
+			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
+			
+			request.setAttribute("cd", cd);
+			request.getRequestDispatcher("/views/center/centerViewDetail.jsp").forward(request, response);
 	}
 
 	/**

@@ -342,12 +342,35 @@ public class TrainerDao {
 		
 	}
 	
+	public void trainerViewDetailpNames(Connection conn, int t_code,TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		td.settProgramNames(new ArrayList());
+		
+		String sql = prop.getProperty("getProgramNames");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, t_code);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				td.gettProgramNames().add(rs.getString("P_NAME"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
+	
 	public void trainerViewDetailPrograms(Connection conn, int t_code,TrainerDetail td) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		td.setTrainerPrograms(new ArrayList());//리스트 초기값 세팅
 		
-		String sql = prop.getProperty("getTrainerPrograms");
+		String sql = prop.getProperty("getTrainerProgramPrices");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -357,8 +380,9 @@ public class TrainerDao {
 			while(rs.next()) {
 				//List<String> temp=td.getT_program_name();
 				TrainerProgram tp=new TrainerProgram();
-				tp.setName(rs.getString("p_name"));
+				tp.setpName(rs.getString("p_name"));
 				tp.setPrice(rs.getInt("price"));
+				tp.setCount(rs.getInt("count"));
 				td.getTrainerPrograms().add(tp);
 			}
 		}catch(SQLException e) {
@@ -392,28 +416,7 @@ public class TrainerDao {
 		}
 	}
 	
-	public void trainerViewDetailCategory(Connection conn, int t_code, TrainerDetail td) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		td.setTrainerCategory(new ArrayList());
-		
-		String sql = prop.getProperty("getTrainerCategory");
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, t_code);
-			rs=pstmt.executeQuery();
-			
-			while(rs.next()) {
-				td.getTrainerCategory().add(rs.getString("CATEGORY_NAME"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-	}
+	
 }
 
 

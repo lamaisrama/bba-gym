@@ -1,20 +1,20 @@
 package com.bbagym.model.vo;
 
-public class TrainerProgram {
+public class CenterPrograms {
 	
-	private String pName;;
+	private String pName;
 	private int price;
-	private int count;
+	private int month;
 	
-	public TrainerProgram() {
+	public CenterPrograms() {
 		// TODO Auto-generated constructor stub
 	}
 
-	TrainerProgram(String pName, int price, int count) {
+	CenterPrograms(String pName, int price, int month) {
 		super();
 		this.pName = pName;
 		this.price = price;
-		this.count = count;
+		this.month = month;
 	}
 
 	public String getpName() {
@@ -33,17 +33,17 @@ public class TrainerProgram {
 		this.price = price;
 	}
 
-	public int getCount() {
-		return count;
+	public int getMonth() {
+		return month;
 	}
 
-	public void setCount(int count) {
-		this.count = count;
+	public void setMonth(int month) {
+		this.month = month;
 	}
 
 	@Override
 	public String toString() {
-		return "TrainerProgram [pName=" + pName + ", price=" + price + ", count=" + count + "]";
+		return "CenterPrograms [pName=" + pName + ", price=" + price + ", month=" + month + "]";
 	}
 	
 	
