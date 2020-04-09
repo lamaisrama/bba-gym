@@ -15,7 +15,6 @@ public class Price {
 		this.price = price;
 	}
 
-	
 	public int getMonth() {
 		return month;
 	}

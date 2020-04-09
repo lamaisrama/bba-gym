@@ -40,7 +40,7 @@
 	        	<div>
 
 				    <ul>		        
-
+						 <a href="<%=request.getContextPath()%>/member/membeLoginView.do"> <li>Login</li></a>
 				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
 				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
@@ -59,7 +59,8 @@
 	             BBAGYM
 	         </h2></nav> -->
 		         <nav>
-		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px">
+		          <a class="navbar-brand" href="<%=request.getContextPath() %>/index.jsp" >
+		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
 		         </nav>       
 	   		</div>
 			
@@ -79,12 +80,12 @@
 	   
 	        <div >																								
 	        	<button type="button" class="btn a text-white" data-toggle="modal" data-target="#join"  
-	        	style="width:320px; height:320px; margin:45px;padding-bottom: 20px; border-radius: 50%;border: 5px solid #e7e7e7;"
+	        	style="width:280px; height:280px; margin:45px;padding-bottom: 20px; border-radius: 50%;border: 5px solid #e7e7e7;"
 	        	onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" /><h2><strong>일반 회원가입</strong></h2></button> &nbsp; 
 	        	
 	        	<button type="button" class="btn b text-white" data-toggle="modal" data-target="#join"
-	        	style="width:320px; height:320px; margin:45px; padding-bottom: 20px; border-radius: 50%;border: 5px solid #e7e7e7;"  
-	        	onclick="location.replace('<%=request.getContextPath()%>/member/businessEnroll.do')" /><h2><strong>&nbsp사업자 회원가입</strong></h2></button> &nbsp; 
+	        	style="width:280px; height:280px; margin:45px; padding-bottom: 20px; border-radius: 50%;border: 5px solid #e7e7e7;"  
+	        	onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" /><h2><strong>&nbsp사업자 회원가입</strong></h2></button> &nbsp; 
 	      	</div>
 	    </div>
 	    	

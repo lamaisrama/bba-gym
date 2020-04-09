@@ -49,8 +49,9 @@
 </div>
 						 <br>
 <br>
-					<button class="submit" style="">Login</button>
-					<br> <input type="button" class="find" value="아이디/비밀번호 찾기">
+					<button class="submit" style="">Login</button><br>
+					<input type="button" class="find" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')"><br> 
+					<input type="button" class="find" value="아이디/비밀번호 찾기">
 
 
 

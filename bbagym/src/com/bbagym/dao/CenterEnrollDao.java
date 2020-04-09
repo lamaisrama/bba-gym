@@ -17,12 +17,12 @@ import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Price;
 import com.bbagym.model.vo.Program;
 
-public class CenterDao2 {
+public class CenterEnrollDao {
 	private Properties prop=new Properties();
 	
-	public CenterDao2() {
+	public CenterEnrollDao() {
 		try {
-			String path=CenterDao2.class.getResource("/sql/center/center_query.properties").getPath();
+			String path=CenterEnrollDao.class.getResource("/sql/center/c-enroll-query.properties").getPath();
 			prop.load(new FileInputStream(path));
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
@@ -34,8 +34,6 @@ public class CenterDao2 {
 	public int enrollCenter(Connection conn, CenterEnroll c) { 
 		PreparedStatement pstmt=null;
 		String sql=prop.getProperty("enrollCenter");
-		//c_name, c_addr, c_phone, c_ophr, c_holi, c_sch, c_text, c_main, m_code, ?, ?, ?, ?);
-		//insert into center values(seq_c.nextval, ?, ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?);
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -55,102 +53,12 @@ public class CenterDao2 {
 		}
 		return result;
 	}
-
-	public List<CenterEnroll> centerView(Connection conn, int cPage, int numPerPage) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		//String sql = prop.getProperty("selectCenter");
-		String sql = "select * from (select rownum as rnum, a.* from (select * from center where approval='Y') a) where rnum between ? and ?";
-		List<CenterEnroll> list = new ArrayList();
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, (cPage-1)*numPerPage+1);
-			pstmt.setInt(2, cPage*numPerPage);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				CenterEnroll c = new CenterEnroll();
-				c.setCode(rs.getInt("c_code"));
-				c.setName(rs.getString("c_name"));
-				c.setAddress(rs.getString("c_address"));
-				c.setMainImage(rs.getString("c_main_image"));
-				list.add(c);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}
-	
-	public int selectCountCenter(Connection conn) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		int result=0;
-		String sql = "select count(*) from center";
-		try {
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			rs.next();
-			result=rs.getInt(1);
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return result;
-	}
-	
-	public void findCategory(Connection conn, CenterEnroll ce) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ce.setCategories(new ArrayList());
-		//String sql = prop.getProperty("findCategory");
-		String sql = "select * from c_category join category using (category_code) where center_code=?";
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, ce.getCode());
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				ce.getCategories().add(rs.getString("category_name"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-
-	}
-	
-	public void findFacility(Connection conn, CenterEnroll ce) {
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ce.setFacilities(new ArrayList());
-		String sql = "SELECT * FROM CENTER_FACILITY JOIN FACILITY USING(F_CODE) WHERE C_CODE=?";
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, ce.getCode());
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				ce.getFacilities().add(rs.getString("f_name"));
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-	}
 	
 	public int selectCcode(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int cCode=0;
-		String sql = "SELECT SEQ_C.CURRVAL FROM DUAL";
+		String sql = prop.getProperty("selectCcode");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -167,7 +75,7 @@ public class CenterDao2 {
 
 	public int insertCenterCategory(Connection conn, CenterEnroll c) {
 		PreparedStatement pstmt = null;
-		String sql = "insert into c_category values(?, ?)";
+		String sql = prop.getProperty("insertC-category");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -187,7 +95,7 @@ public class CenterDao2 {
 
 	public int insertCenterFacility(Connection conn, CenterEnroll c) {
 		PreparedStatement pstmt = null;
-		String sql = "insert into center_facility values(?, ?)";
+		String sql = prop.getProperty("insertC-facility");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -207,7 +115,7 @@ public class CenterDao2 {
 
 	public int insertCenterImage(Connection conn, CenterEnroll c) {
 		PreparedStatement pstmt = null;
-		String sql = "insert into c_image values(?, ?)";
+		String sql = prop.getProperty("insertC-image");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -224,7 +132,7 @@ public class CenterDao2 {
 
 	public int insertProgram(Connection conn, CenterEnroll c) {
 		PreparedStatement pstmt = null;
-		String sql = "insert into c_program values(seq_c_prog.nextval, ?, ?)";
+		String sql = prop.getProperty("insertC-Program");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -244,7 +152,7 @@ public class CenterDao2 {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int pCode=0;
-		String sql = "SELECT SEQ_C_PROG.CURRVAL FROM DUAL";
+		String sql = prop.getProperty("selectPcode");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
@@ -261,7 +169,7 @@ public class CenterDao2 {
 
 	public int insertProgramPrice(Connection conn, int pCode, Price price) {
 		PreparedStatement pstmt = null;
-		String sql = "insert into c_price values(?, ?, ?)";
+		String sql = prop.getProperty("insertP-Price");
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(sql);

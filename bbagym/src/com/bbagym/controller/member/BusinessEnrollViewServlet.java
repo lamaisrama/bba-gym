@@ -6,18 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.bbagym.model.vo.Member;
+import com.bbagym.service.MemberService;
 
 /**
- * Servlet implementation class BusinessEnrollServlet
+ * Servlet implementation class BusinessEnrollViewServlet
  */
-@WebServlet("/business/businessEnroll.do")
-public class BusinessEnrollServlet extends HttpServlet {
+@WebServlet("/business/businessEnrollView.do")
+public class BusinessEnrollViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BusinessEnrollServlet() {
+    public BusinessEnrollViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,9 +31,26 @@ public class BusinessEnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/member/businessEnroll.jsp").forward(request, response);
+		
+		
+		//로그인이 된 사용자만 이용할 수 있게 
+		HttpSession session=request.getSession();
+	      if(session.getAttribute("logginMember")==null) {
+	         request.setAttribute("msg", "잘못된 접근입니다.");
+	         request.setAttribute("loc", "/");
+	         request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	      }
+	      else {
+	    	  String userId=request.getParameter("M_ID");
+	    	  
+	    	  Member m=new MemberService().selectBusinessId(userId);
+	    	 
+	    	  
+	    	  request.setAttribute("member", m);
+	    	  
+		request.getRequestDispatcher("/views/member/businessEnrollView.jsp").forward(request, response);
 	}
-
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

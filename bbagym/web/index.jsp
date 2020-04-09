@@ -45,7 +45,6 @@
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
-
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li>		 </a>
 
@@ -65,10 +64,7 @@
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				     <%} %>
 
-				        
-				   <%-- <a href="<%=request.getContextPath()%>/views/center/centerViewDetail.jsp"> <li>센터 상세보기</li></a>
-				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerViewDetail.jsp"> <li>트레이너 상세보기</li></a> --%>
-				        
+			
 				        
 				    </ul>
 			    </div>				          
@@ -100,8 +96,7 @@
 	   	</div>
 
 	   	
-	    <div id
-	    ="box">
+	    <div id="box">
 	    <%
 			if (logginMember == null) {
 		%>
@@ -119,6 +114,7 @@
 			<div id="content">
 	         <nav>
 	             <p>
+	
 	             <b><%=logginMember.getM_NAME()%>님 </b>환영합니다
 	             </p>
 	             <div id="box">
@@ -126,16 +122,21 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			 <%if (logginMember.getM_LEVEL()==1) {%>
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>정보수정</button>
+			               			<%}else if (logginMember.getM_LEVEL()==2) {%>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
+			               			<%}else %>
+			               			<%} %>
+			               			
 			        		  	  </div>
 			      				</div>	
 	         </nav>
 	     </div>
-			<%
-					}
-				%>
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
@@ -154,4 +155,6 @@
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>
+<br>
+<br><br>
 <%@ include file="/views/common/footer.jsp"%>

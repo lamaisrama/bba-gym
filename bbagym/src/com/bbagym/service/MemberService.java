@@ -62,6 +62,14 @@ public class MemberService {
 		return m;
 	}
 
+	public Member selectBusinessId(String userId) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		Member m = dao.selectBusinessId(conn, userId);
+		close(conn);
+		return m;
+	}
+		
 
 	public int updateMember(Member m) {
 		Connection conn=getConnection();
@@ -73,6 +81,19 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+//business 회원정보 수정 
+	public int updateBusiness(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateBusiness(conn,m);
+		if(result>0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+
 
 
 	public int updatePassword(String id, String pw, String changePw) {
@@ -93,6 +114,23 @@ public class MemberService {
 		return result;
 	}
 	//pusth
+
+
+	public int insertBusiness(Member m) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int result = dao.insertBusiness(conn, m); 
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		rollback(conn);
+
+		close(conn);
+		return result;
+	}
+
+
 	
 
 }
