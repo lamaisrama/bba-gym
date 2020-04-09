@@ -432,7 +432,7 @@ h3 span {
 			</div>
 			<div class="profile-info">
 				<div>
-					<span>♥김상학님 환영합니다♥</span>
+					<span>♥<%=logginMember.getM_NAME()%>님 환영합니다♥</span>
 				</div>
 			</div>
 			<div class="parent1">
@@ -449,10 +449,31 @@ h3 span {
 			<div>
 				<hr />
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
-				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>">회원탈퇴</a>
+				<a class="updateMyProfile" onclick="removeCheck();" href="<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>" >회원탈퇴</a>
 			</div>
+			<%-- <script>
+			function removeCheck() {
+	
+				 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+
+					location.replace('<%=request.getContextPath()%>/member/memberDelete.do?M_ID='+<%=logginMember.getM_ID()%>);
+					
+
+				 }else{   //취소
+					 
+					 return false;
+				     
+
+				 }
+
+				}
+		
+			</script>  --%>
 
 			<script>
+			
+			
+			
 				var isUsClicked = false;
 				function updateMyProfile() {
 					var el = document.getElementsByClassName("userinfo-update")[0];

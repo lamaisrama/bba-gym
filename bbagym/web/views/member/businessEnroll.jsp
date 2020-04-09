@@ -106,12 +106,12 @@
 							
 					<br>
 						<div class="form-group">
-						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>트레이너 PHONE</label> <input type="text"
+						<label for="c-time">사업자 PHONE</label> <input type="text"
 							class="form-control" placeholder="(-없이) 01012345678" name="M_PHONE2" id="M_PHONE2">
 					</div>
 					<br>
 					<div class="form-group">
-						 <button type="button" class="btn btn-warning" onclick="goPopup2()">트레이너 주소</button>
+						 <button type="button" class="btn btn-warning" onclick="goPopup2()">사업장 주소</button>
 			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 		

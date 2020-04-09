@@ -381,7 +381,7 @@ display: block;
 			</div>
 			<div class="profile-info">
 				<div>
-					<span>♥김상학님 환영합니다♥</span>
+					<span>♥<%=logginMember.getM_NAME()%>님 환영합니다♥</span>
 				</div>
 			</div>
 			<div class="parent1">
