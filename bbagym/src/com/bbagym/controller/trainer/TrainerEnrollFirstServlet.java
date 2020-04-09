@@ -42,10 +42,10 @@ public class TrainerEnrollFirstServlet extends HttpServlet {
 				te.getCategories().add(s);
 			}
 		}
-		te.setSnsHome(request.getParameter("sns-homepage"));
-		te.setSnsInsta(request.getParameter("sns-insta"));
-		te.setSnsBlog(request.getParameter("sns-blog"));
-		te.setSnsEtc(request.getParameter("sns-etc"));
+		te.setSnsHome(request.getParameter("t-homepage"));
+		te.setSnsInsta(request.getParameter("t-insta"));
+		te.setSnsBlog(request.getParameter("t-blog"));
+		te.setSnsEtc(request.getParameter("t-etc"));
 		HttpSession session=request.getSession();
 		session.setAttribute("trainerEnroll", te);
 		request.getRequestDispatcher("/views/trainer/trainerEnroll-2.jsp").forward(request, response);
