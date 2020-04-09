@@ -30,7 +30,7 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
-		
+		System.out.println("도착");
 		String userId=request.getParameter("M_ID");
 		
 		int result=new MemberService().memberDelete(userId);
