@@ -36,11 +36,14 @@
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
                             <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <%for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
+                                <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
+                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
                                 	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                                %>
+                               		if(i==0||!preName.equals(cp.getpName())) {
+                               			preName=cp.getpName();%>
                                 	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
-                                <%} %>
+                                <%}
+                                }%>
 <!--                                 <option value="two">요가</option>
                                 <option value="three">필라테스</option>
                                 <option value="four">클라이밍</option> -->
@@ -83,24 +86,30 @@
                                 <div id="price">
                                     <div class="price-title"><h5>가격정보</h5></div>
                                     <div id="price-buga">
-										<%String preName=(cd.getCenterPrograms().get(0)).getpName(); 
+										<%String preName1=(cd.getCenterPrograms().get(0)).getpName(); 
                                     	for(int i=0; i<cd.getCenterPrograms().size(); i++) {
                                     		CenterPrograms cp = cd.getCenterPrograms().get(i);
-                                    		if(i==0||!preName.equals(cp.getpName())) {
-                                    			preName=cp.getpName();%>
+                                    		if(i==0||!preName1.equals(cp.getpName())) {
+                                    			preName1=cp.getpName();%>
 
 										<div class="buga-title"><h6><%=cp.getpName() %></h6></div>
                                         	<div class="row">
                                         		<div class="col-md-6 ml-auto mr-auto text-center">
-                                        			<small>
+
                                         				<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
-                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(i);
-                                        					if(preName.equals(cp2.getpName())) {%>
+                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
+                                        					if(preName1.equals(cp2.getpName())) {%>
+                                        				   <table >
+                                        				   		<tr>
+                                        				   			<td></td>
+                                        				   		</tr>
+                                        				   </table>
+                                        				   
                                         				   <%=cp2.getMonth() %>개월 <br>
                                         				   <%=cp2.getPrice() %>원
                                         				<%} 
                                         				}%>                                       			
-                                        			</small>
+
                                         		</div>
                                         	</div>
                                         <%} 
@@ -198,11 +207,14 @@
                     <div class="aside">
                         <div id="choice-bar">옵션 선택
                             <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <%for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
+                                <% String preName2=(cd.getCenterPrograms().get(0)).getpName(); 
+                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
                                 	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                                %>
+                               		if(i==0||!preName2.equals(cp.getpName())) {
+                               			preName2=cp.getpName();%>
                                 	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
-                                <%} %>
+                                <%}
+                                }%>
                                 <!-- <option value="one">헬스</option>
                                 <option value="two">요가</option>
                                 <option value="three">필라테스</option>
