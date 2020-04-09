@@ -540,5 +540,35 @@ public class CenterDao {
 		
 		return list;
 	}
+	//리뷰순으로 sort하는 데이터 페이징 dao
+		public List<CenterEnroll> centerReviewPageData(Connection conn,int cPage,int numPerpage){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+			String sql =prop.getProperty("centerReviewPageData");
+			System.out.println(sql);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (cPage-1)*numPerpage+1);
+				pstmt.setInt(2, cPage*numPerpage);
+				
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					CenterEnroll c =new CenterEnroll();
+					
+					c.setCode(rs.getInt("C_CODE"));
+					c.setName(rs.getString("C_NAME"));	
+					c.setAddress(rs.getString("C_ADDRESS"));
+					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+					list.add(c);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
+		}
 	
 }

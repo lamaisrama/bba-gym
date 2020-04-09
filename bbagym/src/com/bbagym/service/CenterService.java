@@ -179,7 +179,21 @@ public class CenterService {
 		close(conn);
 		return list;
 	}
-	
+	//리뷰순으로 sort하는 데이터 페이징 서비스
+		public List<CenterEnroll> centerReviewPageData(int cPage,int numPerpage, int mcode ){
+			Connection conn=getConnection();
+			List<CenterEnroll> list =dao.centerReviewPageData(conn,cPage,numPerpage); //평점순 정보를 가져오는 서비스
+			if(!list.isEmpty()) {
+				dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
+				dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
+				if(mcode!=0) {
+					dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+				}
+			}
+			close(conn);
+			return list;
+		}
+		
 	
 	
 }
