@@ -33,7 +33,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"  id="asort" data-toggle="dropdown" href="#">정렬</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">평점순</a> <!--평점순으로 페이징 처리-->
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/score.do">평점순</a> <!--평점순으로 페이징 처리-->
                             <a class="dropdown-item" href="#">리뷰순</a> <!--리뷰가 많은순으로 페이징처리-->
                             <a class="dropdown-item" href="<%=request.getContextPath() %>/center/sysdate.do">최신순</a> <!--최신순으로 페이징처리-->
                         </div>

@@ -479,7 +479,7 @@ public class CenterDao {
 		}
 		return result;
 	}
-	
+	//최신순으로 sort하는 데이터 페이징 dao
 	public List<CenterEnroll> sortSysDatePageData(Connection conn,int cPage, int numPerpage){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -509,6 +509,36 @@ public class CenterDao {
 		
 		return list;
 	}
-
+	
+	//평점순으로 sort하는 데이터 페이징 dao
+	public List<CenterEnroll> centerScorePageData(Connection conn,int cPage,int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("centerScorePageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));	
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	
 }
