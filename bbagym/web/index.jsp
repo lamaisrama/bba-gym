@@ -40,17 +40,16 @@
 	        	<div>
 
 				    <ul>	<!--로그인한멤버 -->		        
-				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
+				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
 				          <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
-
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
 <!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
-
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li>		 </a>
+
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
-				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
+				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
@@ -58,7 +57,6 @@
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				         <a href="<%=request.getContextPath()%>/mypage/mypageBusiness.do"> <li>My page-사업자</li></a><!-- /views/mypage/mypage-business.jsp -->
-				   
 				     <%}else {%>
 				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 <!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
@@ -66,9 +64,7 @@
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
 				     <%} %>
 
-				   <%-- <a href="<%=request.getContextPath()%>/views/center/centerViewDetail.jsp"> <li>센터 상세보기</li></a>
-				        <a href="<%=request.getContextPath()%>/views/trainner/trainnerViewDetail.jsp"> <li>트레이너 상세보기</li></a> --%>
-				        
+			
 				        
 				    </ul>
 			    </div>				          
@@ -95,7 +91,7 @@
 	
 	    <div id="search">
 	       <div>
-	       		<input type="text" name="search" placeholder="어떤 운동을 찾으시나요?" size="50px" background-color:"grey">
+	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="50px" background-color:"grey">
 	       </div>
 	   	</div>
 
@@ -104,9 +100,11 @@
 	    <%
 			if (logginMember == null) {
 		%>
-	        <div>
-	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join" onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')">회원가입</button> &nbsp; 
-	        	<input type="button" class="btn btn-outline-primary text-white" value="로그인"" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
+	        <div>																								
+	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />회원가입</button> &nbsp; 
+	        	
+	        	
+	        	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">			<%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
 
 	        	</div>
 	    	</div>
@@ -116,6 +114,7 @@
 			<div id="content">
 	         <nav>
 	             <p>
+	
 	             <b><%=logginMember.getM_NAME()%>님 </b>환영합니다
 	             </p>
 	             <div id="box">
@@ -123,21 +122,39 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
+			               			 <%if (logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>정보수정</button>
+			               			<%}else if (logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>
+			               			<button type="button" class="btn btn-outline-primary text-white"
+			               			onclick="location.replace('<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
+			               			>정보수정</button>
+			               			<%}else %>
+			               			<%} %>
+			               			
 			        		  	  </div>
 			      				</div>	
-			      				
 	         </nav>
 	     </div>
-			<%
-					}
-				%>
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
+	
+	<script>
+		
+
+		$("#search1").keydown(function(key){
+    		if(key.keyCode==13){ /* 엔터일경우가 13   */
+    			var search=$(this).val();
+    			location.href="<%=request.getContextPath() %>/center/search.do?keyword="+search;
+    		}
+		
+		});
+	</script>
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>
+<br>
+<br><br>
 <%@ include file="/views/common/footer.jsp"%>

@@ -9,16 +9,24 @@
         <h1 class="mt-4" style="text-align: center;">트레이너 등록</h1>
         <h6 style="text-align: right;"> <span><b>1. 기본 정보 입력</b></span> > <span style="color: grey;">2.상세 정보 입력</span></h6>
         <hr>
-        	<form action="<%=request.getContextPath() %>/trainer/enrollend1" method="post" enctype="multipart/form-data">
+        	<form action="<%=request.getContextPath() %>/trainer/trainerEnrollFirst" method="post">
 	          <fieldset>
 	            <div class="form-group">
-		              <label for="c-name">트레이너명</label>
-		              <input type="text" class="form-control" id="c-name" placeholder="트레이너명을 입력하세요" name="t_name" required>
+		              <label for="t-name">트레이너명 <small> &nbsp; 가입 시 입력하신 이름으로 등록됩니다.</small></label>
+		              <input type="hidden" name="m-code" value="<%=logginMember.getM_CODE()%>">
+		              <input type="text" class="form-control" name="t-name" id="m-name" value="<%=logginMember.getM_NAME() %>" readonly>
 		            </div>
 		            <br>
 			            <div class="form-group">
-			              <button type="button" class="btn btn-warning" onclick="goPopup()">수업주소</button>
-			              <input type="text" class="form-control" type="text" name="c_address" id="c_address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+			              <label for="t-name">트레이너명 <small> &nbsp; 가입시 입력하신 사업장 주소로 등록됩니다.</small></label>
+			              <!-- <button type="button" class="btn btn-warning" onclick="goPopup()">수업주소 </button> -->
+			              <!-- <input type="text" class="form-control" name="t-address" id="t-address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> --> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" name="t-address2" value="<%=logginMember.getM_ADDRESS_2() %>" readonly>
+			            </div>
+		            <br>
+			            <div class="form-group">
+			              <label for="t-tel">연락처 <small> &nbsp; 가입시 입력하신 사업자 연락처로 등록됩니다.</small></label>
+			              <input type="tel" class="form-control" name="t-tel" required value="<%=logginMember.getM_PHONE2()%>" readonly>
 			            </div>
 		            <br>
 			            <div class="form-group">
@@ -30,13 +38,8 @@
 			            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-tel">연락처</label>
-			              <input type="tel" class="form-control" name="t_phone" required>
-			            </div>
-		            <br>
-			            <div class="form-group">
-			              <label for="c-time">상담 가능 시간</label>
-			              <input type="text" class="form-control" name="t_counsel">
+			              <label for="t-counsel">상담 가능 시간</label>
+			              <input type="text" class="form-control" name="t-counsel" id="t-counsel">
 			            </div>
 		            <br>
 		            <div class="form-group">
@@ -79,40 +82,25 @@
 		            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-sns-1">홈페이지</label>
-			              <input class="form-control" type="text" name="t_homepage">
+			              <label for="t-homepage">홈페이지</label>
+			              <input class="form-control" type="text" name="t-homepage" id="t-homepage">
 			            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-sns-2">인스타그램</label>
-			              <input class="form-control" type="text" name="t_instagram">
+			              <label for="t-insta">인스타그램</label>
+			              <input class="form-control" type="text" name="t-insta" id="t-insta">
 			            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-sns-3">블로그</label>
-			              <input class="form-control" type="text" name="t_blog">
+			              <label for="t-blog">블로그</label>
+			              <input class="form-control" type="text" name="t-blog" id="t-blog">
 			            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="c-sns-4">기타 사이트</label>
-			              <input class="form-control" type="text" name="t_etcpart">
+			              <label for="t-etc">기타 사이트</label>
+			              <input class="form-control" type="text" name="t-etc" id="t-etc">
 			            </div>
 		            <br>
-			            <div class="form-group">
-			              <label for="exampleInputFile">대표 사진 등록</label>
-			              <input type="file" class="form-control-file" id="photo-main" name="t_photo_main" aria-describedby="fileHelp">
-			              <small id="fileHelp" class="form-text text-muted">트레이너님을 대표할 수 있는 사진을 업로드해주세요.</small>
-			            </div>
-		            <br>
-		            <div class="form-group div-photo">
-		              <label for="exampleInputFile">사진 등록</label>
-			              <div class="div-here">
-			                <input type="file" class="form-control-file" id="photo-0" name="photo-0" aria-describedby="fileHelp">
-			                <small id="fileHelp" class="form-text text-muted">트레이너님을 보여줄 수 있는 사진을 업로드해주세요. 최대 다섯장 까지 올릴 수 있습니다.</small>
-			              </div>
-		              <button type="button" class="btn btn-secondary btn-sm" onclick="addPhoto();">+</button>
-		          	</div>
-		          <br>
 		          </fieldset>
 		          <hr>
 				    <div class="row">
@@ -149,7 +137,7 @@
 
 	    function jusoCallBack(roadFullAddr){
 	    		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
-	    		document.getElementById('c_address').value = roadFullAddr;
+	    		document.getElementById('t-address').value = roadFullAddr;
 
 	    }
 

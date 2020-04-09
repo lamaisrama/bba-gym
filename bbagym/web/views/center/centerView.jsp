@@ -4,10 +4,9 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%
-
-	
 	List<CenterEnroll> centerList = (List)request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
-
+	int score=1;
+	String keyword=(String)request.getAttribute("keyword");
 %>
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
@@ -18,8 +17,8 @@
     <div class="container outer">
         <div class="row">
             <div class="searchBox">
-                <input type="text" name="search" placeholder="시설명, 주소로 검색해보세요" size="30">
-                <button class="btn btn-warning btn-sm">Find!</button>
+                <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
+                <button class="btn btn-warning btn-sm" onclick="serachKeyword();">Find!</button>
             </div>
         </div>
         <div class="row">
@@ -34,9 +33,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle"  id="asort" data-toggle="dropdown" href="#">정렬</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">평점순</a> <!--평점순으로 페이징 처리-->
-                            <a class="dropdown-item" href="#">리뷰순</a> <!--리뷰가 많은순으로 페이징처리-->
-                            <a class="dropdown-item" href="#">최신순</a> <!--최신순으로 페이징처리-->
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/score.do">평점순</a> <!--평점순으로 페이징 처리-->
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/review.do">리뷰순</a> <!--리뷰가 많은순으로 페이징처리-->
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/sysdate.do">최신순</a> <!--최신순으로 페이징처리-->
                         </div>
                     </li>
                 </ul>
@@ -47,16 +46,17 @@
                 <h3>map api 넣을 구역</h3>
             </div>
             <div class="tab-pane container" id="category">
-                <form action="#" method="POST">
-                    <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
-                    <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
-                    <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
-                    <input type="checkbox" name="category" value="3" id="health"><label for="health" >헬스</label>
-                    <input type="checkbox" name="category" value="4" id="UFC"><label for="UFC">격투기</label> 
+                <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
+                    <input type="checkbox" name="category" value="0" id="total" ><label for="total">전체</label>
+                    <input type="checkbox" name="category" value="1" id="swimming" ><label for="swimming">수영</label>
+                    <input type="checkbox" name="category" value="2" id="GX" ><label for="GX">GX</label>
+                    <input type="checkbox" name="category" value="3" id="health" ><label for="health" >헬스</label>
+                    <input type="checkbox" name="category" value="4" id="UFC" ><label for="UFC">격투기</label> 
                     <br>
-                    <input type="checkbox" name="category" value="5" id="plites"><label for="plites">필라테스</label>
-                    <input type="checkbox" name="category" value="6" id="yoga"><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc"><label for="etc">기타</label><br>
+                    <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
+                    <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">기타</label><br>
+                    <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
             </div>
@@ -89,7 +89,15 @@
                             <td>10.9Km</td><!-- 거리 API-->
                         </tr>
                         <tr>
-                            <td colspan="2"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;5.0</td><!-- 평점 점수에따른 이미지변경-->
+                            <td colspan="2">
+                            	<%for(;score<=c.getScore();score++){ %>
+                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+                            	<%} 
+                            	if(score-c.getScore()<0.5){%>
+                            		<i class="fa fa-star-half"></i>
+                            	<%} score=1;%>
+                            	<%=c.getScore()==0 ?  "0" : c.getScore() %>
+                            </td><!-- 평점 점수에따른 이미지변경-->
                             <td></td>
                         </tr>
                         <tr>
@@ -98,7 +106,7 @@
                             	<span class="badge badge-info"><%=s %></span>&nbsp;<!-- 카테고리-->
                             <%} %>
                             </td>
-                            <td style="padding: 0;"><a>정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
+                            <td style="padding: 0;"><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=c.getCode()%>">정보 확인하기 ></a></td><!-- 정보 상세로 이동-->
                         </tr>
                         <tr>
                             <td colspan="3"></td>
@@ -154,6 +162,21 @@
 		
 		/* 찜하기 ajax */
 		
+		/* 키워드 검색 */
+		function serachKeyword(){
+            		var search=$("#search").val();
+            		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
+            	}
+		/* 키워드 검색 */
+
+		/* 검색창 정보 가져오는 이벤트 */
+		$("#search").on("keyup",function(){
+			$("#keyword").attr("value",$("#search").val());
+		})
+		/* 검색창 정보 가져오는 이벤트 */
+		
+
+
     </script>
 
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>

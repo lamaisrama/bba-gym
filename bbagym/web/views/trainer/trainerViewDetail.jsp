@@ -55,6 +55,7 @@
 
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
+              <%for( %>  trainerprogram의 count를 추가 (count=횟수, p-name=프로그램명, price=가격) /카테고리 제거
               <h5>P.T
                 <br/>
                 <small>
@@ -62,15 +63,6 @@
                   <del>정상가 <%=tp.getName()%> <%=(int)(tp.getPrice()+(tp.getPrice()*0.1))%>원</del><br>
                  	 빠짐회원가 회당 <%=tp.getPrice() %>원<br><br>
                   <%} %>
-<!--                   <del>정상가 10회 800,000원</del><br>
-                  빠짐회원가 10회 700,000원<br>
-                  <mark>회당 70,000원</mark><br><br>
-                  <del>정상가 20회 1,500,000원</del><br>
-                  빠짐회원가 20회 1,300,000원<br>
-                  <mark>회당 65,000원</mark><br><br>
-                  <del>정상가 30회 2,100,000원</del><br>
-                  빠짐회원가 30회 1,800,000원<br>
-                  <mark>회당 60,000원</mark><br> -->
                 </small>
               </h5>
             </div>

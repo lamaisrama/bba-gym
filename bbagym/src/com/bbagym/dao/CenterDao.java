@@ -2,7 +2,6 @@ package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.TrainerView;
 
 public class CenterDao {
 	private Properties prop=new Properties();
@@ -76,8 +75,7 @@ public class CenterDao {
 				list.add(c);
 			}
 		}catch(SQLException e) {
-			list.clear();
-			return list; //오류시 list 비움
+			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
@@ -85,7 +83,7 @@ public class CenterDao {
 		return list;
 	}
 	
-	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 메소드
+	//센터에서 탈퇴멤버가아니며 승인받은 센터의 갯수를 가져오는 메소드-bs
 	public int selectCountCenter(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -150,37 +148,43 @@ public class CenterDao {
 	}
 	
 
-	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드
-		public List<CenterEnroll> findCatergoryList(Connection conn,List<CenterEnroll> list){
+	//센터 리스트를 받아와 각 센터에 카테고리를 받아오는 메소드-bs
+	public void findCatergoryList(Connection conn,List<CenterEnroll> list){
 			
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
-			List<String> category=new ArrayList<String>();
 			String sql=prop.getProperty("FindCatergoryList");
+			
+			
 			try {
 				
-				for(int i=0;i<list.size();i++) {
-				category.clear();
+				for(CenterEnroll c : list) {
+					
+				List<String> category=new ArrayList<String>();
+
+				
 				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, list.get(i).getCode());
+				pstmt.setInt(1,c.getCode());
 				
 				rs=pstmt.executeQuery();
 				
 				while(rs.next()) {
 					category.add(rs.getString("CATEGORY_NAME"));
 				}
+				
 
-
-				list.get(i).setCategories(category);
+				c.setCategories(category);
 				
 				}
+				
+				
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
-			return list;
+			
 		}
 	
-	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 
+	//centerview화면에 뿌려줄 center데이터를 담어오는 메소드 -bs
 	public List<CenterEnroll> centerMainPageData(Connection conn,int cPage,int numPerpage){ 
 		
 		PreparedStatement pstmt = null;
@@ -213,7 +217,7 @@ public class CenterDao {
 		
 	}
 	
-	//찜하기를 체크하는 dao 메소드
+	//찜하기를 체크하는 dao 메소드-bs
 	public void checkPerfer(Connection conn,List<CenterEnroll> list,int mcode){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -264,6 +268,7 @@ public class CenterDao {
 
 	}
 	
+	//찜하기 추가 또는 삭제 메소드 -bs
 	public int insertDeletePerfer(Connection conn,int ccode,int mcode,boolean flag) {
 		PreparedStatement pstmt = null;
 		int result=0;
@@ -291,5 +296,279 @@ public class CenterDao {
 		
 	}
 	
+
+	public CenterDetail centerViewDetail(Connection conn, int cCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CenterDetail cd = null;
+		
+		String sql = prop.getProperty("centerDetail");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cd= new CenterDetail();
+				cd.setCenterMainImg(rs.getString("C_MAIN_IMAGE"));
+				cd.setCenterName(rs.getString("C_NAME"));
+				cd.setCenterAddr(rs.getString("C_ADDRESS"));
+				cd.setCenterPhone(rs.getString("C_PHONE"));
+				cd.setCenterIntro(rs.getString("C_TEXT"));
+				cd.setCenterOpenHours(rs.getString("C_OPERATING_HOURS"));
+				cd.setCenterHolidays(rs.getString("C_HOLIDAY"));
+				cd.setCenterSchedule(rs.getString("C_SCHEDULE"));
+				cd.setSns_homepage(rs.getString("SNS_HOMEPAGE"));
+				cd.setSns_instagram(rs.getString("SNS_INSTAGRAM"));
+				cd.setSns_blog(rs.getString("SNS_BLOG"));
+				cd.setSns_etc(rs.getString("SNS_ETC"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return cd;
+	}
+	
+	public void centerViewDetailPrograms(Connection conn, int cCode, CenterDetail cd) {
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		cd.setCenterPrograms(new ArrayList());
+	}
+		
+
+	public void getScore(Connection conn,List<CenterEnroll> list) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("getScore");
+		try {
+			
+			for(CenterEnroll c: list) {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			c.setScore(rs.getDouble(1));
+			
+			
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	//category and keyword serach한 데이터를 가져오는 dao-bs
+	public List<CenterEnroll> SearchCategoryPageData(Connection conn,int cPage,int numPerpage,String keyword,String type){
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list= new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("SearchCategoryPageData");
+		sql=sql.replace("TYPE", type); // '1','2','3', ....
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	
+	//category and keyword serach한 모든 데이터를 가져오는 dao-bs
+	public int searchCategoryCountCenter(Connection conn,String keyword,String type) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql =prop.getProperty("searchCategoryCountCenter");
+		sql=sql.replace("TYPE", type);
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			rs=pstmt.executeQuery();
+			rs.next();
+			result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+		}
+	
+	
+	public List<CenterEnroll> searchKeywordPageData(Connection conn,int cPage,int numPerpage,String keyword){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("searchKeywordPageData");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return list;
+		
+	}
+	
+	
+	
+	public int searchCountCenter(Connection conn,String keyword) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql = prop.getProperty("searchCountCenter");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			rs=pstmt.executeQuery();
+			rs.next();
+			result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	//최신순으로 sort하는 데이터 페이징 dao
+	public List<CenterEnroll> sortSysDatePageData(Connection conn,int cPage, int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("sortSysDatePageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	
+	//평점순으로 sort하는 데이터 페이징 dao
+	public List<CenterEnroll> centerScorePageData(Connection conn,int cPage,int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("centerScorePageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));	
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	//리뷰순으로 sort하는 데이터 페이징 dao
+		public List<CenterEnroll> centerReviewPageData(Connection conn,int cPage,int numPerpage){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+			String sql =prop.getProperty("centerReviewPageData");
+			System.out.println(sql);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (cPage-1)*numPerpage+1);
+				pstmt.setInt(2, cPage*numPerpage);
+				
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					CenterEnroll c =new CenterEnroll();
+					
+					c.setCode(rs.getInt("C_CODE"));
+					c.setName(rs.getString("C_NAME"));	
+					c.setAddress(rs.getString("C_ADDRESS"));
+					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+					list.add(c);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
+		}
 	
 }

@@ -46,7 +46,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	      int maxSize = 1024*1024*10;
 	      
 	      MultipartRequest mr = new MultipartRequest(request, path,maxSize,"utf-8",new DefaultFileRenamePolicy());
-	      int M_CODE = Integer.parseInt(mr.getParameter("M_CODE"));
+	     int M_CODE = Integer.parseInt(mr.getParameter("M_CODE"));
 		String M_ID=mr.getParameter("id");
 		String M_NAME=mr.getParameter("M_NAME");
 		char M_GENDER=mr.getParameter("M_GENDER").charAt(0);
@@ -57,7 +57,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		String M_PHONE=mr.getParameter("M_PHONE");
 		String M_IMAGE=mr.getFilesystemName("M_IMAGE");
 		
-		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,0,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE);
+		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,M_LEVEL,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE,null);
 		
 		
 		int result=new MemberService().updateMember(m);

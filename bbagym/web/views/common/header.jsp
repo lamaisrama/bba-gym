@@ -68,14 +68,14 @@ if (cookies != null) {
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
 
-         <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
+         <%if (logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
                   <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
-         <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>	
+         <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>	
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
  		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
@@ -98,7 +98,7 @@ if (cookies != null) {
 	        <div>
 	        
 	       <input type="button" class="btn btn-outline-primary text-red"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
-	       <input type="button" class="btn btn-outline-primary text-red" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" />
+	       <input type="button" class="btn btn-outline-primary text-red" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
 	        	
 	        	&nbsp; 
 	 		 	 
@@ -107,7 +107,7 @@ if (cookies != null) {
 	   			 
 	    
 	     <%
-					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1){
+					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N'){
 				%>
 
           <!-- HelloUser Dropdown -->
@@ -126,7 +126,7 @@ if (cookies != null) {
           </li>
           <%
 			}
-					else if(logginMember!=null&&logginMember.getM_LEVEL()==2)
+					else if(logginMember!=null&&logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N')
 			
 			{
 		  %>
@@ -137,7 +137,7 @@ if (cookies != null) {
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
               
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
               <div class="dropdown-divider"></div>

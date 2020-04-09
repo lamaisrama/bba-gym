@@ -13,7 +13,7 @@
 <div class="container pt-3 center-info ">
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-12">
-			<h1 class="mt-4" style="text-align: center;">회원가입</h1>
+			<h1 class="mt-4" style="text-align: center;">일반 회원가입</h1>
 			<h6 style="text-align: right;">
 				<span><b>1. 기본 정보 입력</b><p style="color:red;">* 필수입력</p></span>
 			</h6>
@@ -84,8 +84,8 @@
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL"required>
 					</div>
 					<br>
-					<div class="form-group">
-						 <button type="button" class="btn btn-warning" onclick="goPopup()">주소</button>
+					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
+						 <button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
 			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 					<div class="form-group">
@@ -94,7 +94,7 @@
 					</div>
 					<br>
 					<div class="form-group div-photo">
-						<label for="exampleInputFile">사진 등록</label>
+						<label for="exampleInputFile">프로필 사진등록</label>
 						<div class="div-here">
 							<input type="file" class="form-control-file" aria-describedby="fileHelp" name="M_IMAGE" id="M_IMAGE"> 
 								<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>

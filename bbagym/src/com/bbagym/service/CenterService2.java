@@ -8,34 +8,13 @@ import static com.bbagym.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
-import com.bbagym.dao.CenterDao2;
+import com.bbagym.dao.CenterEnrollDao;
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Program;
 
 public class CenterService2 {
-	private CenterDao2 dao = new CenterDao2();
+	private CenterEnrollDao dao = new CenterEnrollDao();
 	
-	public List<CenterEnroll> centerView(int cPage, int numPerPage){
-		Connection conn=getConnection();
-		//데이터를 numPErPage 만큼 뽑아오는 method
-		List<CenterEnroll> centerEnrollList = dao.centerView(conn, cPage, numPerPage);
-		if(centerEnrollList.size()>0) {
-			for(CenterEnroll c : centerEnrollList) {
-				dao.findCategory(conn, c);
-				dao.findFacility(conn, c);
-			}
-		}
-		System.out.println(centerEnrollList);
-		close(conn);
-		return centerEnrollList;
-	}
-	
-	public int selectCountCenter() {
-		Connection conn = getConnection();
-		int count = dao.selectCountCenter(conn);
-		close(conn);
-		return count;
-	}
 	
 	public int enrollCenter(CenterEnroll c) {
 		Connection conn = getConnection();

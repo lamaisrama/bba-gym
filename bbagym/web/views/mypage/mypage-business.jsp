@@ -397,11 +397,12 @@ display: block;
 			</div>
 			<div>
 				<hr />
-				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
+				<a class="updateMyProfile" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
 				<a class="updateMyProfile" href="" onclick="updateMyProfile()">MY
 					찜목록</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">나의
 					회원권</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">장바구니</a>
-				<a class="updateMyProfile" href="" onclick="updateMyProfile()">회원탈퇴</a>
+				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>">회원탈퇴</a>
+				
 				<hr />
 			</div>
 

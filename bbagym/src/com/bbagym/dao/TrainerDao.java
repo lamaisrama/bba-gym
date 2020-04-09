@@ -391,6 +391,29 @@ public class TrainerDao {
 			close(rs);
 		}
 	}
+	
+	public void trainerViewDetailCategory(Connection conn, int t_code, TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		td.setTrainerCategory(new ArrayList());
+		
+		String sql = prop.getProperty("getTrainerCategory");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, t_code);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				td.getTrainerCategory().add(rs.getString("CATEGORY_NAME"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
 }
 
 

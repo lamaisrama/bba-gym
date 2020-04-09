@@ -19,14 +19,14 @@ public class Member {
 	private String M_ADDRESS_2;
 	private char M_GENDER;
 	private int M_AGE;
-	
+	private String BUSINESS_CODE;
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Member(int m_CODE, String m_ID, String m_PW, String m_NAME, String m_EMAIL, String m_PHONE, String m_ADDRESS,
 			int m_LEVEL, Date m_ENROLLDATE, char m_STATUS, String m_IMAGE, String m_PHONE2, String m_ADDRESS_2,
-			char m_GENDER, int m_AGE) {
+			char m_GENDER, int m_AGE, String bUSINESS_CODE) {
 		super();
 		M_CODE = m_CODE;
 		M_ID = m_ID;
@@ -43,6 +43,7 @@ public class Member {
 		M_ADDRESS_2 = m_ADDRESS_2;
 		M_GENDER = m_GENDER;
 		M_AGE = m_AGE;
+		BUSINESS_CODE = bUSINESS_CODE;
 	}
 	public int getM_CODE() {
 		return M_CODE;
@@ -134,12 +135,20 @@ public class Member {
 	public void setM_AGE(int m_AGE) {
 		M_AGE = m_AGE;
 	}
+	public String getBUSINESS_CODE() {
+		return BUSINESS_CODE;
+	}
+	public void setBUSINESS_CODE(String bUSINESS_CODE) {
+		BUSINESS_CODE = bUSINESS_CODE;
+	}
 	@Override
 	public String toString() {
 		return "Member [M_CODE=" + M_CODE + ", M_ID=" + M_ID + ", M_PW=" + M_PW + ", M_NAME=" + M_NAME + ", M_EMAIL="
 				+ M_EMAIL + ", M_PHONE=" + M_PHONE + ", M_ADDRESS=" + M_ADDRESS + ", M_LEVEL=" + M_LEVEL
 				+ ", M_ENROLLDATE=" + M_ENROLLDATE + ", M_STATUS=" + M_STATUS + ", M_IMAGE=" + M_IMAGE + ", M_PHONE2="
-				+ M_PHONE2 + ", M_ADDRESS_2=" + M_ADDRESS_2 + ", M_GENDER=" + M_GENDER + ", M_AGE=" + M_AGE + "]";
+				+ M_PHONE2 + ", M_ADDRESS_2=" + M_ADDRESS_2 + ", M_GENDER=" + M_GENDER + ", M_AGE=" + M_AGE
+				+ ", BUSINESS_CODE=" + BUSINESS_CODE + "]";
 	}
+	
 	
 }
