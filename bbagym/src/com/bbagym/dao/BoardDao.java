@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbagym.model.vo.Board;
+import com.bbagym.model.vo.BoardComment;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
@@ -51,6 +52,7 @@ public class BoardDao {
 				b.setNewFileName(rs.getString("new_filename"));
 				b.setReadCount(rs.getInt("readcount"));
 				b.setmCode(rs.getInt("m_code"));
+				b.setmId(rs.getString("m_id"));
 				list.add(b);
 			}
 		}catch(SQLException e) {
@@ -115,7 +117,7 @@ public class BoardDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				b = new Board();
-				b.setQaCode(rs.getInt(rs.getInt("qa_code")));
+				b.setQaCode(rs.getInt("qa_code"));
 				b.setTitle(rs.getString("title"));
 				b.setQaContent(rs.getString("qa_content"));
 				b.setQaDate(rs.getDate("qa_date"));
@@ -123,6 +125,7 @@ public class BoardDao {
 				b.setNewFileName(rs.getString("new_filename"));
 				b.setReadCount(rs.getInt("readcount"));
 				b.setmCode(rs.getInt("m_code"));
+				b.setmId(rs.getString("m_id"));
 				
 			}
 		}catch(SQLException e) {
@@ -179,21 +182,22 @@ public class BoardDao {
 			sql = prop.getProperty("updateBoard2");
 		}
 		
-		try {
+		try {//UPDATE QA SET TITLE=?, QA_CONTENT=?, ORI_FILENAME=? WHERE QA_CODE=?
 			if(!b.getOriFileName().equals("null")) {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, b.getTitle());
 				pstmt.setString(2, b.getQaContent());
 				pstmt.setString(3, b.getOriFileName());
-				pstmt.setInt(4, b.getmCode());
-				pstmt.setInt(5, b.getQaCode());
+//				pstmt.setInt(4, b.getmCode());
+				pstmt.setInt(4, b.getQaCode());
 				
 			}else {
+				//updateNotice2=UPDATE QA SET TITLE=?, QA_CONTENT=? WHERE QA_CODE=?
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, b.getTitle());
 				pstmt.setString(2, b.getQaContent());
-				pstmt.setInt(3, b.getmCode());
-				pstmt.setInt(4, b.getQaCode());
+//				pstmt.setInt(3, b.getmCode());
+				pstmt.setInt(3, b.getQaCode());
 			}
 			result = pstmt.executeUpdate();
 		}catch(SQLException e) {
@@ -203,9 +207,66 @@ public class BoardDao {
 		}
 		return result;
 	}
-
 	
-
+	// 댓글 등록
+	public int commentInsert(Connection conn, BoardComment bc) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("commentInsert");
+		//INSERT INTO QA_COMMENT VALUES(SEQ_QA_C.NEXTVAL,?,?,?,SYSDATE,?,?)
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bc.getQaCommentRef()==0?null:String.valueOf(bc.getQaCommentRef()));
+			pstmt.setInt(2, bc.getQaCommentLevel());
+			pstmt.setString(3, bc.getQaCommentContent());
+			pstmt.setInt(4, bc.getQaCode());
+			pstmt.setInt(5, bc.getmCode());
+			//pstmt.setString(5, bc.getmId());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	// 댓글목록
+	public List<BoardComment> selectComment(Connection conn, int no) {
+		PreparedStatement pstmt= null;
+		ResultSet rs = null;
+		List<BoardComment> list = new ArrayList();
+		String sql = prop.getProperty("selectComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BoardComment bc = new BoardComment();
+				
+				bc.setQaCommentCode(rs.getInt("qa_comment_code"));
+				bc.setQaCommentRef(rs.getInt("qa_comment_ref"));
+				bc.setQaCommentLevel(rs.getInt("qa_comment_level"));
+				bc.setQaCommentContent(rs.getString("qa_comment_content"));
+				bc.setQaCommentDate(rs.getDate("qa_comment_date"));
+				bc.setQaCode(rs.getInt("qa_code"));
+				bc.setmCode(rs.getInt("m_code"));
+//				bc.setmId(rs.getString("m_id"));
+				
+				list.add(bc);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 	

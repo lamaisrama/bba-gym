@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <%if(list!=null){ %>
+                <%-- <%if(list!=null){ %> --%>
                 	<%for(Board b : list) {%>
                     <tr>
                         <td scope="row"><%=b.getQaCode() %></td>
@@ -55,7 +55,10 @@
                         		<%=b.getTitle() %>
                         	</a>
                        	</td>
-                        <td><%=b.getmCode() %></td>
+                        
+                        <td><%=b.getmId() %>
+                        </td>
+                        
                         <td><img src="/resources/img/file.png">
                         	<%if(b.getOriFileName()!=null) {%>
                         	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
@@ -65,7 +68,7 @@
                         <td><%=b.getReadCount() %></td>
                     </tr>
                     <%} %>
-                 <%} %>
+                 <%-- <%} %> --%>
                 </tbody>
             </table>
             <!-- 게시판테이블 end -->
