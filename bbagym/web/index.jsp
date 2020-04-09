@@ -40,7 +40,7 @@
 	        	<div>
 
 				    <ul>	<!--로그인한멤버 -->		        
-				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1) {%>
+				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
 				          <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
@@ -49,7 +49,7 @@
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li>		 </a>
 
 				         <a href="<%=request.getContextPath()%>/mypage/mypageUser.do"><li>My page</li></a>			<!-- /views/mypage/mypage-user.jsp -->
-				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2) {%>		         
+				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>		         
 				         <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
 				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
@@ -122,11 +122,11 @@
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>로그아웃</button>
-			               			 <%if (logginMember.getM_LEVEL()==1) {%>
+			               			 <%if (logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>정보수정</button>
-			               			<%}else if (logginMember.getM_LEVEL()==2) {%>
+			               			<%}else if (logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>
 			               			<button type="button" class="btn btn-outline-primary text-white"
 			               			onclick="location.replace('<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 			               			>정보수정</button>
