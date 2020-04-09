@@ -55,7 +55,9 @@ public class NoticeUpdateEndServlet extends HttpServlet {
 		String content = mr.getParameter("content");
 		String oriFile = mr.getParameter("oriFile");
 		String fileName = mr.getFilesystemName("upfile");
+		
 		System.out.println(writer);
+		
 		File f = mr.getFile("upfile");
 		
 		if(f!=null && f.length() > 0) {

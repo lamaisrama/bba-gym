@@ -61,7 +61,7 @@ public class BoardListServlet extends HttpServlet {
 			pageBar+="<li class='page-item'><a class='page-link' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}else { // 현재페이지가 2이상이면 prev클릭시 -1페이지로 이동
 			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath()
-						+ "/board/noticeList?cPage=" + (pageNo-1)
+						+ "/board/boardList?cPage=" + (pageNo-1)
 						+ "&numPerPage=" + numPerPage 
 						+ "'aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
 		}

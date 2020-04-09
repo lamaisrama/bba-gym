@@ -62,6 +62,44 @@ import com.bbagym.model.vo.Member;
 			close(pstmt);
 		}return m;
 	}
+	
+
+	public Member login2(Connection conn, String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		Member m2=null;
+		String sql=prop.getProperty("selectMember2");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				m2=new Member();
+				m2.setM_CODE(rs.getInt("M_CODE"));
+				m2.setM_ID(rs.getString("M_ID"));
+				m2.setM_NAME(rs.getString("M_NAME"));
+				m2.setM_EMAIL(rs.getString("M_EMAIL"));
+				m2.setM_PHONE(rs.getString("M_PHONE"));
+				m2.setM_ADDRESS(rs.getString("M_ADDRESS"));
+				m2.setM_LEVEL(rs.getInt("M_LEVEL"));
+				m2.setM_ENROLLDATE(rs.getDate("M_ENROLLDATE"));
+				m2.setM_STATUS(rs.getString("M_STATUS").charAt(0));
+				m2.setM_IMAGE(rs.getString("M_IMAGE"));
+				m2.setM_PHONE2(rs.getString("M_PHONE_2"));
+				m2.setM_ADDRESS_2(rs.getString("M_ADDRESS_2"));
+				m2.setM_GENDER(rs.getString("M_GENDER").charAt(0));
+				m2.setM_AGE(rs.getInt("M_AGE"));
+				m2.setBUSINESS_CODE(rs.getString("BUSINESS_CODE"));
+			
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return m2;
+	}
+
 
 	public boolean userIdDuplicate(Connection conn, String id) {
 		PreparedStatement pstmt=null;
