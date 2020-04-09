@@ -6,7 +6,6 @@ import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
-
 import static com.bbagym.common.JDBCTemplate.close;
 
 
@@ -127,6 +126,19 @@ public class MemberService {
 		rollback(conn);
 
 		close(conn);
+		return result;
+	}
+
+
+	public int memberDelete(String userId) {
+		Connection conn=getConnection();
+		int result=dao.memberDelete(conn,userId);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+
 		return result;
 	}
 
