@@ -1,6 +1,8 @@
 package com.bbagym.controller.board;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -9,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bbagym.model.vo.Board;
+import com.bbagym.model.vo.BoardComment;
 import com.bbagym.service.BoardService;
-import com.bbagym.service.NoticeService;
 
 /**
  * Servlet implementation class BoardVIewServlet
@@ -58,6 +60,7 @@ public class BoardVIewServlet extends HttpServlet {
 		}
 		
 		Board b = new BoardService().selectBoard(no, hasRead); 
+		List<BoardComment> comments = new BoardService().selectComment(no);	//댓글
 		
 		String view = "";
 		
@@ -66,7 +69,8 @@ public class BoardVIewServlet extends HttpServlet {
 			request.setAttribute("loc", "/board/boardList");
 			view = "/views/common/msg.jsp";
 		}else {
-			request.setAttribute("board", b);	
+			request.setAttribute("board", b);
+			request.setAttribute("comment", comments);	//댓글
 			view = "/views/board/boardView.jsp";
 		}
 		request.getRequestDispatcher(view).forward(request, response);

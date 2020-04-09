@@ -1,6 +1,9 @@
 package com.bbagym.controller.center;
 
+import static com.bbagym.common.PageBarTemplate.pageBar;
+
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bbagym.model.vo.CenterDetail;
+import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.CenterService;
 
 /**
- * Servlet implementation class CenterViewDetailServlet
+ * Servlet implementation class CenterSysDateServlet
  */
-@WebServlet("/center/centerDetail.do")
-public class CenterViewDetailServlet extends HttpServlet {
+@WebServlet("/center/sysdate.do")
+public class CenterSysDateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterViewDetailServlet() {
+    public CenterSysDateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +36,32 @@ public class CenterViewDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String url= request.getContextPath()+"/center/sysdate.do";
+		int cPage;
 		
-		HttpSession session=request.getSession();
+		try {
+			cPage = Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
 		
-		int mCode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		HttpSession session = request.getSession();
+		int m;
+		try {
+			m=((Member)session.getAttribute("logginMember")).getM_CODE();
+		}catch(NullPointerException e) {
+			m=0;
+		}
+		int numPerpage=3;
 		
-		
-		
-			
-			int cCode = Integer.parseInt(request.getParameter("cCode"));
-			System.out.println(cCode);
-			
-			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
-			
-			request.setAttribute("cd", cd);
-			request.getRequestDispatcher("/views/center/centerViewDetail.jsp").forward(request, response);
+		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m);
+		int totalData = new CenterService().selectCountCenter();
+
+		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
+
+		request.setAttribute("pageBar", pagebar);
+		request.setAttribute("centerList", list);
+		request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
 	}
 
 	/**
