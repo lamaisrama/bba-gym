@@ -59,17 +59,17 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 		}else if(m2!= null && m2.getM_STATUS()=='Y'){
 			request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
-			request.setAttribute("loc", "");
+			request.setAttribute("loc", "/member/membeLoginView.do");
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
 			rd.forward(request, response);
 		}else if(m2==null) {
 			request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
-			request.setAttribute("loc", "");
+			request.setAttribute("loc", "/member/membeLoginView.do");
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
 			rd.forward(request, response);
 		}else{
 			request.setAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
-			request.setAttribute("loc", "");
+			request.setAttribute("loc", "/member/membeLoginView.do");
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
 			rd.forward(request, response);
 		}
