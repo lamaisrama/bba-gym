@@ -35,7 +35,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">평점순</a> <!--평점순으로 페이징 처리-->
                             <a class="dropdown-item" href="#">리뷰순</a> <!--리뷰가 많은순으로 페이징처리-->
-                            <a class="dropdown-item" href="#">최신순</a> <!--최신순으로 페이징처리-->
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/sysdate.do">최신순</a> <!--최신순으로 페이징처리-->
                         </div>
                     </li>
                 </ul>
@@ -47,15 +47,15 @@
             </div>
             <div class="tab-pane container" id="category">
                 <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
-                    <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
-                    <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
-                    <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
-                    <input type="checkbox" name="category" value="3" id="health"><label for="health" >헬스</label>
-                    <input type="checkbox" name="category" value="4" id="UFC"><label for="UFC">격투기</label> 
+                    <input type="checkbox" name="category" value="0" id="total" ><label for="total">전체</label>
+                    <input type="checkbox" name="category" value="1" id="swimming" ><label for="swimming">수영</label>
+                    <input type="checkbox" name="category" value="2" id="GX" ><label for="GX">GX</label>
+                    <input type="checkbox" name="category" value="3" id="health" ><label for="health" >헬스</label>
+                    <input type="checkbox" name="category" value="4" id="UFC" ><label for="UFC">격투기</label> 
                     <br>
-                    <input type="checkbox" name="category" value="5" id="plites"><label for="plites">필라테스</label>
-                    <input type="checkbox" name="category" value="6" id="yoga"><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc"><label for="etc">기타</label><br>
+                    <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
+                    <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">기타</label><br>
                     <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
@@ -173,6 +173,10 @@
 		$("#search").on("keyup",function(){
 			$("#keyword").attr("value",$("#search").val());
 		})
+		/* 검색창 정보 가져오는 이벤트 */
+		
+
+
     </script>
 
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>
