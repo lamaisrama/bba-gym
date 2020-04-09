@@ -42,10 +42,10 @@ public class TrainerService2 {
 						//7. p_code 이용해서 c_price 등록
 						for(Program p : te.getProgram()) {
 							result=0;
-							for(int i=0;i<4;i++) {
+							for(int i=0;i<p.getPrices().size();i++) {
 								result+=dao.insertProgramPrice(conn, p.getpCode(), p.getPrices().get(i));
 							}
-							if(result!=4) return -1;
+							if(result!=p.getPrices().size()) return -1;
 						}
 						result=1;
 						if(result>0) {
