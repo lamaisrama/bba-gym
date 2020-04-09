@@ -1,5 +1,6 @@
-	let count= 0; 
+	
 	let count_photo=0;
+	let count_program= 0; 
 	
 	function addPhoto(){
 	    count_photo++;
@@ -19,26 +20,61 @@
 	    //구현해야 함
 	}
 
-	function addProgram(){
-	    const area = document.querySelector(".div-here");
-		    const div=document.querySelector(".program-"+count);
-		    count++;
-		    const div_row = $("<div>").addClass("row").addClass("program-"+(count));
-		    const div_new=$("<div>").addClass("col-lg-10").addClass("col-md-10").addClass("col-sm-12");
-		    const tabletag=`<table class="table striped"><tr><td colspan="2"> <label for="">${count+1}번째 프로그램명</label><span style="float:right;"><button type="button" class="btn btn-default btn-sm" onclick="deleteProgram();">삭제</button></span><input type="text" class="form-control" style="clear:both;" name="tp"></td></tr><tr><td><label for="">첫번째 횟수,가격<sub style="color: black;">사이에 반드시 <span style="font-weight:bolder; color:red;">","</span>를 넣어주세요</sub></label><input type="text" class="form-control" name="tp${count}p"></td><td><label for="">두번째 횟수, 가격<sub style="color: black;">사이에 반드시 <span style="font-weight:bolder; color:red;">","</span>를 넣어주세요</sub></label><input type="text" class="form-control" name="tp${count}p"></td></tr><tr><td><label for="">세번째 횟수,가격<sub style="color: black;">사이에 반드시 <span style="font-weight:bolder; color:red;">","</span>를 넣어주세요</sub></label><input type="text" class="form-control" name="tp${count}p"></td><td> <label for="">네번째 횟수, 가격<sub style="color: black;">사이에 반드시 <span style="font-weight:bolder; color:red;">","</span>를 넣어주세요</sub></label><input type="text" class="form-control" name="tp${count}p"></td></tr></table>`;
+	function addCount(){
+		console.log(count_program);
+		var div_here=$(".div-t-price-"+count_program);
+		var div_row = $("<div>").addClass("form-group").addClass("row");
+		var div_count= $("<div>").addClass("col-xs-3").append($("<label>").	html("횟수")).append($("<input>").attr({
+			type:"text",
+			name:"t-p-count-"+count_program,
+			}).addClass("form-control"));
 
-		    div_new.html($(tabletag));
-		    div_new.appendTo(div_row);
-		    div_row.appendTo(area);
+		var div_price=$("<div>").addClass("col-xs-7").append($("<label>").		html("가격")).append($("<input>").attr({
+			type:"text",
+			name:"t-p-price-"+count_program,
+			}).addClass("form-control"));
+
+		var div_btn=$("<div>").addClass("col-xs-2");
+
+		var btn_add=$("<button>").attr("type","button").addClass("btn").addClass("btn-sm").addClass("btn-t-price").addClass("btn-primary").attr("onclick","addCount();").html("추가");
+
+		var btn_del=$("<button>").attr("type","button").addClass("btn").addClass("btn-sm").addClass("btn-t-price").addClass("btn-warning").attr("onclick","delCount(this)").html("삭제");
+
+		div_btn.append(btn_add).append(btn_del);
+		div_row.append(div_count).append(div_price).append(div_btn);
+		div_here.append(div_row);
+	}
+
+	function delCount(e){
+		$(e).parent().parent().remove();
+	}
+
+	function addProgram(){
+		var div_here=$(".div-program-"+count_program);
+		count_program++;
+		
+		var div_1=$("<div>").addClass("row").addClass("div-program-"+count_program);
+
+		var div_2=$("<div>").addClass("col-md-8").addClass("div-t-price-"+count_program);
+
+		var div_3=$("<div>").addClass("form-group").append($("<label>").html("프로그램명")).append($("<input>").addClass("form-control").attr({type:"text",name:"tp"}));
+		
+		var div_4=$("<div>").addClass("form-group").addClass("row");
+		
+		var div_5=$("<div>").addClass("col-xs-3").append($("<label>").html("횟수")).append($("<input>").addClass("form-control").attr({type:"text", name:"t-p-count-"+count_program}));
+		
+		var div_6=$("<div>").addClass("col-xs-7").append($("<label>").html("가격")).append($("<input>").addClass("form-control").attr({type:"text", name:"t-p-price-"+count_program}));
+		
+		var div_7=$("<div>").addClass("col-xs-2").append($("<button>").addClass("btn").addClass("btn-primary").addClass("btn-sm").addClass("btn-t-price").attr({type:"button", onclick:"addCount();"}).html("추가"));
+		
+		div_new=div_1.append(div_2.append(div_3).append(div_4.append(div_5).append(div_6).append(div_7)));
+		div_here.after(div_new);
+
 	}
 
 	function deleteProgram(){
-		const area=document.querySelector(".program-"+count);
-		console.log(area);
+		var area=$(".div-program-"+count_program);
 		$(area).remove();
-		count--;
-
+		count_program;
 	}
-	
-	
 	

@@ -61,15 +61,17 @@ public class TrainerEnrollFinalServlet extends HttpServlet {
 		te.setProgram(new ArrayList());
 		String[] pnames=mr.getParameterValues("tp");
 		for(int i=0;i<pnames.length;i++) {
-			te.getProgram().add(new Program(pnames[i]));
-			String[] pcosts=mr.getParameterValues("tp"+i+"p");
-			for(int j=0;j<4;j++) {
-				String[] price = pcosts[j].split(",");
-				int month=Integer.parseInt(price[0].trim());
-				int cost=Integer.parseInt(price[1].trim());
-				te.getProgram().get(i).getPrices().add(new Price(month, cost));
+			if(pnames[i]!=null) {
+				te.getProgram().add(new Program(pnames[i]));
+				String[] counts=mr.getParameterValues("t-p-count-"+i);
+				String[] price =mr.getParameterValues("t-p-price-"+i);
+				for(int j=0;j<counts.length;j++) {
+					te.getProgram().get(i).getPrices()
+					.add(new Price(Integer.parseInt(counts[j]), Integer.parseInt(price[j])));
+				}
 			}
 		}
+		
 		int result=new TrainerService2().enrollTrainer(te);
 		String msg="", loc="";
 		if(result==1) {
@@ -77,7 +79,7 @@ public class TrainerEnrollFinalServlet extends HttpServlet {
 			loc="/index.jsp";
 		}else {
 			msg="등록 실패, 관리자에게 문의하세요";
-			loc="/center/trainerEnroll.do";
+			loc="/trainer/trainerEnroll.do";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
