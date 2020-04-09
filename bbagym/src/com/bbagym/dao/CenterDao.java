@@ -154,18 +154,15 @@ public class CenterDao {
 			
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
-			List<String> category=new ArrayList<String>();
 			String sql=prop.getProperty("FindCatergoryList");
 			
-			System.out.println(sql);
-			for(CenterEnroll c : list) {
-				System.out.println(c);
-			}
+			
 			try {
 				
 				for(CenterEnroll c : list) {
 					
-				category.clear();
+				List<String> category=new ArrayList<String>();
+
 				
 				pstmt=conn.prepareStatement(sql);
 				pstmt.setInt(1,c.getCode());
@@ -175,17 +172,13 @@ public class CenterDao {
 				while(rs.next()) {
 					category.add(rs.getString("CATEGORY_NAME"));
 				}
-				for(String s : category) {
-					System.out.println(s);
-				}
+				
 
 				c.setCategories(category);
 				
 				}
 				
-				for(CenterEnroll c : list) {
-					System.out.println(c);
-				}
+				
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
@@ -465,17 +458,17 @@ public class CenterDao {
 		}
 		
 	}
-	//category serach한 데이터를 가져오는 dao-bs
+	//category and keyword serach한 데이터를 가져오는 dao-bs
 	public List<CenterEnroll> SearchCategoryPageData(Connection conn,int cPage,int numPerpage,String keyword,String type){
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
 		List<CenterEnroll> list= new ArrayList<CenterEnroll>();
 		String sql =prop.getProperty("SearchCategoryPageData");
-		sql=sql.replace("TYPE", type);
+		sql=sql.replace("TYPE", type); // '1','2','3', ....
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword.replace(" ", "")+"%");
+			pstmt.setString(1, "%"+keyword+"%");
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			
@@ -501,6 +494,7 @@ public class CenterDao {
 		return list;
 	}
 	
+	//category and keyword serach한 모든 데이터를 가져오는 dao-bs
 	public int searchCategoryCountCenter(Connection conn,String keyword,String type) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -509,7 +503,7 @@ public class CenterDao {
 		sql=sql.replace("TYPE", type);
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword.replace(" ", "")+"%");
+			pstmt.setString(1, "%"+keyword+"%");
 			rs=pstmt.executeQuery();
 			rs.next();
 			result=rs.getInt(1);
@@ -578,6 +572,96 @@ public class CenterDao {
 		}
 		return result;
 	}
+	//최신순으로 sort하는 데이터 페이징 dao
+	public List<CenterEnroll> sortSysDatePageData(Connection conn,int cPage, int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("sortSysDatePageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	
+	//평점순으로 sort하는 데이터 페이징 dao
+	public List<CenterEnroll> centerScorePageData(Connection conn,int cPage,int numPerpage){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+		String sql =prop.getProperty("centerScorePageData");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c =new CenterEnroll();
+				
+				c.setCode(rs.getInt("C_CODE"));
+				c.setName(rs.getString("C_NAME"));	
+				c.setAddress(rs.getString("C_ADDRESS"));
+				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	//리뷰순으로 sort하는 데이터 페이징 dao
+		public List<CenterEnroll> centerReviewPageData(Connection conn,int cPage,int numPerpage){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+			String sql =prop.getProperty("centerReviewPageData");
+			System.out.println(sql);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (cPage-1)*numPerpage+1);
+				pstmt.setInt(2, cPage*numPerpage);
+				
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					CenterEnroll c =new CenterEnroll();
+					
+					c.setCode(rs.getInt("C_CODE"));
+					c.setName(rs.getString("C_NAME"));	
+					c.setAddress(rs.getString("C_ADDRESS"));
+					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+					list.add(c);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
+		}
 	
 }

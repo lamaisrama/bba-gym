@@ -56,10 +56,10 @@ public class BoardUpdateEndServlet extends HttpServlet {
 		String oriFile = mr.getParameter("oriFile");
 		String fileName = mr.getFilesystemName("upfile");
 		System.out.println(writer);
+		
 		File f = mr.getFile("upfile");
 		
-		if(f!=null && f.length() > 0) {
-			
+		if(f!=null&&f.length()>0) {
 			File delFile = new File(path + oriFile);
 			boolean flag = delFile.delete();
 			System.out.println(flag);	// true면 지워진 것
@@ -69,6 +69,8 @@ public class BoardUpdateEndServlet extends HttpServlet {
 		}
 		
 		Board b = new Board(boardNo, title, content, null, fileName, null, 0, Integer.parseInt(writer));
+		//Board b = new Board(boardNo, title, content, null, fileName, null, 0, writer);
+		
 		int result = new BoardService().updateBoard(b);
 		
 		String msg = "";

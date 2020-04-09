@@ -37,35 +37,39 @@ public class CenterSortCategoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-			String type = request.getParameter("type");
+		String type = request.getParameter("type"); //cPage 1일때는 type이 존재하지않는다 null로 들어옴
 
 			if(type==null) {
-			String[] category = request.getParameterValues("category");
-			 type="'"+String.join("','", category)+"'";
-				if(category==null) {
-					type="";
+				
+				String[] category = request.getParameterValues("category"); //cPage=1일때 checkbox에서 category를 받아온다 
+				if(category!=null) {
+					type="'"+String.join("','", category)+"'"; // sql문에 사용하기위한 형태로 type을 정의한다 '1','2' .....
+				}else {
+					type="''"; //카테고리 체크없이 넘길경우 공란을 넘긴다
 				}
+			 	
 			}else {
-				type="'"+type.replace(".", "','")+"'";
+				type="'"+type.replace(".", "','")+"'"; //cPage=2 부터는 type을 다시 replace로 '1','2' 모습으로 만든다
 			}
-
 		
-		String keyword=request.getParameter("keyword");
+		String keyword=request.getParameter("keyword").replace(" ", ""); // 검색키워드를 받아온다 공백처리
 		String url= request.getContextPath()+"/center/sortCategory.do";
-		int cPage;
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
 		
+		int cPage;
+		
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				cPage=1;
+			}
+			
 		HttpSession session = request.getSession();
-		int m;
-		try {
-			m=((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch(NullPointerException e) {
-			m=0;
-		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
+			int m;
+			try {
+				m=((Member)session.getAttribute("logginMember")).getM_CODE();
+			}catch(NullPointerException e) {
+				m=0;
+			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 		
 		int numPerpage=3;
 		
@@ -81,10 +85,10 @@ public class CenterSortCategoryServlet extends HttpServlet {
 		if(type!=null) {
 			type = type.replace("','", ".");
 			type = type.replace("'","");
-		}
+		} //type을 보낼때의 모습을 다시 replace정의후 보낸다
 
 		pageBar += "<div><ul class='pagination'>";
-//		search같은 경우는 type과 searchKeyword를 동봉해야하기떄문에 pageBar Template를 쓰지못함
+		
 		if(pageNo==1) {
 			pageBar += "<li class='page-item'><a class='page-link'>[Frist]</a></li>";
 		}else {
@@ -110,7 +114,6 @@ public class CenterSortCategoryServlet extends HttpServlet {
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("centerList", list);
-		request.setAttribute("keyword",keyword);
 		request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
 	}
 
