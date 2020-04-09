@@ -36,11 +36,23 @@ public class CenterSortCategoryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+			String type = request.getParameter("type");
+
+			if(type==null) {
+			String[] category = request.getParameterValues("category");
+			 type="'"+String.join("','", category)+"'";
+				if(category==null) {
+					type="";
+				}
+			}else {
+				type="'"+type.replace(".", "','")+"'";
+			}
+
 		
-		String[] category = request.getParameterValues("category");
+		String keyword=request.getParameter("keyword");
 		String url= request.getContextPath()+"/center/sortCategory.do";
 		int cPage;
-		
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		}catch(NumberFormatException e) {
@@ -57,29 +69,33 @@ public class CenterSortCategoryServlet extends HttpServlet {
 		
 		int numPerpage=3;
 		
-		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,category);
-
-		int totalData = new CenterService().searchCategoryCountCenter(category);
-		
+		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword);
+	
+		int totalData = new CenterService().searchCategoryCountCenter(type,keyword);
 		String pageBar="";
 		int pageBarSize=5;
 		int totalPage = (int) Math.ceil((double)totalData/numPerpage);
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
-		
+
+		if(type!=null) {
+			type = type.replace("','", ".");
+			type = type.replace("'","");
+		}
+
 		pageBar += "<div><ul class='pagination'>";
 //		search같은 경우는 type과 searchKeyword를 동봉해야하기떄문에 pageBar Template를 쓰지못함
 		if(pageNo==1) {
 			pageBar += "<li class='page-item'><a class='page-link'>[Frist]</a></li>";
 		}else {
-			pageBar +="<li class='page-item'><a class='page-link' href='"+url+"?cPage="+(pageNo-1)+"&category="+category+"'>[Previous]</a></li>";
+			pageBar +="<li class='page-item'><a class='page-link' href='"+url+"?cPage="+(pageNo-1)+"&keyword="+keyword+"&type="+type+"'>[Previous]</a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(pageNo==cPage) {
 				pageBar += "<li class='page-item'><a class='page-link'>"+pageNo+"</a></span>";
 			}else {
-				pageBar += "<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&category="+category+"'>"+pageNo+"</a></li>";
+				pageBar += "<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"&type="+type+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -87,13 +103,14 @@ public class CenterSortCategoryServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar += "<li class='page-item'><a class='page-link'>[End]</a></li>";
 		}else {
-			pageBar +="<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&category="+category+"'>[Next]</a></li>";
+			pageBar +="<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"&type="+type+"'>[Next]</a></li>";
 		}
 		
 		pageBar += "</ul></div>";
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("centerList", list);
+		request.setAttribute("keyword",keyword);
 		request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
 	}
 

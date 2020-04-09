@@ -34,7 +34,7 @@ public class CenterSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String keyword = request.getParameter("keyword").trim();
+		String keyword = request.getParameter("keyword").trim().replace(" ", "");
 		String url= request.getContextPath()+"/center/search.do";
 		int cPage;
 		

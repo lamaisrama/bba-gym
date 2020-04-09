@@ -106,9 +106,9 @@ public class CenterService {
 	}
 
 	//category serach한 데이터를 가져오는 서비스-bs
-	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String[] category){
+	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String type,String keyword){
 		Connection conn=getConnection();
-		List<CenterEnroll> list =dao.SearchCategoryPageData(conn,cPage,numPerpage,category); //cateogry 정렬 센터 정보를 가져오는 서비스
+		List<CenterEnroll> list=dao.SearchCategoryPageData(conn,cPage,numPerpage,keyword,type); //cateogry 정렬 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
 			dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
 			dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
@@ -120,17 +120,21 @@ public class CenterService {
 		return list;
 	}
 	
-	public int searchCategoryCountCenter(String[] category) {
-		return 0;
+	public int searchCategoryCountCenter(String type,String keyword) {
+		Connection conn =getConnection();
+		int result = dao.searchCategoryCountCenter(conn,keyword,type);
+		close(conn);
+		return result;
 		
-
 	}
 	
 	public List<CenterEnroll> searchKeywordPageData(int cPage,int numPerpage,int mcode,String keyword){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.searchKeywordPageData(conn,cPage,numPerpage,keyword); //기본 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
+
 			dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
+
 			dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
 			if(mcode!=0) {
 				dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스

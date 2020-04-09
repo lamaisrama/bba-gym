@@ -46,7 +46,7 @@
                 <h3>map api 넣을 구역</h3>
             </div>
             <div class="tab-pane container" id="category">
-                <form action="<%=request.getContextPath() %>/center/sortCategory.do?keyword=<%=keyword!=null ? keyword : null %>" method="POST">
+                <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
                     <input type="checkbox" name="category" value="0" id="total"><label for="total">전체</label>
                     <input type="checkbox" name="category" value="1" id="swimming"><label for="swimming">수영</label>
                     <input type="checkbox" name="category" value="2" id="GX"><label for="GX">GX</label>
@@ -56,6 +56,7 @@
                     <input type="checkbox" name="category" value="5" id="plites"><label for="plites">필라테스</label>
                     <input type="checkbox" name="category" value="6" id="yoga"><label for="yoga">요가</label>
                     <input type="checkbox" name="category" value="7" id="etc"><label for="etc">기타</label><br>
+                    <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
             </div>
@@ -164,10 +165,14 @@
 		/* 키워드 검색 */
 		function serachKeyword(){
             		var search=$("#search").val();
-            		location.href="<%=request.getContextPath() %>/center/search.do?keyword="+search;
+            		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
             	}
 		/* 키워드 검색 */
 
+		/* 검색창 정보 가져오는 이벤트 */
+		$("#search").on("keyup",function(){
+			$("#keyword").attr("value",$("#search").val());
+		})
     </script>
 
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>
