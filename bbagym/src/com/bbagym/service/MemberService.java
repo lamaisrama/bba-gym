@@ -150,6 +150,22 @@ public class MemberService {
 		return result;
 	}
 
+	public Member searchId(String name, String email) {
+		
+		Connection conn = getConnection();
+		Member m = dao.searchId(conn, name, email);
+		close(conn);
+		return m;
+	}
+
+	public Member searchPW(String id, String name, String email) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		Member m = dao.searchPW(conn, id, name, email);
+		close(conn);
+		return m;
+	}
+
 
 
 	
