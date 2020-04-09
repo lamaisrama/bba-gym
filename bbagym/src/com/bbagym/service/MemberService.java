@@ -27,6 +27,14 @@ public class MemberService {
 		return m;
 	}
 
+	public Member login2(String id) {
+		Connection conn = getConnection();
+		Member m= dao.login2(conn, id);
+		close(conn);
+		return m;
+	}
+
+
 
 	public boolean userIdDuplicate(String id) {
 		// TODO Auto-generated method stub
@@ -95,7 +103,7 @@ public class MemberService {
 
 
 
-	public int updatePassword(String id, String pw, String changePw) {
+	public int updatePassword(String id, String pw,String changePw) {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
@@ -141,6 +149,7 @@ public class MemberService {
 
 		return result;
 	}
+
 
 
 	

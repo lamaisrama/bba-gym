@@ -454,7 +454,7 @@ h3 span {
 		 <script>
 			function removeCheck() {
 	
-				 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+				 if (confirm("정말 '탈퇴'하시겠습니까??") == true){    //확인
 					
 					location.replace('<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>');
 					
