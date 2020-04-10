@@ -68,7 +68,7 @@
 					</script>
 					
 					
-					
+					<input type="hidden" name="M_STATUS" id="M_STATUS" required>
 					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
 					<div class="form-group" style="display: flex">
 
