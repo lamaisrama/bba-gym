@@ -373,6 +373,7 @@ public class CenterDao {
 			
 			while(rs.next()) {
 				CenterPrograms cp = new CenterPrograms();
+				cp.setpCode(rs.getInt("p_code"));
 				cp.setpName(rs.getString("p_name"));
 				cp.setPrice(rs.getInt("price"));
 				cp.setMonth(rs.getInt("month"));

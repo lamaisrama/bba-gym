@@ -54,21 +54,20 @@
                         </div><!--평점 어찌넣지?-->
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
-                            <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
+                            <select id="pChoice" name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
                                 <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
                                 for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
                                 	CenterPrograms cp = cd.getCenterPrograms().get(i);
                                		if(i==0||!preName.equals(cp.getpName())) {
                                			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
+                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
                                 <%}
                                 }%>
                             </select>
                         </div>
                         <div id="basket-button"><!--담기-->
-                            <button onclick="javascript:btn()" type="button" class="btn btn-primary" style="width: 100%; height: 100%;" >회원권 담기</button>
+                            <button type="button" class="btn btn-primary btn-baguni" style="width: 100%; height: 100%;" >회원권 담기</button>
                         </div>
-                        <script> function btn(){ alert('담기 성공'); } </script>
                     </div>
                 </div>    
             </div><!--detail-header-->
@@ -231,6 +230,14 @@
     <!-- sectio끝 -->
 
 	<script>
+	
+	$(function(){
+		$(".btn-baguni").click(function(){
+			location.href=<%=request.getContextPath()%>
+		})
+	})
+	
+	
 			<%if(logginMember!=null){%>
 			$(".fa-heart").parent().on("click",function(){
 				var code = {ccode:$(this).parents(".jjim").find("input[type=hidden]").val()};
