@@ -9,10 +9,8 @@
 			<!-- 1. 비밀번호 수정-->
 	                    
 	        <div id="password">
-				현재 비밀번호 : <input type="password" name="password"><hr>
-				새로운 비밀번호 : <input type="password" name="password_ck"><hr>
-				새로운 비밀번호 확인 : <input type="password" name="password_rck"><hr>
-				<input type="button" onclick="" value="비밀번호 변경"><br><br><br><br><br>
+				<p>임시 메인화면 </p>
+				<br><br><br><br><br>
 			</div><!-- 정규화 비밀번호 검사--> <!-- 자스 이용하여 비밀번호 다르면 red 같으면 green-->
 			
 		

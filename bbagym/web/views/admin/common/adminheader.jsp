@@ -19,7 +19,7 @@
 
         <div class="container pt-4">
             <div id="log"> 
-                <img src="<%=request.getContextPath() %>/resources/img/admin/log.png" width="100%" height="100%"><!-- 관리자페이지 로고 -->
+                <img src="<%=request.getContextPath()%>/resources/img/admin/log.png" width="100%" height="100%"><!-- 관리자페이지 로고 -->
             </div>
             <div id="welcome"><!-- 관리자페이지 타이틀 -->
                 <nav>
@@ -34,27 +34,30 @@
 
     <section>
 
-        <div>
-            <aside id="menu"><!-- 관리자페이지 메뉴바 -->
+        <div >
+            <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
 
-                <table>
+                <table >
+                	<tr >
+                        <td><a class="menu_bar" href="<%=request.getContextPath()%>" >홈페이지 메인화면가기</a></td>
+                    </tr>
                     <tr >
-                        <td><a class="menu_bar" >비밀번호 수정</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/passwordModify.do" >비밀번호 수정</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">시설 등록 승인</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">트레이너 등록 승인</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/trainerEnroll.do">트레이너 등록 승인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">회원 관리</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/member.do" >회원 관리</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">문의 확인</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/question.do" >문의 확인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="menu_bar">게시글 관리</a></td>
+                        <td><a class="menu_bar"href="<%=request.getContextPath()%>/admin/Board.do" >게시글 관리</a></td>
                     </tr>
                 </table>
 

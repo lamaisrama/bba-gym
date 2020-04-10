@@ -139,10 +139,10 @@ if (cookies != null) {
            <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
               
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
-               <a class="dropdown-item" href="">관리자페이지 이동</a>
+               <a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminMain.do">관리자페이지 이동</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
             </div>
