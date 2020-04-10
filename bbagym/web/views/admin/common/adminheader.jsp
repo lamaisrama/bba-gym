@@ -56,10 +56,10 @@
 
                 <table i >
                 	<tr >
-                        <td><a class="updateMyProfile" href="<%=request.getContextPath()%>" >홈페이지 메인화면가기</a></td>
+                        <td><a class="updateMyProfile" href="<%=request.getContextPath()%>" >홈페이지 메인화면가기(완료)</a></td>
                     </tr>
                     <tr >
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >비밀번호 수정</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >비밀번호 수정(완료)</a></td>
                     </tr>
                     <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td>
@@ -74,7 +74,7 @@
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/question.do" >문의 확인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/Board.do" >게시글 관리</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/Board.do" >게시글 관리(삭제:notcie에서글쓰기 관리자만보이게)</a></td>
                     </tr>
                 </table>
 

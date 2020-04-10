@@ -36,6 +36,7 @@
                                 <td>Y</td>
                                 <!-- if( ) {-->
                                 <td> 
+                                  <button onclick="">미리보기</button>
                                     <button onclick="">승인</button>
                                     <button onclick="">거절</button>
                                     <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
