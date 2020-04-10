@@ -87,9 +87,9 @@
 	        	style="width:290px; height:290px; margin:45px; padding-bottom: 20px; border-radius: 50%;border: 8px solid #e7e7e7;"  
 	        	onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" /><h2><strong>사업자 회원가입</strong></h2></button> &nbsp; 
 	      	</div>
-	      <input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
+	      
 	    </div>
-	    	
+	    	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
 	    	<style>	    	 
  border: 1px solid rgb(211, 208, 208);
 	    	  
