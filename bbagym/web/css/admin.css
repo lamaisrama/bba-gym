@@ -40,7 +40,7 @@ header{
 
 #menu td,#menu tr{
     padding: 0;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
 #menu>table{
@@ -88,7 +88,7 @@ section>div{
     display: flex;
     justify-content: center;
     width: 100%;
-    border-left: 1px solid black;
+    /* border-left: 1px solid black; */
 }
 
 #section-view>div{

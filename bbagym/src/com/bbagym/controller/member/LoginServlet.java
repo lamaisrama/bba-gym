@@ -87,8 +87,10 @@ public class LoginServlet extends HttpServlet {
 			m.setM_EMAIL(email);
 			m.setM_GENDER(gender);
 			HttpSession session = request.getSession();
+
 			session.setAttribute("kakaoinfo", m);
 			request.getRequestDispatcher("/member/enrollMenu.do").forward(request, response);
+
 		}
 
 		

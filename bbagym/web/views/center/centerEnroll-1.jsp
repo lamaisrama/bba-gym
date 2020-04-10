@@ -23,8 +23,8 @@
               <label for="c-address">센터 주소</label>
               <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
               <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required readonly>
-              <input type="hidden" id="entX" style="width:40%" value="">
-			  <input type="hidden" id="entY"  style="width:40%" value="">
+              <input type="hidden" id="addrX" name="addrX" value="">
+			  <input type="hidden" id="addrY" name="addrY" value="">
               <!-- 주소 api를 통해 오는 데이터   -->
             </div>
             <br>
@@ -175,8 +175,8 @@
 		function jusoCallBack(roadFullAddr, entX, entY){
 			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
 			document.getElementById('c-address').value = roadFullAddr;
-			document.getElementById('entX').value = entX;
-			document.getElementById('entY').value = entY;
+			document.getElementById('addrX').value = entX;
+			document.getElementById('addrY').value = entY;
 		}
 	
 	</script>
