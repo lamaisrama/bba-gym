@@ -35,7 +35,7 @@
 
 			<form action="<%=request.getContextPath()%>/member/login.do"
 				method="post" onsubmit="return invalidate();">
-				<div>
+				<div id="info-content">
 					<input type="text" class="input-field" placeholder="UserId"
 						name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>"
 						required> <input type="password" class="input-field"
@@ -140,6 +140,13 @@
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
+/* 	border : 1px solid red; */
+}
+
+.row{
+	display : flex;
+	flex-direction : colum;
+	justify-content : center;
 }
 
 .togglebtn {
@@ -190,6 +197,10 @@
 	border: 0;
 	outline: none;
 	border-radius: 30px;
+}
+
+#info-content{
+	width : 600px
 }
 
 .find {

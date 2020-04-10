@@ -108,7 +108,7 @@
 					<br>
 					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
 						 <button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" required> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" required readonly> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 					<div class="form-group">
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>PHONE</label> <input type="text"
@@ -129,7 +129,7 @@
 					<br>
 					<div class="form-group">
 						 <button type="button" class="btn btn-warning" onclick="goPopup2()">사업장 주소</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;" readonly> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 		
 					<div class="info-footer-inner">

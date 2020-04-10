@@ -22,7 +22,7 @@
             <div class="form-group">
               <label for="c-address">센터 주소</label>
               <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
-              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required>
+              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required readonly>
               <input type="hidden" id="entX" style="width:40%" value="">
 			  <input type="hidden" id="entY"  style="width:40%" value="">
               <!-- 주소 api를 통해 오는 데이터   -->
