@@ -399,5 +399,28 @@ import com.bbagym.model.vo.Member;
 		}return m;
 	}
 	
+	public String searchPW2(Connection conn,String id) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String pw="";
+		String sql=prop.getProperty("searchPW2");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				pw = rs.getString(1);
+				if(rs.getString(1).equals(" ")) {
+					pw=null;
+				}
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return pw;
+	}
+	
 
 	}

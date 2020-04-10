@@ -8,7 +8,7 @@
 	request.setCharacterEncoding("UTF-8");  //한글깨지면 주석제거
 	String inputYn = request.getParameter("inputYn"); 
 	String roadFullAddr = request.getParameter("roadFullAddr"); 
-
+	
 %>
 </head>
 <script language="javascript">

@@ -166,7 +166,12 @@ public class MemberService {
 		return m;
 	}
 
-
+	public String searchPW2(String id) {
+		Connection conn = getConnection();
+		String pw = dao.searchPW2(conn,id);
+		close(conn);
+		return pw;
+	}
 
 	
 

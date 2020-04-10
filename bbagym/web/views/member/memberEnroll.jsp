@@ -3,6 +3,9 @@
 	<%@ page
 	import="com.bbagym.model.vo.Member"%>
 
+<% 
+	Member kakainfo = (Member)session.getAttribute("kakaoinfo");
+%>
 	
 <%@ include file="/views/common/header.jsp"%>
 
@@ -25,7 +28,11 @@
 					<div class="form-group" style="display: flex">
 
 						<input type="text" class="form-control" 
-							style="width: 80%;" placeholder="4글자 이상 입력하세요" name="userId" id="userId_" required> 
+							style="width: 80%;" placeholder="4글자 이상 입력하세요" name="userId" id="userId_" 
+							<%if(kakainfo!=null ){ %> 
+								value="<%=kakainfo.getM_ID() %>" readonly
+							<%} %>
+							required> 
 							<input type="button" onclick="fn_duplicateId();" style="width: 20%;" value="중복확인">
 									<script>
                		function fn_duplicateId(){
@@ -73,18 +80,29 @@
 					<div class="form-group" style="display: flex">
 
 						<input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_" required>
-						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0"
-							value="M" checked> 
+						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M" 
+							<%if(kakainfo!=null&&kakainfo.getM_GENDER()!=' '&&kakainfo.getM_GENDER()=='M') {%>
+							checked
+							<%}else{ %>
+						checked <%} %>> 
 							<label for="M_GENDER0">남</label> 
-							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> <label for="M_GENDER1">여</label>
+							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"
+							<%if(kakainfo!=null&&kakainfo.getM_GENDER()!=' '&&kakainfo.getM_GENDER()=='F') {%>
+							checked
+							<%}%> > <label for="M_GENDER1">여</label>
 					</div>
 					<br>
 					<div class="form-group">
 					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE" required><br>
-						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> <input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL"required>
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> 
+						<input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL" 
+						<%if(kakainfo!=null&&kakainfo.getM_EMAIL()!=null) {%>
+							value="<%=kakainfo.getM_EMAIL() %>" readonly
+						<%} %>
+						required>
 					</div>
 					<br>
-					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
+					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp;&nbsp;</label>
 						 <button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
 			              <input type="text" class="form-control" type="text" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요" required  style="margin-top:10px;"> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
@@ -101,8 +119,7 @@
 							
 					<br>
 					<div class="info-footer-inner">
-						<a href="<%=request.getContextPath()%>"><button type="button"
-								class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
+						<a href="<%=request.getContextPath()%>/member/deletesession.do"><button type="button"class="btn btn-secondary">취소</button></a> &nbsp;&nbsp;&nbsp;
 						<input class="btn btn-secondary" type="submit" value="가입"> 
 					</div>
 				
