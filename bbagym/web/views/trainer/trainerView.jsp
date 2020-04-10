@@ -99,7 +99,7 @@
 					<%if(!trainerlist.isEmpty()){ 
 						for(int i=0;i<trainerlist.size();i++){
 					%>
-						$(boxinner[<%=i %>]).css("background-image","url('https://i.ytimg.com/vi/RMeXxJ3Y2KI/maxresdefault.jpg')");
+						$(boxinner[<%=i %>]).css("background-image","url('<%=request.getContextPath() %>/upload/trainer/<%=trainerlist.get(i).getT_img() %>')");
 							 <%-- <%=trainerlist.get(i).getT_img() %> --%> 
 					<%} }%>
 					/* 이미지 넣어주기 */
