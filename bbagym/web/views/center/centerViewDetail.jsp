@@ -233,7 +233,7 @@
 	
 	$(function(){
 		$(".btn-baguni").click(function(){
-			location.href=<%=request.getContextPath()%>/baguni/baguniView.do?pCode=$('')
+			location.href=<%=request.getContextPath()%>/baguni/baguniView.do?pCode=$('#pChoice option:selected').val();
 		})
 	})
 	
