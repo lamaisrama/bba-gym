@@ -27,11 +27,7 @@
                         <table class="table table-striped text-center" style="margin-bottom:200px;">
                             <tr>
                                 <th>제목</th>
-                                <td>	
-                                	<a href="<%=request.getContextPath()%>">
-                        				<%=n.getTitle()%>
-                        			</a>
-                        		</td>
+                                <td><b><%=n.getTitle()%></b></td>
                             </tr>
                             <tr>
                                 <th>작성자</th>
@@ -56,14 +52,15 @@
                             <tr>
                                 <th colspan="2">내용</th>
                             </tr>
-                            <tr><td colspan="2"><%=n.getnContent() %></td></tr>
+                            <tr><td colspan="2" style="padding:50px 30px;"><%=n.getnContent() %></td></tr>
                             <tr>
-                            <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%>
                                 <td colspan="2" class="text-center">
+                                	<button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/noticeList')">글목록</button>
+                            <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%>
                                     <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeUpdate?no=<%=n.getnCode()%>')">수정</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')">삭제</button> 
-                                </td>
+                                    <button type="button" class="btn btn-danger" onclick="location.replace('<%=request.getContextPath()%>/board/noticeDelete?no=<%=n.getnCode()%>&fileName=<%=n.getOriFileName()%>')">삭제</button> 
                             <%} %>    
+                                </td>
                             </tr>
                         </table>
                     </div>

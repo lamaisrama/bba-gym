@@ -9,7 +9,7 @@
 
 <style>
     section#board-container{
-    	margin:30px auto; text-align:center;
+    	margin:50px auto; text-align:center;
     }
 </style>
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
@@ -59,7 +59,7 @@
                         <td><%=b.getmId() %>
                         </td>
                         
-                        <td><img src="/resources/img/file.png">
+                        <td>
                         	<%if(b.getOriFileName()!=null) {%>
                         	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
 							<%} %>
@@ -79,6 +79,7 @@
            			Write
            		</button>
            	</div>
+            <br>
             <br>
             <!-- 페이징 start -->
             <nav aria-label="Page navigation example">

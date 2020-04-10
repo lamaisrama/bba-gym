@@ -7,9 +7,24 @@
 	
 <%@ include file="/views/common/header.jsp"%>	
 
+<!-- summernote -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+
 <style>
+	
     h2{
         margin: 30px 0;
+    }
+    table{
+    	text-align : center;
+    }
+    table.th{
+    	width:50%;
     }
 </style>
 
@@ -49,13 +64,16 @@
                             </td>
                         </tr>   
                         <tr>
-                            <th>내용</th>
-                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"><%=n.getnContent() %></textarea></td>
+                            <th colspan="2">내용</th>
+                        </tr>
+						<tr>
+                            <td colspan="2"><textarea type="text" id="summernote" name="content" class="form-control" cols="1000" rows="1500"><%=n.getnContent() %></textarea></td>
                         </tr>
                         <tr>
                         <%-- <%if(logginMember!=null && logginMember.getM_CODE().equals(n.getmCode())){ %> --%>
                             <td colspan="2" class="text-center">
-                                <input type="submit" class="btn btn-primary" value="글등록">
+                                <input type="submit" class="btn btn-primary" value="수정완료!">
+                                <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeList')">취소</button>
                             </td>
 						<%-- <%} %> --%>
                         </tr>
@@ -65,7 +83,22 @@
         </div>
     </div>
 <script>
-
+	//summernote
+	$(document).ready(function() {
+	    $('#summernote').summernote();
+	});
+	
+	$(document).ready(function() {
+	     $('#summernote').summernote({
+	        height: 500,                 // set editor height
+	        minHeight: null,             // set minimum height of editor
+	        maxHeight: null,             // set maximum height of editor
+	        focus: true                  // set focus to editable area after initializing summernote
+	
+	    });
+	});
+	
+	// file
 	$(function(){
 		$("[name=upfile]").change(function(){
 			if($(this).val()==""){

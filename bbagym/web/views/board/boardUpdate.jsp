@@ -7,6 +7,14 @@
 	
 <%@ include file="/views/common/header.jsp"%>	
 
+<!-- summernote -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+
 <style>
     h2{
         margin: 30px 0;
@@ -50,22 +58,39 @@
                         </tr>   
                         <tr>
                             <th>내용</th>
-                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"><%=b.getQaContent() %></textarea></td>
+                            <td><textarea type="text" id="summernote" name="content" class="form-control" cols="50" rows="10"><%=b.getQaContent() %></textarea></td>
                         </tr>
                         <tr>
-                        <%-- <%if(logginMember!=null && logginMember.getM_CODE().equals(b.getmCode())){ %> --%>
+                        <%if(logginMember!=null && logginMember.getM_ID().equals(b.getmId())){ %>
                             <td colspan="2" class="text-center">
                                 <input type="submit" class="btn btn-primary" value="수정완료">
+                                <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/boardList')">취소</button>
                             </td>
-						<%-- <%} %> --%>
+						<%} %>
                         </tr>
                     </table>
                 </div>
             </form>
         </div>
     </div>
+    
 <script>
-
+	//summernote
+	$(document).ready(function() {
+	    $('#summernote').summernote();
+	});
+	
+	$(document).ready(function() {
+	     $('#summernote').summernote({
+	        height: 500,                 // set editor height
+	        minHeight: null,             // set minimum height of editor
+	        maxHeight: null,             // set maximum height of editor
+	        focus: true                  // set focus to editable area after initializing summernote
+	
+	    });
+	});
+	
+	// file
 	$(function(){
 		$("[name=upfile]").change(function(){
 			if($(this).val()==""){

@@ -4,7 +4,7 @@
 <%@ include file="/views/common/header.jsp"%>	
 
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
@@ -45,10 +45,11 @@
                         </tr>   
                         <tr>
                             <th>내용</th>
-                            <td><textarea type="text" id="summernote" name="content" class="form-control" cols="50" rows="10"></textarea></td>
+                            <td><textarea type="text" id="summernote" name="content" class="form-control" cols="1000" rows="1500"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
+                            	<button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeList')">글목록</button>
                                 <input type="submit" class="btn btn-primary" value="글등록">
                             </td>
                         </tr>
@@ -61,7 +62,7 @@
  <script>
         $(document).ready(function() {
             $('#summernote').summernote();
-            });
+        });
 
         $(document).ready(function() {
              $('#summernote').summernote({
@@ -69,12 +70,9 @@
                 minHeight: null,             // set minimum height of editor
                 maxHeight: null,             // set maximum height of editor
                 focus: true                  // set focus to editable area after initializing summernote
-                
 
             });
         });
-        
-        
-    </script>
+ </script>
     
 <%@ include file="/views/common/footer.jsp"%>
