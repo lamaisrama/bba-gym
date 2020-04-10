@@ -36,16 +36,25 @@ public class CenterViewDetailServlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		
-		int mCode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		int mCode;
+		try {
+			mCode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+			
+		}catch(NullPointerException e) {
+			mCode=0;
+		}
 		
 		
 		
 			
 			int cCode = Integer.parseInt(request.getParameter("cCode"));
 			System.out.println(cCode);
+			System.out.println(mCode);
 			
 			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
 			
+			request.setAttribute("cCode", cCode);
+			request.setAttribute("mCode", mCode);
 			request.setAttribute("cd", cd);
 			request.getRequestDispatcher("/views/center/centerViewDetail.jsp").forward(request, response);
 	}
