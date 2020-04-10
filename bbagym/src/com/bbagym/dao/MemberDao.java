@@ -1,6 +1,9 @@
 package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
+import static com.bbagym.common.JDBCTemplate.commit;
+import static com.bbagym.common.JDBCTemplate.getConnection;
+import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -307,6 +310,21 @@ import com.bbagym.model.vo.Member;
 			close(pstmt);
 		}return result;
 	}//push
+	public int updatePassword1(Connection conn, String id, String pw) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updatePassword1");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}//push
 
 	public int memberDelete(Connection conn, String userId) {
 		PreparedStatement pstmt=null;
@@ -398,6 +416,8 @@ import com.bbagym.model.vo.Member;
 			close(pstmt);
 		}return m;
 	}
+
+	
 	
 
 	}
