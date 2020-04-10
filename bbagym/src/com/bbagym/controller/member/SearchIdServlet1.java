@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bbagym.service.MemberService;
-
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class SearchIdServlet1
  */
-@WebServlet("/member/memberDelete.do")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/member/idpw.do")
+public class SearchIdServlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public SearchIdServlet1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,29 +26,8 @@ public class MemberDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
-		System.out.println("도착");
-		String userId=request.getParameter("M_ID");
-		
-		int result=new MemberService().memberDelete(userId);
-		String msg="";
-		String loc="";
-
-
-		if(result>0) {
-			msg="회원탈퇴 성공";
-			loc="/member/logout.do";
-		}else {
-			msg="회원탈퇴 실패";
-			loc="/mypage/mypageUser.do?M_ID="+userId;
-		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
-		
+		// TODO Auto-generated method stub
+		request.getRequestDispatcher("/views/member/idpw.jsp").forward(request, response);
 	}
 
 	/**

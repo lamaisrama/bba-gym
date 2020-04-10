@@ -42,9 +42,9 @@
 				    <ul>	<!--로그인한멤버 -->		        
 				     <%if (logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
 				          <a href="<%=request.getContextPath()%>/center/centerView.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
-				     	 <a href="<%=request.getContextPath()%>/center/centerEnroll.do"> <li>센터 등록</li></a>	
+				     	
 				         <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->				 
-<!--로그인한멤버 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
+<!--로그인한멤버 -->		
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li>		 </a>
 

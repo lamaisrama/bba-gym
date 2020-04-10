@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.CenterPrograms;
 
 public class CenterDao {
 	private Properties prop=new Properties();
@@ -243,9 +244,34 @@ public class CenterDao {
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
 		
-
-
+		//센터 디테일용
+		public void checkPerfer2(Connection conn,List<CenterDetail> list, int cCode, int mCode){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			String sql =prop.getProperty("checkPerfer");
+			
+			try {
+				
+				for(int i=0;i<list.size();i++) {
+					
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mCode);
+				pstmt.setInt(2, cCode); //mcode와 code가 같은경우 count(*)를센다 즉 찜하기면 1 아니면 0 반환
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					if(rs.getInt(1)==1) { // 1일경우 찜하기이므로 boolean 형을 true로 변환
+						list.get(i).setJjim(true);
+					}else {
+						list.get(i).setJjim(false);
+					}
+				}
+				
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
 	}
 	
 	public int selectCcode(Connection conn) {
@@ -337,6 +363,73 @@ public class CenterDao {
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
 		cd.setCenterPrograms(new ArrayList());
+		
+		String sql = prop.getProperty("getCenterPrograms");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CenterPrograms cp = new CenterPrograms();
+				cp.setpName(rs.getString("p_name"));
+				cp.setPrice(rs.getInt("price"));
+				cp.setMonth(rs.getInt("month"));
+				cd.getCenterPrograms().add(cp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
+	
+	public void centerViewDetailImgs(Connection conn, int cCode, CenterDetail cd) {
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		cd.setCenterImgs(new ArrayList());
+		
+		String sql = prop.getProperty("getCenterImgs");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				cd.getCenterImgs().add(rs.getString("c_image"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
+	
+	public void centerViewDetailFacility(Connection conn, int cCode, CenterDetail cd) {
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		cd.setCenterFacilityNames(new ArrayList<String>());
+		
+		String sql = prop.getProperty("getCenterFacility");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				cd.getCenterFacilityNames().add(rs.getString("f_name"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
 	}
 		
 

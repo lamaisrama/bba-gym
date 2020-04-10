@@ -10,9 +10,9 @@ public class CenterDetail {
 	private String centerAddr;
 	private String centerPhone;
 	private boolean jjim;
-	private List<String> centerPrograms;
-	private List<CenterPrice> centerPrice;
-	private String centerIntro;
+	private List<CenterPrograms> centerPrograms;
+	private List<String> centerFacilityNames;
+	private String centerIntro;  //db에서는 c_text임
 	private String centerOpenHours;
 	private String centerHolidays;
 	private String centerSchedule;
@@ -27,7 +27,7 @@ public class CenterDetail {
 	}
 
 	CenterDetail(String centerMainImg, String centerName, float centerScore, String centerAddr, String centerPhone,
-			boolean jjim, List<String> centerPrograms, List<CenterPrice> centerPrice, String centerIntro,
+			boolean jjim, List<CenterPrograms> centerPrograms, List<String> centerFacilityNames, String centerIntro,
 			String centerOpenHours, String centerHolidays, String centerSchedule, List<String> centerImgs,
 			String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
 		super();
@@ -38,7 +38,7 @@ public class CenterDetail {
 		this.centerPhone = centerPhone;
 		this.jjim = jjim;
 		this.centerPrograms = centerPrograms;
-		this.centerPrice = centerPrice;
+		this.centerFacilityNames = centerFacilityNames;
 		this.centerIntro = centerIntro;
 		this.centerOpenHours = centerOpenHours;
 		this.centerHolidays = centerHolidays;
@@ -98,20 +98,20 @@ public class CenterDetail {
 		this.jjim = jjim;
 	}
 
-	public List<String> getCenterPrograms() {
+	public List<CenterPrograms> getCenterPrograms() {
 		return centerPrograms;
 	}
 
-	public void setCenterPrograms(List<String> centerPrograms) {
+	public void setCenterPrograms(List<CenterPrograms> centerPrograms) {
 		this.centerPrograms = centerPrograms;
 	}
 
-	public List<CenterPrice> getCenterPrice() {
-		return centerPrice;
+	public List<String> getCenterFacilityNames() {
+		return centerFacilityNames;
 	}
 
-	public void setCenterPrice(List<CenterPrice> centerPrice) {
-		this.centerPrice = centerPrice;
+	public void setCenterFacilityNames(List<String> centerFacilityNames) {
+		this.centerFacilityNames = centerFacilityNames;
 	}
 
 	public String getCenterIntro() {
@@ -190,12 +190,12 @@ public class CenterDetail {
 	public String toString() {
 		return "CenterDetail [centerMainImg=" + centerMainImg + ", centerName=" + centerName + ", centerScore="
 				+ centerScore + ", centerAddr=" + centerAddr + ", centerPhone=" + centerPhone + ", jjim=" + jjim
-				+ ", centerPrograms=" + centerPrograms + ", centerPrice=" + centerPrice + ", centerIntro=" + centerIntro
-				+ ", centerOpenHours=" + centerOpenHours + ", centerHolidays=" + centerHolidays + ", centerSchedule="
-				+ centerSchedule + ", centerImgs=" + centerImgs + ", sns_homepage=" + sns_homepage + ", sns_instagram="
-				+ sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
+				+ ", centerPrograms=" + centerPrograms + ", centerFacilityNames=" + centerFacilityNames
+				+ ", centerIntro=" + centerIntro + ", centerOpenHours=" + centerOpenHours + ", centerHolidays="
+				+ centerHolidays + ", centerSchedule=" + centerSchedule + ", centerImgs=" + centerImgs
+				+ ", sns_homepage=" + sns_homepage + ", sns_instagram=" + sns_instagram + ", sns_blog=" + sns_blog
+				+ ", sns_etc=" + sns_etc + "]";
 	}
-	
 	
 	
 

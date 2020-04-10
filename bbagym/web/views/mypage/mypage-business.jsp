@@ -381,7 +381,7 @@ display: block;
 			</div>
 			<div class="profile-info">
 				<div>
-					<span>♥김상학님 환영합니다♥</span>
+					<span>♥<%=logginMember.getM_NAME()%>님 환영합니다♥</span>
 				</div>
 			</div>
 			<div class="parent1">
@@ -401,10 +401,28 @@ display: block;
 				<a class="updateMyProfile" href="" onclick="updateMyProfile()">MY
 					찜목록</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">나의
 					회원권</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">장바구니</a>
-				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>">회원탈퇴</a>
+				<a class="updateMyProfile"  onclick="removeCheck();">회원탈퇴</a>
 				
 				<hr />
 			</div>
+			<script>
+			function removeCheck() {
+	
+				 if (confirm("정말 '탈퇴'하시겠습니까??") == true){    //확인
+					
+					location.replace('<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>');
+					
+
+				 }else{   //취소
+					 
+					 return false;
+				     
+
+				 }
+
+				}
+		
+			</script>   
 
 			<script>
 				var isUsClicked = false;

@@ -1,25 +1,30 @@
 package com.bbagym.controller.member;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 
 /**
- * Servlet implementation class MemberDeleteServlet
+ * Servlet implementation class SearchIdServlet
  */
-@WebServlet("/member/memberDelete.do")
-public class MemberDeleteServlet extends HttpServlet {
+@WebServlet("/member/searchId.do")
+public class SearchIdServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteServlet() {
+    public SearchIdServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,28 +34,23 @@ public class MemberDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		System.out.println("도착");
-		String userId=request.getParameter("M_ID");
-		
-		int result=new MemberService().memberDelete(userId);
-		String msg="";
-		String loc="";
-
-
-		if(result>0) {
-			msg="회원탈퇴 성공";
-			loc="/member/logout.do";
-		}else {
-			msg="회원탈퇴 실패";
-			loc="/mypage/mypageUser.do?M_ID="+userId;
-		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
-		
+			String name=request.getParameter("M_NAME");
+			String email=request.getParameter("M_EMAIL");
+			Member m=new MemberService().searchId(name,email);
+			
+			if(m!=null) {
+				HttpSession session=request.getSession();
+							
+				session.setAttribute("logginMember", m);
+				
+				request.getRequestDispatcher("/views/member/idpw_id.jsp").forward(request, response);
+				
+			}else {
+				request.setAttribute("msg","입력한 정보가 맞지않습니다.다시 입력해 주세요.");
+				request.setAttribute("loc", "/member/idpw.do");
+				RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
+				rd.forward(request, response);
+			}
 	}
 
 	/**
