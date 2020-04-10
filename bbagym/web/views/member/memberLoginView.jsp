@@ -6,10 +6,10 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
-
+<!-- <link rel="stylesheet" href="css/member-register.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
@@ -20,7 +20,7 @@
 <div class="page-header page-header-xs" data-parallax="true"
 	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <div class="container pt-3 center-info ">
-	<link rel="stylesheet" href="css/member-register.css">
+	
 
 
 
@@ -44,7 +44,7 @@
 						type="checkbox" style="float: left" name="saveId" id="saveId"
 						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
 						<div style="float:right">
-						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인(보류)">
+						<a id="kakao-login-btn"></a>
 						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_naver_login.gif" alt="네이버 로그인">
 </div>
 						 <br>
@@ -54,31 +54,6 @@
 					<input type="button" class="find" value="아이디/비밀번호 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/idpw.do')">
 
 
-
-<!-- 카카오톡로그인 
-
-
-					<a id="kakao-login-btn"></a> 
-					<a href="http://alpha-developers.kakao.com/logout"></a>
-
-
-					<script type='text/javascript'>
-						//<![CDATA[
-						// 사용할 앱의 JavaScript 키를 설정해 주세요.
-						Kakao.init('9b519046b1f235fcc5657c81c6fe8f4e');
-
-						// 카카오 로그인 버튼을 생성합니다.
-						Kakao.Auth.createLoginButton({
-							container : '#kakao-login-btn',
-							success : function(authObj) {
-								alert(JSON.stringify(authObj));
-							},
-							fail : function(err) {
-								alert(JSON.stringify(err));
-							}
-						});
-						//
-					</script>-->
 				</div>
 			</form>
 
@@ -108,14 +83,61 @@
 					}
 					return true;
 				}
+				
+				
+				 Kakao.init('831e525e8d0560700fccea6bd860ffbe');
+				   
+				   Kakao.Auth.createLoginButton({
+					     container: '#kakao-login-btn',
+					     success: function(authObj) {
+					    		
+					    	 Kakao.Auth.loginForm({
+				                 success: function(authObj) {
+					                    Kakao.API.request({
+					                         success: function(res) {
+					                          console.log(res);
+					                          
+					                          var userID = res.id;      //유저의 카카오톡 고유 id
+					                          var userEmail = res.kakao_account.email;   //유저의 이메일
+					                          var userNickName = res.properties.nickname; //유저가 등록한 별명
+					                          var gender =  res.kakao_account.gender; //성별
+					                          var userImg = res.kakao_account.profile.profile_image_url; //프로필 사진
+					                          var accessToken = Kakao.Auth.getAccessToken();
+											
+					                          console.log(userID);
+					                          console.log(userEmail);
+					                          console.log(userNickName);
+					                          console.log(gender);
+					                          console.log(userImg);
+					                          console.log(accessToken);
+					                          Kakao.Auth.logout(function(data){
+					                        	  console.log(data)
+					      						});
+					                          
+					                         },
+						                         fail: function(error) {
+						                          alert("로그인 실패");
+						                         }
+					                        });
+					                    
+					                
+								     },
+								     fail: function(err) {
+								     alert(JSON.stringify(err));
+								     }
+					  		 });
+					     }
+					  });
 			</script>
+
 			<br>
 			<br>
 			<br>
 			<br>
 
 
-			<style>
+<style>
+
 * {
 	margin: 0;
 	padding: 0;
@@ -209,4 +231,4 @@ span {
 	left: 50px;
 }
 </style>
-			<%@ include file="/views/common/footer.jsp"%>
+<%@ include file="/views/common/footer.jsp"%>
