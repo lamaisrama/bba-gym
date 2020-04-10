@@ -88,7 +88,7 @@
 					<br>
 					<div class="form-group">
 						 <button type="button" class="btn btn-warning" onclick="goPopup2()">사업장 주소</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" value="<%=m.getM_ADDRESS_2() %>"/> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요" required  style="margin-top:10px;" value="<%=m.getM_ADDRESS_2() %>" readonly/> <!-- 주소 api를 통해 오는 데이터   -->
 					</div>	
 							
 					<br>

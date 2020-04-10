@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="updatePassword-container">
-		<form name="updatePwdFrm" action="<%=request.getContextPath()%>/member/updatePasswordEnd" method="post" >
+		<form name="" action="<%=request.getContextPath()%>/member/updatePasswordEnd" method="post" >
 			<table>
 				<tr>
 					<th>현재 비밀번호</th>
@@ -45,7 +45,7 @@
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="userId" value="<%=request.getParameter("M_ID") %>" />
+			<input type="hidden" name="M_ID" value="<%=request.getParameter("M_ID") %>" />
 		</form>
 	</div>
 	<script>

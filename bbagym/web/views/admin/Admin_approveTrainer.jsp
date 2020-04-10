@@ -32,6 +32,7 @@
                                 <td>010-3597-0663</td>
                                 <td>Y</td>
                                 <td > 
+                                  <button onclick="">미리보기</button>
                                     <button onclick="">승인</button>
                                     <button onclick="">거절</button>
                                 </td>
