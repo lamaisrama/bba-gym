@@ -233,7 +233,7 @@
 	
 	$(function(){
 		$(".btn-baguni").click(function(){
-			location.href=<%=request.getContextPath()%>
+			location.href=<%=request.getContextPath()%>/baguni/baguniView.do?pCode=$('')
 		})
 	})
 	
