@@ -31,11 +31,11 @@
 			<h6 style="text-align: center;">
 				<b>BBAGYM Login</b>
 			</h6>
-
+		</div>
 
 			<form action="<%=request.getContextPath()%>/member/login.do"
 				method="post" onsubmit="return invalidate();">
-				<div>
+				<div id="info-content">
 					<input type="text" class="input-field" placeholder="UserId"
 						name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>"
 						required> <input type="password" class="input-field"
@@ -44,11 +44,11 @@
 						type="checkbox" style="float: left" name="saveId" id="saveId"
 						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
 						<div style="float:right">
-						<a id="kakao-login-btn"></a>
+						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
 						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_naver_login.gif" alt="네이버 로그인">
-</div>
+					</div>			
 						 <br>
-<br>
+						<br>
 					<button class="submit" style="">Login</button><br>
 					<input type="button" class="find" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')"><br> 
 					<input type="button" class="find" value="아이디/비밀번호 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/idpw.do')">
@@ -56,9 +56,9 @@
 
 				</div>
 			</form>
+	</div>
 
-
-
+</div>
 
 
 
@@ -87,47 +87,45 @@
 				
 				 Kakao.init('831e525e8d0560700fccea6bd860ffbe');
 				   
-				   Kakao.Auth.createLoginButton({
-					     container: '#kakao-login-btn',
-					     success: function(authObj) {
-					    		
-					    	 Kakao.Auth.loginForm({
-				                 success: function(authObj) {
-					                    Kakao.API.request({
-					                         success: function(res) {
-					                          console.log(res);
-					                          
-					                          var userID = res.id;      //유저의 카카오톡 고유 id
-					                          var userEmail = res.kakao_account.email;   //유저의 이메일
-					                          var userNickName = res.properties.nickname; //유저가 등록한 별명
-					                          var gender =  res.kakao_account.gender; //성별
-					                          var userImg = res.kakao_account.profile.profile_image_url; //프로필 사진
-					                          var accessToken = Kakao.Auth.getAccessToken();
-											
-					                          console.log(userID);
-					                          console.log(userEmail);
-					                          console.log(userNickName);
-					                          console.log(gender);
-					                          console.log(userImg);
-					                          console.log(accessToken);
-					                          Kakao.Auth.logout(function(data){
-					                        	  console.log(data)
-					      						});
-					                          
-					                         },
-						                         fail: function(error) {
-						                          alert("로그인 실패");
-						                         }
-					                        });
-					                    
-					                
-								     },
-								     fail: function(err) {
-								     alert(JSON.stringify(err));
-								     }
-					  		 });
-					     }
-					  });
+
+				  function login(){
+					  
+					  Kakao.Auth.loginForm({
+						  
+						  
+			                 success: function(authObj) {
+			                    Kakao.API.request({
+			                         url: '/v2/user/me',
+			                         success: function(res) {
+			                          console.log(res);
+			                          
+			                          var M_ID = res.id;      //유저의 카카오톡 고유 id
+			                          var userEmail = res.kakao_account.email;   //유저의 이메일
+			                          var gender =  res.kakao_account.gender; //성별
+										console.log(M_ID+typeof(M_ID));
+			                          	console.log(userEmail);
+			                          	console.log(gender);
+			                          Kakao.Auth.logout();
+	                          			location.replace("<%=request.getContextPath() %>/member/login.do?M_ID="+M_ID+"&userEmail="+userEmail+"&gender="+gender);
+ 		                          
+			                         },
+			                         fail: function(error) {
+			                          alert(JSON.stringify(error));
+			                          return false;
+			                         }
+			                        });
+			                    
+			                 },
+			                 fail: function(err) {
+			                   alert(JSON.stringify(err));
+		                          return false;
+
+			                 }
+			              });
+				  }
+				  
+				  
+				 
 			</script>
 
 			<br>
@@ -142,6 +140,13 @@
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
+/* 	border : 1px solid red; */
+}
+
+.row{
+	display : flex;
+	flex-direction : colum;
+	justify-content : center;
 }
 
 .togglebtn {
@@ -192,6 +197,10 @@
 	border: 0;
 	outline: none;
 	border-radius: 30px;
+}
+
+#info-content{
+	width : 600px
 }
 
 .find {

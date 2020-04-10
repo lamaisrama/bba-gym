@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.service.AdminService;
 import com.bbagym.service.MemberService;
 
 /**
- * Servlet implementation class UpdatePasswordEndServlet
+ * Servlet implementation class AdminPasswordEndServlet
  */
-@WebServlet(name="UpdatePasswordEndServlet",urlPatterns="/member/updatePasswordEnd")
-public class UpdatePasswordEndServlet extends HttpServlet {
+@WebServlet("/admin/admInupdatePasswordEnd")
+public class AdminPasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdatePasswordEndServlet() {
+    public AdminPasswordEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,27 +29,29 @@ public class UpdatePasswordEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
+		
 		String id=request.getParameter("M_ID");
 		String pw=request.getParameter("password");
 		String changePw=request.getParameter("password_new");
+		int result=new MemberService().updatePassword1(id,pw,changePw);
+		System.out.println(result);
 		
-		int result=new MemberService().updatePassword(id,pw,changePw);
 		String msg="";
 		String loc="";
 		String script="";
+	
 		if(result<0) {
 			msg="현재비밀번호가 일치하지않습니다!";
-			loc="/member/updatePassword.do?M_ID="+id;
+			loc="/admin/passwordModify.do?M_ID="+id;;
+			System.out.println(result);
 		}else if(result>0) {
 			//비밀번호 성공
 			msg="비밀번호 변경성공";
-			script="self.close();opener.location.replace('"+request.getContextPath()+"/member/logout.do');"+"self.close()";
+			loc="/views/admin/Admin_Main.jsp";
 		}else {
 			//비밀번호 변경 실패
 			msg="비밀번호 변경실패";
-			loc="/member/updatePassword.do?M_ID="+id;
+			loc="/admin/passwordModify.do?M_ID="+id;;
 		
 		}
 		

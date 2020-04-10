@@ -107,9 +107,13 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
-		
+		System.out.println("도착1"+id);
+		System.out.println("도착2"+pw);
+		System.out.println("도착3"+m);
 		
 		int result=-1;
+		System.out.println(m);
+		
 		if(m !=null) {
 			result=dao.updatePassword(conn, id, changePw);
 			if (result > 0)
@@ -121,6 +125,25 @@ public class MemberService {
 		return result;
 	}
 	//pusth
+	public int updatePassword1(String id, String pw, String changePw) {
+		Connection conn=getConnection();
+		Member m = dao.login(conn,id,pw);
+		
+		System.out.println("도착1"+id);
+		System.out.println("도착2"+pw);
+		System.out.println("도착3"+m);
+		int result=-1;
+		if(m !=null) {
+			result=dao.updatePassword1(conn, id, changePw);
+			if (result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
 
 
 	public int insertBusiness(Member m) {
@@ -166,6 +189,13 @@ public class MemberService {
 		return m;
 	}
 
+
+	public String searchPW2(String id) {
+		Connection conn = getConnection();
+		String pw = dao.searchPW2(conn,id);
+		close(conn);
+		return pw;
+	}
 
 
 	

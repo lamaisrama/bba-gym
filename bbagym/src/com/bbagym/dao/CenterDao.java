@@ -458,6 +458,26 @@ public class CenterDao {
 		}
 		
 	}
+	
+	public void getScore1(Connection conn, int cCode, CenterDetail cd) {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("getScore");
+		try {
+					
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, cCode);
+			
+			rs=pstmt.executeQuery();
+			rs.next();
+			cd.setCenterScore(rs.getDouble(1));
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	//category and keyword serach한 데이터를 가져오는 dao-bs
 	public List<CenterEnroll> SearchCategoryPageData(Connection conn,int cPage,int numPerpage,String keyword,String type){
 		

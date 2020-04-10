@@ -141,7 +141,7 @@
 		<%if(!centerList.isEmpty()){ 
 			for(int i=0;i<centerList.size();i++){
 		%>
-		$(boxinner[<%=i %>]).css("background-image","url('https://i.ytimg.com/vi/RMeXxJ3Y2KI/maxresdefault.jpg')");
+		$(boxinner[<%=i %>]).css("background-image","url('<%=request.getContextPath() %>/upload/center/<%=centerList.get(i).getMainImage() %>')");
 			 <%-- <%=centerList.get(i).getMainImage() %> --%> 
 		<%} }%>
 		/* 이미지 넣어주기 */

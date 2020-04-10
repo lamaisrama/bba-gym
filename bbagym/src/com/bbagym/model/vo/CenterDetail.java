@@ -6,7 +6,7 @@ public class CenterDetail {
 	
 	private String centerMainImg;
 	private String centerName;
-	private float centerScore;
+	private double centerScore;
 	private String centerAddr;
 	private String centerPhone;
 	private boolean jjim;
@@ -26,7 +26,7 @@ public class CenterDetail {
 		// TODO Auto-generated constructor stub
 	}
 
-	CenterDetail(String centerMainImg, String centerName, float centerScore, String centerAddr, String centerPhone,
+	CenterDetail(String centerMainImg, String centerName, double centerScore, String centerAddr, String centerPhone,
 			boolean jjim, List<CenterPrograms> centerPrograms, List<String> centerFacilityNames, String centerIntro,
 			String centerOpenHours, String centerHolidays, String centerSchedule, List<String> centerImgs,
 			String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
@@ -66,11 +66,11 @@ public class CenterDetail {
 		this.centerName = centerName;
 	}
 
-	public float getCenterScore() {
+	public double getCenterScore() {
 		return centerScore;
 	}
 
-	public void setCenterScore(float centerScore) {
+	public void setCenterScore(double centerScore) {
 		this.centerScore = centerScore;
 	}
 
