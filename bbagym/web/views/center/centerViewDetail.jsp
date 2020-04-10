@@ -4,6 +4,9 @@
 
 <%
 	CenterDetail cd = (CenterDetail)request.getAttribute("cd");
+	int cCode = (int)request.getAttribute("cCode");
+	int mCode = (int)request.getAttribute("mCode");
+	int score=1;
 %>
 	
 
@@ -14,6 +17,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
 <body data-spy="scroll" data-target=".navbar" data-offset="100"> <!--시설 이용후기등 메뉴바 클릭시 이동과 관련-->
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
@@ -26,13 +30,28 @@
                         <img src="<%=request.getContextPath()%>/resources/img/Gym-1.jpg" width="450" height="450">
                     </div>
                     <div class="text-info">
-                        <div id="title"><h2><%=cd.getCenterName() %></h2>
-                            <div class="heart"><!--찜 좋아요-->
-                                <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                        <div id="title"><h2 style="margin-right: auto;"><%=cd.getCenterName() %></h2>
+                            <div class="jjim"><!--찜 좋아요-->
+                            	<input type="hidden" value="<%=cCode %>">
+								<h2 style="cursor: pointer;">
+		                            <%if(cd.isJjim()==false){ %>
+		                            <i class="far fa-heart" style='color:red'>
+		                            <%}else{ %>
+		                            <i class='fas fa-heart'  style='color:red'></i>
+		                            <%} %>
+		                            </i>
+	                            </h2>
                             </div>
-                            <script> function myFunction(){ alert('찜 성공'); } </script>
                         </div>
-                        <div id="star-point">★ ★ ★ ★ ★</div><!--평점 어찌넣지?-->
+                        <div id="star-point" style="color: black;">
+                        	<%for(;score<=cd.getCenterScore();score++){ %>
+                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+                            	<%} 
+                            	if(score-cd.getCenterScore()<0.5){%>
+                            		<i class="fa fa-star-half"></i>
+                            	<%} score=1;%>
+                            	<%=cd.getCenterScore()==0 ?  "0" : cd.getCenterScore() %>
+                        </div><!--평점 어찌넣지?-->
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
                             <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
@@ -44,9 +63,6 @@
                                 	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
                                 <%}
                                 }%>
-<!--                                 <option value="two">요가</option>
-                                <option value="three">필라테스</option>
-                                <option value="four">클라이밍</option> -->
                             </select>
                         </div>
                         <div id="basket-button"><!--담기-->
@@ -93,51 +109,51 @@
                                     			preName1=cp.getpName();%>
 
 										<div class="buga-title"><h6><%=cp.getpName() %></h6></div>
-                                        	<div class="row">
-                                        		<div class="col-md-6 ml-auto mr-auto text-center">
+														<div style="width: 730px;">
+														<table id="price_table">
+															<tr>
+																<th></th>
+	                                        				<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
+	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
+	                                        					if(preName1.equals(cp2.getpName())) {%>
+																	<th><%=cp2.getMonth() %>개월</th>						
+                                                				<%} 
+                                        						}%>    
+                                        				   	</tr>
+                                        				   	<tr style="color: lightgray;">
+                                        				   		<td>정상가</td>
+                                        				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
+	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
+	                                        					if(preName1.equals(cp2.getpName())) {%>
+																	<td><%=(int)(cp2.getPrice()+(cp2.getPrice()*0.1)) %>원</td>						
+                                                				<%} 
+                                        						}%>
+                                        				   	</tr>
+                                        				   	<tr>
+                                        				   		<td>BBAGYM 회원가</td>
+                                        				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
+	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
+	                                        					if(preName1.equals(cp2.getpName())) {%>
+																	<td><%=cp2.getPrice() %>원</td>						
+                                                				<%} 
+                                        						}%>
+                                        				   	</tr>
+                                        				   	<tr style="font-size: 18px; font-weight: bolder;">
+                                        				   		<td></td>
+                                        				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
+	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
+	                                        					if(preName1.equals(cp2.getpName())) {%>
+																	<td><span>월 <%=(int)(cp2.getPrice()/cp2.getMonth()) %>원</span></td>						
+                                                				<%} 
+                                        						}%>
+                                        				   	</tr>
+                                        				</table>                                   			
 
-                                        				<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
-                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
-                                        					if(preName1.equals(cp2.getpName())) {%>
-                                        				   <table >
-                                        				   		<tr>
-                                        				   			<td></td>
-                                        				   		</tr>
-                                        				   </table>
-                                        				   
-                                        				   <%=cp2.getMonth() %>개월 <br>
-                                        				   <%=cp2.getPrice() %>원
-                                        				<%} 
-                                        				}%>                                       			
-
-                                        		</div>
-                                        	</div>
-                                        <%} 
-                                        }%>
-                                        <!-- <div id="contentt">
-                                            1개월 3개월 6개월 12개월
-                                        </div>
-                                        <div class="buga-title"><h6>요가</h6></div>
-                                        <div id="contentt">
-                                            1개월 3개월 6개월 12개월
-                                        </div>
-                                        <div class="buga-title"><h6>필라테스</h6></div>
-                                        <div id="contentt">
-                                            1개월 3개월 6개월 12개월
-                                        </div> -->
-                                        
-                                    </div>    
+		                                        <%} 
+		                                        }%>
+                                        	</div>  
                                 </div>
                             </div>
-                            <!-- <div id="notice2-zone">
-                                <div id="notice2">
-                                    <div id="notice2-title"><h5>공지사항</h5></div>
-                                    <div id="notice2-con">
-                                    ※ONLY 다짐에서만 가능한 VIP휘트니스 선착순 우주 최저가 혜택
-                                    -12개월권을 6개월 가격으로! 선착순 5명 (조기소진시 정상가전환)
-                                    </div>
-                                </div>
-                            </div> -->
                             <div id="time-zone">
                                 <div id="time">
                                     <div id="time-play"><h5>운영시간</h5></div>
@@ -151,11 +167,11 @@
                                 <div id="program">
                                     <div class="program-title"><h5>시설</h5></div>
                                     <div class="program-sebu">
-                                        <small>
+
                                         	<%for(int i=0; i<cd.getCenterFacilityNames().size(); i++){ %>
                                         		<%=cd.getCenterFacilityNames().get(i) %>&nbsp;&nbsp;
                                         	<%} %>
-                                        </small>
+
                                     </div>
                                 </div>
                             </div>
@@ -166,9 +182,12 @@
                                 <div id="image-title"><h5>사진</h5></div>
                                 <div id="image-sebu">    
                                     <div class="img">
-                                        <div class="col-md-12 ml-auto mr-auto text-center">
+                                        <div class="col-md-12 ml-auto mr-auto">
                                         <%for(int i=0; i<cd.getCenterImgs().size();i++) { %>
                                             <a href="img/light01_s.jpg"><img src="img/light01.jpg" alt="이미지"></a>
+                                            <%if(i%4==0&&i!=0){ %>
+                                            	<br>
+                                            <%} %>
 							            <%} %>    
                                         </div>    
                                     </div>
@@ -204,27 +223,6 @@
                         </div>
 
                     </div><!--bord-section-->
-                    <div class="aside">
-                        <div id="choice-bar">옵션 선택
-                            <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <% String preName2=(cd.getCenterPrograms().get(0)).getpName(); 
-                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
-                                	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                               		if(i==0||!preName2.equals(cp.getpName())) {
-                               			preName2=cp.getpName();%>
-                                	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
-                                <%}
-                                }%>
-                                <!-- <option value="one">헬스</option>
-                                <option value="two">요가</option>
-                                <option value="three">필라테스</option>
-                                <option value="four">클라이밍</option> -->
-                            </select>
-                        </div>
-                        <div id="basket-button2">
-                            <button onclick="javascript:btn()" type="button" class="btn btn-primary" style="width: 100%; height: 100%;" >회원권 담기</button>
-                        </div>
-                        <script> function btn(){ alert('담기 성공'); } </script>
                     </div>    
                 </div>
             </div><!--detail-window-->
@@ -232,7 +230,32 @@
     </div>
     <!-- sectio끝 -->
 
-
+	<script>
+			<%if(logginMember!=null){%>
+			$(".fa-heart").parent().on("click",function(){
+				var code = {ccode:$(this).parents(".jjim").find("input[type=hidden]").val()};
+				var i= $(this).find("i");
+				 $.ajax({
+					url : "<%=request.getContextPath() %>/center/centerPrefer.do",
+					data : code,
+					type : "post",
+					success : function(data){
+						if(data=="true"){
+							i.removeClass('far');
+							i.addClass('fas');
+						}else{
+							i.removeClass('fas');
+							i.addClass('far');
+						}
+					}
+				}) 
+			});
+			<%} else{ %>
+				$(".fa-heart").parent().on("click",function(){
+			        alert("로그인후 이용하세요");
+				});
+			<%}%>
+	</script>
 
 
 

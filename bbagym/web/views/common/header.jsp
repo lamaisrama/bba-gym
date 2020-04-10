@@ -82,6 +82,14 @@ if (cookies != null) {
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
 		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+		 <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==0&&logginMember.getM_STATUS()=='N') {%>
+         <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
+ 		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
+        <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
+		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+		  
 		  <%}else {%>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
@@ -123,6 +131,21 @@ if (cookies != null) {
               <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
             </div>
           
+          </li>
+        <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==0&&logginMember.getM_STATUS()=='N') {%>
+		   <!-- HelloUser Dropdown -->
+   		 <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
+           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
+          </a>
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
+              
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/baguni.do">장바구니</a>
+               <a class="dropdown-item" href="<%=request.getContextPath()%>/admin/adminMain.do">관리자페이지 이동</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/member/logout.do">로그아웃</a>
+            </div>
           </li>
           <%
 			}

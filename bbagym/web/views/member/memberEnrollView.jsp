@@ -51,7 +51,7 @@
 					<br>
 					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp&nbsp</label>
 						<button type="button" class="btn btn-warning" onclick="goPopup()">클릭</button>
-					<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요"  style="margin-top:10px;" value="<%=m.getM_ADDRESS()%>" required> 
+					<input type="text" class="form-control" name="M_ADDRESS" id="M_ADDRESS" placeholder="주소를 클릭하세요"  style="margin-top:10px;" value="<%=m.getM_ADDRESS()%>" required readonly> 
 					</div>
 					<br>
 					<div class="form-group">

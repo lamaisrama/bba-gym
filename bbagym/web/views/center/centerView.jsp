@@ -11,6 +11,9 @@
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/sectionCenter.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!-- 카카오맵 API 불러오는 script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=910ff98ddccfbc580e580a9ce7d7285d&libraries=services"></script>
+
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/istock.jpg');"></div>
 
@@ -41,9 +44,18 @@
                 </ul>
             </div>
         </div>
+                
         <div class="row tab-content">
             <div class="tab-pane container" id="map">
-                <h3>map api 넣을 구역</h3>
+                <div class="row">
+	                <div class="form-group">
+	                    <input type="text"  class="form-control" id="keyword" size=30 placeholder="원하는 장소의 시/구/동을 검색해보세요">
+	                    <button class="btn btn-light" onclick="searchKeyword();">검색</button>
+	                </div>
+             <div class="row">
+				<div id="map1" style="width:700px; height:300px;"></div>
+            </div>
+                </div>
             </div>
             <div class="tab-pane container" id="category">
                 <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
@@ -129,7 +141,7 @@
 		<%if(!centerList.isEmpty()){ 
 			for(int i=0;i<centerList.size();i++){
 		%>
-		$(boxinner[<%=i %>]).css("background-image","url('https://i.ytimg.com/vi/RMeXxJ3Y2KI/maxresdefault.jpg')");
+		$(boxinner[<%=i %>]).css("background-image","url('<%=request.getContextPath() %>/upload/center/<%=centerList.get(i).getMainImage() %>')");
 			 <%-- <%=centerList.get(i).getMainImage() %> --%> 
 		<%} }%>
 		/* 이미지 넣어주기 */
@@ -178,7 +190,7 @@
 
 
     </script>
-
+<script src="<%=request.getContextPath()%>/js/kakaomap.js"></script>
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -32,7 +32,7 @@
                                 <td>chzh859@naver.com</td>
                                 <td>010-3597-0663</td>
                                 <td>인천 서구 마전동</td>
-                                <td>회원</td>
+                                <td>회원  <button onclick="">보기</button></td>
                             </tr><!-- }-->
                             
                         </table>

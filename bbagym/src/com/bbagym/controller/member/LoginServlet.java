@@ -38,41 +38,62 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("M_ID");
 		String pw = request.getParameter("M_PW");
-		
-		
-		Member m = new MemberService().login(id, pw);
-		Member m2 = new MemberService().login2(id);
+		Member kakao= new MemberService().login2(id);
 
-		if (m != null && m.getM_STATUS()=='N') {
+	
+		
+		
+		if(pw!=null ||kakao!=null) {
+			 pw = new MemberService().searchPW2(id);
+			Member m = new MemberService().login(id, pw);
+			Member m2 = new MemberService().login2(id);
+			 
+			 if (m != null && m.getM_STATUS()=='N') {
+					HttpSession session = request.getSession();
+
+					session.setAttribute("logginMember", m);
+					String saveId = request.getParameter("saveId");
+					Cookie c = new Cookie("saveId", m.getM_ID());
+					if (saveId != null) {
+						c.setMaxAge(3 * 24 * 60 * 60);
+						response.addCookie(c);
+					} else {
+						c.setMaxAge(0);
+					}
+					response.addCookie(c);
+					response.sendRedirect(request.getContextPath());
+				}else if(m2!= null && m2.getM_STATUS()=='Y'){
+					request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
+					request.setAttribute("loc", "");
+					RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
+					rd.forward(request, response);
+				}else if(m2==null) {
+					request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
+					request.setAttribute("loc", "");
+					RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
+					rd.forward(request, response);
+				}else{
+					request.setAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
+					request.setAttribute("loc", "");
+					RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
+					rd.forward(request, response);
+				}
+			 
+		}else {
+			String email = request.getParameter("userEmail");
+			char gender = request.getParameter("gender").toUpperCase().charAt(0);
+			Member m =new Member();
+			m.setM_ID(id);
+			m.setM_EMAIL(email);
+			m.setM_GENDER(gender);
 			HttpSession session = request.getSession();
 
-			session.setAttribute("logginMember", m);
-			String saveId = request.getParameter("saveId");
-			Cookie c = new Cookie("saveId", m.getM_ID());
-			if (saveId != null) {
-				c.setMaxAge(3 * 24 * 60 * 60);
-				response.addCookie(c);
-			} else {
-				c.setMaxAge(0);
-			}
-			response.addCookie(c);
-			response.sendRedirect(request.getContextPath());
-		}else if(m2!= null && m2.getM_STATUS()=='Y'){
-			request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
-			request.setAttribute("loc", "");
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
-			rd.forward(request, response);
-		}else if(m2==null) {
-			request.setAttribute("msg", "등록되지않은 정보입니다.회원가입하고 로그인 해주세요.");
-			request.setAttribute("loc", "");
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
-			rd.forward(request, response);
-		}else{
-			request.setAttribute("msg", "아이디나 비밀번호가 일치하지 않습니다.");
-			request.setAttribute("loc", "");
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/msg.jsp");
-			rd.forward(request, response);
+			session.setAttribute("kakaoinfo", m);
+			request.getRequestDispatcher("/member/enrollMenu.do").forward(request, response);
+
 		}
+
+		
 	}
 
 	/**
