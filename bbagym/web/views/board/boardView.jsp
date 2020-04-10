@@ -42,7 +42,7 @@
                 <h2 class="text-center"><i class="fa fa-heart heart"></i>&nbsp;&nbsp;Q&A<i class="fa fa-heart heart"></i></h2>
                     <div class="table table-responsive">
 	                    <input type="hidden" name="no" value="<%=b.getQaCode() %>">
-                        <table class="table table-striped text-center" style="margin-bottom:200px;">
+                        <table class="table table-striped text-center" style="margin-bottom:100px;">
                             <tr>
                                 <th>제목</th>
                                 <td>	
@@ -95,7 +95,7 @@
   				<form action="<%=request.getContextPath()%>/board/boardCommentInsert" method="post">
   					<textarea name="commentContent" cols="60" rows="3"></textarea>
 					  <button type="submit" id="btn-insert">등록</button>
-					  <input type="hidden" name="commentWriter" value="<%=b.getmCode()%>">
+					  <input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
 					  <input type="hidden" name="boardRef" value="<%=b.getQaCode()%>">
 					  <input type="hidden" name="level" value="1">  <!-- 첫번째댓글 -->
 					  <input type="hidden" name="commentRef" value="0">
@@ -111,7 +111,7 @@
 					if(bc.getQaCommentLevel()==1){%>
 				<tr class="level1">
 					<td>
-						<sub class="comment-writer"><%=logginMember.getM_ID()%></sub>
+						<sub class="comment-writer"><%=bc.getmId()%></sub>
 						<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
 						<br>
 						<%=bc.getQaCommentContent() %>
@@ -123,7 +123,7 @@
 				<%}else{%>
 					<tr class="level2">
 						<td>
-							<sub><%=logginMember.getM_ID()%></sub>
+							<sub><%=bc.getmId()%></sub>
 							<sub><%=bc.getQaCommentDate() %></sub>
 							<br>
 							<%=bc.getQaCommentContent() %>

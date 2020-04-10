@@ -254,7 +254,7 @@ public class BoardDao {
 				bc.setQaCommentDate(rs.getDate("qa_comment_date"));
 				bc.setQaCode(rs.getInt("qa_code"));
 				bc.setmCode(rs.getInt("m_code"));
-				
+				bc.setmId(rs.getString("m_id"));
 				list.add(bc);
 			}
 		}catch(SQLException e) {

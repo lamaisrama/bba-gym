@@ -45,6 +45,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		int maxSize = 1024*1024*10;
 		
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", new MyFileRenamePolicy());
+		System.out.println(mr.getParameter("content"));
 		Board b = new Board(0, mr.getParameter("title"), mr.getParameter("content"), 
 								null, mr.getOriginalFileName("upfile"), mr.getFilesystemName("upfile"),
 								0, Integer.parseInt(mr.getParameter("mcode")));

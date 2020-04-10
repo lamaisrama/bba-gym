@@ -3,6 +3,12 @@
 
 <%@ include file="/views/common/header.jsp"%>	
 
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
 <style>
 	h2{
 	    margin: 30px 0;
@@ -39,7 +45,7 @@
                         </tr>   
                         <tr>
                             <th>내용</th>
-                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"></textarea></td>
+                            <td><textarea type="text" id="summernote" name="content" class="form-control" cols="50" rows="10"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center">
@@ -51,5 +57,22 @@
             </form>
         </div>
     </div>
+ 
+ <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+            });
+
+        $(document).ready(function() {
+             $('#summernote').summernote({
+                height: 500,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summernote
+            });
+        });
+        
+        
+    </script>
     
 <%@ include file="/views/common/footer.jsp"%>
