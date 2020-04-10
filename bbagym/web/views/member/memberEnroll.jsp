@@ -4,7 +4,7 @@
 	import="com.bbagym.model.vo.Member"%>
 
 <% 
-	Member kakainfo = (Member)session.getAttribute("kakaoinfo");
+	Member info = (Member)session.getAttribute("info");
 %>
 	
 <%@ include file="/views/common/header.jsp"%>
@@ -29,8 +29,8 @@
 
 						<input type="text" class="form-control" 
 							style="width: 80%;" placeholder="4글자 이상 입력하세요" name="userId" id="userId_" 
-							<%if(kakainfo!=null ){ %> 
-								value="<%=kakainfo.getM_ID() %>" readonly
+							<%if(info!=null ){ %> 
+								value="<%=info.getM_ID() %>" readonly
 							<%} %>
 							required> 
 							<input type="button" onclick="fn_duplicateId();" style="width: 20%;" value="중복확인">
@@ -80,24 +80,17 @@
 					<div class="form-group" style="display: flex">
 
 						<input type="tel" style="width: 50%;" class="form-control" name="M_NAME" id="M_NAME_" required>
-						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M" 
-							<%if(kakainfo!=null&&kakainfo.getM_GENDER()!=' '&&kakainfo.getM_GENDER()=='M') {%>
-							checked
-							<%}else{ %>
-						checked <%} %>> 
+						<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER0" value="M" checked > 
 							<label for="M_GENDER0">남</label> 
-							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"
-							<%if(kakainfo!=null&&kakainfo.getM_GENDER()!=' '&&kakainfo.getM_GENDER()=='F') {%>
-							checked
-							<%}%> > <label for="M_GENDER1">여</label>
+							<input style="width: 25%;" type="radio" name="M_GENDER" id="M_GENDER1" value="F"> <label for="M_GENDER1">여</label>
 					</div>
 					<br>
 					<div class="form-group">
 					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE" required><br>
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> 
 						<input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL" 
-						<%if(kakainfo!=null&&kakainfo.getM_EMAIL()!=null) {%>
-							value="<%=kakainfo.getM_EMAIL() %>" readonly
+						<%if(info!=null&&info.getM_EMAIL()!=null) {%>
+							value="<%=info.getM_EMAIL() %>" readonly
 						<%} %>
 						required>
 					</div>

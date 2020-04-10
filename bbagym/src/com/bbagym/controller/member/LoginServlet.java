@@ -40,8 +40,6 @@ public class LoginServlet extends HttpServlet {
 		String pw = request.getParameter("M_PW");
 		Member kakao= new MemberService().login2(id);
 
-	
-		
 		
 		if(pw!=null ||kakao!=null) {
 			 pw = new MemberService().searchPW2(id);
@@ -81,14 +79,13 @@ public class LoginServlet extends HttpServlet {
 			 
 		}else {
 			String email = request.getParameter("userEmail");
-			char gender = request.getParameter("gender").toUpperCase().charAt(0);
+			
 			Member m =new Member();
 			m.setM_ID(id);
 			m.setM_EMAIL(email);
-			m.setM_GENDER(gender);
 			HttpSession session = request.getSession();
 
-			session.setAttribute("kakaoinfo", m);
+			session.setAttribute("info", m);
 			request.getRequestDispatcher("/member/enrollMenu.do").forward(request, response);
 
 		}
