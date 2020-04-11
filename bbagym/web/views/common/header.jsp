@@ -46,7 +46,10 @@ if (cookies != null) {
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="<%=request.getContextPath()%>/assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
   <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-  
+<!-- summernote -->	
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>  
   
   
 </head>
