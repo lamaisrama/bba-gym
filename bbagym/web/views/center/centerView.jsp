@@ -67,7 +67,7 @@
                     <br>
                     <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
                     <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">기타</label><br>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">테니스</label><br>
                     <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>

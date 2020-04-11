@@ -20,20 +20,33 @@
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <section>   
 
-
             <div id="box-search-outline">
                 <div>
                  	<label for="search">Search</label>
 				    <div id="box-search-inline">
-				        <select class="custom-select" id="search-type">
+				        <select class="custom-select" id="search-type"  >
 				            <option value="total"<%=type==null||(type!=null&&type.equals("total")) ? "selected" : "" %>>전체</option><!-- 처음들오면 type=null이므로 전체  selected / 또한 total로 돌아오면 selected -->
 				            <option value="member.m_name" <%=type!=null&&type.equals("member.m_name") ? "selected" : "" %>>이름</option><!--  type!=null아니며 타입값과같으면 selected -->
 				            <option value="center.c_name" <%=type!=null&&type.equals("center.c_name") ? "selected" : "" %>>소속</option><!--  같음 -->
-				            <option value="category_name" <%=type!=null&&type.equals("category_name") ? "selected" : "" %>>종목</option><!--  같음 -->
+				            <option value="category_name" <%=type!=null&&!type.equals("total")&&!type.equals("member.m_name")&&!type.equals("center.c_name") ? "selected" : "" %>>종목</option><!--  같음 -->
 				        </select>
-				        <input type="text" class="form-control" id="searchKeyword" placeholder="트레이너의 소속,이름,종목을 입력해주세요"
-				        style="<%=searchKeyword!=null ? "display:block;" : "" %>" value="<%=searchKeyword!=null ? searchKeyword : "" %>"><!-- 값이 있으면 display none에서 block로 바꾸며 값을 넣어준다 -->
+				           <input type="text" class="form-control" id="searchKeyword" placeholder="트레이너의 소속,이름,종목을 입력해주세요"
+				        style="<%=searchKeyword!=null ? "display:block;" : "" %>;" value="<%=searchKeyword!=null ? searchKeyword : "" %>"><!-- 값이 있으면 display none에서 block로 바꾸며 값을 넣어준다 -->
 				    </div>
+				        <div class="tab-pane container" id="category" <%=type!=null&&!type.equals("total")&&!type.equals("member.m_name")&&!type.equals("center.c_name") ? "style='margin-top:20px'" : "style='display:none;margin-top:20px'" %>>
+			                <form action="<%=request.getContextPath() %>/trainer/trainercategory.do" method="POST">
+			                    <input type="checkbox" name="category" value="1" id="swimming" ><label for="swimming">수영</label>
+			                    <input type="checkbox" name="category" value="2" id="GX" ><label for="GX">GX</label>
+			                    <input type="checkbox" name="category" value="3" id="health" ><label for="health" >헬스</label>
+			                    <input type="checkbox" name="category" value="4" id="UFC" ><label for="UFC">격투기</label> 
+			                    <br>
+			                    <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
+			                    <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
+			                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">테니스</label><br>
+			                    <input type="hidden"  id="keyword"	name="keyword">
+			                    <button type="submit" class="btn btn-info" >검색</button>
+			                </form>
+           				 </div>
                 </div>
             </div>
             
@@ -55,15 +68,15 @@
                             <div class="content-box-cotent">
                                 <table >
                                     <tr>
-                                        <td>이름 : <%=trainerlist.get(i).getM_name() %>
-                                        	<input type="hidden" value="<%=trainerlist.get(i).getT_code() %>"><!-- trainerdetailservlet에 클린된 트레이너를 구별하기위해 tcode를 히든으로 감쳐 보낸다 -->
+                                        <td>이름 : <%=trainerlist.get(i).getMname() %>
+                                        	<input type="hidden" value="<%=trainerlist.get(i).getTcode() %>"><!-- trainerdetailservlet에 클린된 트레이너를 구별하기위해 tcode를 히든으로 감쳐 보낸다 -->
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>소속 : <%=trainerlist.get(i).getC_center() %></td>
+                                        <td>소속 : <%=trainerlist.get(i).getCcenter() %></td>
                                    </tr>
                                     <tr>
-                                        <td>주소 : <%=trainerlist.get(i).getM_addres2() %></td>
+                                        <td>주소 : <%=trainerlist.get(i).getMaddres2() %></td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -99,7 +112,7 @@
 					<%if(!trainerlist.isEmpty()){ 
 						for(int i=0;i<trainerlist.size();i++){
 					%>
-						$(boxinner[<%=i %>]).css("background-image","url('<%=request.getContextPath() %>/upload/trainer/<%=trainerlist.get(i).getT_img() %>')");
+						$(boxinner[<%=i %>]).css("background-image","url('<%=request.getContextPath() %>/upload/trainer/<%=trainerlist.get(i).getTimg() %>')");
 							 <%-- <%=trainerlist.get(i).getT_img() %> --%> 
 					<%} }%>
 					/* 이미지 넣어주기 */
@@ -125,12 +138,18 @@
 					
 					/* 상단 검색바 전체일경우 가리고 나머지는 보여준다 */
 					 $("#search-type").on("change",function(){
+						   
 	                        var type=$("#search-type").find(":selected").val();
-	                        if(type!='total'){
-	                            $("#searchKeyword").fadeIn(500);/* search-type이 전체가 아닐경우는 input창을 보여준다 */
-	                        }else{
+	                        console.log(type);
+	                        if(type=='category_name'){
+	                        	 $("#searchKeyword").fadeOut(500);
+	                            $("#category").fadeIn(500);/* search-type이 전체가 아닐경우는 input창을 보여준다 */
+	                        }else if(type=='total'){
 	            				location.href="<%=request.getContextPath() %>/trainer/trainerView.do?cPage="+1+"&type=total";
 	            				/*serach-type이 전체로 바뀔 경우 기존에 trainerviewservlet에 제일첫페이지로 이동한다 */
+	                        }else{
+	                        	$("#category").fadeOut(500);
+	                        	 $("#searchKeyword").fadeIn(500);
 	                        }
 	                    });
 					/* 상단 검색바 전체일경우 가리고 나머지는 보여준다 */
@@ -139,11 +158,11 @@
 		
 				
 		</script>
-     
+
         <div id="pageBar"><!-- 페이지바 JSP구현-->
             <%=request.getAttribute("pageBar") %> <!-- trainerviewservlet에서 가져온 pagebar -->
         </div>
 
 </section>
-
+<script src="<%=request.getContextPath() %>/js/trainerViewJs.js"></script>
 <%@ include file="/views/common/footer.jsp"%>

@@ -1,4 +1,4 @@
-package com.bbagym.controller.center;
+package com.bbagym.controller.trainer;
 
 import static com.bbagym.common.PageBarTemplate.pageBar;
 
@@ -10,23 +10,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.Member;
-import com.bbagym.service.CenterService;
+import com.bbagym.model.vo.TrainerView;
+import com.bbagym.service.TrainerService;
 
 /**
- * Servlet implementation class CenterSortCategoryServlet
+ * Servlet implementation class TrainerCategorySearchServlet
  */
-@WebServlet("/center/sortCategory.do")
-public class CenterSortCategoryServlet extends HttpServlet {
+@WebServlet("/trainer/trainercategory.do")
+public class TrainerCategorySearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterSortCategoryServlet() {
+    public TrainerCategorySearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,12 +34,9 @@ public class CenterSortCategoryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		String url= request.getContextPath()+"/center/sortCategory.do";
-		String type = request.getParameter("type"); //cPage 1일때는 type이 존재하지않는다 null로 들어옴
-		String keyword=request.getParameter("keyword").replace(" ", ""); // 검색키워드를 받아온다 공백처리
+		String url= request.getContextPath()+"/trainer/trainercategory.do";
+		String type = request.getParameter("type");
 		int cPage;
-		int m;
 		
 			if(type==null) {
 				
@@ -54,42 +49,33 @@ public class CenterSortCategoryServlet extends HttpServlet {
 			 	
 			}else {
 				type="'"+type.replace(".", "','")+"'"; //cPage=2 부터는 type을 다시 replace로 '1','2' 모습으로 만든다
-				}
+			}
 		
-		
+			
 			try {
 					cPage = Integer.parseInt(request.getParameter("cPage"));
 				}catch(NumberFormatException e) {
 					cPage=1;
 			}
-			
-
-			try {
-					HttpSession session = request.getSession();
-					m=((Member)session.getAttribute("logginMember")).getM_CODE();
-				}catch(NullPointerException e) {
-					m=0;
-			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 		
-		int numPerpage=3;
+		int numPerpage=9;
 		
-		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword);
-	
-		int totalData = new CenterService().searchCategoryCountCenter(type,keyword);
-
-
+		List<TrainerView> list = new TrainerService().SearchCategoryPageData(cPage,numPerpage,type);
+		int totalData = new TrainerService().searchCategoryCountCenter(type);
+		
 		if(type!=null) {
 			type = type.replace("','", ".");
 			type = type.replace("'","");
 		} //type을 보낼때의 모습을 다시 replace정의후 보낸다
 		
-		String url2= "&keyword="+keyword+"&type="+type;
+		String url2= "&type="+type;
 		String pageBar = pageBar(url, url2,totalData, cPage, numPerpage); 
 
-
+		System.out.println(type);
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("centerList", list);
-		request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
+		request.setAttribute("type", type);
+		request.setAttribute("trainerList", list);
+		request.getRequestDispatcher("/views/trainer/trainerView.jsp").forward(request, response);
 	}
 
 	/**

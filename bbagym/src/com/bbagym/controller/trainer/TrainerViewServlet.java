@@ -48,9 +48,6 @@ public class TrainerViewServlet extends HttpServlet {
 		List<TrainerView> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
 		int totalData = new TrainerService().AllTrainerDataCount();
 
-
-
-		
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
 
 		request.setAttribute("pageBar", pagebar);

@@ -45,7 +45,7 @@ public class MailSend {
             message.setText("bbagym 회원가입 이메일 인증번호 입니다 \n\n"
             		+ "bbagym 회원가입 페이지에서 아래의 인증번호를 입력하여 이메일 인증을 하실 수 있습니다.\n\n"
             		+ "인증번호 : "+info);    //메일 내용을 입력
-
+            System.out.println(info);
             // send the message
             Transport.send(message); ////전송
             System.out.println("message sent successfully...");

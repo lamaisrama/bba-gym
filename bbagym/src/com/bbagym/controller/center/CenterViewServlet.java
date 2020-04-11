@@ -39,27 +39,25 @@ public class CenterViewServlet extends HttpServlet {
 		
 		String url= request.getContextPath()+"/center/centerView.do";
 		int cPage;
-		
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
-		
-		HttpSession session = request.getSession();
 		int m;
-		try {
-			m=((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch(NullPointerException e) {
-			m=0;
-		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				cPage=1;
+			}
+		
+			
+			try {
+				HttpSession session = request.getSession();
+				m=((Member)session.getAttribute("logginMember")).getM_CODE();
+			}catch(NullPointerException e) {
+				m=0;
+			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 
 		int numPerpage=3; //페이지당 3개 데이터 출력
 		List<CenterEnroll> list = new CenterService().centerMainPageData(cPage,numPerpage,m);
-
 		int totalData = new CenterService().selectCountCenter();
 		
-
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
 
 		request.setAttribute("pageBar", pagebar);
