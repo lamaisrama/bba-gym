@@ -65,18 +65,18 @@
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerList.do" >시설 등록 승인</a></td>
                        <%--  <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td> --%>
                     </tr>
-                    <tr>
+                    <tr>	
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/trainerEnroll.do">트레이너 등록 승인</a></td>
                     </tr>
                     <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/member.do" >회원 관리</a></td>
                     </tr>
-                    <tr>
+                    <%-- <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/question.do" >문의 확인</a></td>
                     </tr>
                     <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/Board.do" >게시글 관리(삭제:notcie에서글쓰기 관리자만보이게)</a></td>
-                    </tr>
+                    </tr> --%>
                 </table>
 
             </aside>

@@ -5,6 +5,7 @@
 <%@ page
 
 
+
 	import="com.bbagym.model.vo.Member"%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
@@ -36,10 +37,12 @@
 </head>
 <body>    
 
+
 	<video autoplay muted loop id="backgroundvideo">
 		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
+	      
 	        	<div>
 
 				    <ul>	<!--로그인한멤버 -->		        
