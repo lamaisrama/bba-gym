@@ -28,42 +28,26 @@ public class CenterEnroll {
 	private List<Program> program;
 	private boolean prefer;
 	private double score;
-	
+
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-    
-	
-	
+
 	public double getScore() {
 		return score;
 	}
-
-
-
-
 
 	public void setScore(double score) {
 		this.score = score;
 	}
 
-
-
-
-
 	public boolean getPrefer() {
 		return prefer;
 	}
 
-
-
 	public void setPrefer(boolean prefer) {
 		this.prefer = prefer;
 	}
-
-
 
 	public int getCode() {
 		return code;
@@ -225,10 +209,6 @@ public class CenterEnroll {
 		this.program = program;
 	}
 
-
-
-
-
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories
@@ -245,7 +225,5 @@ public class CenterEnroll {
 	 * snsEtc + ", photos=" + photos + ", categories=" + categories +
 	 * ", facilities=" + facilities + ", program=" + program + "]"; }
 	 */
-	
-	
-}
 
+}

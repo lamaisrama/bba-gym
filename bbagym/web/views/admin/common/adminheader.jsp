@@ -62,7 +62,8 @@
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >비밀번호 수정(완료)</a></td>
                     </tr>
                     <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerList.do" >시설 등록 승인</a></td>
+                       <%--  <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td> --%>
                     </tr>
                     <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/trainerEnroll.do">트레이너 등록 승인</a></td>

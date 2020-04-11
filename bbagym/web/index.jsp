@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding
+	="UTF-8"%>
 <%-- <%@ include file="/views/common/header.jsp"%>  --%>
 <%@ page
+
+
 	import="com.bbagym.model.vo.Member"%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
@@ -106,6 +109,7 @@
 	       </div>
 	   	</div>
 
+	   	
 	   	
 	    <div id="box">
 	    <%
