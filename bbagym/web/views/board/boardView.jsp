@@ -9,30 +9,7 @@
 
 <%@ include file="/views/common/header.jsp"%>	
 
-<style>
-   h2{
-       margin: 60px 0;
-   }
-   th{
-       width: 150px;
-   }
-   /*댓글*/
-   #comment-container{text-align: center; margin-bottom:20px;}
-	table#tbl-comment{width:65%; margin:0 auto; /* border-collapse:collapse; */ clear:both; } 
-	table#tbl-comment tr td{/* border-bottom:1px solid; */ padding:5px; text-align:left; line-height:120%;}
-	table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
-	table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-	table#tbl-comment button.btn-reply{display:none;}
-	table#tbl-comment tr.level1 {background:ghostwhite;}
-	table#tbl-comment tr:hover {background:white; /* border-bottom: 1px dashed navy; */}
-	table#tbl-comment tr:hover button.btn-reply{display:inline;}
-	table#tbl-comment tr.level2 {color:navy; font-size: 16px;}
-	table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
-	table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
-	table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
-	table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
-	table#tbl-comment tr.level2 sub.comment-date {color:coral; font-size:10px}
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
@@ -45,36 +22,36 @@
 	                    <input type="hidden" name="no" value="<%=b.getQaCode() %>">
                         <table class="table table-striped text-center"> <!-- style="margin-bottom:100px;" -->
                             <tr>
-                                <th>제목</th>
+                                <th class="th-write">제목</th>
                                 <td>	
                                 	<b><%=b.getTitle()%></b>
-                        			
                         		</td>
                             </tr>
                             <tr>
-                                <th>작성자</th>
+                                <th class="th-write">작성자</th>
                                 <td><%=b.getmId() %></td>
                             </tr>
                             <tr>
-                                <th>작성일</th>
+                                <th class="th-write">작성일</th>
                                 <td><%=b.getQaDate() %></td>
                             </tr>
                             <tr>
-                                <th>첨부파일</th>
+                                <th class="th-write">첨부파일</th>
                                 <td>
                                 	<%if(b.getOriFileName()!=null){ %>
                                 	<a href="javascript:void(0);" onclick="fileDownload('<%=b.getOriFileName()%>','<%=b.getNewFileName()%>');">
-                                		<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                                		<img src="<%=request.getContextPath()%>/resources/img/file_2.png" width="20px">
 										<span><%=b.getOriFileName()%></span>                                		
                                 	</a>
                                 	<%} %> 
-                                	
                                 </td>
                             </tr>   
                             <tr>
                                 <th colspan="2">내용</th>
                             </tr>
-                            <tr><td colspan="2" style="padding:50px 30px;"><%=b.getQaContent() %></td></tr>
+                            <tr>
+                            	<td colspan="2" style="padding:50px 30px;"><%=b.getQaContent() %></td>
+                           	</tr>
                             <tr>
                                 <td colspan="2" class="text-center">
                                 	<button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/boardList')">글목록</button>
@@ -95,8 +72,14 @@
   			<div class="comment-editor">
   				<form action="<%=request.getContextPath()%>/board/boardCommentInsert" method="post">
   					<textarea name="commentContent" cols="80" rows="3"></textarea>
-<!-- 					  <button type="submit" id="btn-insert" class="btn btn-outline-primary btn-lg">등록</button> -->
-					  <button type="submit" id="btn-insert" class="btn btn-dark btn-lg">등록</button>
+
+					<br>
+
+					  <button type="submit" id="btn-insert" class="btn btn-secondary btn-lg">등록</button>
+
+					  <!-- <button type="submit" id="btn-insert" class="btn btn-dark btn-lg">등록</button> -->
+					  
+					  
 					  <input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
 					  <input type="hidden" name="boardRef" value="<%=b.getQaCode()%>">
 					  <input type="hidden" name="level" value="1">  <!-- 첫번째댓글 -->
@@ -115,6 +98,7 @@
 						<tr class="level1">
 						<td>
 							<dl class="row">
+								
 								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
 	  							<dd class="col-sm-9">
 	  								<%=bc.getQaCommentContent() %>
@@ -131,9 +115,9 @@
 					<tr class="level2">
 						<td>
 							<dl class="row">
-								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
+								<dt class="col-sm-3"><img src="<%=request.getContextPath()%>/resources/img/level2.png" width="15px;"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
 								<dd class="col-sm-9">
-									<%=bc.getQaCommentContent() %>
+									<%=bc.getQaCommentContent() %>&nbsp;&nbsp;
 									<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
 								</dd>
 							</dl>
@@ -157,7 +141,10 @@
       </div>
     </div>
     </footer>
+    <br><br><br><br><br>
 	<script>
+	
+	// 파일
 	function fileDownload(ori, rename){
 		location.href="<%=request.getContextPath()%>/board/boardDownload?ori=" + ori + "&rename=" + rename;
 	}

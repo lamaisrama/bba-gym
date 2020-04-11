@@ -9,11 +9,8 @@
 	
 <%@ include file="/views/common/header.jsp"%>
 
-<style>
-    section#board-container{
-    	margin:50px auto; text-align:center;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
+
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
     <section id="board-container">
         <div class="container">
@@ -22,7 +19,7 @@
             <br>
             <br>
             <!-- 검색 -->
-            <div align="right">
+           <!--  <div align="right">
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
@@ -31,7 +28,7 @@
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
-            </div>
+            </div> -->
 
             <!-- 게시판테이블 start -->
             <table class="table table-hover">
@@ -58,7 +55,7 @@
                         <td><i class="fa fa-heart heart"></i>&nbsp;<%=n.getmId() %></td>
                         <td>
                         	<%if(n.getOriFileName()!=null) {%>
-                        	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                        	<img src="<%=request.getContextPath()%>/resources/img/file_3.png" width="20px">
 							<%} %>
 						</td>
                         <td><%=n.getnDate() %></td>
@@ -86,5 +83,5 @@
             <!-- 페이징 end -->
         </div>    
 	</section>
-
+<br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

@@ -7,11 +7,8 @@
 %>		
 <%@ include file="/views/common/header.jsp"%>
 
-<style>
-    section#board-container{
-    	margin:50px auto; text-align:center;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
+
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
     <section id="board-container">
         <div class="container">
@@ -56,12 +53,12 @@
                         	</a>
                        	</td>
                         
-                        <td><%=b.getmId() %>
+                        <td><i class="fa fa-heart heart"></i>&nbsp;<%=b.getmId() %>
                         </td>
                         
                         <td>
                         	<%if(b.getOriFileName()!=null) {%>
-                        	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                        	<img src="<%=request.getContextPath()%>/resources/img/file_2.png" width="20px">
 							<%} %>
 						</td>
                         <td><%=b.getQaDate() %></td>
@@ -88,5 +85,5 @@
             <!-- 페이징 end -->
         </div>    
 	</section>
-
+<br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

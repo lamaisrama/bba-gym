@@ -6,14 +6,7 @@
 %>		
 <%@ include file="/views/common/header.jsp"%>	
 
-<style>
-   h2{
-       margin: 60px 0;
-   }
-   th{
-       width: 150px;
-   }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
@@ -26,23 +19,23 @@
 	                    <input type="hidden" name="no" value="<%=n.getnCode() %>">
                         <table class="table table-striped text-center" style="margin-bottom:200px;">
                             <tr>
-                                <th>제목</th>
+                                <th class="th-write">제목</th>
                                 <td><b><%=n.getTitle()%></b></td>
                             </tr>
                             <tr>
-                                <th>작성자</th>
+                                <th class="th-write">작성자</th>
                                 <td><%=n.getmId() %></td>
                             </tr>
                             <tr>
-                                <th>작성일</th>
+                                <th class="th-write">작성일</th>
                                 <td><%=n.getnDate() %></td>
                             </tr>
                             <tr>
-                                <th>첨부파일</th>
+                                <th class="th-write">첨부파일</th>
                                 <td>
                                 	<%if(n.getOriFileName()!=null){ %>
                                 	<a href="javascript:void(0);" onclick="fileDownload('<%=n.getOriFileName()%>','<%=n.getNewFileName()%>');">
-                                		<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                                		<img src="<%=request.getContextPath()%>/resources/img/file_3.png" width="20px">
 										<span><%=n.getOriFileName()%></span>                                		
                                 	</a>
                                 	<%} %> 
