@@ -55,25 +55,7 @@
 						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required><br>
 					</div>
 					<span id="result"></span>
-					 <script>
-        var pwck=document.getElementById("password_2");
-        pwck.onkeyup=function(){
-            var pw=document.getElementById("password_");
-            var span=document.getElementById("result");
 
-            if(pw.value==this.value){
-                span.innerHTML="비밀번호가 일치합니다.";
-                span.style.color="green";
-                span.style.fontWeight="bolder";
-            }else{
-                span.innerHTML="비밀번호가 일치하지 않습니다.";
-                span.style.color="red";
-                span.style.fontWeight="bolder";
-                // this.value="";
-            }
-        }
-					</script>
-					
 					
 					<input type="hidden" name="M_STATUS" id="M_STATUS" required>
 					<br> <label for="c-tel"><pre style="color:red ; display:inline-block">*</pre>이름</label>
@@ -87,12 +69,14 @@
 					<br>
 					<div class="form-group">
 					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE" required><br>
-						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label> 
+						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일&nbsp;&nbsp;</label>
+						<button type="button"  class="btn btn-warning"  onclick="verify();">인증하기</button>
 						<input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL" 
 						<%if(info!=null&&info.getM_EMAIL()!=null) {%>
 							value="<%=info.getM_EMAIL() %>" readonly
 						<%} %>
 						required>
+						<input type="hidden" id="verifyEmail" value="2">
 					</div>
 					<br>
 					<div class="form-group"><label for="c-time"><pre style="color:red ; display:inline-block">*</pre>주소&nbsp;&nbsp;</label>
@@ -124,9 +108,11 @@
 	function fn_enroll_validate() {
 		//아이디가 4글자이상 입력되었는지
 		//패스워드가맞는지
+		//이메일 인증이 되었는지
 		var userId = $("#userId_").val();
 		var pw = $("#password_").val();
 		var pwck = $("#password_2").val();
+		var verifyEmail = $("#verifyEmail").val();
 		//현재text에 입력되어 있는 값
 
 		//정규표현식
@@ -144,16 +130,37 @@
 			alert("패스워드가 일치하지 않습니다.");
 			$("password_").focus();
 			return false;
+		} else if(verifyEmail==2){
+			alert("이메일 인증이 되어있지 않습니다.");
+			$("M_EMAIL").focus();
+			return false;
 		}
-
+		
 		return true;
 	}
+	
+	 var pwck=document.getElementById("password_2");
+     pwck.onkeyup=function(){
+         var pw=document.getElementById("password_");
+         var span=document.getElementById("result");
+
+         if(pw.value==this.value){
+             span.innerHTML="비밀번호가 일치합니다.";
+             span.style.color="green";
+             span.style.fontWeight="bolder";
+         }else{
+             span.innerHTML="비밀번호가 일치하지 않습니다.";
+             span.style.color="red";
+             span.style.fontWeight="bolder";
+             // this.value="";
+         }
+     }
 	
 	
 	function goPopup(){
     	// 주소검색을 수행할 팝업 페이지를 호출합니다.
     	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup.jsp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+    	var pop = window.open("<%=request.getContextPath() %>/popup/jusoPopup.jsp","pop","width=800,height=300, scrollbars=yes, resizable=yes"); 
     	
     	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/arerddrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
         //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
@@ -164,6 +171,42 @@
     		document.getElementById('M_ADDRESS').value = roadFullAddr;
 
     }
+
+    
+    
+    verify= function() {
+		  // 이메일 검증 스크립트 작성
+		  var M_EMAIL = document.querySelector("#M_EMAIL").value;
+		  var ouath =generateRandom(10000000,999999999);
+		  var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		  // 검증에 사용할 정규식 변수 regExp에 저장
+
+		  if (M_EMAIL.match(regExp) != null) {
+			  
+
+ 			window.open("<%=request.getContextPath() %>/views/member/mail_certification.jsp?M_EMAIL="+M_EMAIL+"&ouath="+ouath, "", "width=370, height=360");
+ 			code = ouath;
+		  }
+		  else {
+		    alert('이메일 형식을 다시 확인해주세요');
+		  }
+		};
+		
+		
+
+		
+		var generateRandom = function (min, max) {
+			  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+			  return ranNum;
+			}
+
+
+
+
+
+
+		
+
 </script>
 	
 	<%@ include file="/views/common/footer.jsp"%>
