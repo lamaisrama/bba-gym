@@ -157,7 +157,31 @@
 	</section>
 	
 	<script>
+		onload=function(){
+			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
+		}
 		
+		function handleGeoSucces(position){
+			const latitude = position.coords.latitude;
+			const longitude = position.coords.longitude;
+			console.log(latitude, longitude);
+			 $.ajax({
+				url:"<%=request.getContextPath()%>/getCoord.do?lat="+latitude+"&lng="+longitude,
+				type:"get",
+				//data:{"lat":latitude, "lng":longitude},
+				dataType:"text",
+				success : function(data){
+					console.log(data);
+					console.log('위치 저장 완료');
+				}
+				
+			})
+		}
+	
+		function handleGeoError(){
+			alert('회원님의 위치정보를 확인할 수 없어 기본 위치로 설정되어 안내합니다');
+		}
+	
 
 		$("#search1").keydown(function(key){
     		if(key.keyCode==13){ /* 엔터일경우가 13   */

@@ -29,6 +29,9 @@ public class CenterEnroll {
 	private boolean prefer;
 	private double score;
 	
+	private String addrX;
+	private String addrY;
+	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
@@ -223,6 +226,33 @@ public class CenterEnroll {
 
 	public void setProgram(List<Program> program) {
 		this.program = program;
+	}
+
+
+
+	public String getAddrX() {
+		return addrX;
+	}
+
+
+	public void setAddrX(String addrX) {
+		this.addrX = addrX;
+	}
+
+
+
+
+
+	public String getAddrY() {
+		return addrY;
+	}
+
+
+
+
+
+	public void setAddrY(String addrY) {
+		this.addrY = addrY;
 	}
 
 

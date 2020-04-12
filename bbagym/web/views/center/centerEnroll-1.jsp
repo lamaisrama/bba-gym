@@ -3,6 +3,10 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<!-- 카카오맵 API 불러오는 script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=910ff98ddccfbc580e580a9ce7d7285d&libraries=services"></script>
+
+
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
 <div class="container pt-3 center-info">
 	<form action="<%=request.getContextPath() %>/centerEnroll.do" method="post">
@@ -175,8 +179,29 @@
 		function jusoCallBack(roadFullAddr, entX, entY){
 			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
 			document.getElementById('c-address').value = roadFullAddr;
-			document.getElementById('addrX').value = entX;
-			document.getElementById('addrY').value = entY;
+			
+			var geocoder = new kakao.maps.services.Geocoder(),
+		    wtmX = entX,
+		    wtmY = -entY;
+
+			var callback = function(result, status) {
+			    if (status === kakao.maps.services.Status.OK) {
+			        console.log(result[0].x); // 126.570667
+			        console.log(result[0].y); // 33.45070100000001
+			        document.getElementById('addrX').value = result[0].x;
+					document.getElementById('addrY').value = result[0].y;
+			    }
+			};
+	
+			// WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
+			geocoder.transCoord(wtmX, wtmY, callback, {
+			    input_coord: kakao.maps.services.Coords.WTM,
+			    output_coord: kakao.maps.services.Coords.WGS84
+			});
+			
+			
+			
+			
 		}
 	
 	</script>
