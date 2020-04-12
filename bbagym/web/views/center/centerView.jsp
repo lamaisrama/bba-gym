@@ -21,7 +21,7 @@
         <div class="row">
             <div class="searchBox">
                 <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
-                <button class="btn btn-warning btn-sm" onclick="searchByKeyword();">Find!</button>
+                <button class="btn btn-warning" onclick="searchByKeyword();">찾기</button>
             </div>
         </div>
         <div class="row">
@@ -139,7 +139,7 @@
     
     <script>
     
-   		/* 이미지 넣어주기 */
+   		/* 이미지 넣어주기 480*300 */
     	var boxinner=$(".content-box-inner");
 		
 		<%if(!centerList.isEmpty()){ 
@@ -179,7 +179,7 @@
 		/* 찜하기 ajax */
 		
 		/* 키워드 검색 */
-		function serachKeyword(){
+		function searchByKeyword(){
             		var search=$("#search").val();
             		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
             	}

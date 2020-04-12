@@ -48,7 +48,7 @@
 						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
 						<div id="goka" style="float:right">
 						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
-						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="padding-left:20px;"></div> 
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="padding-left:20px;"></div>
 						</div>			
 						 <br>
 						<br>
@@ -190,6 +190,11 @@
 #goka{
 	display : flex;
 	flex-direction : row;
+}
+
+.g-signin2 span{
+	position: inherit;
+	color : black;
 }
 
 .input-group {

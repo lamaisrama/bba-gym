@@ -3,10 +3,6 @@
 <%@ page import="java.util.List,com.bbagym.model.vo.TrainerView" %>	
 <%@ include file="/views/common/header.jsp"%>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/sectionTrainer.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -63,7 +59,7 @@
 					<%} %>
 					
                     <div class="content-box-outer" >
-                        <div class="content-box-inner" >
+                        <div class="content-box-inner"></div> 
                             <div class="bar"></div>
                             <div class="content-box-cotent">
                                 <table >
@@ -86,7 +82,7 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>  
+                         
                     </div> <!-- content-box-outer-->
 					
 					<%if(i%3==2||i==trainerlist.size()-1){ %>	<!-- 3개가 만들어진뒤 닫아주기위해서 마지막 나머지 2일경우 닫아주며, 제일마지막 데이터가 나오면 닫아준다 -->
@@ -106,7 +102,7 @@
 		
 				$(function(){
 					
-					/* 이미지 넣어주기  */
+					/* 이미지 넣어주기  300*550 */
 					var boxinner=$(".content-box-inner");
 					
 					<%if(!trainerlist.isEmpty()){ 
@@ -164,5 +160,5 @@
         </div>
 
 </section>
-<script src="<%=request.getContextPath() %>/js/trainerViewJs.js"></script>
+
 <%@ include file="/views/common/footer.jsp"%>
