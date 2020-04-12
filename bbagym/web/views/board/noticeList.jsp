@@ -14,10 +14,8 @@
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
     <section id="board-container">
         <div class="container">
-
             <h1 class="display-4" style="text-align: center;">Notice<i class="fa fa-heart heart"></i></h1>
-            <br>
-            <br>
+            <br><br>
             <!-- 검색 -->
            <!--  <div align="right">
                 <label for="">SearchType:</label>
@@ -39,7 +37,7 @@
                         <th scope="col">Writer</th>
                         <th scope="col">File</th>
                         <th scope="col">Date</th>
-                        <th scope="col">rCount</th>
+                        <th scope="col">vCount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +47,7 @@
                         <td scope="row"><%=n.getnCode() %></td>
                         <td>
                         	<a href="<%=request.getContextPath()%>/board/noticeView?no=<%=n.getnCode()%>">
-                        		<b><%=n.getTitle() %></b>
+                        		<%=n.getTitle() %>
                         	</a>
                        	</td>
                         <td><i class="fa fa-heart heart"></i>&nbsp;<%=n.getmId() %></td>
@@ -76,6 +74,7 @@
             <%} %>
             <br>
             <br>
+            
             <!-- 페이징 start -->
             <nav aria-label="Page navigation example">
                 <%=pageBar %>
@@ -83,5 +82,6 @@
             <!-- 페이징 end -->
         </div>    
 	</section>
+	
 <br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>
