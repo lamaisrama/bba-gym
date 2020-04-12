@@ -215,7 +215,6 @@ public class CenterEnroll {
 
 
 
-
 	public String getAddrX() {
 		return addrX;
 	}
