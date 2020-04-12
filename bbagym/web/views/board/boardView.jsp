@@ -4,6 +4,7 @@
 <%@ page import="java.util.List, com.bbagym.model.vo.*" %>	
 <% 
 	Board b = (Board)request.getAttribute("board"); 
+	
 	List<BoardComment> comments = (List)request.getAttribute("comment");
 %>
 
@@ -83,13 +84,14 @@
 		</div>
 
 		<!-- 댓글출력 -->
-		<table id="tbl-comment">
+		<table id="tbl-comment" border=1>
 			<%if(comments!=null && !comments.isEmpty()){ 
 				for(BoardComment bc : comments){
 					if(bc.getQaCommentLevel()==1){%>
 						<tr class="level1">
 						<td>
 							<dl class="row">
+								<input type="hidden" name="nobc" value="<%=bc.getQaCommentCode() %>">
 								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
 	  							<dd class="col-sm-9">
 	  								<%=bc.getQaCommentContent() %>
@@ -98,7 +100,9 @@
 							</dl>
 						</td>
 						<td>
-							<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
+						<button class="btn btn-outline-warning btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=bc.getQaCommentCode()%>')">수정</button>
+						<button class="btn btn-outline-danger btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=bc.getQaCommentCode()%>')">삭제</button>
+						<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
 						</td>
 					</tr>
 				<%}else{%>
