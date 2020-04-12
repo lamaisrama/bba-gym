@@ -184,4 +184,22 @@ public class CenterEnrollDao {
 		}
 		return result;
 	}
+
+	public int insertCenterXY(Connection conn, CenterEnroll c) {
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAddrXY");
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCode());
+			pstmt.setString(2, c.getAddrX());
+			pstmt.setString(3, c.getAddrY());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

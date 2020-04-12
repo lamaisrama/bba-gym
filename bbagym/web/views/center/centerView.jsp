@@ -86,6 +86,7 @@
                 <div class="content-box-inner"></div>
                 <div class="bar"></div>
                 <div class="content-box-cotent">
+                   
                     <table>
                         <tr>
                             <td colspan="3"><input type="hidden" value="<%=c.getCode() %>"></td>
@@ -128,6 +129,7 @@
                             <td colspan="3"></td>
                         </tr>
                     </table>
+                    
                 </div><!-- for문 돌려서 페이징 처리해야합니다 -->
             </div><!-- content-box-outer -->
             <%} }%>

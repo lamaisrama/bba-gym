@@ -177,9 +177,24 @@ public class CenterService {
 		if(!list.isEmpty()) {
 			serivceForm(conn,list,mcode);
 		}
+
 		close(conn);
 		return list;
 	}
+
+		
+	//현재 접속 위치 기반으로 시설 전체보기를 list up 하는 서비스 
+		public List<CenterEnroll> centerMainPageDataDistance(int cPage, 
+				int numPerpage, int mcode, String lat, String lng) {
+			Connection conn=getConnection();
+			List<CenterEnroll> list =dao.centerMainPageDataDistance(conn,cPage,numPerpage, lat, lng); //기본 센터 정보를 가져오는 서비스
+			if(!list.isEmpty()) {
+				serivceForm(conn,list,mcode);
+			}
+			close(conn);
+			return list;
+		}
+
 		
 	
 	

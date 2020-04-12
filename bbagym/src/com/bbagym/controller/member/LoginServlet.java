@@ -40,14 +40,17 @@ public class LoginServlet extends HttpServlet {
 		String pw = request.getParameter("M_PW");
 		String pw2= new MemberService().searchPW2(id);
 
+
 		
 		if(pw==null&&pw2!=null) {
 			pw = pw2;
 		}
 		
+
 		if(pw!=null) {
 			Member m = new MemberService().login(id, pw);
 			Member m2 = new MemberService().login2(id);
+
 			 
 			 if (m != null && m.getM_STATUS()=='N') {
 					HttpSession session = request.getSession();
@@ -80,6 +83,7 @@ public class LoginServlet extends HttpServlet {
 					rd.forward(request, response);
 				}
 			 
+
 		}else {
 			String email = request.getParameter("userEmail");
 			
@@ -90,6 +94,7 @@ public class LoginServlet extends HttpServlet {
 
 			session.setAttribute("info", m);
 			request.getRequestDispatcher("/member/enrollMenu.do").forward(request, response);
+
 
 		}
 

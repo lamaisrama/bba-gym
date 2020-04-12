@@ -1,4 +1,4 @@
-package com.bbagym.common.Admin;
+package com.bbagym.controller.Admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdminPasswordServlet
  */
-@WebServlet("/admin/member.do")
-public class AdminMember extends HttpServlet {
+@WebServlet("/admin/centerEnroll.do")
+public class AdminCenterEnroll extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMember() {
+    public AdminCenterEnroll() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class AdminMember extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/admin/Admin_member.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/admin/Admin_approveCenter.jsp").forward(request, response);
 	}
 
 	/**

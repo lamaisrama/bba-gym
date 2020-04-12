@@ -23,6 +23,8 @@ public class Notice {
 	//공지게시판 상태
 	private char nStatus;
 	
+	private String mId;
+	
 	public Notice() {
 		super();
 	}
@@ -39,6 +41,21 @@ public class Notice {
 		this.readCount = readCount;
 		this.mCode = mCode;
 		this.nStatus = nStatus;
+	}
+
+	public Notice(int nCode, String title, String nContent, Date nDate, String oriFileName, String newFileName,
+			int readCount, int mCode, char nStatus, String mId) {
+		super();
+		this.nCode = nCode;
+		this.title = title;
+		this.nContent = nContent;
+		this.nDate = nDate;
+		this.oriFileName = oriFileName;
+		this.newFileName = newFileName;
+		this.readCount = readCount;
+		this.mCode = mCode;
+		this.nStatus = nStatus;
+		this.mId = mId;
 	}
 
 	public int getnCode() {
@@ -113,12 +130,24 @@ public class Notice {
 		this.nStatus = nStatus;
 	}
 
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
 	@Override
 	public String toString() {
 		return "Notice [nCode=" + nCode + ", title=" + title + ", nContent=" + nContent + ", nDate=" + nDate
 				+ ", oriFileName=" + oriFileName + ", newFileName=" + newFileName + ", readCount=" + readCount
-				+ ", mCode=" + mCode + ", nStatus=" + nStatus + "]";
+				+ ", mCode=" + mCode + ", nStatus=" + nStatus + ", mId=" + mId + "]";
 	}
+
+	
+	
+	
 	
 	
 	

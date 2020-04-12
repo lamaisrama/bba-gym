@@ -31,9 +31,9 @@
 
 <body>
     <!-- header -->
-    <header>
+    <header >
 
-        <div class="container pt-4">
+        <div class="container pt-4" >
             <div id="log"> 
                 <a class="navbar-brand" href="<%=request.getContextPath() %>/views/admin/Admin_Main.jsp" >
 +		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
@@ -49,7 +49,7 @@
 
 
 
-    <section>
+    <section >
 
         <div >
             <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
@@ -62,20 +62,21 @@
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >비밀번호 수정(완료)</a></td>
                     </tr>
                     <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerList.do" >시설 등록 승인</a></td>
+                       <%--  <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td> --%>
+                    </tr>
+                    <tr>	
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/trainerList.do">트레이너 등록 승인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/trainerEnroll.do">트레이너 등록 승인</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/memberlist.do">회원 관리</a></td>
                     </tr>
-                    <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/member.do" >회원 관리</a></td>
-                    </tr>
-                    <tr>
+                    <%-- <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/question.do" >문의 확인</a></td>
                     </tr>
                     <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/Board.do" >게시글 관리(삭제:notcie에서글쓰기 관리자만보이게)</a></td>
-                    </tr>
+                    </tr> --%>
                 </table>
 
             </aside>

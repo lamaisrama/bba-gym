@@ -36,19 +36,6 @@ public class BoardComment {
 		this.mCode = mCode;
 	}
 
-	public BoardComment(int qaCommentCode, int qaCommentRef, int qaCommentLevel, String qaCommentContent,
-			Date qaCommentDate, int qaCode, int mCode, String mId) {
-		super();
-		this.qaCommentCode = qaCommentCode;
-		this.qaCommentRef = qaCommentRef;
-		this.qaCommentLevel = qaCommentLevel;
-		this.qaCommentContent = qaCommentContent;
-		this.qaCommentDate = qaCommentDate;
-		this.qaCode = qaCode;
-		this.mCode = mCode;
-		this.mId = mId;
-	}
-
 	public int getQaCommentCode() {
 		return qaCommentCode;
 	}

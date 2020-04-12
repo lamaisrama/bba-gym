@@ -9,20 +9,15 @@
 	
 <%@ include file="/views/common/header.jsp"%>
 
-<style>
-    section#board-container{
-    	margin:30px auto; text-align:center;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
+
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
     <section id="board-container">
         <div class="container">
-
-            <h1 class="display-4" style="text-align: center;">Notice</h1>
-            <br>
-            <br>
+            <h1 class="display-4" style="text-align: center;">Notice<i class="fa fa-heart heart"></i></h1>
+            <br><br>
             <!-- 검색 -->
-            <div align="right">
+           <!--  <div align="right">
                 <label for="">SearchType:</label>
                 <select id="">
                     <option>Category</option>
@@ -31,7 +26,7 @@
                 </select>
                 <input type="text" name="" id="">
                 <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
-            </div>
+            </div> -->
 
             <!-- 게시판테이블 start -->
             <table class="table table-hover">
@@ -42,7 +37,7 @@
                         <th scope="col">Writer</th>
                         <th scope="col">File</th>
                         <th scope="col">Date</th>
-                        <th scope="col">rCount</th>
+                        <th scope="col">vCount</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,10 +50,10 @@
                         		<%=n.getTitle() %>
                         	</a>
                        	</td>
-                        <td><%=n.getmCode() %></td>
-                        <td><img src="/resources/img/file.png">
+                        <td><i class="fa fa-heart heart"></i>&nbsp;<%=n.getmId() %></td>
+                        <td>
                         	<%if(n.getOriFileName()!=null) {%>
-                        	<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                        	<img src="<%=request.getContextPath()%>/resources/img/file_3.png" width="20px">
 							<%} %>
 						</td>
                         <td><%=n.getnDate() %></td>
@@ -71,12 +66,13 @@
             <!-- 게시판테이블 end -->
             
             <!-- 글쓰기버튼 -->
-            <%-- <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")) {%> --%>
-            <div align="right">
-           		<input type="button" value="글쓰기" class="btn btn-sm btn-outline-secondary" 
-           			onclick="location.replace('<%=request.getContextPath()%>/board/noticeWrite')">
-            </div>
-            <%-- <%} %> --%>
+            <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")) {%>
+	            <div align="right">
+	           		<input type="button" value="글쓰기" class="btn btn-sm btn-outline-secondary" 
+	           			onclick="location.replace('<%=request.getContextPath()%>/board/noticeWrite')">
+	            </div>
+            <%} %>
+            <br>
             <br>
             
             <!-- 페이징 start -->
@@ -86,5 +82,6 @@
             <!-- 페이징 end -->
         </div>    
 	</section>
-
+	
+<br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

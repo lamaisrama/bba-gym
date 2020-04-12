@@ -46,7 +46,10 @@ if (cookies != null) {
   <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
   <script src="<%=request.getContextPath()%>/assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
   <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
-  
+<!-- summernote -->	
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>  
   
   
 </head>
@@ -73,28 +76,28 @@ if (cookies != null) {
         
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
     
-                  <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+                  <li class="nav-item"><a href="<%=request.getContextPath()%>/board/noticeList" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/board/boardList" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
          <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>	
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
  		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
-		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+		           <li class="nav-item"><a href="<%=request.getContextPath()%>/board/noticeList" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/board/boardList" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
 		 <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==0&&logginMember.getM_STATUS()=='N') {%>
          <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>	
  		<li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;센터 등록</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
         <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do" class="nav-link" style="font-size: 16px;">&nbsp;트레이너 등록</a></li>
-		           <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+		           <li class="nav-item"><a href="<%=request.getContextPath()%>/board/noticeList" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/board/boardList" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
 		  
 		  <%}else {%>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/center/centerView.do" class="nav-link" style="font-size: 16px;">&nbsp;센터찾기</a></li>
           <li class="nav-item"><a href="<%=request.getContextPath()%>/trainer/trainerView.do" target="_self" class="nav-link" style="font-size: 16px;">&nbsp;트레이너찾기</a></li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/notice.do" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
-          <li class="nav-item"><a href="<%=request.getContextPath()%>/notice/q&a.do" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/board/noticeList" target="self" class="nav-link" style="font-size: 16px;">&nbsp;Notice</a> </li>
+          <li class="nav-item"><a href="<%=request.getContextPath()%>/board/boardList" target="self" class="nav-link" style="font-size: 16px;">Q&A&nbsp;&nbsp;</a></li>
           
             <%} %>
            

@@ -684,5 +684,35 @@ public class CenterDao {
 			
 			return list;
 		}
+
+		public List<CenterEnroll> centerMainPageDataDistance(Connection conn, int cPage, int numPerpage, String lat,
+				String lng) {
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
+			String sql =prop.getProperty("centerMainPageDataByDistance");
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, lat);
+				pstmt.setString(2, lng);
+				pstmt.setInt(3, (cPage-1)*numPerpage+1);
+				pstmt.setInt(4, cPage*numPerpage);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					CenterEnroll c =new CenterEnroll();
+					c.setCode(rs.getInt("C_CODE"));
+					c.setName(rs.getString("C_NAME"));
+					c.setAddress(rs.getString("C_ADDRESS"));
+					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+					list.add(c);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			return list;
+		}
 	
 }
