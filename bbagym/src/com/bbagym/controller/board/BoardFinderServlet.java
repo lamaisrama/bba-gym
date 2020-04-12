@@ -13,16 +13,16 @@ import com.bbagym.model.vo.Board;
 import com.bbagym.service.BoardService;
 
 /**
- * Servlet implementation class BoardListServlet
+ * Servlet implementation class BoardFinderServlet
  */
-@WebServlet("/board/boardList")
-public class BoardListServlet extends HttpServlet {
+@WebServlet("/board/boardFinder")
+public class BoardFinderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardListServlet() {
+    public BoardFinderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,35 +31,35 @@ public class BoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		
+		String searchType = request.getParameter("searchType");
+		String searchKeyword = request.getParameter("searchKeyword");
+		System.out.println(searchType);
 		int cPage;
 		
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
+		try { // 처음 주소값.
+			cPage = Integer.parseInt(request.getParameter("cPage")); 
+		}catch(NumberFormatException e) {  
+			cPage = 1; // 초기화. 
 		}
 		
-		int numPerPage = 10;
+		int numPerPage = 10; 
 		
-		List<Board> list = new BoardService().selectBoardList(cPage, numPerPage);
-		
-		int totalData = new BoardService().selectBoardCount();
-		int totalPage = (int)Math.ceil((double)totalData/numPerPage);
+		List<Board> list = new BoardService().searchBoard(searchType, searchKeyword, cPage, numPerPage);
 		
 		String pageBar = "";
 		pageBar+= "<ul class='pagination justify-content-center'>";
 		
+		int totalData = new BoardService().selectCount(searchType, searchKeyword);
+		int totalPage = (int)Math.ceil((double)totalData/numPerPage);
+		
 		int pageBarSize = 3;
-		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;	// 시작
-		int pageEnd = pageNo+pageBarSize-1;	// 끝
+		int pageNo = ((cPage-1) / pageBarSize) * pageBarSize + 1;
+		int pageEnd = pageNo + pageBarSize - 1;
 		
-		
-		// prev
 		if(pageNo==1) { // 페이지가 1 
 			pageBar+="<li class='page-item'><a class='page-link' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";
-		}else { // 현재페이지가 2이상이면 prev클릭시 -1페이지로 이동
+		}else { 
 			pageBar += "<li class='page-item'><a class='page-link' href='" + request.getContextPath()
 						+ "/board/boardList?cPage=" + (pageNo-1)
 						+ "&numPerPage=" + numPerPage 
@@ -93,11 +93,8 @@ public class BoardListServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("pageBar", pageBar);
-		
-		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/board/boardList.jsp").forward(request, response);
-		
 	}
 
 	/**
@@ -109,3 +106,24 @@ public class BoardListServlet extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

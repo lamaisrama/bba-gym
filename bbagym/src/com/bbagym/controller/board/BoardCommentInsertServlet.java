@@ -36,10 +36,8 @@ public class BoardCommentInsertServlet extends HttpServlet {
 		int boardRef = Integer.parseInt(request.getParameter("boardRef"));
 		int level = Integer.parseInt(request.getParameter("level"));
 		int commentRef = Integer.parseInt(request.getParameter("commentRef"));
-//		String commentWriter2 = request.getParameter("commentWriter2");
 										
 		BoardComment bc = new BoardComment(0, commentRef, level, commentContent, null, boardRef, commentWriter);
-//		BoardComment bc2 = new BoardComment(0, commentRef, level, commentContent, null, boardRef, 0, commentWriter2);
 				
 		int result = new BoardService().commentInsert(bc);
 		

@@ -28,45 +28,30 @@ public class CenterEnroll {
 	private List<Program> program;
 	private boolean prefer;
 	private double score;
-	
+
 	private String addrX;
 	private String addrY;
+	private String distance;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-    
-	
-	
+
 	public double getScore() {
 		return score;
 	}
-
-
-
-
 
 	public void setScore(double score) {
 		this.score = score;
 	}
 
-
-
-
-
 	public boolean getPrefer() {
 		return prefer;
 	}
 
-
-
 	public void setPrefer(boolean prefer) {
 		this.prefer = prefer;
 	}
-
-
 
 	public int getCode() {
 		return code;
@@ -228,6 +213,7 @@ public class CenterEnroll {
 		this.program = program;
 	}
 
+<<<<<<< HEAD
 
 
 	public String getAddrX() {
@@ -247,9 +233,17 @@ public class CenterEnroll {
 		return addrY;
 	}
 
+	
 
 
 
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 
 	public void setAddrY(String addrY) {
 		this.addrY = addrY;
@@ -259,6 +253,8 @@ public class CenterEnroll {
 
 
 
+=======
+>>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories
@@ -275,7 +271,5 @@ public class CenterEnroll {
 	 * snsEtc + ", photos=" + photos + ", categories=" + categories +
 	 * ", facilities=" + facilities + ", program=" + program + "]"; }
 	 */
-	
-	
-}
 
+}

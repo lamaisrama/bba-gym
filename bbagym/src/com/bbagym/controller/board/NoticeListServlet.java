@@ -40,7 +40,7 @@ public class NoticeListServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerPage = 5;
+		int numPerPage = 10;
 		
 		List<Notice> list = new NoticeService().selectNoticeList(cPage, numPerPage);
 		
@@ -92,7 +92,7 @@ public class NoticeListServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("pageBar", pageBar);
-		System.out.println(list.size());
+//		System.out.println(list.size());
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/board/noticeList.jsp").forward(request, response);

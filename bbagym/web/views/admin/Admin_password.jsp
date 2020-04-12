@@ -6,15 +6,15 @@
 
 
 	
-		<div>
+		<div style="width:100%;">
 
 			<!-- 1. 비밀번호 수정-->
 	       <form name="" action="<%=request.getContextPath()%>/admin/admInupdatePasswordEnd" method="post" >
 	        <div id="password">
-				현재 비밀번호 : <input type="password" name="password" id="" required><hr>
-				새로운 비밀번호 : <input type="password" name="password_new" id="password_new" required><hr>
-				새로운 비밀번호 확인 : <input type="password" id="password_chk" required><hr>
-				<input type="submit" onclick="return password2_validate();" value="비밀번호변경" />
+				현재 비밀번호 : <input type="password" name="password" id="" required><br><br>
+				새로운 비밀번호 : <input type="password" name="password_new" id="password_new" required><br><br>
+				새로운 비밀번호 확인 : <input type="password" id="password_chk" required><br><br>
+				<input type="submit" onclick="return password2_validate();" value="비밀번호변경" /><br><br>
 				<input type="hidden" name="M_ID" value="admin" />
 			</div><!-- 정규화 비밀번호 검사--> <!-- 자스 이용하여 비밀번호 다르면 red 같으면 green-->
 			<%-- <input type="hidden" name="M_STATUS" value="<%=request.getParameter("M_STATUS") %>" /> --%>

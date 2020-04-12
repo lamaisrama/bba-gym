@@ -1,66 +1,112 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/admin/common/adminheader.jsp"%>
-					<!-- 시설 등록 승인-->
-                    <div id="center-approve">
-                    
-                        <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
-                            <h1>시설 등록 승인</h1>
-                            <div> 
-                            	페이지수<select value="페이지수" style=" padding: .3em .5em;"><!-- numPerpage -->
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                            </select>
-                            </div>
-                        </div><!-- 상단 -->
-                        
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>시설 이름</th>
-                                <th>시설 주소</th>
-                                <th>관리자</th>
-                                <th>연락처</th>
-                                <th>사업자승인</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            
-                            <tr><!-- for{ -->
-                            
-                                <td>티키티키헬스 클럽</td>
-                                <td>인천 서구 마전동 완정로 34길 46-82</td>
-                                <td>김범신</td>
-                                <td>010-3597-0663</td>
-                                <td>Y</td>
-                                <!-- if( ) {-->
-                                <td> 
-                                  <button onclick="">미리보기</button>
-                                    <button onclick="">승인</button>
-                                    <button onclick="">거절</button>
-                                    <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
-                                </td>
-                                <!-- } -->
-                                	<!-- 분기처리
-                                    1. NULL 상태 시 승인,거절 버튼 보여줌 
-                                    	2. 승인 상태 시 승인 
-                                   	 3. 거절상태는 화면에 보이지않게한다
-                                	-->
-                                	
-                            </tr><!-- }-->
-                            
-                        </table>
-                        
-                        <div id="pageBar"><!-- 페이지바 JSP구현-->
-                            <div id="page"><!--현재 창 페이지는 밑에 스타일 적용 다른게 클릳되면 원래상태로-->
-                                <span>처음</span><a href="#" style="color:blue; border: 1px solid rgb(0, 225, 255,0.2);">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><span>다음</span>
-                            </div>
-                            <div id="search">검색<input type="text"></div>
-                        </div>
-                        
-                    </div>
+<%@ page import="java.util.List"%>
+<%@ page import="com.bbagym.model.vo.*"%>
+<%
+	List<CenterEnroll> centerList = (List) request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
+%>
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 시설 등록 승인-->
+<div id="center-approve"style="width: 100%; ">
 
-	</div> <!-- header에 section-view 아이디 div 닫아줌 -->
+	<div
+		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+		<h1>시설 등록 승인</h1>
+		
+	</div>
+	<!-- 상단 -->
+	<table >
+		<thead>
+			<tr>
+				<th>시설 코드</th>
+				<th>시설 이름</th>
+				<th>시설 주소</th>
+				<th>연락처</th>
+				<th >사업자승인</th>
+				<th>상태</th>
+			</tr>
+		</thead>
+
+		<tbody style="height: 45px">
+			<%
+				if (centerList.isEmpty()) {
+			%>
+			<h1>정보가 없습니다</h1>
+			<%
+				} else {
+					for (CenterEnroll c : centerList) {
+			%>
+			<!-- for{ -->
+
+
+			<tr>
+				<input name="CODE" type="hidden" value="<%=c.getCode()%>">
+				<td><%=c.getCode()%></td>
+				<td><%=c.getName()%></td>
+				<td><%=c.getAddress()%></td>
+				<td><%=c.getTel()%></td>
+				<td><input style="text-align:center;"type="text" name="APPROVAL"
+					value="<%=c.getApproval()%>" readonly></td>
+				<!-- if( ) {-->
+				<%
+					if (c.getApproval() == null) {
+				%>
+				<td>
+					<button onclick="updateCheck();">승인</button>
+					<button onclick="">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
+				</td>
+				<%
+					} else if (c.getApproval() != null) {
+				%>
+				<td>
+					<button onclick="" style="color: yellow; background-color: black;">승인완료</button>
+
+				</td>
+
+				<%
+					}
+				%>
+
+				<script>
+				function updateCheck() {
+					if (confirm("'승인'하시겠습니까??") == true){    //확인
+						
+						
+						let l=$(event.target).parent().parent().find("input[name='CODE']")[0].value
+						$(event.target).parent().parent().find("input[name='CODE']")[0].value
+					//	console.log($(event.target).parent().parent().find("input[name='CODE']"));
+					//	console.log(l);
+						location.replace('<%=request.getContextPath()%>/admin/updateaApproval?CODE='+ l);
+
+						} else { //취소
+
+							return false;
+						}
+
+					}
+				</script>
+			</tr>
+
+	
+
+	<%
+		}
+		}
+	%>
+	</tbody>
+	</table>
+<br>
+	<div id="pageBar" class="pageBar" style="">
+		<!-- 페이지바 JSP구현-->
+		<br><br><br><br>
+		<%=request.getAttribute("pageBar")%>
+
+	</div>
+	<br><br>
+</div>
+
+
+<!-- header에 section-view 아이디 div 닫아줌 -->
 </section>
 <%@ include file="/views/admin/common/adminfooter.jsp"%>
