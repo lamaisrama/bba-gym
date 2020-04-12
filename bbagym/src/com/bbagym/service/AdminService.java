@@ -1,21 +1,17 @@
 package com.bbagym.service;
 
-import com.bbagym.dao.AdminDao;
-import com.bbagym.model.vo.Center;
-import com.bbagym.model.vo.CenterEnroll;
-import com.bbagym.model.vo.Member;
-import java.sql.Connection;
-import java.util.List;
-
-import static com.bbagym.common.JDBCTemplate.close;
-import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 
-import static com.bbagym.common.JDBCTemplate.close;
-import com.bbagym.dao.MemberDao;
+import java.sql.Connection;
+import java.util.List;
+
+import com.bbagym.dao.AdminDao;
+import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Member;
+
 
 public class AdminService {
 
@@ -28,12 +24,17 @@ public List<CenterEnroll> searchKeywordPageData(int cPage,int numPerpage,int mco
 	close(conn);
 	return list;
 }
+
+
 public int searchCountCenter() {
 	Connection conn = getConnection();
 	int count = dao.searchCountCenter(conn);
 	close(conn);
 	return count;
 }
+
+
+
 public int updateApproval(int c_code) {
 	Connection conn=getConnection();
 	int result=dao.updateApproval(conn,c_code);
@@ -45,6 +46,37 @@ public int updateApproval(int c_code) {
 
 	return result;
 }
+
+public List<Member> selectMemberList(int cPage, int numPerPage) {
+	// TODO Auto-generated method stub
+	Connection conn =getConnection();
+	List<Member> list=dao.selectMemberList(conn,cPage,numPerPage);
+	close(conn);
+	
+	return list;
+
+}
+
+public int selectCountMember() {
+	Connection conn=getConnection();    
+	int count=dao.selectCountMember(conn);
+	close(conn);
+	
+	return count;
+}
+
+public int updateStatus(int userId) {
+	Connection conn=getConnection();
+	int result=dao.updateStatus(conn,userId);
+	if (result > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+
+	return result;
+}
+
 
 
 

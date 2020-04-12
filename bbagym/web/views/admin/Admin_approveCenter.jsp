@@ -43,7 +43,7 @@
 				<th>시설 주소</th>
 				<th>연락처</th>
 				<th style="widht:10%">사업자승인</th>
-				<th></th>
+				<th>상태</th>
 			</tr>
 		</thead>
 
@@ -59,11 +59,25 @@
 			<td><%=c.getTel()%></td>
 			<td><input type="text" name="APPROVAL" value="<%=c.getApproval()%>"readonly></td>
 			<!-- if( ) {-->
-
+			<%
+					if(c.getApproval()==null){
+				%>
 			<td>
 				<button onclick="updateCheck();">승인</button>
 				<button onclick="">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
 			</td>
+			<%
+					} else if(c.getApproval()!=null){
+				%>
+			<td>
+			<button onclick="" style="color:yellow;background-color:black;">승인완료</button>
+				
+			</td>
+			
+			<%
+					} 
+				%>
+			
 			<script>
 				function updateCheck() {
 					if (confirm("'승인'하시겠습니까??") == true){    //확인

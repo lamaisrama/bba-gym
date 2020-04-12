@@ -2,7 +2,6 @@ package com.bbagym.dao;
 
 import static com.bbagym.common.JDBCTemplate.close;
 
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,8 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Member;
+
 
 public class AdminDao {
 	private Properties prop=new Properties();
@@ -64,6 +64,8 @@ public class AdminDao {
 		return list;
 		
 	}
+	
+	
 	public int searchCountCenter(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; // select문을 썻으면 rs가 필요함.
@@ -83,6 +85,13 @@ public class AdminDao {
 		}
 		return result;
 	}
+	
+	
+
+	
+	
+	
+	
 	public int updateApproval(Connection conn, int c_code) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -97,6 +106,78 @@ public class AdminDao {
 			close(pstmt);
 		}return result;
 	}
+	public int updateStatus(Connection conn, int userId) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateStatus");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public List<Member> selectMemberList(Connection conn, int cPage, int numPerPage) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;  //select문있으면 써야함.
+		List<Member> list = new ArrayList();
+		String sql = prop.getProperty("selectMemberList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, (cPage - 1) * numPerPage + 1);
+			pstmt.setInt(2, cPage * numPerPage);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Member b = new Member();
+				b.setM_CODE(rs.getInt("M_CODE")); 
+				b.setM_ID(rs.getString("M_ID"));
+				b.setM_NAME(rs.getString("M_NAME"));
+				b.setM_EMAIL(rs.getString("M_EMAIL"));
+				b.setM_PHONE(rs.getString("M_PHONE"));
+				b.setM_ADDRESS(rs.getString("M_ADDRESS"));
+				b.setM_STATUS(rs.getString("M_STATUS").charAt(0));
+				b.setM_GENDER(rs.getString("M_GENDER").charAt(0));
+				b.setM_AGE(rs.getInt("M_AGE"));
+				list.add(b); // row를 가져온다계속;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list; // ->서비스로
+	}
+	
+	
+	public int selectCountMember(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; // select문을 썻으면 rs가 필요함.
+		int result = 0;
+		String sql = prop.getProperty("selectCountMember");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1); // 컬럼이 1나면 인덱스로 1써두된다.
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
 
 }
 

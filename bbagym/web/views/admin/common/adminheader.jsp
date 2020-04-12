@@ -66,10 +66,10 @@
                        <%--  <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/centerEnroll.do" >시설 등록 승인</a></td> --%>
                     </tr>
                     <tr>	
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/trainerEnroll.do">트레이너 등록 승인</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/Admin_approveTrainer.jsp">트레이너 등록 승인</a></td>
                     </tr>
                     <tr>
-                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/member.do" >회원 관리</a></td>
+                        <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/memberlist.do">회원 관리</a></td>
                     </tr>
                     <%-- <tr>
                         <td><a class="updateMyProfile"href="<%=request.getContextPath()%>/admin/question.do" >문의 확인</a></td>

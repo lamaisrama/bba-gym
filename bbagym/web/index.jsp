@@ -2,8 +2,7 @@
 	pageEncoding
 	="UTF-8"%>
 <%-- <%@ include file="/views/common/header.jsp"%>  --%>
-<%@ page
-
+<%@ page	
 
 
 	import="com.bbagym.model.vo.Member"%>
