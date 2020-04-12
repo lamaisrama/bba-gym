@@ -179,23 +179,23 @@
 		function jusoCallBack(roadFullAddr, entX, entY){
 			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
 			document.getElementById('c-address').value = roadFullAddr;
-			
-			var geocoder = new kakao.maps.services.Geocoder(),
-		    wtmX = entX,
-		    wtmY = -entY;
+			//주소 정보에 해당하는 좌표값을 요청한다.
+			var geocoder = new kakao.maps.services.Geocoder();
+		    //wtmX = 160082.538257218,
+		    //wtmY = -4680.975749087054;
 
 			var callback = function(result, status) {
 			    if (status === kakao.maps.services.Status.OK) {
-			        console.log(result[0].x); // 126.570667
+			        console.log('콜백안:'+result[0].x); // 126.570667
 			        console.log(result[0].y); // 33.45070100000001
-			        document.getElementById('addrX').value = result[0].x;
-					document.getElementById('addrY').value = result[0].y;
+			        document.getElementById("addrX").value=result[0].x;
+			        document.getElementById("addrY").value=result[0].y;
 			    }
 			};
 	
 			// WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
-			geocoder.transCoord(wtmX, wtmY, callback, {
-			    input_coord: kakao.maps.services.Coords.WTM,
+			geocoder.transCoord(entX, entY, callback, {
+			    input_coord: kakao.maps.services.Coords.EPSG-5179,
 			    output_coord: kakao.maps.services.Coords.WGS84
 			});
 			

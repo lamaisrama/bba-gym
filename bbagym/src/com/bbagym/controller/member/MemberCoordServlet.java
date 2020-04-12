@@ -31,6 +31,9 @@ public class MemberCoordServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String user_lat=request.getParameter("lat");
 		String user_lng=request.getParameter("lng");
+		System.out.println("latitude : "+ user_lat);
+		System.out.println("longitude : "+ user_lng);
+		
 		HttpSession session=request.getSession();
 		session.setAttribute("user_lat", user_lat);
 		session.setAttribute("user_lng", user_lng);

@@ -211,20 +211,16 @@ public class CenterEnroll {
 
 	public void setProgram(List<Program> program) {
 		this.program = program;
+		
 	}
-
-<<<<<<< HEAD
-
 
 	public String getAddrX() {
 		return addrX;
 	}
 
-
 	public void setAddrX(String addrX) {
 		this.addrX = addrX;
 	}
-
 
 
 
@@ -234,7 +230,9 @@ public class CenterEnroll {
 	}
 
 	
-
+	public void setAddrY(String addrY) {
+		this.addrY = addrY;
+	}
 
 
 	public String getDistance() {
@@ -245,16 +243,7 @@ public class CenterEnroll {
 		this.distance = distance;
 	}
 
-	public void setAddrY(String addrY) {
-		this.addrY = addrY;
-	}
-
-
-
-
-
-=======
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
+	
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories

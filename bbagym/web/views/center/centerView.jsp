@@ -103,7 +103,7 @@
                         </tr>
                         <tr>
                             <td colspan="2"><%=c.getAddress() %></td><!-- 위치 API-->
-                            <td>10.9Km</td><!-- 거리 API-->
+                            <td><%=c.getDistance().substring(0, 4)%>km</td><!-- 거리 API-->
                         </tr>
                         <tr>
                             <td colspan="2">

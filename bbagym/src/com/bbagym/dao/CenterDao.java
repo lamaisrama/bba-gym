@@ -704,7 +704,7 @@ public class CenterDao {
 					c.setName(rs.getString("C_NAME"));
 					c.setAddress(rs.getString("C_ADDRESS"));
 					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
-					System.out.println(rs.getString("distance"));
+					c.setDistance(rs.getString("distance"));
 					list.add(c);
 				}
 				
