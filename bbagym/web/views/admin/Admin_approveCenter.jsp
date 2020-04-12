@@ -77,9 +77,7 @@
 						$(event.target).parent().parent().find("input[name='CODE']")[0].value
 					//	console.log($(event.target).parent().parent().find("input[name='CODE']"));
 					//	console.log(l);
-						location.replace('<%=request.getContextPath()%>
-					/admin/updateaApproval?CODE='
-											+ l);
+						location.replace('<%=request.getContextPath()%>/admin/updateaApproval?CODE='+ l);
 
 						} else { //취소
 
