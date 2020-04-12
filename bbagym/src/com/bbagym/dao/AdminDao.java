@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Member;
+import com.bbagym.model.vo.AdminTrainer;
 
 
 public class AdminDao {
@@ -86,7 +87,60 @@ public class AdminDao {
 		return result;
 	}
 	
-	
+	public List<AdminTrainer> searchTrainer(Connection conn, int cPage, int numPerpage) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<AdminTrainer> list = new ArrayList<AdminTrainer>();
+		String sql =prop.getProperty("searchTrainer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {   //M_ID,M_NAME,M_ADDRESS_2,M_PHONE_2,T_INTRODUCTION,APPROVAL
+				AdminTrainer t =new AdminTrainer();
+				t.setM_ID(rs.getString("M_ID"));
+				t.setM_NAME(rs.getString("M_NAME"));
+				t.setM_ADDRESS_2(rs.getString("M_ADDRESS_2"));
+				t.setM_PHONE_2(rs.getString("M_PHONE_2"));
+				t.setT_INTRODUCTION(rs.getString("T_INTRODUCTION"));
+				t.setAPPROVAL(rs.getString("APPROVAL"));
+				t.setC_NAME(rs.getString("C_NAME"));
+				t.setC_CODE(rs.getString("C_CODE"));
+				list.add(t);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return list;
+		
+	}
+	public int searchCountTrainer(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; // select문을 썻으면 rs가 필요함.
+		int result = 0;
+		String sql = prop.getProperty("selectCountTrainer");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1); // 컬럼이 1나면 인덱스로 1써두된다.
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
 
 	
 	
@@ -106,6 +160,22 @@ public class AdminDao {
 			close(pstmt);
 		}return result;
 	}
+	
+	public int updateApproval2(Connection conn, int c_code) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateApproval2");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c_code);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
 	public int updateStatus(Connection conn, int userId) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -176,6 +246,7 @@ public class AdminDao {
 		}
 		return result;
 	}
+	
 	
 	
 
