@@ -21,14 +21,14 @@
         <div class="row">
             <div class="searchBox">
                 <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
-                <button class="btn btn-warning btn-sm" onclick="serachKeyword();">Find!</button>
+                <button class="btn btn-warning btn-sm" onclick="searchByKeyword();">Find!</button>
             </div>
         </div>
         <div class="row">
             <div class="sortBox">
                 <ul class="nav nav-pills nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" id="amap" data-toggle="tab" href="#map">지도검색</a>
+                        <a class="nav-link" id="amap" data-toggle="tab" href="#kakaomap">지도검색</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="acategory" data-toggle="tab" href="#category">카테고리</a>
@@ -44,19 +44,22 @@
                 </ul>
             </div>
         </div>
-                
+
         <div class="row tab-content">
-            <div class="tab-pane container" id="map">
+            <div class="tab-pane container" id="kakaomap">
                 <div class="row">
-	                <div class="form-group">
-	                    <input type="text"  class="form-control" id="keyword" size=30 placeholder="원하는 장소의 시/구/동을 검색해보세요">
-	                    <button class="btn btn-light" onclick="searchKeyword();">검색</button>
+	                <div class="col-8 form-group">
+	                    <input type="text"  class="form-control" id="keyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
 	                </div>
-             <div class="row">
-				<div id="map1" style="width:700px; height:300px;"></div>
-            </div>
+	                <div class="col-2">
+	                	  <button class="btn btn-light" onclick="searchKeyword();">검색</button>
+	                </div>
                 </div>
+	            <div class="row">
+					<div id="map-kakao" style="width:700px; height:300px;"> </div>
+	            </div>
             </div>
+            
             <div class="tab-pane container" id="category">
                 <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
                     <input type="checkbox" name="category" value="0" id="total" ><label for="total">전체</label>
@@ -73,6 +76,7 @@
                 </form>
             </div>
         </div>
+        
         <h1 style="margin-top: 50px; text-align:center;">시설 정보</h1>
         <div class="row box-content" >
         	<%if(centerList.isEmpty()) {%>

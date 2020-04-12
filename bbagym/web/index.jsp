@@ -64,7 +64,7 @@
 <!--로그인한사업자 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do"> <li>트레이너 등록</li></a>	
 				         <a href="<%=request.getContextPath()%>/board/noticeList"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
 				         <a href="<%=request.getContextPath()%>/board/boardList"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
-				         <a href="<%=request.getContextPath()%>/admin/adminMain.do"> <li><strong>관리자페이지 이동</strong></li></a><!-- /views/mypage/mypage-business.jsp -->
+				         <a href="<%=request.getContextPath()%>/admin/adminMain.do"> <li style="color:red;"><strong>관리자페이지 이동</strong></li></a><!-- /views/mypage/mypage-business.jsp -->
 				    
 				    
 				    
