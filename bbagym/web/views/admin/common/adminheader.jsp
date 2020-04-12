@@ -31,9 +31,9 @@
 
 <body>
     <!-- header -->
-    <header>
+    <header style="width:100%;">
 
-        <div class="container pt-4">
+        <div class="container pt-4" >
             <div id="log"> 
                 <a class="navbar-brand" href="<%=request.getContextPath() %>/views/admin/Admin_Main.jsp" >
 +		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
@@ -49,7 +49,7 @@
 
 
 
-    <section>
+    <section >
 
         <div >
             <aside id="menu" ><!-- 관리자페이지 메뉴바 -->

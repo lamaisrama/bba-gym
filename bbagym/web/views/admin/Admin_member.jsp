@@ -19,16 +19,11 @@
 
     </style>
 					<!--회원 관리-->
-                    <div id="member-list">
+                    <div id="member-list"style="width:100%; padding-left:20px;">
                         <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
                             <h1>회원 관리</h1>
-                            <div> 
-                            	페이지수<select value=""  style=" padding: .3em .5em;"><!-- numPerpage -->
-                                <option>10</option>
-                                <option>20</option>
-                                <option>30</option>
-                            </select>
-                            </div>
+                            
+                            
                         </div><!-- 상단 -->
                         
                        <table id="tbl-member">
@@ -64,7 +59,7 @@
 	                <td><%=m.getM_EMAIL() %></td>
 	                <td><%=m.getM_PHONE() %></td>
 	                <td><%=m.getM_ADDRESS() %></td>
-	                <td style="width:40px"><%=m.getM_STATUS() %> <br>
+	                <td style="width:80px"><%=m.getM_STATUS() %> <br>
 	                	<%
 					if(m.getM_STATUS()=='N'){
 				%>
@@ -97,9 +92,12 @@
 			} %>
             </tbody>
         </table>
-        <div id="pageBar">
+        <br>
+        <div id="pageBar" >
         	<%=request.getAttribute("pageBar") %>
         </div>
+        <br>
+        <br>
 
 </div> <!-- header에 section-view 아이디 div 닫아줌 -->
 </section>
