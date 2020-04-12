@@ -279,7 +279,7 @@ public class BoardDao {
 			case "title" : sql=prop.getProperty("selectTitle"); break; 
 			case "qa_content" : sql=prop.getProperty("selectContent"); break; 
 		}
-		System.out.println(sql);
+		
 		
 		try{
 			pstmt = conn.prepareStatement(sql);
@@ -316,7 +316,7 @@ public class BoardDao {
 		int result = 0;
 		String sql = prop.getProperty("selectCountSearch");
 		sql = sql.replace("searchType", searchType);
-		System.out.println(sql);
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+searchKeyword+"%");
