@@ -7,11 +7,7 @@
 	
 <%@ include file="/views/common/header.jsp"%>	
 
-<style>
-    h2{
-        margin: 30px 0;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
@@ -26,12 +22,15 @@
                         <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" name="title" class="form-control" value="<%=n.getTitle() %>">
+                                <input type="text" name="title" class="form-control" value="<%=n.getTitle() %>" required>
                             </td>
                         </tr>
                         <tr>
                             <th>작성자</th>
-                            <td><input type="text" name="writer" value="<%=logginMember.getM_CODE() %>" class="form-control" readonly></td>
+                            <td>
+                            	<input type="hidden" name="writer" value="<%=n.getmCode() %>" class="form-control">
+                            	<input type="text" value="<%=logginMember.getM_ID() %>" class="form-control" readonly>
+                           	</td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
@@ -46,13 +45,16 @@
                             </td>
                         </tr>   
                         <tr>
-                            <th>내용</th>
-                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"><%=n.getnContent() %></textarea></td>
+                            <th colspan="2">내용</th>
+                        </tr>
+						<tr>
+                            <td colspan="2"><textarea type="text" id="summernote" name="content" class="form-control" cols="1000" rows="1500"><%=n.getnContent() %></textarea></td>
                         </tr>
                         <tr>
                         <%-- <%if(logginMember!=null && logginMember.getM_CODE().equals(n.getmCode())){ %> --%>
-                            <td colspan="2" class="text-center">
-                                <input type="submit" class="btn btn-primary" value="글등록">
+                            <td colspan="2" class="text-center" style="padding: 50px 50px;">
+                                <input type="submit" class="btn btn-primary" value="수정완료!">
+                                <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/noticeList')">취소</button>
                             </td>
 						<%-- <%} %> --%>
                         </tr>
@@ -62,7 +64,23 @@
         </div>
     </div>
 <script>
+	//summernote
+	$('#summernote').summernote({
+            	placeholder: 'Hello Bbagym',
+                height: 500,                 // set editor height
+                minHeight: null,             // set minimum height of editor
+                maxHeight: null,             // set maximum height of editor
+                focus: true                  // set focus to editable area after initializing summernote
+        	
+        });
+        
+        $(document).ready(function() {
+             $('#summernote').summernote({
 
+            });
+        });
+	
+	// file
 	$(function(){
 		$("[name=upfile]").change(function(){
 			if($(this).val()==""){

@@ -5,7 +5,6 @@ import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 
-
 import java.sql.Connection;
 import java.util.List;
 
@@ -94,6 +93,21 @@ public class BoardService {
 		List<BoardComment> list = dao.selectComment(conn, no);
 		close(conn);
 		return list;
+	}
+
+	public List<Board> searchBoard(String searchType, String searchKeyword, int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Board> list = dao.searchBoard(conn, searchType, searchKeyword, cPage, numPerPage);
+		close(conn);
+		return list;
+	}
+
+	
+	public int selectCount(String searchType, String searchKeyword) {
+		Connection conn = getConnection();
+		int count = dao.selectCount(conn,searchType,searchKeyword);
+		close(conn);
+		return count;
 	}
 	
 }

@@ -14,6 +14,7 @@ import com.bbagym.model.vo.Board;
 import com.bbagym.model.vo.BoardComment;
 
 import static com.bbagym.common.JDBCTemplate.close;
+import static com.bbagym.common.JDBCTemplate.getConnection;
 
 public class BoardDao {
 
@@ -222,7 +223,6 @@ public class BoardDao {
 			pstmt.setString(3, bc.getQaCommentContent());
 			pstmt.setInt(4, bc.getQaCode());
 			pstmt.setInt(5, bc.getmCode());
-			//pstmt.setString(5, bc.getmId());
 			
 			result = pstmt.executeUpdate();
 			
@@ -255,8 +255,7 @@ public class BoardDao {
 				bc.setQaCommentDate(rs.getDate("qa_comment_date"));
 				bc.setQaCode(rs.getInt("qa_code"));
 				bc.setmCode(rs.getInt("m_code"));
-//				bc.setmId(rs.getString("m_id"));
-				
+				bc.setmId(rs.getString("m_id"));
 				list.add(bc);
 			}
 		}catch(SQLException e) {
@@ -267,6 +266,95 @@ public class BoardDao {
 		}
 		return list;
 	}
+
+	public List<Board> searchBoard(Connection conn, String searchType, String searchKeyword, int cPage,
+			int numPerPage) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Board> list = new ArrayList();
+		
+		String sql = "";
+		switch(searchType) {
+			case "title" : sql=prop.getProperty("selectTitle"); break; 
+			case "qa_content" : sql=prop.getProperty("selectContent"); break; 
+		}
+		
+		
+		try{
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage+1);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Board b = new Board();
+				b.setQaCode(rs.getInt("qa_code"));
+				b.setTitle(rs.getString("title"));
+				b.setQaContent(rs.getString("qa_content"));
+				b.setQaDate(rs.getDate("qa_date"));
+				b.setOriFileName(rs.getString("ori_filename"));
+				b.setNewFileName(rs.getString("new_filename"));
+				b.setReadCount(rs.getInt("readcount"));
+				b.setmCode(rs.getInt("m_code"));
+				b.setmId(rs.getString("m_id"));
+				list.add(b);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int selectCount(Connection conn, String searchType, String searchKeyword) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = prop.getProperty("selectCountSearch");
+		sql = sql.replace("searchType", searchType);
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			rs=pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
