@@ -5,6 +5,7 @@
 <%@ page	
 
 
+
 	import="com.bbagym.model.vo.Member"%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
