@@ -213,7 +213,6 @@ public class CenterEnroll {
 		this.program = program;
 	}
 
-<<<<<<< HEAD
 
 
 	public String getAddrX() {
@@ -253,8 +252,6 @@ public class CenterEnroll {
 
 
 
-=======
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories
