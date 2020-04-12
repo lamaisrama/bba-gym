@@ -52,7 +52,7 @@
 			%>
 	            <tr>
 	            	<input name="CODE" type="hidden" style="width:50px" value="<%=m.getM_CODE()%>" readonly>
-	                <td><%=m.getM_ID() %></td>
+	                <td><a href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=m.getM_ID()%>"><%=m.getM_ID() %></a></td>
 	                <td><%=m.getM_NAME() %></td>
 	                <td><%=m.getM_GENDER() %></td>
 	                <td><%=m.getM_AGE() %></td>

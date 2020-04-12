@@ -39,7 +39,6 @@ public class UpadteApproval extends HttpServlet {
 		 
 		 int result=new AdminService().updateApproval(c_code);
 		 
-		 System.out.println("코드"+c_code);
 		 
 		 String msg="";
 			String loc="";

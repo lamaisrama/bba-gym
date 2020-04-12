@@ -34,12 +34,12 @@ public class UpadteStatus extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("도착");
+		
 		int userId=Integer.parseInt(request.getParameter("CODE"));
 		 
 		 int result=new AdminService().updateStatus(userId);
 		 
-		 System.out.println(result);
+		 
 		 
 		 String msg="";
 			String loc="";

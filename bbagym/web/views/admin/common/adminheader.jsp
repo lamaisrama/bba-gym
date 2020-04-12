@@ -31,7 +31,7 @@
 
 <body>
     <!-- header -->
-    <header style="width:100%;">
+    <header >
 
         <div class="container pt-4" >
             <div id="log"> 
