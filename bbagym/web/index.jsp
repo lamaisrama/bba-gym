@@ -164,9 +164,9 @@
 	</section>
 	
 	<script>
-		onload=function(){
+		/* onload=function(){
 			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
-		}
+		} */
 		
 		function handleGeoSucces(position){
 			const latitude = position.coords.latitude;
