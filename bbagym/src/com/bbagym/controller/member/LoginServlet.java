@@ -38,11 +38,14 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("M_ID");
 		String pw = request.getParameter("M_PW");
-		Member kakao= new MemberService().login2(id);
+		String pw2= new MemberService().searchPW2(id);
 
 		
-		if(pw!=null ||kakao!=null) {
-			 pw = new MemberService().searchPW2(id);
+		if(pw==null&&pw2!=null) {
+			pw = pw2;
+		}
+		
+		if(pw!=null) {
 			Member m = new MemberService().login(id, pw);
 			Member m2 = new MemberService().login2(id);
 			 
