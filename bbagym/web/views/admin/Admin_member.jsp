@@ -5,6 +5,7 @@
 <%
 	List<Member> list=(List)request.getAttribute("members");
 %>
+ <script src="http://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <style type="text/css">
     section#memberList-container {text-align:center;}
     
@@ -69,7 +70,7 @@
 				%>
 	                <button style="background-color:red;"onclick="removeCheck();" >탈퇴</button>
 	            	<%}else{%>
-	            		<button style="background-color:aqua;" onclick="" >탈퇴완료</button>
+	            		<button style="background-color:black;color:yellow;" onclick="" >탈퇴완료</button>
 	            	<% 
 	            	}
 	            	%>
@@ -78,12 +79,12 @@
 					if (confirm("'탈퇴'하시겠습니까??") == true){    //확인
 						
 						
-						let l=$(event.target).parent().find("input[name='CODE']")[0].value
-						$(event.target).parent().find("input[name='CODE']")[0].value
-						/* console.log($(event.target).parent().parent().find("input[name='CODE']"));
-						console.log(l); */
-						location.replace('<%=request.getContextPath()%>/admin/updateaStatus?CODE=<%=m.getM_CODE()%>'+l); 
-						<%--  location.replace('<%=request.getContextPath()%>/admin/updateaStatus?CODE=<%=m.getM_CODE()%>');  --%>
+						let l=$(event.target).parent().parent().find("input[name='CODE']")[0].value
+						
+						/* console.log($(event.target).parent().parent().find("input[name='CODE']"));*/
+						/* console.log(l); */  
+						location.replace('<%=request.getContextPath()%>/admin/updateaStatus?CODE='+l);
+					
 					 }else{   //취소
 						 
 						 return false;

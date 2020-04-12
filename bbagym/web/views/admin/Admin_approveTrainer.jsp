@@ -3,9 +3,7 @@
 <%@ include file="/views/admin/common/adminheader.jsp"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.bbagym.model.vo.*"%>
-<%
-	List<TrainerDetail2> trainerList = (List) request.getAttribute("trainerList"); 
-%>
+
 
 
 <!--트레이너 등록 승인-->
@@ -26,14 +24,7 @@
 	</div>
 	<!-- 상단 -->
 
-	<%
-		if (trainerList.isEmpty()) {
-	%>
-	<h1>정보가 없습니다</h1>
-	<%
-		} else {
-			for (TrainerDetail2 t : trainerList) {
-	%>
+	
 	<table>
 		<thead>
 			<tr>
@@ -47,11 +38,12 @@
 		</thead>
 		<tr>
 			<!-- for{ -->
-			<td><%=t.getC_name()%></td>
-			<td><%=t.getT_name() %></td>
-			<td><%=t.getM_address_2() %> </td>
-			<td><%=t.getM_phone_2() %></td>
-			<td><%=t.getApproval() %></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			
 			<td>
 				<button onclick="">미리보기</button>
 				<button onclick="updateCheck();">승인</button>
@@ -63,19 +55,12 @@
 	</table>
 	
 	
-			<%
-					} 
-		}
-				%>
-				
-				
 				
 				
 				
 				
 		<div id="pageBar">
 		<!-- 페이지바 JSP구현-->
-		<%=request.getAttribute("pageBar") %>
 
 	</div>	
 
