@@ -36,7 +36,7 @@ public class CenterViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		String url= request.getContextPath()+"/center/centerView.do";
 		int cPage;
 		
@@ -61,8 +61,8 @@ public class CenterViewServlet extends HttpServlet {
 			lat = (String) session.getAttribute("user_lat");
 			lng = (String) session.getAttribute("user_lng");
 		}else {
-			lat = "134.06688515940303";
-			lng = "15.824067527978395";
+			lat = "127.032848249971";
+			lng = "37.4989966363357";
 		}
 		
 		

@@ -49,10 +49,10 @@
             <div class="tab-pane container" id="kakaomap">
                 <div class="row">
 	                <div class="col-8 form-group">
-	                    <input type="text"  class="form-control" id="keyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
+	                    <input type="text"  class="form-control" id="locKeyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
 	                </div>
 	                <div class="col-2">
-	                	  <button class="btn btn-light" onclick="searchKeyword();">검색</button>
+	                	  <button class="btn btn-light" onclick="searchLocation();">이동</button>
 	                </div>
                 </div>
 	            <div class="row">
@@ -190,10 +190,24 @@
 		/* 검색창 정보 가져오는 이벤트 */
 		$("#search").on("keyup",function(){
 			$("#keyword").attr("value",$("#search").val());
-		})
-		/* 검색창 정보 가져오는 이벤트 */
+		});
 		
-
+		//장소 변경 후 검색하는 ftn
+		function relocation(){
+			console.log('현재 입력된 위/경도 :' + latitude, longitude);
+			$.ajax({
+				url:'<%=request.getContextPath()%>/getCoord.do',
+				type:"get",
+				data:{lat:latitude, lng:longitude},
+				success:(data)=>{
+					console.log("위치 수정 및 저장 완료");
+				},
+				error:(r)=>{console.log("위치 저장 실패")}
+			});
+			
+			//서블릿 연결 로직 구현하기
+			location.replace("<%=request.getContextPath()%>/center/centerView.do");
+		}
 
     </script>
 <script src="<%=request.getContextPath()%>/js/kakaomap.js"></script>
