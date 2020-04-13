@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.bbagym.model.vo.Member;
 
 /**
  * Servlet implementation class MypageBusinessServlet
@@ -26,7 +29,15 @@ public class MypageBusinessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		HttpSession session  = request.getSession();
+		int mCode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		//시설 등록 현황 가져오기
+		
+		//트레이너 등록 현황 가져오기
+		
+		//
+		
 		request.getRequestDispatcher("/views/mypage/mypage-business.jsp").forward(request, response);
 	}
 
