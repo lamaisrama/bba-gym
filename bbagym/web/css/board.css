@@ -25,9 +25,11 @@
 	table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
 	table#tbl-comment tr td:last-of-type {text-align:right; width: 150px;}
 	table#tbl-comment button.btn-reply{display:none;}
+	table#tbl-comment button.btn-reply2{display:none;}
 	table#tbl-comment tr.level1 {background:ghostwhite;}
 	table#tbl-comment tr:hover {background:white; /* border-bottom: 1px dashed navy; */}
 	table#tbl-comment tr:hover button.btn-reply{display:inline;}
+	table#tbl-comment tr:hover button.btn-reply2{display:inline;}
 	table#tbl-comment tr.level2 {color:navy; font-size: 16px;}
 	table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
 	table#tbl-comment sub.comment-date {color:#ff3974; font-size:12px}

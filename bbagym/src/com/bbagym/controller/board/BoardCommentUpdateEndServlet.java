@@ -31,10 +31,12 @@ public class BoardCommentUpdateEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int boardNo = Integer.parseInt(request.getParameter("no"));
 		int boardCmtNo = Integer.parseInt(request.getParameter("nobc"));
 		String writer = request.getParameter("commentWriter");
 		String content = request.getParameter("commentContent");
 
+		System.out.println(boardNo);
 		System.out.println(boardCmtNo);
 		System.out.println(writer);
 		System.out.println(content);
@@ -47,10 +49,10 @@ public class BoardCommentUpdateEndServlet extends HttpServlet {
 		String loc = "";
 		if(result>0) {
 			msg = "수정완료!";
-			loc = "/board/boardView?no=" + boardCmtNo;
+			loc = "/board/boardView?no=" + boardNo;
 		}else {
 			msg = "수정실패!";
-			loc = "/board/boardView?no=" + boardCmtNo;
+			loc = "/board/boardView?no=" + boardNo; 
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
