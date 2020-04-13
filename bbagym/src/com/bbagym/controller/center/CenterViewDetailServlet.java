@@ -1,6 +1,7 @@
 package com.bbagym.controller.center;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bbagym.model.vo.BuyInfo;
 import com.bbagym.model.vo.CenterDetail;
+import com.bbagym.model.vo.Comment;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.CenterService;
 
@@ -43,16 +46,19 @@ public class CenterViewDetailServlet extends HttpServlet {
 		}catch(NullPointerException e) {
 			mCode=0;
 		}
-		
-		
-		
 			
 			int cCode = Integer.parseInt(request.getParameter("cCode"));
 			System.out.println(cCode);
 			System.out.println(mCode);
 			
+			
 			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
 			
+			List<Comment> comments = new CenterService().selectComment(cCode);
+			
+			System.out.println("Comments 객체 : "+comments);
+			
+			request.setAttribute("comments", comments);
 			request.setAttribute("cCode", cCode);
 			request.setAttribute("mCode", mCode);
 			request.setAttribute("cd", cd);
