@@ -39,7 +39,11 @@
 
 
 	<video autoplay muted loop id="backgroundvideo">
+<<<<<<< HEAD
 		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
+=======
+		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
+>>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
 	</video>
 	        <div id="leftbar"> 
 	      
@@ -164,9 +168,13 @@
 	</section>
 	
 	<script>
+
 		onload=function(){
+
 			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
+
 		}
+
 		
 		function handleGeoSucces(position){
 			const latitude = position.coords.latitude;
@@ -175,7 +183,6 @@
 			 $.ajax({
 				url:"<%=request.getContextPath()%>/getCoord.do?lat="+latitude+"&lng="+longitude,
 				type:"get",
-				//data:{"lat":latitude, "lng":longitude},
 				dataType:"text",
 				success : function(data){
 					console.log(data);

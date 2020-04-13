@@ -39,7 +39,7 @@ public class CenterSysDateServlet extends HttpServlet {
 		String url= request.getContextPath()+"/center/sysdate.do";
 		int cPage;
 		int m;
-		
+		HttpSession session = request.getSession();
 			try {
 				cPage = Integer.parseInt(request.getParameter("cPage"));
 			}catch(NumberFormatException e) {
@@ -48,7 +48,7 @@ public class CenterSysDateServlet extends HttpServlet {
 			
 			
 			try {
-				HttpSession session = request.getSession();
+				
 				m=((Member)session.getAttribute("logginMember")).getM_CODE();
 			}catch(NullPointerException e) {
 				m=0;
@@ -56,7 +56,15 @@ public class CenterSysDateServlet extends HttpServlet {
 			
 		int numPerpage=3;
 		
-		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m);
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
+		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m,lat,lng);
 		int totalData = new CenterService().selectCountCenter();
 
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 

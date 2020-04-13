@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.bbagym.dao.CenterDao;
 import com.bbagym.dao.CenterEnrollDao;
 import com.bbagym.model.vo.CenterDetail;
@@ -20,9 +22,10 @@ public class CenterService {
 	private CenterEnrollDao enrollDao;
 	
 	//service에서 사용하는 폼 메소드형식
-	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode) {
+	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode,String lat,String lng) {
 		dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
 		dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
+		dao.checkXY(conn,list,lat,lng);//거리계산해오기
 		if(mcode!=0) {
 			dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
 		}
@@ -56,7 +59,7 @@ public class CenterService {
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerMainPageData(conn,cPage,numPerpage); //기본 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+//			serivceForm(conn,list,mcode);
 		}
 		close(conn);
 		return list;
@@ -114,11 +117,11 @@ public class CenterService {
 	}
 
 	//category and keyword serach한 데이터를 가져오는 서비스-bs
-	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String type,String keyword){
+	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String type,String keyword,String lat,String lng){
 		Connection conn=getConnection();
 		List<CenterEnroll> list=dao.SearchCategoryPageData(conn,cPage,numPerpage,keyword,type); //cateogry and keyword 정렬 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lng);
 		}
 		close(conn);
 		return list;
@@ -133,11 +136,11 @@ public class CenterService {
 	}
 	
 	//이름과주소를합쳐 serach한 데이터를 페이징처리하는 서비스-bs
-	public List<CenterEnroll> searchKeywordPageData(int cPage,int numPerpage,int mcode,String keyword){
+	public List<CenterEnroll> searchKeywordPageData(int cPage,int numPerpage,int mcode,String keyword,String lat,String lng){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.searchKeywordPageData(conn,cPage,numPerpage,keyword); //기본 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lng);
 		}
 		close(conn);
 		return list;
@@ -152,33 +155,33 @@ public class CenterService {
 	}
 	
 	//최신순으로 sort하는 데이터 페이징 서비스
-	public List<CenterEnroll> sortSysDatePageData(int cPage,int numPerpage, int mcode){
+	public List<CenterEnroll> sortSysDatePageData(int cPage,int numPerpage, int mcode,String lat,String lan){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.sortSysDatePageData(conn,cPage,numPerpage); //최신순 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lan);
 		}
 		close(conn);
 		return list;
 	}
 	
 	//평점순으로 sort하는 데이터 페이징 서비스
-	public List<CenterEnroll> centerScorePageData(int cPage,int numPerpage, int mcode ){
+	public List<CenterEnroll> centerScorePageData(int cPage,int numPerpage, int mcode,String lat,String lan ){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerScorePageData(conn,cPage,numPerpage); //평점순 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lan);
 		}
 		close(conn);
 		return list;
 	}
 	
 	//리뷰순으로 sort하는 데이터 페이징 서비스
-	public List<CenterEnroll> centerReviewPageData(int cPage,int numPerpage, int mcode ){
+	public List<CenterEnroll> centerReviewPageData(int cPage,int numPerpage, int mcode,String lat,String lan ){
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerReviewPageData(conn,cPage,numPerpage); //평점순 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lan);
 		}
 
 		close(conn);
@@ -192,7 +195,11 @@ public class CenterService {
 			Connection conn=getConnection();
 			List<CenterEnroll> list =dao.centerMainPageDataDistance(conn,cPage,numPerpage, lat, lng); //기본 센터 정보를 가져오는 서비스
 			if(!list.isEmpty()) {
-				serivceForm(conn,list,mcode);
+				dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
+				dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
+				if(mcode!=0) {
+					dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+				}
 			}
 			close(conn);
 			return list;
