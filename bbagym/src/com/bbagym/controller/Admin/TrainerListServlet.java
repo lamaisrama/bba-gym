@@ -51,7 +51,7 @@ int cPage;
 		}catch(NullPointerException e) {
 			m=0;
 		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
-		int numPerpage=3;
+		int numPerpage=10;
 		
 		List<AdminTrainer> list=new AdminService().searchTrainer(cPage,numPerpage,m);
 		

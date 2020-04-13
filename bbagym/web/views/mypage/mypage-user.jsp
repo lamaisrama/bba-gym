@@ -1,8 +1,16 @@
+<%@page import="com.bbagym.model.vo.MypageUser"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp"%>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mypageUser.css">
+<%
+	List<MypageUser> cmembership = (List)request.getAttribute("cmembership");
+	List<MypageUser> tmembership = (List)request.getAttribute("tmembership");
+	List<MypageUser> myPerfer = (List)request.getAttribute("myPerfer");
+%>
+
+<%@ include file="/views/common/header.jsp"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/mypageUser.css">
 
 
 <div class="page-header page-header-xs" data-parallax="true"
@@ -13,7 +21,7 @@
 	<nav>
 		<div class="left-menu-container">
 			<div class="profile-img">
-				<img src="<%=request.getContextPath()%>/resources/img/ksh.jpeg"
+				<img src="<%=request.getContextPath()%>/upload/member/<%=logginMember.getM_IMAGE() %>"
 					alt="my image" id="myImage" />
 			</div>
 			<div class="profile-info">
@@ -52,7 +60,7 @@
 		<div id="table">
 			<div id="my">
 				<div id="my-1">나의 회원권</div>
-				<div id="my-2">아직 활성화된 회원권이 없습니다.</div>
+				<div id="my-2"><%=cmembership.size()+tmembership.size() %>개</div>
 			</div>
 			<hr />
 			<div id="menu">	
@@ -75,14 +83,16 @@
 		<div style="width: 95%; height: 150px; margin: 0 auto;">
 			<table id="mycenter">
 				<tr><th>센터명</th><th>프로그램명</th><th>이용달수</th><th>결제일</th><th>만료일</th><th>내점수</th></tr>
+				<%for(MypageUser my : cmembership) {%>
 				<tr>
-					<td><a href="#">1</a></td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
+					<td><a href="#"><%=my.getCname() %></a></td>
+					<td><%=my.getPname() %></td>
+					<td><%=my.getMonth() %></td>
+					<td><%=my.getPaydate() %></td>
+					<td><%=my.getExpiredate() %></td>
+					<td><%=my.getScore() %></td>
 				</tr>
+				<%} %>
 			</table>
 		</div>
 		
@@ -90,13 +100,15 @@
 		<div style="width: 95%; height: 150px; margin: 0 auto;">
 			<table id="mytrainer">
 				<tr><th>센터명</th><th>프로그램명</th><th>PT이용횟수</th><th>결제일</th><th>내점수</th></tr>
+				<%for(MypageUser my : tmembership) {%>
 				<tr>
-					<td><a href="#">1</a></td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
+					<td><a href="#"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
+					<td><%=my.getPname() %></td>
+					<td><%=my.getCount() %></td>
+					<td><%=my.getPaydate() %></td>
+					<td><%=my.getScore() %></td>
 				</tr>
+				<%} %>
 				
 			</table>
 		</div>
@@ -105,12 +117,14 @@
 		<div style="width: 95%; height: 150px; margin: 0 auto;">
 			<table id="myprefer">
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
+				<%for(MypageUser my : myPerfer) {%>
 				<tr>
-					<td><a href="#">1</a></td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
+					<td><a href="#"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
+					<td><%=my.getAddress() %></td>
+					<td><%=my.getPhone() %></td>
+					<td><%=my.getAvgscore() %></td>
 				</tr>
+				<%} %>
 			</table>
 		</div>
 		
