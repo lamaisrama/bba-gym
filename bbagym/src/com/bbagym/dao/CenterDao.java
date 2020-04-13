@@ -693,11 +693,11 @@ public class CenterDao {
 			String sql =prop.getProperty("centerMainPageDataByDistance");
 			try {
 				pstmt = conn.prepareStatement(sql);
-				System.out.println(("latitude?"+lat +" || lng? "+lng));
-				System.out.println("between  ? and ? "+ (cPage-1)*numPerpage+1+" and "+ cPage*numPerpage);
+				//System.out.println(("latitude?"+lat +" || lng? "+lng));
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
-				pstmt.setInt(3, (cPage-1)*numPerpage+1);
+				pstmt.setInt(3, ((cPage-1)*numPerpage+1));
+				System.out.println("start"+((cPage-1)*numPerpage+1));
 				pstmt.setInt(4, cPage*numPerpage);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -706,8 +706,7 @@ public class CenterDao {
 					c.setName(rs.getString("C_NAME"));
 					c.setAddress(rs.getString("C_ADDRESS"));
 					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
-					c.setDistance(rs.getString("distance"));
-					System.out.println(c.getName()+"의 거리?:"+c.getDistance());
+					c.setDistance(String.valueOf(rs.getDouble("distance")));
 					list.add(c);
 				}
 				
