@@ -211,21 +211,16 @@ public class CenterEnroll {
 
 	public void setProgram(List<Program> program) {
 		this.program = program;
+		
 	}
-
-
 
 	public String getAddrX() {
 		return addrX;
 	}
 
-
 	public void setAddrX(String addrX) {
 		this.addrX = addrX;
 	}
-
-
-
 
 
 	public String getAddrY() {
@@ -233,7 +228,9 @@ public class CenterEnroll {
 	}
 
 	
-
+	public void setAddrY(String addrY) {
+		this.addrY = addrY;
+	}
 
 
 	public String getDistance() {
@@ -242,10 +239,6 @@ public class CenterEnroll {
 
 	public void setDistance(String distance) {
 		this.distance = distance;
-	}
-
-	public void setAddrY(String addrY) {
-		this.addrY = addrY;
 	}
 
 
