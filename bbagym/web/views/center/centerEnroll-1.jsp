@@ -177,31 +177,47 @@
 		}
 		
 		function jusoCallBack(roadFullAddr, entX, entY){
+			console.log(roadFullAddr, entX, entY);
+			
 			// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.		
 			document.getElementById('c-address').value = roadFullAddr;
 			
-			var geocoder = new kakao.maps.services.Geocoder(),
-		    wtmX = entX,
-		    wtmY = -entY;
+			
+			//주소 정보에 해당하는 좌표값을 요청한다.
+			var geocoder = new kakao.maps.services.Geocoder();
 
 			var callback = function(result, status) {
 			    if (status === kakao.maps.services.Status.OK) {
-			        console.log(result[0].x); // 126.570667
-			        console.log(result[0].y); // 33.45070100000001
-			        document.getElementById('addrX').value = result[0].x;
-					document.getElementById('addrY').value = result[0].y;
+			        console.log('변환 x:'+result[0].x); // 126.570667
+			        console.log('변환 y:'+result[0].y); // 33.45070100000001
+			        document.getElementById("addrX").value=result[0].x;
+			        document.getElementById("addrY").value=result[0].y;
+			    }
+			};
+
+			geocoder.addressSearch(roadFullAddr, callback);
+			
+/*				//입력한 좌표를 다른 좌표계의 좌표로 변환한다.
+			var geocoder = new kakao.maps.services.Geocoder();
+		    
+
+ 			var callback = function(result, status) {
+			    if (status === kakao.maps.services.Status.OK) {
+			        console.log('변환 x:'+result[0].x); // 126.570667
+			        console.log('변환 y:'+result[0].y); // 33.45070100000001
+			        document.getElementById("addrX").value=result[0].x;
+			        document.getElementById("addrY").value=result[0].y;
 			    }
 			};
 	
-			// WTM 좌표를 WGS84 좌표계의 좌표로 변환한다
-			geocoder.transCoord(wtmX, wtmY, callback, {
-			    input_coord: kakao.maps.services.Coords.WTM,
+			// TM 좌표를 WGS84 좌표계의 좌표로 변환한다
+				//도로명주소 도움센터에서 제공하는 좌표API의 좌표 체계는 EPSG-5179(UTM-K (GRS80))
+			geocoder.transCoord(entX, entY, callback, {
+			    input_coord: kakao.maps.services.Coords.CONGNAMUL,
 			    output_coord: kakao.maps.services.Coords.WGS84
-			});
+			}); */
 			
-			
-			
-			
+
 		}
 	
 	</script>

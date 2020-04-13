@@ -93,7 +93,7 @@
             </tbody>
         </table>
         <br>
-        <div id="pageBar" >
+        <div id="pageBar" style="display:flex; justify-content:center;">
         	<%=request.getAttribute("pageBar") %>
         </div>
         <br>

@@ -1,6 +1,6 @@
 
 body * {
-/* 	border: 1px solid red; */
+	 /* border: 1px solid rgb(211, 208, 208);  */
 	font-family: 'Gothic A1', sans-serif;
 }
 
@@ -406,25 +406,24 @@ h3 span {
 	padding: 2px;
 }
 
-
-#corder,#torder,#perfer{
-	margin-top : 20px;
-	margin-left : 30px;
-	width : 90%;
-	border : 1px solid black;
+#mycenter,#mytrainer,#myprefer{
+	margin-top :20px;
+	width : 100%;
+	border-bottom : 1px solid lightslategrey;
 }
 
-#corder th,#torder th,#perfer th{
-	border : 1px solid black;
+#mycenter td,#mytrainer td,#myprefer td{
+	border-top : 1px solid gainsboro;
 }
 
-#corder tr,#torder tr,#perfer tr{
-	border : 1px solid black;
-}
+#mycenter th,#mytrainer th,#myprefer th{
+	background-color : gainsboro;
+	} 
+/* 
+#mycenter tr,#mytrainer tr,#myprefer tr{
+	border-top : 1px solid lightslategrey;
+} */
 
-#corder td,#torder td,#perfer td{
-	border-right : 1px solid black;
-	padding-left : 10px;
-}
+
 
 

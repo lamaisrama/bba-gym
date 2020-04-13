@@ -109,5 +109,32 @@ public class BoardService {
 		close(conn);
 		return count;
 	}
+
+	public int deleteBoardComment(int no) {
+		Connection conn = getConnection();
+		int result = dao.deleteBoardComment(conn, no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public BoardComment selectBoardComment(int no) {
+		Connection conn = getConnection();
+		BoardComment bc = dao.selectBoardComment(conn, no);
+		close(conn);
+		return bc;
+	}
+
+	
+	public int updateBoardComment(BoardComment bc) {
+		Connection conn = getConnection();
+		int result = dao.updateBoardComment(conn, bc);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 	
 }

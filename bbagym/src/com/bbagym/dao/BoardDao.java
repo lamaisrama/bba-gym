@@ -332,6 +332,76 @@ public class BoardDao {
 		return result;
 	}
 
+	public int deleteBoardComment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteBoardComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public BoardComment selectBoardComment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BoardComment bc = null;
+		String sql = prop.getProperty("selectBoardComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				bc = new BoardComment();
+				bc.setQaCommentCode(rs.getInt("qa_comment_code"));
+				bc.setQaCommentRef(rs.getInt("qa_comment_ref"));
+				bc.setQaCommentLevel(rs.getInt("qa_comment_level"));
+				bc.setQaCommentContent(rs.getString("qa_comment_content"));
+				bc.setQaCommentDate(rs.getDate("qa_comment_date"));
+				bc.setQaCode(rs.getInt("qa_code"));
+				bc.setmCode(rs.getInt("m_code"));
+				bc.setmId(rs.getString("m_id"));
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return bc;
+	}
+
+	public int updateBoardComment(Connection conn, BoardComment bc) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("boardCommentUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bc.getQaCommentContent());
+			pstmt.setInt(2, bc.getQaCommentCode());
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
+
 	
 	
 	

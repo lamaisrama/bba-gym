@@ -693,9 +693,11 @@ public class CenterDao {
 			String sql =prop.getProperty("centerMainPageDataByDistance");
 			try {
 				pstmt = conn.prepareStatement(sql);
+				//System.out.println(("latitude?"+lat +" || lng? "+lng));
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
-				pstmt.setInt(3, (cPage-1)*numPerpage+1);
+				pstmt.setInt(3, ((cPage-1)*numPerpage+1));
+				System.out.println("start"+((cPage-1)*numPerpage+1));
 				pstmt.setInt(4, cPage*numPerpage);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -704,6 +706,7 @@ public class CenterDao {
 					c.setName(rs.getString("C_NAME"));
 					c.setAddress(rs.getString("C_ADDRESS"));
 					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+					c.setDistance(String.valueOf(rs.getDouble("distance")));
 					list.add(c);
 				}
 				
@@ -713,6 +716,33 @@ public class CenterDao {
 			
 			
 			return list;
+		}
+		
+		public void checkXY(Connection conn,List<CenterEnroll> list,String lat,String lng){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			String sql =prop.getProperty("checkXY");
+			try {
+				
+				for(CenterEnroll ce : list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, lat);
+				pstmt.setString(2, lng);
+				rs=pstmt.executeQuery();
+				
+				rs.next();
+				
+				ce.setDistance(String.valueOf(rs.getDouble(1)));
+				
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
 		}
 	
 }

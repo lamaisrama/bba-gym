@@ -128,6 +128,9 @@ import com.bbagym.model.vo.Member;
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("insertMember");
+		if(m.getM_IMAGE()==null) {
+			m.setM_IMAGE("bbagym.png");
+		}
 		try {
 			pstmt=conn.prepareStatement(sql);  
 			pstmt.setString(1, m.getM_ID());
@@ -155,6 +158,10 @@ import com.bbagym.model.vo.Member;
 		PreparedStatement pstmt=null;
 		int result=0;
 		String sql=prop.getProperty("inserBusiness");
+		
+		if(m.getM_IMAGE()==null) {
+			m.setM_IMAGE("bbagym.png");
+		}
 		
 		try {
 			pstmt=conn.prepareStatement(sql);  

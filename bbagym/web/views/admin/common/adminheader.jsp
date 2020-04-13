@@ -54,7 +54,7 @@
         <div >
             <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
 
-                <table i >
+                <table >
                 	<tr >
                         <td><a class="updateMyProfile" href="<%=request.getContextPath()%>" >홈페이지 메인화면가기</a></td>
                     </tr>
@@ -105,7 +105,7 @@
 .updateMyProfile:hover {
 
 	background: yellow;
-	color: white;
+	color: yellow;
 		-webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 	        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
