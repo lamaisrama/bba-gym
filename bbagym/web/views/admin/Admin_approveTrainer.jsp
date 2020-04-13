@@ -101,13 +101,13 @@
 	</tbody>
 	</table>
 <br>
-	<div id="pageBar" class="pageBar" style="">
+	<div id="pageBar" class="pageBar" style="display:inline-block;widht:100%;margin:0 auto;">
 		<!-- 페이지바 JSP구현-->
 		<br><br><br><br>
 		<%=request.getAttribute("pageBar")%>
 
 	</div>
-	<br><br>
+	<br>
 </div>
 
 
