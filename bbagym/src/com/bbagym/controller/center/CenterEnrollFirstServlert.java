@@ -41,6 +41,8 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		c.setMemberCode(Integer.parseInt(request.getParameter("m-code")));
 		c.setName(request.getParameter("c-name"));
 		c.setAddress(request.getParameter("c-address"));
+		c.setAddrX(request.getParameter("addrX"));
+		c.setAddrY(request.getParameter("addrY"));
 		c.setTel(request.getParameter("c-tel"));
 		c.setOpHr(request.getParameter("c-operating-hr"));
 		c.setHoliday(request.getParameter("c-holiday"));

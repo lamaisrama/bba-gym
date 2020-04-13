@@ -34,10 +34,11 @@ public class MemberDeleteServlet extends HttpServlet {
 		String userId=request.getParameter("M_ID");
 		
 		int result=new MemberService().memberDelete(userId);
+		
 		String msg="";
 		String loc="";
 
-
+		
 		if(result>0) {
 			msg="회원탈퇴 성공";
 			loc="/member/logout.do";

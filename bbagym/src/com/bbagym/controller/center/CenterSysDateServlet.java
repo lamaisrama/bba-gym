@@ -38,20 +38,22 @@ public class CenterSysDateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String url= request.getContextPath()+"/center/sysdate.do";
 		int cPage;
-		
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
-		
-		HttpSession session = request.getSession();
 		int m;
-		try {
-			m=((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch(NullPointerException e) {
-			m=0;
-		}
+		
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				cPage=1;
+			}
+			
+			
+			try {
+				HttpSession session = request.getSession();
+				m=((Member)session.getAttribute("logginMember")).getM_CODE();
+			}catch(NullPointerException e) {
+				m=0;
+			}
+			
 		int numPerpage=3;
 		
 		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m);

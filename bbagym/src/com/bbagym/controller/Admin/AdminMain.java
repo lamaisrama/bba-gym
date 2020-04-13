@@ -1,4 +1,4 @@
-package com.bbagym.common.Admin;
+package com.bbagym.controller.Admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

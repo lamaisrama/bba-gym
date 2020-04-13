@@ -1,23 +1,25 @@
-package com.bbagym.common.Admin;
+package com.bbagym.controller.member;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AdminPasswordServlet
+ * Servlet implementation class MemberCoordServlet
  */
-@WebServlet("/admin/passwordModify.do")
-public class AdminPasswordServlet extends HttpServlet {
+@WebServlet("/getCoord.do")
+public class MemberCoordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminPasswordServlet() {
+    public MemberCoordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,15 @@ public class AdminPasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/admin/Admin_password.jsp").forward(request, response);
+		String user_lat=request.getParameter("lat");
+		String user_lng=request.getParameter("lng");
+		System.out.println("latitude : "+ user_lat);
+		System.out.println("longitude : "+ user_lng);
+		
+		HttpSession session=request.getSession();
+		session.setAttribute("user_lat", user_lat);
+		session.setAttribute("user_lng", user_lng);
+		
 	}
 
 	/**

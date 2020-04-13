@@ -28,42 +28,30 @@ public class CenterEnroll {
 	private List<Program> program;
 	private boolean prefer;
 	private double score;
+
+	private String addrX;
+	private String addrY;
+	private String distance;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-    
-	
-	
+
 	public double getScore() {
 		return score;
 	}
-
-
-
-
 
 	public void setScore(double score) {
 		this.score = score;
 	}
 
-
-
-
-
 	public boolean getPrefer() {
 		return prefer;
 	}
 
-
-
 	public void setPrefer(boolean prefer) {
 		this.prefer = prefer;
 	}
-
-
 
 	public int getCode() {
 		return code;
@@ -223,10 +211,35 @@ public class CenterEnroll {
 
 	public void setProgram(List<Program> program) {
 		this.program = program;
+		
+	}
+
+	public String getAddrX() {
+		return addrX;
+	}
+
+	public void setAddrX(String addrX) {
+		this.addrX = addrX;
 	}
 
 
+	public String getAddrY() {
+		return addrY;
+	}
 
+	
+	public void setAddrY(String addrY) {
+		this.addrY = addrY;
+	}
+
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
 
 
 	@Override
@@ -245,7 +258,5 @@ public class CenterEnroll {
 	 * snsEtc + ", photos=" + photos + ", categories=" + categories +
 	 * ", facilities=" + facilities + ", program=" + program + "]"; }
 	 */
-	
-	
-}
 
+}

@@ -6,16 +6,16 @@ import java.util.Arrays;
 public class TrainerDetail {
 	
 	private String prof_img;
-	private String t_name;
+	private String t_name;			//이름
 	private String t_intro;
-	private String m_phone_2;
-	private String m_address_2;
+	private String m_phone_2;		//전화번호
+	private String m_address_2;		//주소
 	private List<String> tProgramNames;
 	private List<TrainerProgram> trainerPrograms;
 	private String t_text;
 	private String t_career;
 	private String t_counsel_hours;
-	private String c_name;
+	private String c_name; 		//근무지
 	private List<String> t_img;
 	private String sns_homepage;
 	private String sns_instagram;

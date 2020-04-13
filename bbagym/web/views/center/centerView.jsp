@@ -21,7 +21,7 @@
         <div class="row">
             <div class="searchBox">
                 <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
-                <button class="btn btn-warning btn-sm" onclick="searchByKeyword();">Find!</button>
+                <button class="btn btn-warning" onclick="searchByKeyword();">찾기</button>
             </div>
         </div>
         <div class="row">
@@ -49,10 +49,10 @@
             <div class="tab-pane container" id="kakaomap">
                 <div class="row">
 	                <div class="col-8 form-group">
-	                    <input type="text"  class="form-control" id="keyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
+	                    <input type="text"  class="form-control" id="locKeyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
 	                </div>
 	                <div class="col-2">
-	                	  <button class="btn btn-light" onclick="searchKeyword();">검색</button>
+	                	  <button class="btn btn-light" onclick="searchLocation();">이동</button>
 	                </div>
                 </div>
 	            <div class="row">
@@ -70,7 +70,7 @@
                     <br>
                     <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
                     <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">기타</label><br>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">테니스</label><br>
                     <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
@@ -86,6 +86,7 @@
                 <div class="content-box-inner"></div>
                 <div class="bar"></div>
                 <div class="content-box-cotent">
+                   
                     <table>
                         <tr>
                             <td colspan="3"><input type="hidden" value="<%=c.getCode() %>"></td>
@@ -102,7 +103,7 @@
                         </tr>
                         <tr>
                             <td colspan="2"><%=c.getAddress() %></td><!-- 위치 API-->
-                            <td>10.9Km</td><!-- 거리 API-->
+                            <td><%=c.getDistance().substring(0, 4)%>km</td><!-- 거리 API-->
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -128,6 +129,7 @@
                             <td colspan="3"></td>
                         </tr>
                     </table>
+                    
                 </div><!-- for문 돌려서 페이징 처리해야합니다 -->
             </div><!-- content-box-outer -->
             <%} }%>
@@ -139,7 +141,7 @@
     
     <script>
     
-   		/* 이미지 넣어주기 */
+   		/* 이미지 넣어주기 480*300 */
     	var boxinner=$(".content-box-inner");
 		
 		<%if(!centerList.isEmpty()){ 
@@ -179,7 +181,7 @@
 		/* 찜하기 ajax */
 		
 		/* 키워드 검색 */
-		function serachKeyword(){
+		function searchByKeyword(){
             		var search=$("#search").val();
             		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
             	}
@@ -188,10 +190,24 @@
 		/* 검색창 정보 가져오는 이벤트 */
 		$("#search").on("keyup",function(){
 			$("#keyword").attr("value",$("#search").val());
-		})
-		/* 검색창 정보 가져오는 이벤트 */
+		});
 		
-
+		//장소 변경 후 검색하는 ftn
+		function relocation(){
+			console.log('현재 입력된 위/경도 :' + latitude, longitude);
+			$.ajax({
+				url:'<%=request.getContextPath()%>/getCoord.do',
+				type:"get",
+				data:{lat:latitude, lng:longitude},
+				success:(data)=>{
+					console.log("위치 수정 및 저장 완료");
+				},
+				error:(r)=>{console.log("위치 저장 실패")}
+			});
+			
+			//서블릿 연결 로직 구현하기
+			location.replace("<%=request.getContextPath()%>/center/centerView.do");
+		}
 
     </script>
 <script src="<%=request.getContextPath()%>/js/kakaomap.js"></script>
