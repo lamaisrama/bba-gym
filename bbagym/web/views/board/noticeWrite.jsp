@@ -54,8 +54,8 @@
 	     height: 500,                 // set editor height
 	     minHeight: null,             // set minimum height of editor
 	     maxHeight: null,             // set maximum height of editor
-	     focus: true                  // set focus to editable area after initializing summernote
-		
+	     focus: true,                  // set focus to editable area after initializing summernote
+	     lang: 'ko-KR'
 	});
 	
 	$(document).ready(function() {

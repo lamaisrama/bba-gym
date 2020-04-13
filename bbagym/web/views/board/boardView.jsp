@@ -84,7 +84,7 @@
 		</div>
 
 		<!-- 댓글출력 -->
-		<table id="tbl-comment" border=1>
+		<table id="tbl-comment">
 			<%if(comments!=null && !comments.isEmpty()){ 
 				for(BoardComment bc : comments){
 					if(bc.getQaCommentLevel()==1){%>
@@ -100,9 +100,12 @@
 							</dl>
 						</td>
 						<td>
-						<button class="btn btn-outline-warning btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=bc.getQaCommentCode()%>')">수정</button>
-						<button class="btn btn-outline-danger btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=bc.getQaCommentCode()%>')">삭제</button>
 						<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
+						<%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(b.getmId())){%>
+						<%-- <button class="btn btn-outline-warning btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=bc.getQaCommentCode()%>')">수정</button> --%>
+						<button class="btn btn-outline-warning btn-sm btn-reply" id="btn-reply-modify" value="<%=bc.getQaCommentCode()%>">수정</button>
+						<button class="btn btn-outline-danger btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=bc.getQaCommentCode()%>')">삭제</button>
+						<%} %>
 						</td>
 					</tr>
 				<%}else{%>
@@ -175,6 +178,29 @@
 		});
 	});
     
+	
+	// 댓글 수정
+	
+	function displaySet(){
+		
+	}
+	
+	
+	
+	/* var modal = $("#btn-reply-modify");
+	var modalContent = document.querySelector("textarea[name='modalContent']");
+	
+	$("#btn-reply-modify").click(function(e){
+		var bc = {nobc:nobc, cmtContent:commentContent.value};
+		BoardService.updateComment(bc, function(result)){
+			alert(result);
+			modal.modal("hide");
+			
+		}
+		
+	}); */
+	
+	
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>	

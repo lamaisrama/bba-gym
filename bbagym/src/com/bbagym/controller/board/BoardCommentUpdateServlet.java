@@ -35,12 +35,30 @@ public class BoardCommentUpdateServlet extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("nobc"));
 		System.out.println(no);
+		String content = request.getParameter("commentContent");
 		
-//		List<BoardComment> list = new BoardService().selectComment(no);
-//		request.setAttribute("list", list);
-		BoardComment bc = new BoardService().selectBoardComment(no);
-		request.setAttribute("bc", bc);
-		request.getRequestDispatcher("/views/board/boardView.jsp").forward(request, response);
+		BoardComment bc = new BoardComment();
+//		BoardComment bc = new BoardService().selectBoardComment(no);
+		
+//		BoardComment bc = new BoardComment(no, 0, 0, content, null, 0, 0);
+		
+		int result = new BoardService().updateBoardComment(bc);
+		
+		String msg = "";
+		String loc = "";
+		if(result>0) {
+			msg = "수정완료!";
+			loc = "/board/boardView?no=" + no;
+		}else {
+			msg = "수정실패!";
+			loc = "/board/boardView?no=" + no;
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	
+	
+	
 	}
 
 	/**
