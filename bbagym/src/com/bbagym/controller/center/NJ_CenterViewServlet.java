@@ -1,4 +1,6 @@
-package com.bbagym.controller.Admin;
+package com.bbagym.controller.center;
+
+import static com.bbagym.common.PageBarTemplate.pageBar;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +14,19 @@ import javax.servlet.http.HttpSession;
 
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Member;
-import com.bbagym.service.AdminService;
 import com.bbagym.service.CenterService;
 
 /**
  * Servlet implementation class CenterSearchServlet
  */
-@WebServlet("/admin/centerList.do")
-public class CenterListServlet extends HttpServlet {
+@WebServlet("/center/NJcenterView.do")
+public class NJ_CenterViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CenterListServlet() {
+    public NJ_CenterViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,8 +36,7 @@ public class CenterListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		String url= request.getContextPath()+"/center/search.do";
+		String url= request.getContextPath()+"/center/centerView.do";
 		int cPage;
 		
 		try {
@@ -44,59 +44,40 @@ public class CenterListServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
-		
-		
+		//세션에 저장된 위 경도를 가지고옴
+		//저장되어있지 않을 시, 기본 위치(KH강남1관)로 설정
+		String lat="";
+		String lng="";
 		HttpSession session = request.getSession();
-		int m;
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "15.824067527978395";
+		}
+		
+		int m; 
 		try {
 			m=((Member)session.getAttribute("logginMember")).getM_CODE();
 		}catch(NullPointerException e) {
 			m=0;
 		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
-		int numPerpage=10;
-		
-		List<CenterEnroll> list = new AdminService().searchKeywordPageData(cPage,numPerpage,m);
-		
-		int totalData = new AdminService().searchCountCenter();
-		
-		String pageBar="";
-		int pageBarSize=5;
 		
 		
-		int totalPage = (int) Math.ceil((double)totalData/numPerpage);
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize-1;
-		
-		//페이지바의 이미지는
-		// [이전] 1 2 3 4 5 [다음]
-		if(pageNo==1) {
-			pageBar+="<span>[이전]    </span>";
-		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/admin/centerList.do?cPage="+(pageNo-1)+"'>[이전]>&nbsp</a>";
-			
-		}
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar+="<span>"+pageNo+"</span>";
-			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/admin/centerList.do?cPage="+pageNo+"'&nbsp>&nbsp"+pageNo+"&nbsp&nbsp</a>";
-			}
-			pageNo++;
-		}
-		
-		//다음
-		if(pageNo>totalPage) {
-			pageBar+="<span>   [다음]</span>";
-		}else {
-			pageBar+="<a href='"+request.getContextPath()
-			+"/admin/centerList.do?cPage="+pageNo+"'>   [다음]</a>";  //pageNo+1 아님 하면 7나옴.
-		}
-		//pageBar 만들기 끝.!
+		int numPerpage=3; //페이지당 3개 데이터 출력
+		List<CenterEnroll> list = new CenterService().centerMainPageDataDistance(cPage,numPerpage,m, lat, lng);
 
-		request.setAttribute("pageBar", pageBar);
+		int totalData = new CenterService().selectCountCenter();
+		
+
+		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
+
+		request.setAttribute("pageBar", pagebar);
 		request.setAttribute("centerList", list);
-		request.getRequestDispatcher("/views/admin/Admin_approveCenter.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/center/centerView.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
