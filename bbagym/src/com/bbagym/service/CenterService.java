@@ -12,6 +12,7 @@ import java.util.List;
 import com.bbagym.dao.CenterDao;
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Comment;
 
 public class CenterService {
 	private CenterDao dao = new CenterDao();
@@ -104,7 +105,13 @@ public class CenterService {
 			List<CenterDetail> list = new ArrayList<CenterDetail>();
 			list.add(cd);
 			if(mCode!=0) {
+				dao.getScoreForComment(conn, cd, cCode);
 				dao.checkPerfer2(conn, list, cCode, mCode);				
+				dao.getBuy(conn, list, cCode, mCode, cd);
+				if(cd.isBuy()==true) {
+					System.out.println(cd.isBuy());
+					dao.getBuyInfo(conn, cCode, mCode, cd);
+				}
 			}
 		}
 		System.out.println(cd);
@@ -201,6 +208,32 @@ public class CenterService {
 			return list;
 		}
 		
+		
+	public int insertComment(Comment c) {
+		Connection conn=getConnection();
+		int result = dao.insertComment(conn, c);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 	
+	public int insertScore(Comment c) {
+		Connection conn=getConnection();
+		int result1 = dao.insertScore(conn, c);
+		if(result1>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result1;
+	}
+	
+	public List<Comment> selectComment(int cCode){
+		Connection conn = getConnection();
+		List<Comment> c = dao.selectComment(conn, cCode);
+		close(conn);
+		return c;
+	}
+	
+
 	
 }
