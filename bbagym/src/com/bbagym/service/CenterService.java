@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.bbagym.dao.CenterDao;
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
@@ -20,9 +22,18 @@ public class CenterService {
 	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode) {
 		dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
 		dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
+		String lat="", lng="";
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
+		dao.checkXY(conn,list,lat,lng);
 		if(mcode!=0) {
 			dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
-			
 		}
 	}
 	
