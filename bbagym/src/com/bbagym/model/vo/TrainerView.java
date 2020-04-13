@@ -1,6 +1,7 @@
 package com.bbagym.model.vo;
 
 
+import java.sql.Date;
 import java.util.List;
 
 public class TrainerView {
@@ -11,6 +12,9 @@ public class TrainerView {
 	private String ccenter;
 	private String maddres2;
 	private List<String> badge;
+	
+	private String approval;
+	private Date enrollDate;
 
 	public TrainerView() {
 		// TODO Auto-generated constructor stub
@@ -63,12 +67,33 @@ public class TrainerView {
 	public void setBadge(List<String> badge) {
 		this.badge = badge;
 	}
+	
+	
+
+	public String getApproval() {
+		return approval;
+	}
+
+	public void setApproval(String approval) {
+		this.approval=approval;
+		
+	}
+	
+	
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
+	}
 
 	@Override
 	public String toString() {
 		return "TrainerView [tcode=" + tcode + ", timg=" + timg + ", mname=" + mname + ", ccenter=" + ccenter
 				+ ", maddres2=" + maddres2 + ", badge=" + badge + "]";
 	}
+
 	
 	
 	
