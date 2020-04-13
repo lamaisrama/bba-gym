@@ -97,7 +97,7 @@
 	</tbody>
 	</table>
 <br>
-	<div id="pageBar" class="pageBar" style="">
+	<div id="pageBar" class="pageBar" style="display:flex; justify-content:center;">
 		<!-- 페이지바 JSP구현-->
 		<br><br><br><br>
 		<%=request.getAttribute("pageBar")%>

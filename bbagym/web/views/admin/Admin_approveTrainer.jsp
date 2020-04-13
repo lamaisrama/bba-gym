@@ -101,7 +101,7 @@
 	</tbody>
 	</table>
 <br>
-	<div id="pageBar" class="pageBar" style="display:inline-block;widht:100%;margin:0 auto;">
+	<div id="pageBar" class="pageBar" style="display:flex; justify-content:center;">
 		<!-- 페이지바 JSP구현-->
 		<br><br><br><br>
 		<%=request.getAttribute("pageBar")%>
