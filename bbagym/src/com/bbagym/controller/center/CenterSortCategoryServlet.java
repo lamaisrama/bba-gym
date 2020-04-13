@@ -37,8 +37,12 @@ public class CenterSortCategoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		String url= request.getContextPath()+"/center/sortCategory.do";
 		String type = request.getParameter("type"); //cPage 1일때는 type이 존재하지않는다 null로 들어옴
-
+		String keyword=request.getParameter("keyword").replace(" ", ""); // 검색키워드를 받아온다 공백처리
+		int cPage;
+		int m;
+		HttpSession session = request.getSession();
 			if(type==null) {
 				
 				String[] category = request.getParameterValues("category"); //cPage=1일때 checkbox에서 category를 받아온다 
@@ -46,71 +50,51 @@ public class CenterSortCategoryServlet extends HttpServlet {
 					type="'"+String.join("','", category)+"'"; // sql문에 사용하기위한 형태로 type을 정의한다 '1','2' .....
 				}else {
 					type="''"; //카테고리 체크없이 넘길경우 공란을 넘긴다
-				}
+			}
 			 	
 			}else {
 				type="'"+type.replace(".", "','")+"'"; //cPage=2 부터는 type을 다시 replace로 '1','2' 모습으로 만든다
-			}
+				}
 		
-		String keyword=request.getParameter("keyword").replace(" ", ""); // 검색키워드를 받아온다 공백처리
-		String url= request.getContextPath()+"/center/sortCategory.do";
-		
-		int cPage;
 		
 			try {
-				cPage = Integer.parseInt(request.getParameter("cPage"));
-			}catch(NumberFormatException e) {
-				cPage=1;
+					cPage = Integer.parseInt(request.getParameter("cPage"));
+				}catch(NumberFormatException e) {
+					cPage=1;
 			}
 			
-		HttpSession session = request.getSession();
-			int m;
+
 			try {
-				m=((Member)session.getAttribute("logginMember")).getM_CODE();
-			}catch(NullPointerException e) {
-				m=0;
+
+					m=((Member)session.getAttribute("logginMember")).getM_CODE();
+				}catch(NullPointerException e) {
+					m=0;
 			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 		
 		int numPerpage=3;
+
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
 		
-		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword);
+		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword,lat,lng);
 	
 		int totalData = new CenterService().searchCategoryCountCenter(type,keyword);
-		String pageBar="";
-		int pageBarSize=5;
-		int totalPage = (int) Math.ceil((double)totalData/numPerpage);
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize-1;
+
 
 		if(type!=null) {
 			type = type.replace("','", ".");
 			type = type.replace("'","");
 		} //type을 보낼때의 모습을 다시 replace정의후 보낸다
+		
+		String url2= "&keyword="+keyword+"&type="+type;
+		String pageBar = pageBar(url, url2,totalData, cPage, numPerpage); 
 
-		pageBar += "<div><ul class='pagination'>";
-		
-		if(pageNo==1) {
-			pageBar += "<li class='page-item'><a class='page-link'>[Frist]</a></li>";
-		}else {
-			pageBar +="<li class='page-item'><a class='page-link' href='"+url+"?cPage="+(pageNo-1)+"&keyword="+keyword+"&type="+type+"'>[Previous]</a></li>";
-		}
-		
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar += "<li class='page-item'><a class='page-link'>"+pageNo+"</a></span>";
-			}else {
-				pageBar += "<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"&type="+type+"'>"+pageNo+"</a></li>";
-			}
-			pageNo++;
-		}
-		
-		if(pageNo>totalPage) {
-			pageBar += "<li class='page-item'><a class='page-link'>[End]</a></li>";
-		}else {
-			pageBar +="<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"&type="+type+"'>[Next]</a></li>";
-		}
-		
-		pageBar += "</ul></div>";
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("centerList", list);

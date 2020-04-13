@@ -41,6 +41,8 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		c.setMemberCode(Integer.parseInt(request.getParameter("m-code")));
 		c.setName(request.getParameter("c-name"));
 		c.setAddress(request.getParameter("c-address"));
+		c.setAddrX(request.getParameter("addrX"));
+		c.setAddrY(request.getParameter("addrY"));
 		c.setTel(request.getParameter("c-tel"));
 		c.setOpHr(request.getParameter("c-operating-hr"));
 		c.setHoliday(request.getParameter("c-holiday"));
@@ -62,10 +64,11 @@ public class CenterEnrollFirstServlert extends HttpServlet {
 		c.setSnsInsta(request.getParameter("sns-insta"));
 		c.setSnsBlog(request.getParameter("sns-blog"));
 		c.setSnsEtc(request.getParameter("sns-etc"));
-		
 		HttpSession session=request.getSession();
 		session.setAttribute("centerEnroll", c);
 		request.getRequestDispatcher("/views/center/centerEnroll-2.jsp").forward(request, response);
+
+
 	}
 
 	/**

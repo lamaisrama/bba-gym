@@ -38,15 +38,21 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("M_ID");
 		String pw = request.getParameter("M_PW");
-		Member kakao= new MemberService().login2(id);
+		
 
-	
 		
+		if(pw==null) {
+			String pw2= new MemberService().searchPW2(id);
+			if(!pw2.equals("")) {
+				pw=pw2;
+			}
+		}
 		
-		if(pw!=null ||kakao!=null) {
-			 pw = new MemberService().searchPW2(id);
+
+		if(pw!=null) {
 			Member m = new MemberService().login(id, pw);
 			Member m2 = new MemberService().login2(id);
+
 			 
 			 if (m != null && m.getM_STATUS()=='N') {
 					HttpSession session = request.getSession();
@@ -79,17 +85,18 @@ public class LoginServlet extends HttpServlet {
 					rd.forward(request, response);
 				}
 			 
+
 		}else {
 			String email = request.getParameter("userEmail");
-			char gender = request.getParameter("gender").toUpperCase().charAt(0);
+			
 			Member m =new Member();
 			m.setM_ID(id);
 			m.setM_EMAIL(email);
-			m.setM_GENDER(gender);
 			HttpSession session = request.getSession();
 
-			session.setAttribute("kakaoinfo", m);
+			session.setAttribute("info", m);
 			request.getRequestDispatcher("/member/enrollMenu.do").forward(request, response);
+
 
 		}
 

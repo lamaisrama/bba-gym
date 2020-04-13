@@ -38,23 +38,33 @@ public class CenterSysDateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String url= request.getContextPath()+"/center/sysdate.do";
 		int cPage;
-		
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
-		
-		HttpSession session = request.getSession();
 		int m;
-		try {
-			m=((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch(NullPointerException e) {
-			m=0;
-		}
+		HttpSession session = request.getSession();
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				cPage=1;
+			}
+			
+			
+			try {
+				
+				m=((Member)session.getAttribute("logginMember")).getM_CODE();
+			}catch(NullPointerException e) {
+				m=0;
+			}
+			
 		int numPerpage=3;
 		
-		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m);
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
+		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m,lat,lng);
 		int totalData = new CenterService().selectCountCenter();
 
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 

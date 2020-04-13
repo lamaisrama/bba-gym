@@ -4,34 +4,13 @@
 <%@ page import="java.util.List, com.bbagym.model.vo.*" %>	
 <% 
 	Board b = (Board)request.getAttribute("board"); 
+	
 	List<BoardComment> comments = (List)request.getAttribute("comment");
 %>
 
 <%@ include file="/views/common/header.jsp"%>	
 
-<style>
-   h2{
-       margin: 60px 0;
-   }
-   th{
-       width: 150px;
-   }
-   /*댓글테이블*/
-   #comment-container{text-align: center;}
-	table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
-	table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
-	table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
-	table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
-	table#tbl-comment button.btn-reply{display:none;}
-	table#tbl-comment tr:hover {background:lightblue;}
-	table#tbl-comment tr:hover button.btn-reply{display:inline;}
-	table#tbl-comment tr.level2 {color:mediumslateblue; font-size: 14px;}
-	table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
-	table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
-	table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
-	table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
-	table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px}
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
@@ -42,91 +21,103 @@
                 <h2 class="text-center"><i class="fa fa-heart heart"></i>&nbsp;&nbsp;Q&A<i class="fa fa-heart heart"></i></h2>
                     <div class="table table-responsive">
 	                    <input type="hidden" name="no" value="<%=b.getQaCode() %>">
-                        <table class="table table-striped text-center">
+                        <table class="table table-striped text-center"> 
                             <tr>
-                                <th>제목</th>
+                                <th class="th-write">제목</th>
                                 <td>	
-                                	<a href="<%=request.getContextPath()%>">
-                        				<%=b.getTitle()%>
-                        			</a>
+                                	<b><%=b.getTitle()%></b>
                         		</td>
                             </tr>
                             <tr>
-                                <th>작성자</th>
+                                <th class="th-write">작성자</th>
                                 <td><%=b.getmId() %></td>
                             </tr>
                             <tr>
-                                <th>작성일</th>
+                                <th class="th-write">작성일</th>
                                 <td><%=b.getQaDate() %></td>
                             </tr>
                             <tr>
-                                <th>첨부파일</th>
+                                <th class="th-write">첨부파일</th>
                                 <td>
                                 	<%if(b.getOriFileName()!=null){ %>
                                 	<a href="javascript:void(0);" onclick="fileDownload('<%=b.getOriFileName()%>','<%=b.getNewFileName()%>');">
-                                		<img src="<%=request.getContextPath()%>/resources/img/file.png" width="15px">
+                                		<img src="<%=request.getContextPath()%>/resources/img/file_2.png" width="20px">
 										<span><%=b.getOriFileName()%></span>                                		
                                 	</a>
                                 	<%} %> 
-                                	
                                 </td>
                             </tr>   
                             <tr>
                                 <th colspan="2">내용</th>
                             </tr>
-                            <tr><td colspan="2"><%=b.getQaContent() %></td></tr>
                             <tr>
-                            <%-- <%if(logginMember!=null && logginMember.getM_ID().equals("admin")) {%> --%>
+                            	<td colspan="2" style="padding:50px 30px;"><%=b.getQaContent() %></td>
+                           	</tr>
+                            <tr>
                                 <td colspan="2" class="text-center">
+                                	<button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/boardList')">글목록</button>
+                            <%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(b.getmId())){%>
                                     <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/boardUpdate?no=<%=b.getQaCode()%>')">수정</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.replace('<%=request.getContextPath()%>/board/boardDelete?no=<%=b.getQaCode()%>&fileName=<%=b.getOriFileName()%>')">삭제</button> 
+                                    <button type="button" class="btn btn-danger" onclick="location.replace('<%=request.getContextPath()%>/board/boardDelete?no=<%=b.getQaCode()%>&fileName=<%=b.getOriFileName()%>')">삭제</button> 
+                            <%} %>    
                                 </td>
-                            <%-- <%} %>  --%>   
                             </tr>
+		                        
                         </table>
                     </div>
             </div>
         </div>
-        
+
         <!-- 댓글 -->
-  		
   		<div id="comment-container">
   			<div class="comment-editor">
   				<form action="<%=request.getContextPath()%>/board/boardCommentInsert" method="post">
-  					<textarea name="commentContent" cols="60" rows="3"></textarea>
-					  <button type="submit" id="btn-insert">등록</button>
-					  <input type="hidden" name="commentWriter" value="<%=b.getmCode()%>">
+  					<textarea name="commentContent" cols="100" rows="3"></textarea>
+					<br>
+					  <button type="submit" id="btn-insert" class="btn btn-secondary">댓글등록</button>
+					  <input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
 					  <input type="hidden" name="boardRef" value="<%=b.getQaCode()%>">
 					  <input type="hidden" name="level" value="1">  <!-- 첫번째댓글 -->
 					  <input type="hidden" name="commentRef" value="0">
   				</form>
 		  	</div>
 		</div>
-			
+
 		<!-- 댓글출력 -->
-		
 		<table id="tbl-comment">
 			<%if(comments!=null && !comments.isEmpty()){ 
 				for(BoardComment bc : comments){
 					if(bc.getQaCommentLevel()==1){%>
-				<tr class="level1">
-					<td>
-						<sub class="comment-writer"><%--<%=bc.getmId() %><%=logginMember.getM_ID()%>--%> <%=bc.getmCode() %> </sub>
-						<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
-						<br>
-						<%=bc.getQaCommentContent() %>
-					</td>
-					<td>
-						<button class="btn-reply" value="<%=bc.getQaCommentCode()%>">등록</button>
-					</td>
-				</tr>
+						<tr class="level1">
+						<td>
+							<dl class="row">
+								<input type="hidden" name="nobc" value="<%=bc.getQaCommentCode() %>">
+								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
+	  							<dd class="col-sm-9">
+	  								<%=bc.getQaCommentContent() %>
+	  								&nbsp;&nbsp;<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
+								</dd>
+							</dl>
+						</td>
+						<td>
+						<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
+						<%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(b.getmId())){%>
+						<%-- <button class="btn btn-outline-warning btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=bc.getQaCommentCode()%>')">수정</button> --%>
+						<button class="btn btn-outline-warning btn-sm btn-reply" id="btn-reply-modify" value="<%=bc.getQaCommentCode()%>">수정</button>
+						<button class="btn btn-outline-danger btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=bc.getQaCommentCode()%>')">삭제</button>
+						<%} %>
+						</td>
+					</tr>
 				<%}else{%>
 					<tr class="level2">
 						<td>
-							<sub><%=bc.getmCode() %></sub>
-							<sub><%=bc.getQaCommentDate() %></sub>
-							<br>
-							<%=bc.getQaCommentContent() %>
+							<dl class="row">
+								<dt class="col-sm-3"><img src="<%=request.getContextPath()%>/resources/img/level2.png" width="15px;"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
+								<dd class="col-sm-9">
+									<%=bc.getQaCommentContent() %>&nbsp;&nbsp;
+									<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
+								</dd>
+							</dl>
 						</td>
 						<td></td>
 					</tr>
@@ -147,7 +138,11 @@
       </div>
     </div>
     </footer>
-	<script>
+    <br><br><br><br><br>
+    
+<script>
+	
+	// 파일
 	function fileDownload(ori, rename){
 		location.href="<%=request.getContextPath()%>/board/boardDownload?ori=" + ori + "&rename=" + rename;
 	}
@@ -162,17 +157,14 @@
 					"action":"<%=request.getContextPath()%>/board/boardCommentInsert",
 					"method":"post"
 				});
-				const textarea=$("<textarea>").attr({"cols":"50","rows":"2",
+				const textarea=$("<textarea>").attr({"cols":"80","rows":"2",
 													"name":"commentContent"});
-				const button=$("<input>").attr({"type":"submit","value":"답글"});
+				const button=$("<input>").attr({"type":"submit","value":"등록", "class":"btn btn-outline-primary btn-sm btn-reply"});
 				const writer=$("<input>").attr({"type":"hidden",
-									"name":"commentWriter","value":"<%=logginMember.getM_ID()%>"});
-				const boardRef=$("<input>").attr({"type":"hidden",
-					"name":"boardRef","value":"<%=b.getQaCode()%>"});
-				const level=$("<input>").attr({"type":"hidden",
-					"name":"level","value":"2"});
-				const commentRef=$("<input>").attr({"type":"hidden",
-					"name":"commentRef","value":$(this).val()});  
+									"name":"commentWriter","value":"<%=logginMember.getM_CODE()%>"});
+				const boardRef=$("<input>").attr({"type":"hidden","name":"boardRef","value":"<%=b.getQaCode()%>"});
+				const level=$("<input>").attr({"type":"hidden","name":"level","value":"2"});
+				const commentRef=$("<input>").attr({"type":"hidden","name":"commentRef","value":$(this).val()});  
 				
 				form.append(textarea).append(button).append(writer)
 				.append(boardRef).append(level).append(commentRef);
@@ -185,6 +177,30 @@
 			}
 		});
 	});
+    
+	
+	// 댓글 수정
+	
+	function displaySet(){
+		
+	}
+	
+	
+	
+	/* var modal = $("#btn-reply-modify");
+	var modalContent = document.querySelector("textarea[name='modalContent']");
+	
+	$("#btn-reply-modify").click(function(e){
+		var bc = {nobc:nobc, cmtContent:commentContent.value};
+		BoardService.updateComment(bc, function(result)){
+			alert(result);
+			modal.modal("hide");
+			
+		}
+		
+	}); */
+	
+	
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>	

@@ -1,5 +1,7 @@
 package com.bbagym.controller.center;
 
+import static com.bbagym.common.PageBarTemplate.pageBar;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -36,56 +38,40 @@ public class CenterSearchServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String keyword = request.getParameter("keyword").trim().replace(" ", "");
 		String url= request.getContextPath()+"/center/search.do";
+		String url2= "&keyword="+keyword;
 		int cPage;
-		
-		try {
-			cPage = Integer.parseInt(request.getParameter("cPage"));
-		}catch(NumberFormatException e) {
-			cPage=1;
-		}
-		
-		
-		HttpSession session = request.getSession();
 		int m;
-		try {
-			m=((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch(NullPointerException e) {
-			m=0;
-		} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
+		HttpSession session = request.getSession();
+			try {
+				cPage = Integer.parseInt(request.getParameter("cPage"));
+			}catch(NumberFormatException e) {
+				cPage=1;
+			}
+			
+			try {
+				
+				m=((Member)session.getAttribute("logginMember")).getM_CODE();
+			}catch(NullPointerException e) {
+				m=0;
+			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
+			
 		int numPerpage=3;
-		List<CenterEnroll> list = new CenterService().searchKeywordPageData(cPage,numPerpage,m,keyword);
+		
+
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
+		List<CenterEnroll> list = new CenterService().searchKeywordPageData(cPage,numPerpage,m,keyword,lat,lng);
 		int totalData = new CenterService().searchCountCenter(keyword);
 		
-		String pageBar="";
-		int pageBarSize=5;
-		int totalPage = (int) Math.ceil((double)totalData/numPerpage);
-		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize-1;
 		
-		pageBar += "<div><ul class='pagination'>";
-//		search같은 경우는 type과 searchKeyword를 동봉해야하기떄문에 pageBar Template를 쓰지못함
-		if(pageNo==1) {
-			pageBar += "<li class='page-item'><a class='page-link'>[Frist]</a></li>";
-		}else {
-			pageBar +="<li class='page-item'><a class='page-link' href='"+url+"?cPage="+(pageNo-1)+"&keyword="+keyword+"'>[Previous]</a></li>";
-		}
 		
-		while(!(pageNo>pageEnd||pageNo>totalPage)) {
-			if(pageNo==cPage) {
-				pageBar += "<li class='page-item'><a class='page-link'>"+pageNo+"</a></span>";
-			}else {
-				pageBar += "<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a></li>";
-			}
-			pageNo++;
-		}
-		
-		if(pageNo>totalPage) {
-			pageBar += "<li class='page-item'><a class='page-link'>[End]</a></li>";
-		}else {
-			pageBar +="<li class='page-item'><a class='page-link'  href='"+url+"?cPage="+pageNo+"&keyword="+keyword+"'>[Next]</a></li>";
-		}
-		
-		pageBar += "</ul></div>";
+		String pageBar = pageBar(url,url2, totalData, cPage, numPerpage); 
 
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("keyword",keyword);

@@ -4,7 +4,9 @@
 
 
 <%@ include file="/views/common/header.jsp"%>
-
+<meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="946353110887-1fa9j79efa5b3bo0kr4oeu210qnp2tqj">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="stylesheet"
@@ -12,6 +14,7 @@
 <!-- <link rel="stylesheet" href="css/member-register.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
 
 
@@ -43,10 +46,10 @@
 						placeholder="PW" placeholder="비밀번호입력" required> <br><br><input
 						type="checkbox" style="float: left" name="saveId" id="saveId"
 						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
-						<div style="float:right">
+						<div id="goka" style="float:right">
 						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
-						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_naver_login.gif" alt="네이버 로그인">
-					</div>			
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="padding-left:20px;"></div>
+						</div>			
 						 <br>
 						<br>
 					<button class="submit" style="">Login</button><br>
@@ -66,6 +69,7 @@
 				$(function() {//onload;
 
 				});
+				
 				function invalidate() {
 					//유효성검사 -> 입력받는 값이 내가 원한대로 입력할 수 있게 확인
 					// 예) 아이디는 4글자이상, 영문자포함,숫자포함 그외는 안됨!->정규표현식
@@ -106,7 +110,7 @@
 			                          	console.log(userEmail);
 			                          	console.log(gender);
 			                          Kakao.Auth.logout();
-	                          			location.replace("<%=request.getContextPath() %>/member/login.do?M_ID="+M_ID+"&userEmail="+userEmail+"&gender="+gender);
+	                          			location.replace("<%=request.getContextPath() %>/member/login.do?M_ID="+M_ID+"&userEmail="+userEmail);
  		                          
 			                         },
 			                         fail: function(error) {
@@ -126,6 +130,20 @@
 				  
 				  
 				 
+						function onSignIn(googleUser) {
+					        // Useful data for your client-side scripts:
+					        var M_ID= googleUser.getBasicProfile().getId(); // Don't send this directly to your server!
+					        var name=googleUser.getBasicProfile().getName();
+					        var userEmail= googleUser.getBasicProfile().getEmail();
+					        
+					        var auth2 = gapi.auth2.getAuthInstance();
+					    	  auth2.signOut().then(function(){
+					    		  console.log("User signed out.");
+					    	  });
+					    	  auth2.disconnect();	
+					    	  location.replace("<%=request.getContextPath() %>/member/login.do?M_ID="+M_ID+"&userEmail="+userEmail);
+					      }
+					     
 			</script>
 
 			<br>
@@ -140,7 +158,7 @@
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-/* 	border : 1px solid red; */
+ 	/* border : 1px solid red;  */
 }
 
 .row{
@@ -167,6 +185,16 @@
 	background: linear-gradient(to right, #fffff6, rgb(255, 199, 199));
 	border-radius: 30px;
 	transition: .5s;
+}
+
+#goka{
+	display : flex;
+	flex-direction : row;
+}
+
+.g-signin2 span{
+	position: inherit;
+	color : black;
 }
 
 .input-group {

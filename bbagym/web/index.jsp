@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding
+	="UTF-8"%>
 <%-- <%@ include file="/views/common/header.jsp"%>  --%>
-<%@ page
+<%@ page	
+
+
+
 	import="com.bbagym.model.vo.Member"%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
@@ -33,10 +37,16 @@
 </head>
 <body>    
 
+
 	<video autoplay muted loop id="backgroundvideo">
+<<<<<<< HEAD
+		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
+=======
 		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
+>>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
 	</video>
 	        <div id="leftbar"> 
+	      
 	        	<div>
 
 				    <ul>	<!--로그인한멤버 -->		        
@@ -107,6 +117,7 @@
 	   	</div>
 
 	   	
+	   	
 	    <div id="box">
 	    <%
 			if (logginMember == null) {
@@ -157,7 +168,34 @@
 	</section>
 	
 	<script>
+
+		onload=function(){
+
+			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
+
+		}
+
 		
+		function handleGeoSucces(position){
+			const latitude = position.coords.latitude;
+			const longitude = position.coords.longitude;
+			console.log(latitude, longitude);
+			 $.ajax({
+				url:"<%=request.getContextPath()%>/getCoord.do?lat="+latitude+"&lng="+longitude,
+				type:"get",
+				dataType:"text",
+				success : function(data){
+					console.log(data);
+					console.log('위치 저장 완료');
+				}
+				
+			})
+		}
+	
+		function handleGeoError(){
+			alert('회원님의 위치정보를 확인할 수 없어 기본 위치로 설정되어 안내합니다');
+		}
+	
 
 		$("#search1").keydown(function(key){
     		if(key.keyCode==13){ /* 엔터일경우가 13   */

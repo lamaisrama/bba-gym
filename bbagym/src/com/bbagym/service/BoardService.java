@@ -5,7 +5,6 @@ import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 
-
 import java.sql.Connection;
 import java.util.List;
 
@@ -95,5 +94,47 @@ public class BoardService {
 		close(conn);
 		return list;
 	}
+
+	public List<Board> searchBoard(String searchType, String searchKeyword, int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Board> list = dao.searchBoard(conn, searchType, searchKeyword, cPage, numPerPage);
+		close(conn);
+		return list;
+	}
+
+	
+	public int selectCount(String searchType, String searchKeyword) {
+		Connection conn = getConnection();
+		int count = dao.selectCount(conn,searchType,searchKeyword);
+		close(conn);
+		return count;
+	}
+
+	public int deleteBoardComment(int no) {
+		Connection conn = getConnection();
+		int result = dao.deleteBoardComment(conn, no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public BoardComment selectBoardComment(int no) {
+		Connection conn = getConnection();
+		BoardComment bc = dao.selectBoardComment(conn, no);
+		close(conn);
+		return bc;
+	}
+
+	
+	public int updateBoardComment(BoardComment bc) {
+		Connection conn = getConnection();
+		int result = dao.updateBoardComment(conn, bc);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 	
 }

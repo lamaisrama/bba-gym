@@ -7,11 +7,7 @@
 	
 <%@ include file="/views/common/header.jsp"%>	
 
-<style>
-    h2{
-        margin: 30px 0;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 
@@ -26,7 +22,7 @@
                         <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" name="title" class="form-control" value="<%=b.getTitle() %>">
+                                <input type="text" name="title" class="form-control" value="<%=b.getTitle() %>" required>
                             </td>
                         </tr>
                         <tr>
@@ -49,23 +45,43 @@
                             </td>
                         </tr>   
                         <tr>
-                            <th>내용</th>
-                            <td><textarea type="text" name="content" class="form-control" cols="50" rows="10"><%=b.getQaContent() %></textarea></td>
+                            <th colspan="2">내용</th>
                         </tr>
                         <tr>
-                        <%-- <%if(logginMember!=null && logginMember.getM_CODE().equals(b.getmCode())){ %> --%>
-                            <td colspan="2" class="text-center">
+                            <td colspan="2"><textarea type="text" id="summernote" name="content" class="form-control" cols="500" rows="1000"><%=b.getQaContent() %></textarea></td>
+                        </tr>
+                        <tr>
+                        <%if(logginMember!=null && logginMember.getM_ID().equals(b.getmId())){ %>
+                            <td colspan="2" class="text-center" style="padding: 50px 50px;">
                                 <input type="submit" class="btn btn-primary" value="수정완료">
+                                <button type="button" class="btn btn-warning" onclick="location.replace('<%=request.getContextPath()%>/board/boardList')">취소</button>
                             </td>
-						<%-- <%} %> --%>
+						<%} %>
                         </tr>
                     </table>
                 </div>
             </form>
         </div>
     </div>
+    
 <script>
 
+	//summernote
+	$('#summernote').summernote({
+    	placeholder: 'Hello Bbagym',
+        height: 500,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true                  // set focus to editable area after initializing summernote
+     });
+        
+     $(document).ready(function() {
+          $('#summernote').summernote({
+
+         });
+     });
+	
+	// file
 	$(function(){
 		$("[name=upfile]").change(function(){
 			if($(this).val()==""){
@@ -77,4 +93,5 @@
 	});
 	
 </script>
+
 <%@ include file="/views/common/footer.jsp"%>	

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Trainer;
 import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerProgram;
@@ -51,11 +52,11 @@ public class TrainerDao {
 			while(rs.next()) {
 				TrainerView tv = new TrainerView();
 				
-				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_main_img"));
-				tv.setM_name(rs.getString("m_name"));
-				tv.setC_center(rs.getString("c_name"));
-				tv.setM_addres2(rs.getString("m_address_2"));
+				tv.setTcode(rs.getInt("t_code"));
+				tv.setTimg(rs.getString("t_main_img"));
+				tv.setMname(rs.getString("m_name"));
+				tv.setCcenter(rs.getString("c_name"));
+				tv.setMaddres2(rs.getString("m_address_2"));
 				
 				list.add(tv);
 			}
@@ -77,32 +78,28 @@ public class TrainerDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
-		List<String> badgelist = new ArrayList<String>();
+		
 		String sql =prop.getProperty("TrainerBadge");
 		
 		try {
 
-			for(int i=0;i<list.size();i++) { // for문을 돌려 tcode별 카테고리를 가져오게 한다
+			for(TrainerView tv : list) { // for문을 돌려 tcode별 카테고리를 가져오게 한다
+			
+				List<String> badgelist = new ArrayList<String>();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, tv.getTcode());
 				
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, list.get(i).getT_code());
-			
-			rs=pstmt.executeQuery();
-			
+				rs=pstmt.executeQuery();
+				
 			
 			while(rs.next()) {
 				badgelist.add(rs.getString(1)); //resultset에 크기를 알수 없으므로 카테고리를 badgelist에 담아둔다
 			}
 			
-			String[] badgeString=new String[badgelist.size()]; //담겨준 badgelist에 크기에 따라 String배열을 만든다
-			
-			for(int j=0;j<badgelist.size();j++) {
-				badgeString[j]=badgelist.get(j); //다시 badgelist에 값을 String 배열에 추가해준다
-			}
+		
 			
 			
-			list.get(i).setBadge(badgeString); //String배열을 list안에 객체 합쳐준다
-			badgelist.clear(); // badgelist초기화
+				tv.setBadge(badgelist); //String배열을 list안에 객체 합쳐준다
 			
 			}
 		
@@ -164,11 +161,11 @@ public class TrainerDao {
 			while(rs.next()) {
 				TrainerView tv = new TrainerView();
 				
-				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_main_img"));
-				tv.setM_name(rs.getString("m_name"));
-				tv.setC_center(rs.getString("c_name"));
-				tv.setM_addres2(rs.getString("m_address_2"));
+				tv.setTcode(rs.getInt("t_code"));
+				tv.setTimg(rs.getString("t_main_img"));
+				tv.setMname(rs.getString("m_name"));
+				tv.setCcenter(rs.getString("c_name"));
+				tv.setMaddres2(rs.getString("m_address_2"));
 				
 				list.add(tv);
 			}
@@ -230,11 +227,11 @@ public class TrainerDao {
 			while(rs.next()) {
 				TrainerView tv = new TrainerView();
 				
-				tv.setT_code(rs.getInt("t_code"));
-				tv.setT_img(rs.getString("t_main_img"));
-				tv.setM_name(rs.getString("m_name"));
-				tv.setC_center(rs.getString("c_name"));
-				tv.setM_addres2(rs.getString("m_address_2"));
+				tv.setTcode(rs.getInt("t_code"));
+				tv.setTimg(rs.getString("t_main_img"));
+				tv.setMname(rs.getString("m_name"));
+				tv.setCcenter(rs.getString("c_name"));
+				tv.setMaddres2(rs.getString("m_address_2"));
 				list.add(tv);
 			}
 			
@@ -304,6 +301,61 @@ public class TrainerDao {
 		
 		
 		return list;
+	}
+	
+	//카테고리 serach를 하기위한 dao 페이징처리
+	public List<TrainerView> SearchCategoryPageData(Connection conn,int cPage,int numPerpage,String type){
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		List<TrainerView> list= new ArrayList<TrainerView>();
+		String sql =prop.getProperty("SearchCategoryPageData");
+		sql=sql.replace("TYPE", type); // '1','2','3', ....
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				TrainerView tv =new TrainerView();
+				
+				tv.setTcode(rs.getInt("t_code"));
+				tv.setTimg(rs.getString("t_main_img"));
+				tv.setMname(rs.getString("m_name"));
+				tv.setCcenter(rs.getString("c_name"));
+				tv.setMaddres2(rs.getString("m_address_2"));
+				list.add(tv);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return list;
+	}
+	
+	public int searchCategoryCountCenter(Connection conn ,String type) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql =prop.getProperty("searchCategoryCountCenter");
+		sql=sql.replace("TYPE", type);
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			rs.next();
+			result=rs.getInt(1);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	public TrainerDetail trainerViewDetail(Connection conn, int t_code) {

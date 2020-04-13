@@ -61,6 +61,9 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		
 		int result=new MemberService().updateMember(m);
+		
+		
+		
 		  System.out.println("멤버코드"+M_CODE);
 		  System.out.println("멤버아이디"+M_ID);
 		  System.out.println("멤버레벨"+M_LEVEL);
