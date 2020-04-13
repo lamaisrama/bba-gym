@@ -241,22 +241,17 @@ public class CenterEnroll {
 		this.distance = distance;
 	}
 
-
 	@Override
 	public String toString() {
-		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories
-				+ ", prefer=" + prefer + ", score=" + score + "]";
+		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr="
+				+ opHr + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" + text + ", mainImage="
+				+ mainImage + ", businessCode=" + businessCode + ", approval=" + approval + ", memberCode=" + memberCode
+				+ ", snsHome=" + snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" + snsEtc
+				+ ", photos=" + photos + ", categories=" + categories + ", facilities=" + facilities + ", program="
+				+ program + ", prefer=" + prefer + ", score=" + score + ", addrX=" + addrX + ", addrY=" + addrY
+				+ ", distance=" + distance + "]";
 	}
 
-	/*
-	 * @Override public String toString() { return "CenterEnroll [code=" + code +
-	 * ", name=" + name + ", address=" + address + ", tel=" + tel + ", opHr=" + opHr
-	 * + ", holiday=" + holiday + ", schedulePath=" + schedulePath + ", text=" +
-	 * text + ", mainImage=" + mainImage + ", businessCode=" + businessCode +
-	 * ", approval=" + approval + ", memberCode=" + memberCode + ", snsHome=" +
-	 * snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" +
-	 * snsEtc + ", photos=" + photos + ", categories=" + categories +
-	 * ", facilities=" + facilities + ", program=" + program + "]"; }
-	 */
 
+	
 }

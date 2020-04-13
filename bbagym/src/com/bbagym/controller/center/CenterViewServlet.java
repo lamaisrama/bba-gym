@@ -65,6 +65,8 @@ public class CenterViewServlet extends HttpServlet {
 				lat = "134.06688515940303";
 				lng = "37.50133440959408";
 			}
+			
+
 
 		int numPerpage=3; //페이지당 3개 데이터 출력
 

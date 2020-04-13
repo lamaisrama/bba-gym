@@ -42,7 +42,7 @@ public class CenterSortCategoryServlet extends HttpServlet {
 		String keyword=request.getParameter("keyword").replace(" ", ""); // 검색키워드를 받아온다 공백처리
 		int cPage;
 		int m;
-		
+		HttpSession session = request.getSession();
 			if(type==null) {
 				
 				String[] category = request.getParameterValues("category"); //cPage=1일때 checkbox에서 category를 받아온다 
@@ -65,14 +65,13 @@ public class CenterSortCategoryServlet extends HttpServlet {
 			
 
 			try {
-					HttpSession session = request.getSession();
+
 					m=((Member)session.getAttribute("logginMember")).getM_CODE();
 				}catch(NullPointerException e) {
 					m=0;
 			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 		
 		int numPerpage=3;
-		HttpSession session = request.getSession();
 
 		String lat="", lng="";
 		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {

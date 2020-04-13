@@ -39,7 +39,7 @@ public class CenterReivewServlet extends HttpServlet {
 		String url= request.getContextPath()+"/center/review.do";
 		int cPage;
 		int m;
-		
+		HttpSession session = request.getSession();
 			try {
 				cPage = Integer.parseInt(request.getParameter("cPage"));
 			}catch(NumberFormatException e) {
@@ -47,15 +47,25 @@ public class CenterReivewServlet extends HttpServlet {
 			}
 		
 			try {
-				HttpSession session = request.getSession();
+			
 				m=((Member)session.getAttribute("logginMember")).getM_CODE();
 			}catch(NullPointerException e) {
 				m=0;
 			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 
 		int numPerpage=3; //페이지당 3개 데이터 출력
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
 		
-		List<CenterEnroll> list = new CenterService().centerReviewPageData(cPage,numPerpage,m);
+
+		
+		List<CenterEnroll> list = new CenterService().centerReviewPageData(cPage,numPerpage,m,lat,lng);
 		int totalData = new CenterService().selectCountCenter();
 		
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 

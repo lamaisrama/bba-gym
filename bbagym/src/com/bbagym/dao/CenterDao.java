@@ -725,10 +725,12 @@ public class CenterDao {
 			try {
 				
 				for(CenterEnroll ce : list) {
+					
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
+				pstmt.setInt(3, ce.getCode());
 				rs=pstmt.executeQuery();
 				
 				rs.next();
@@ -737,6 +739,7 @@ public class CenterDao {
 				
 				}
 				
+			
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
