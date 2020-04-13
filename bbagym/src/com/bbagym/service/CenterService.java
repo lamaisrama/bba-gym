@@ -22,18 +22,9 @@ public class CenterService {
 	private CenterEnrollDao enrollDao;
 	
 	//service에서 사용하는 폼 메소드형식
-	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode) {
+	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode,String lat,String lng) {
 		dao.findCatergoryList(conn,list); // 센터별 카테고리를 가져오는 서비스
 		dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
-		String lat="", lng="";
-		HttpSession session = request.getSession();
-		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
-			lat = (String) session.getAttribute("user_lat");
-			lng = (String) session.getAttribute("user_lng");
-		}else {
-			lat = "134.06688515940303";
-			lng = "37.50133440959408";
-		}
 		dao.checkXY(conn,list,lat,lng);
 		if(mcode!=0) {
 			dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
@@ -68,7 +59,7 @@ public class CenterService {
 		Connection conn=getConnection();
 		List<CenterEnroll> list =dao.centerMainPageData(conn,cPage,numPerpage); //기본 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+//			serivceForm(conn,list,mcode);
 		}
 		close(conn);
 		return list;
@@ -126,11 +117,11 @@ public class CenterService {
 	}
 
 	//category and keyword serach한 데이터를 가져오는 서비스-bs
-	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String type,String keyword){
+	public List<CenterEnroll> SearchCategoryPageData(int cPage,int numPerpage,int mcode,String type,String keyword,String lat,String lng){
 		Connection conn=getConnection();
 		List<CenterEnroll> list=dao.SearchCategoryPageData(conn,cPage,numPerpage,keyword,type); //cateogry and keyword 정렬 센터 정보를 가져오는 서비스
 		if(!list.isEmpty()) {
-			serivceForm(conn,list,mcode);
+			serivceForm(conn,list,mcode,lat,lng);
 		}
 		close(conn);
 		return list;

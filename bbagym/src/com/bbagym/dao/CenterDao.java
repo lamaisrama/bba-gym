@@ -718,18 +718,23 @@ public class CenterDao {
 			return list;
 		}
 		
-		public List<CenterEnroll> checkXY(Connection conn,List<CenterEnroll> list,String lat,String lng){
+		public void checkXY(Connection conn,List<CenterEnroll> list,String lat,String lng){
 			PreparedStatement pstmt = null;
 			ResultSet rs =null;
-			String sql =prop.getProperty("centerMainPageDataByDistance");
+			String sql =prop.getProperty("checkXY");
 			try {
+				
+				for(CenterEnroll ce : list) {
 				pstmt = conn.prepareStatement(sql);
-				//System.out.println(("latitude?"+lat +" || lng? "+lng));
+				
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
 				rs=pstmt.executeQuery();
-				while(rs.next()) {
-					C
+				
+				rs.next();
+				
+				ce.setDistance(String.valueOf(rs.getDouble(1)));
+				
 				}
 				
 			}catch(SQLException e) {
@@ -737,7 +742,7 @@ public class CenterDao {
 			}
 			
 			
-			return list;
+			
 		}
 	
 }

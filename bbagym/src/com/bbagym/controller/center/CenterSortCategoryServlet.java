@@ -72,8 +72,18 @@ public class CenterSortCategoryServlet extends HttpServlet {
 			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 		
 		int numPerpage=3;
+		HttpSession session = request.getSession();
+
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "134.06688515940303";
+			lng = "37.50133440959408";
+		}
 		
-		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword);
+		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword,lat,lng);
 	
 		int totalData = new CenterService().searchCategoryCountCenter(type,keyword);
 
