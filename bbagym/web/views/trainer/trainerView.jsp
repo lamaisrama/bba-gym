@@ -70,7 +70,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>소속 : <%=trainerlist.get(i).getCcenter() %></td>
+                                        <td>소속 : <%=trainerlist.get(i).getCcenter()==null ? "프리랜서" : trainerlist.get(i).getCcenter()%></td>
                                    </tr>
                                     <tr>
                                         <td>주소 : <%=trainerlist.get(i).getMaddres2() %></td>
