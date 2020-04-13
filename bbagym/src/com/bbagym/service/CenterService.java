@@ -22,6 +22,7 @@ public class CenterService {
 		dao.getScore(conn,list); //센터별 별점을 가져오는 서비스
 		if(mcode!=0) {
 			dao.checkPerfer(conn,list,mcode); //로그인아이디에 찜인 상태인 센터를 표기하는 서비스
+			
 		}
 	}
 	

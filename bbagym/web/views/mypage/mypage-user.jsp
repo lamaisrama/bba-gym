@@ -68,7 +68,7 @@
 					My 찜<a href="#myprefer" style="text-decoration: none;">
 						<button style="float: right;">></button>
 					</a>
-					<div>0개</div>
+					<div><%=myPerfer.size() %>개</div>
 				</div>
 				<div id="menu4">
 					장바구니<a href="#4" style="text-decoration: none;">
