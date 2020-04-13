@@ -12,11 +12,14 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.bbagym.dao.CenterDao;
+import com.bbagym.dao.CenterEnrollDao;
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Program;
 
 public class CenterService {
 	private static CenterDao dao = new CenterDao();
+	private CenterEnrollDao enrollDao;
 	
 	//service에서 사용하는 폼 메소드형식
 	public static void serivceForm(Connection conn,List<CenterEnroll> list,int mcode) {
@@ -207,7 +210,62 @@ public class CenterService {
 			return list;
 		}
 
-		
+	//센터 등록
+	public int enrollCenter(CenterEnroll c) {
+		enrollDao = new CenterEnrollDao();
+		Connection conn = getConnection();
+		//1. center table에 값 넣기
+		int result=enrollDao.enrollCenter(conn, c);
+		if(result>0) {
+			//2. DB에서 CCODE 가져오기
+			c.setCode(enrollDao.selectCcode(conn));
+			//2-5 c_code 이용해서 centerxy에 좌표 넣기
+			result=enrollDao.insertCenterXY(conn, c);
+			if(result>0) {
+				result=enrollDao.insertCenterCategory(conn, c);
+				if(result==c.getCategories().size()) {
+					//4. c_code 이용해서 center_facility tbl에 insert
+					result=enrollDao.insertCenterFacility(conn, c);
+					if(result==c.getFacilities().size()) {
+						//5. c_code 이용해서 c_image 테이블에 이미지파일 path 저장
+						result=enrollDao.insertCenterImage(conn, c);
+						if(result==c.getPhotos().size()) {
+							//6. c_code 이용해서 c_program 등록 
+							result=enrollDao.insertProgram(conn,c);
+							if(result==c.getProgram().size()) {
+								//6.1. p_code 가져오기
+								int totalProgram = c.getProgram().size();
+								int pCodeLast=enrollDao.selectPcode(conn);
+									//만약 프로그램 개수가 2개면, pCodeLast가 5일때  4,5이 들어간 것
+								for(int i=totalProgram;i>0;i--) {
+									c.getProgram().get(i-1).setpCode(pCodeLast);
+									pCodeLast--;
+								}
+								//7. p_code 이용해서 c_price 등록
+								for(Program p : c.getProgram()) {
+									result=0;
+									for(int i=0;i<4;i++) {
+										result+=enrollDao.insertProgramPrice(conn, p.getpCode(), p.getPrices().get(i));
+									}
+									if(result!=4) return -1;
+								}
+								
+								result=1;
+								if(result>0) {
+									commit(conn);
+									close(conn);
+									return 1;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		rollback(conn);
+		close(conn);
+		return -1;
+	}
 	
 	
 }
