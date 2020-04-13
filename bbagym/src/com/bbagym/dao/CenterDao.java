@@ -61,7 +61,7 @@ public class CenterDao {
 		ResultSet rs = null;
 		//String sql = prop.getProperty("selectCenter");
 		String sql = "select * from (select rownum as rnum, a.* from (select * from center where approval='Y') a) where rnum between ? and ?";
-		List<CenterEnroll> list = new ArrayList();
+		List<CenterEnroll> list = new ArrayList<CenterEnroll>();
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage-1)*numPerPage+1);
@@ -536,7 +536,7 @@ public class CenterDao {
 		return result;
 		}
 	
-	
+	//이름과주소를합쳐 serach한 데이터를 페이징처리하는 dao-bs
 	public List<CenterEnroll> searchKeywordPageData(Connection conn,int cPage,int numPerpage,String keyword){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -572,7 +572,7 @@ public class CenterDao {
 	}
 	
 	
-	
+	//주소와이름을 합쳐서 search한 데이터의 전체카운트 dao-bs
 	public int searchCountCenter(Connection conn,String keyword) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -592,7 +592,8 @@ public class CenterDao {
 		}
 		return result;
 	}
-	//최신순으로 sort하는 데이터 페이징 dao
+	
+	//최신순으로 sort하는 데이터 페이징 dao-bs
 	public List<CenterEnroll> sortSysDatePageData(Connection conn,int cPage, int numPerpage){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -623,7 +624,7 @@ public class CenterDao {
 		return list;
 	}
 	
-	//평점순으로 sort하는 데이터 페이징 dao
+	//평점순으로 sort하는 데이터 페이징 dao-bs
 	public List<CenterEnroll> centerScorePageData(Connection conn,int cPage,int numPerpage){
 		PreparedStatement pstmt = null;
 		ResultSet rs =null;
@@ -653,7 +654,7 @@ public class CenterDao {
 		
 		return list;
 	}
-	//리뷰순으로 sort하는 데이터 페이징 dao
+	//리뷰순으로 sort하는 데이터 페이징 dao-bs
 		public List<CenterEnroll> centerReviewPageData(Connection conn,int cPage,int numPerpage){
 			PreparedStatement pstmt = null;
 			ResultSet rs =null;
@@ -686,7 +687,6 @@ public class CenterDao {
 
 		public List<CenterEnroll> centerMainPageDataDistance(Connection conn, int cPage, int numPerpage, String lat,
 				String lng) {
-			System.out.println("centerDAO, method in");
 			PreparedStatement pstmt = null;
 			ResultSet rs =null;
 			List<CenterEnroll> list = new ArrayList<CenterEnroll>();

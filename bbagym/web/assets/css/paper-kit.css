@@ -4201,8 +4201,8 @@ License - nucleoapp.com/license/
 }
 
 .nav-pills .nav-item .nav-link {
-  border: 1px solid #66615B;
-  border-radius: 0;
+  /* border: 1px solid #66615B; */
+  /* border-radius: 0; */
   color: #66615B;
   font-weight: 600;
   margin-left: -1px;
@@ -4226,8 +4226,8 @@ License - nucleoapp.com/license/
 }
 
 .nav-pills .nav-item .nav-link.active {
-  background-color: #66615B;
-  color: #FFFFFF;
+  /* background-color: #66615B;
+  color: #FFFFFF; */
 }
 
 .nav-pills-primary .nav-item .nav-link {

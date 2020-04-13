@@ -223,8 +223,6 @@ public class CenterEnroll {
 	}
 
 
-
-
 	public String getAddrY() {
 		return addrY;
 	}
@@ -243,7 +241,7 @@ public class CenterEnroll {
 		this.distance = distance;
 	}
 
-	
+
 	@Override
 	public String toString() {
 		return "CenterEnroll [code=" + code + ", name=" + name + ", address=" + address + ", categories=" + categories

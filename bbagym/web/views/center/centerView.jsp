@@ -21,7 +21,7 @@
         <div class="row">
             <div class="searchBox">
                 <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
-                <button class="btn btn-warning btn-sm" onclick="searchByKeyword();">Find!</button>
+                <button class="btn btn-warning" onclick="searchByKeyword();">찾기</button>
             </div>
         </div>
         <div class="row">
@@ -70,7 +70,7 @@
                     <br>
                     <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
                     <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">기타</label><br>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">테니스</label><br>
                     <input type="hidden"  id="keyword"	name="keyword">
                     <button type="submit" class="btn btn-info" >검색</button>
                 </form>
@@ -141,7 +141,7 @@
     
     <script>
     
-   		/* 이미지 넣어주기 */
+   		/* 이미지 넣어주기 480*300 */
     	var boxinner=$(".content-box-inner");
 		
 		<%if(!centerList.isEmpty()){ 
@@ -181,7 +181,7 @@
 		/* 찜하기 ajax */
 		
 		/* 키워드 검색 */
-		function serachKeyword(){
+		function searchByKeyword(){
             		var search=$("#search").val();
             		location.replace("<%=request.getContextPath() %>/center/search.do?keyword="+search);
             	}
