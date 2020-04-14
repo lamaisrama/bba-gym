@@ -89,10 +89,6 @@
 					if(bc.getQaCommentLevel()==1){%>
 						<tr class="level1">
 						<td>
-<%-- 						<input type="hidden" name="no" value="<%=b.getQaCode() %>">
-							
-							<input type="hidden" name="content" value="<%=bc.getQaCommentContent() %>">
- --%>
 							<dl class="row">
 								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
 	  							<dd class="col-sm-9">
@@ -106,13 +102,7 @@
 							<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
 						<%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(bc.getmId())){%>
 							<button type="button" class="btn btn-outline-warning btn-sm btn-reply2" data-toggle="modal" data-target="#exampleModal" data-whatever="수정하기">수정</button>
-
 							<button class="btn btn-outline-danger btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentDelete?no=<%=bc.getQaCommentCode()%>')">삭제</button>
-						
-						<%-- <button class="btn btn-outline-warning btn-sm btn-reply" onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdate?no=<%=bc.getQaCommentCode()%>')">수정</button> --%>
-						<%-- <button class="btn btn-outline-warning btn-sm btn-reply" id="btn-reply-modify" value="<%=bc.getQaCommentCode()%>">수정</button> --%>
-						<%-- <button class="btn btn-outline-warning btn-sm btn-reply" id="btn-reply-modify" value="<%=bc.getQaCommentCode()%>">수정</button> --%>
-						
 						<%} %>
 						</td>
 					</tr>
@@ -141,8 +131,8 @@
 			            	<input type="hidden" name="no" value="<%=b.getQaCode() %>">
 							<input type="hidden" name="nobc" >
 				            <div class="form-group">
-				            	원댓글:<input type="text" name="content" value="<%=bc.getQaCommentContent() %>" readonly></br>
-				                <label for="message-text" class="col-form-label">수정댓글:</label>
+				            	원댓글&nbsp;&nbsp;<input type="text" name="content" value="<%=bc.getQaCommentContent() %>" style="width:100%;" readonly></br>
+				                <label for="message-text" class="col-form-label">수정할 댓글 내용을 입력하셈</label>
 				                <textarea class="form-control" name="commentContent" id="message-text"></textarea>
 				            </div>
 					    </form>
