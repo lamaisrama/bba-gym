@@ -7,12 +7,13 @@
 	List<CenterEnroll> centerList = (List) request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
 %>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <!-- 시설 등록 승인-->
 <div id="center-approve"style="width: 100%; ">
 
 	<div
 		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-		<h1>시설 등록 승인</h1>
+		<br><h1>시설 등록 승인</h1><br>
 		
 	</div>
 	<!-- 상단 -->

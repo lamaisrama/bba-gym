@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.bbagym.model.vo.CenterDetail, com.bbagym.model.vo.CenterPrograms" %>
-
+<%@ include file="/views/common/header.jsp"%>
 <%
 	CenterDetail cd = (CenterDetail)request.getAttribute("cd");
 	int cCode = (int)request.getAttribute("cCode");
@@ -9,9 +9,6 @@
 	int score=1;
 %>
 	
-
-<%@ include file="/views/common/header.jsp"%>
-
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
