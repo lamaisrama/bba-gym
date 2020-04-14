@@ -113,7 +113,6 @@ public class CenterService {
 				dao.checkPerfer2(conn, list, cCode, mCode);				
 				dao.getBuy(conn, list, cCode, mCode, cd);
 				if(cd.isBuy()==true) {
-					System.out.println(cd.isBuy());
 					dao.getBuyInfo(conn, cCode, mCode, cd);
 				}
 			}

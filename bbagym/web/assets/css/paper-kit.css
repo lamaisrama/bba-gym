@@ -5633,6 +5633,7 @@ License - nucleoapp.com/license/
   background-attachment: fixed;
   position: relative;
   line-height: 20px;
+  
 }
 
 .footer .footer-nav ul {
@@ -5684,7 +5685,7 @@ License - nucleoapp.com/license/
 }
 
 .footer {
-  background-color: #FFFFFF;
+  
   line-height: 36px;
 }
 

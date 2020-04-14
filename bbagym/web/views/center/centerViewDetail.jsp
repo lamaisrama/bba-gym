@@ -54,19 +54,14 @@
                         </div>
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
-                            <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
-                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
-                                	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                               		if(i==0||!preName.equals(cp.getpName())) {
-                               			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
-                                <%}
-                                }%>
-                            </select>
+                            <select class="custom-select" style="width:500px;" id="baguni">
+				         		<%for(CenterPrograms c: cd.getCenterPrograms()){  %>
+					           		<option value="<%="c/"+c.getpCode()+"/"+c.getMonth()%>">프로그램명 : <%=c.getpName() %> 가격 : <%=c.getPrice() %>원  이용달수: <%=c.getMonth() %>회</option>
+					            <%} %> 
+						 </select>
                         </div>
                         <div id="basket-button"><!--담기-->
-                            <button type="button" class="btn btn-primary btn-baguni" style="width: 100%; height: 100%;" >회원권 담기</button>
+                            <button id="baguni2" type="submit" class="btn btn-info" style="width:100%;height:100%;" >장바구니에 담기</button>
                         </div>
                     </div>
                 </div>    
@@ -227,16 +222,22 @@
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
-																<%for(int i=0; i<cd.getBuyInfo().size(); i++) {
+																<%boolean flag= false;
+																for(int i=0; i<cd.getBuyInfo().size(); i++) {
 																	BuyInfo bi = cd.getBuyInfo().get(i);{
-																	if(bi.getScore()==0) {%>
+																	if(bi.getScore()==0) {
+																	flag = true;%>
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
 
 																<%}else {%>
-																	<option value="" disabled>선택 항목 없음</option>
-																<%} break;
+																	<!-- <option value="" disabled>선택 항목 없음</option> -->
+																<%}
 																	} 
-																}%>
+																} 
+																if(flag=false){%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} %>
+																
 															</select>
 														</div>
 													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
@@ -379,6 +380,26 @@
 	    			}
 	    		});
 	    	});
+	        
+	        
+	        $("#baguni2").on("click",function(){
+	      		
+	      		var baguni =  {"baguni":$("#baguni").val()};
+	      		
+	      		console.log(baguni);
+	      		
+	      		$.ajax({
+	      			url : "<%=request.getContextPath() %>/ShoppingBaguniServlet.do",
+	      			data : baguni,
+	      			success : function(data){
+	      				alert("바구니 담기 성공!");
+	      			},
+	      			error : function(r,e,m){
+	      				alert("바구니 담기 실패!");
+	      			}
+	      		})
+	      		
+	      	});
 			
 	</script>
 
