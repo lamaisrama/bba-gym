@@ -227,16 +227,22 @@
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
-																<%for(int i=0; i<cd.getBuyInfo().size(); i++) {
+																<%boolean flag= false;
+																for(int i=0; i<cd.getBuyInfo().size(); i++) {
 																	BuyInfo bi = cd.getBuyInfo().get(i);{
-																	if(bi.getScore()==0) {%>
+																	if(bi.getScore()==0) {
+																	flag = true;%>
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
 
 																<%}else {%>
-																	<option value="" disabled>선택 항목 없음</option>
-																<%} break;
+																	<!-- <option value="" disabled>선택 항목 없음</option> -->
+																<%}
 																	} 
-																}%>
+																} 
+																if(flag=false){%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} %>
+																
 															</select>
 														</div>
 													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">

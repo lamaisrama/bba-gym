@@ -468,6 +468,31 @@ public class TrainerDao {
 		}
 	}
 	
+	public void getBuy(Connection conn, List<TrainerDetail> list, int tCode, int mCode, TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = prop.getProperty("getBuy");
+		
+		try {
+			for(int i=0; i<list.size(); i++) {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, mCode);
+				pstmt.setInt(2, tCode);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					if(rs.getInt(1)>0) {
+						list.get(i).setBuy(true);
+						td.setBuyCount(rs.getInt(1));
+					}else {
+						list.get(i).setBuy(false);
+						td.setBuyCount(0);
+					}
+				}
+			}
+		}
+	}
+	
 	
 }
 
