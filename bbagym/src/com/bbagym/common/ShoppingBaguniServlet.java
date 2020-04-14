@@ -35,7 +35,7 @@ public class ShoppingBaguniServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		int mcode =  ((Member)session.getAttribute("logginMember")).getM_CODE();
-
+		boolean flag=false;
 		String baguni = request.getParameter("baguni");
 		System.out.println(baguni);
 		
@@ -45,19 +45,34 @@ public class ShoppingBaguniServlet extends HttpServlet {
 			for(Cookie c : cookies) {
 				String name=c.getName();
 				String value=c.getValue();
-				System.out.println(name);
-				if(Integer.parseInt(c.getName())==mcode) {
-					c= new Cookie(""+mcode, value+"|"+baguni+"|");
+				
+				if(String.valueOf(mcode).equals(name)) {
+					
+					String[] check=value.split("&");
+					
+					for(String c1 : check) {
+						if(c1.equals(baguni)) {
+							return;
+						}
+					}
+					
+					c= new Cookie(""+mcode, value+baguni+"&");
 					c.setMaxAge(31*24*60*60);
 					response.addCookie(c);
-					return;
+					flag=true;
+					break;
 				}
+				
 			}
-			Cookie c= new Cookie(""+mcode, "|"+baguni+"|");
-			c= new Cookie(""+mcode, c.getValue()+"|"+baguni+"|");
-			c.setMaxAge(31*24*60*60);
-			response.addCookie(c);
+			
+			
+			if(flag==false) {
+				Cookie c= new Cookie(""+mcode, baguni+"&");
+				c.setMaxAge(31*24*60*60);
+				response.addCookie(c);
+			}
 		}
+			
 		
 		
 	}
