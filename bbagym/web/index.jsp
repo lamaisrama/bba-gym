@@ -77,10 +77,7 @@
 <!-- 로그인x기본 -->		 <li><a href="<%=request.getContextPath()%>/trainer/trainerView.do">트레이너 찾기</a></li>	<!-- /views/trainner/trainnerView.jsp -->
 				         <li><a href="<%=request.getContextPath()%>/board/noticeList">Notice</a></li>			<!-- /views/board/noticeList.jsp -->
 				         <li><a href="<%=request.getContextPath()%>/board/boardList">Q&A</a></li>						<!-- /views/board/boardList.jsp -->
-				     <%} %>
-
-			
-				        
+				     <%} %> 
 				    </ul>
 			    </div>				          
 			</div>  

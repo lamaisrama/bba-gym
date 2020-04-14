@@ -389,7 +389,6 @@ public class TrainerDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(td);
 		return td;
 		
 	}

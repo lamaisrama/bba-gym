@@ -36,6 +36,7 @@ public class TrainerViewDetailServlet extends HttpServlet {
 //		int t_code = 1;
 		TrainerDetail td = new TrainerService().trainerViewDetail(t_code);
 		
+		System.out.println(td);	
 		request.setAttribute("td", td);
 		request.getRequestDispatcher("/views/trainer/trainerViewDetail.jsp").forward(request, response);
 		
