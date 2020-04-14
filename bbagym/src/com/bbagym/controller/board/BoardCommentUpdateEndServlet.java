@@ -33,12 +33,10 @@ public class BoardCommentUpdateEndServlet extends HttpServlet {
 		
 		int boardNo = Integer.parseInt(request.getParameter("no"));
 		int boardCmtNo = Integer.parseInt(request.getParameter("nobc"));
-		String writer = request.getParameter("commentWriter");
 		String content = request.getParameter("commentContent");
 
 		System.out.println(boardNo);
 		System.out.println(boardCmtNo);
-		System.out.println(writer);
 		System.out.println(content);
 		
 		BoardComment bc = new BoardComment(boardCmtNo, 0, 0, content, null, 0, 0);

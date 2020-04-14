@@ -62,7 +62,6 @@
                             <%} %>    
                                 </td>
                             </tr>
-		                        
                         </table>
                     </div>
             </div>
@@ -90,19 +89,21 @@
 					if(bc.getQaCommentLevel()==1){%>
 						<tr class="level1">
 						<td>
-							<input type="hidden" name="no" value="<%=b.getQaCode() %>">
-							<input type="hidden" name="nobc" value="<%=bc.getQaCommentCode() %>">
+<%-- 						<input type="hidden" name="no" value="<%=b.getQaCode() %>">
+							
 							<input type="hidden" name="content" value="<%=bc.getQaCommentContent() %>">
+ --%>
 							<dl class="row">
 								<dt class="col-sm-3"><sub class="comment-writer"><%=bc.getmId()%></sub></dt>
 	  							<dd class="col-sm-9">
-	  								<%=bc.getQaCommentContent() %>
+	  								<span class="comment-content"><%=bc.getQaCommentContent() %></span>
 	  								&nbsp;&nbsp;<sub class="comment-date"><%=bc.getQaCommentDate() %></sub>
+									<input type="hidden" name="nobc" value="<%=bc.getQaCommentCode() %>">
 								</dd>
 							</dl>
 						</td>
 						<td>
-						<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
+							<button class="btn btn-outline-primary btn-sm btn-reply" value="<%=bc.getQaCommentCode()%>">답글</button>
 						<%if(logginMember!=null&&logginMember.getM_ID().equals("admin")||logginMember.getM_ID().equals(bc.getmId())){%>
 							<button type="button" class="btn btn-outline-warning btn-sm btn-reply2" data-toggle="modal" data-target="#exampleModal" data-whatever="수정하기">수정</button>
 
@@ -136,20 +137,19 @@
 		    <div class="modal-dialog" role="document">
 		        <div class="modal-content">
 			        <div class="modal-body">
-			            <form>
+			            <form id="updateFrm" action="<%=request.getContextPath()%>/board/boardCommentUpdateEnd" method="post">
 			            	<input type="hidden" name="no" value="<%=b.getQaCode() %>">
-							<input type="hidden" name="nobc" value="<%=bc.getQaCommentCode() %>">
-							<input type="hidden" name="content" value="<%=bc.getQaCommentContent() %>">
-			            <div class="form-group">
-			                <label for="message-text" class="col-form-label">수정댓글:</label>
-			                <textarea class="form-control" name="commentContent" id="message-text"><%=bc.getQaCommentContent() %></textarea>
-			            </div>
-			            </form>
+							<input type="hidden" name="nobc" >
+				            <div class="form-group">
+				            	원댓글:<input type="text" name="content" value="<%=bc.getQaCommentContent() %>" readonly></br>
+				                <label for="message-text" class="col-form-label">수정댓글:</label>
+				                <textarea class="form-control" name="commentContent" id="message-text"></textarea>
+				            </div>
+					    </form>
 			        </div>
 			        <div class="modal-footer">
 			            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-			            <button type="button" class="btn btn-primary" 
-			            	onclick="location.replace('<%=request.getContextPath()%>/board/boardCommentUpdateEnd?nobc=<%=bc.getQaCommentCode()%>')">수정댓글등록</button>
+			            <button type="button" class="btn btn-primary" onclick="updateComment();">수정댓글등록</button>
 			        </div>
 		        </div>
 		    </div>
@@ -160,69 +160,27 @@
 		</table>
 		
 		<script>
+			function updateComment(){
+				$("#updateFrm").submit();
+			}
 		    $('#exampleModal').on('show.bs.modal', function (event) {
-			    var button = $(event.relatedTarget) // Button that triggered the modal
-			    var recipient = button.data('whatever') // Extract info from data-* attributes
-			    var modal = $(this)
-			    /* modal.find('.modal-title').text('수정할내용' + recipient)
-			    modal.find('.modal-body input').val(recipient) */
-		    })
-		</script>
+		   		// 값을 순회해서 가져오기
+		    	const parent=$(event.relatedTarget).parent().prev().find("dd");
+		   		const commentNo=parent.find("[name=nobc]").val();
+		   		const curComment=parent.find("span.comment-content").html();
+
+		   		var button = $(event.relatedTarget) // Button that triggered the modal
+			    
+			    //모달창에 있는 값 세팅하기
+			    $(this).find("input[name=content]").val(curComment);
+			    $(this).find("input[name=nobc]").val(commentNo);
+			    
+		    });
+	    </script>
 
 		<!-- 댓글 수정 창 end -->
 
 
-<!--  -->
-    
-   <%--  
-   <form action="/board/boardCommentUpdate" method="post" name="frm">
-	    <input type="hidden" name="nobc" value="1"> <!-- comment idx -->
-	    <input type="hidden" name="exe" value="1">
-	    <input type="hidden" name="page" value="${page}">
-	    <input type="hidden" name="ref" value="${vo.no}"> <!-- board idx -->
-	    
-	    <table>
-	    	<tr>
-	    		<th colspan="2">댓글</th>
-	    	</tr>
-	    	<tr>
-	    		<td width="100">이름</td>
-	    		<td width="150"><input type="text" name="writer"></td>
-	    	</tr>
-	    	<tr>
-	    		<td>내용</td>
-	    		<td><textarea cols="60" rows="5" name="content"></textarea></td>
-	    	</tr>
-	    	<tr>
-	    		<td colspan="2">
-	    			<input type="submit" value="등록" name="cmd">
-	    			<input type="reset" value="다시쓰기">
-	    		</td>
-	    	</tr>
-	    </table>
-    </form>
-    
-    
-    
-   <script type="text/javascript">
-   		function displaySet(exe, nobc, writer, content, cmd){
-   			obj = document.frm;
-   			obj.nobc.value=nobc;
-   			obj.exe.value=exe;
-   			obj.writer.value=writer;
-   			while(content.indexOf("<br>")!=-1){
-   				content = content.replace("<br>", "\n");
-   			}
-   			obj.content.value=content;
-   			obj.cmd.value=cmd;
-   		}
-   		
-   		
-   </script>  
-   --%>
-   
-<!--  -->    
-    
     <footer>
     <div class="container">
       <div class="row">
@@ -273,58 +231,6 @@
 			}
 		});
 	});
-    
-	
-	// 댓글 수정
-	
-	/* $('#btn-reply-modify').on('shown.bs.modal', function () {
-  		$('#myInput').trigger('focus')
-	}) */
-	
-	
-	/* 
-	
-	function displaySet(){
-		
-	}
-	
-	var modal = $("#btn-reply-modify");
-	var modalContent = document.querySelector("textarea[name='modalContent']");
-	
-	$("#btn-reply-modify").click(function(e){
-		var bc = {nobc:nobc, cmtContent:commentContent.value};
-		BoardService.updateComment(bc, function(result)){
-			alert(result);
-			modal.modal("hide");
-			
-		}
-		
-	}); 
-	
-	*/
-	
-	/* function modifyReply(reply, callback, error){
-		console.log(“수정할 댓글 번호 : ” + relpy.rno);
-		
-		$.ajax({
-			type : ‘put’,
-			url : ‘/reply.modify’_reply.rno,
-			data : JSON.stringify(reply),
-			contentType : “application.json;charset=utf-8”,
-			success : function(result, status, xhr){
-				if(callback){
-					callback(result);
-				}
-			},
-			error : function(xhr, status, err){
-				if(error){
-					error(err);
-				}
-			}
-		})
-	}return{
-		modifyReply : modifyReply
-	}; */
 	
 </script>
 
