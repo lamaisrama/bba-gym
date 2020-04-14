@@ -40,6 +40,7 @@ public class BaguinServlet extends HttpServlet {
 		ArrayList<Baguni> trainerlist = new ArrayList<Baguni>();
 
 		int mcode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		System.out.println(mcode);
 		String baguni="";
 		Cookie[] cookies = request.getCookies();
 		
@@ -56,37 +57,36 @@ public class BaguinServlet extends HttpServlet {
 		}
 		
 		
-		
+		if(!baguni.equals("")) {
 		String[] data=baguni.split("&");
 		
-		for(String s : data) {
-			if(s.charAt(0)=='t') {
-				String[] info=s.split("/");
-				Baguni bg =  new Baguni();
-				bg.setPcode(Integer.parseInt(info[1]));
-				bg.setCount(Integer.parseInt(info[2]));
-				trainerlist.add(bg);
-			}else {
-				String[] info=s.split("/");
-				Baguni bg =  new Baguni();
-				bg.setPcode(Integer.parseInt(info[1]));
-				bg.setMonth(Integer.parseInt(info[2]));
-				centerlist.add(bg);
+			if(data!=null) {
+				for(String s : data) {
+					if(s.charAt(0)=='t') {
+						String[] info=s.split("/");
+						Baguni bg =  new Baguni();
+						bg.setPcode(Integer.parseInt(info[1]));
+						bg.setCount(Integer.parseInt(info[2]));
+						trainerlist.add(bg);
+					}else {
+						String[] info=s.split("/");
+						Baguni bg =  new Baguni();
+						bg.setPcode(Integer.parseInt(info[1]));
+						bg.setMonth(Integer.parseInt(info[2]));
+						centerlist.add(bg);
+					}
+				}
+				
+				
+				new BaguniService().searchtrainer(trainerlist);
+				 new BaguniService().searchcenter(centerlist);
 			}
+		
 		}
 		
+	
 		
-		 new BaguniService().searchtrainer(trainerlist);
-		 new BaguniService().searchcenter(centerlist);
 		
-		 for(Baguni b : centerlist) {
-				System.out.println(b);
-			}
-			System.out.println("================");
-			for(Baguni b : trainerlist) {
-				System.out.println(b);
-			}
-		 
 	    request.setAttribute("trainerlist", trainerlist);
 	    request.setAttribute("centerlist", centerlist);
 		request.getRequestDispatcher("/views/baguni/baguni.jsp").forward(request, response);

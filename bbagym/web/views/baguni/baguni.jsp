@@ -29,9 +29,8 @@
 
     
     <div class="container-fluid" style="border: none;">
-    
-    
-    <!-- 박스 --><%for(Baguni ba : centerlist){ %>
+    		<%if(centerlist==null){ %>
+    <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
         <div class="baguni d-flex flex-row">
             <div class="checkbox-cont">
                 <input type="checkbox" name="checkbox" id="checkbox">
@@ -65,11 +64,11 @@
                 </div>
             </div>
         </div>
-		<%} %>
+		<%} }%>
 	    <!-- 박스 -->
 	    
-	    
-	     <!-- 박스 --><%for(Baguni ba : trainerlist){ %>
+	    <%if(trainerlist==null){ %>
+	     <!-- 박스 --><%} else{for(Baguni ba : trainerlist){ %>
         <div class="baguni d-flex flex-row">
             <div class="checkbox-cont">
                 <input type="checkbox" name="checkbox" id="checkbox">
@@ -103,7 +102,7 @@
                 </div>
             </div>
         </div>
-		<%} %>
+		<%}} %>
 	    <!-- 박스 -->
        
 	        <div class="total-price-container">
@@ -127,6 +126,7 @@
 		    </div>
 		    
 	     </div>
+	     
        <script>
         $(".month-container").removeClass("month-container-click");
 
