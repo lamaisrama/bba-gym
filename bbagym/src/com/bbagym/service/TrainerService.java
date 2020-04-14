@@ -4,6 +4,7 @@ import static com.bbagym.common.JDBCTemplate.close;
 import static com.bbagym.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bbagym.dao.TrainerDao;
@@ -93,13 +94,20 @@ public class TrainerService {
 		return name;
 	}
 	
-	public TrainerDetail trainerViewDetail(int t_code) {
+	public TrainerDetail trainerViewDetail(int tCode, int mCode) {
 		Connection conn = getConnection();
-		TrainerDetail td = dao.trainerViewDetail(conn, t_code);
+		TrainerDetail td = dao.trainerViewDetail(conn, tCode);
 		if(td!=null) {
-			dao.trainerViewDetailpNames(conn, t_code, td);
-			dao.trainerViewDetailPrograms(conn, t_code, td);
-			dao.trainerViewDetailImgs(conn, t_code, td);
+			dao.trainerViewDetailpNames(conn, tCode, td);
+			dao.trainerViewDetailPrograms(conn, tCode, td);
+			dao.trainerViewDetailImgs(conn, tCode, td);
+			List<TrainerDetail> list = new ArrayList<TrainerDetail>();
+			list.add(td);
+			/*
+			 * if(mCode!=0) { dao.getScoreForComment(conn, td, tCode); dao.getBuy(conn,
+			 * list, tCode, mCode, td); if(td.isBuy()==true) {
+			 * System.out.println(td.isBuy()); dao.getBuyInfo(conn, tCode, mCode, td); } }
+			 */
 		}
 		close(conn);
 		return td;

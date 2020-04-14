@@ -12,6 +12,9 @@ public class TrainerDetail {
 	private String m_address_2;		//주소
 	private List<String> tProgramNames;
 	private List<TrainerProgram> trainerPrograms;
+	private List<BuyInfo> buyInfo;
+	private boolean buy;
+	private int buyCount;
 	private String t_text;
 	private String t_career;
 	private String t_counsel_hours;
@@ -21,15 +24,18 @@ public class TrainerDetail {
 	private String sns_instagram;
 	private String sns_blog;
 	private String sns_etc;
+	private int pcode;
 	
 	public TrainerDetail() {
 		// TODO Auto-generated constructor stub
 	}
 
-	TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
-			List<String> tProgramNames, List<TrainerProgram> trainerPrograms, String t_text, String t_career,
-			String t_counsel_hours, String c_name, List<String> t_img, String sns_homepage, String sns_instagram,
-			String sns_blog, String sns_etc) {
+	
+
+	public TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
+			List<String> tProgramNames, List<TrainerProgram> trainerPrograms, List<BuyInfo> buyInfo, boolean buy,
+			int buyCount, String t_text, String t_career, String t_counsel_hours, String c_name, List<String> t_img,
+			String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
@@ -38,6 +44,9 @@ public class TrainerDetail {
 		this.m_address_2 = m_address_2;
 		this.tProgramNames = tProgramNames;
 		this.trainerPrograms = trainerPrograms;
+		this.buyInfo = buyInfo;
+		this.buy = buy;
+		this.buyCount = buyCount;
 		this.t_text = t_text;
 		this.t_career = t_career;
 		this.t_counsel_hours = t_counsel_hours;
@@ -48,6 +57,22 @@ public class TrainerDetail {
 		this.sns_blog = sns_blog;
 		this.sns_etc = sns_etc;
 	}
+
+
+	
+	
+
+	public int getPcode() {
+		return pcode;
+	}
+
+
+
+	public void setPcode(int pcode) {
+		this.pcode = pcode;
+	}
+
+
 
 	public String getProf_img() {
 		return prof_img;
@@ -103,6 +128,30 @@ public class TrainerDetail {
 
 	public void setTrainerPrograms(List<TrainerProgram> trainerPrograms) {
 		this.trainerPrograms = trainerPrograms;
+	}
+
+	public List<BuyInfo> getBuyInfo() {
+		return buyInfo;
+	}
+
+	public void setBuyInfo(List<BuyInfo> buyInfo) {
+		this.buyInfo = buyInfo;
+	}
+
+	public boolean isBuy() {
+		return buy;
+	}
+
+	public void setBuy(boolean buy) {
+		this.buy = buy;
+	}
+
+	public int getBuyCount() {
+		return buyCount;
+	}
+
+	public void setBuyCount(int buyCount) {
+		this.buyCount = buyCount;
 	}
 
 	public String getT_text() {
@@ -181,9 +230,10 @@ public class TrainerDetail {
 	public String toString() {
 		return "TrainerDetail [prof_img=" + prof_img + ", t_name=" + t_name + ", t_intro=" + t_intro + ", m_phone_2="
 				+ m_phone_2 + ", m_address_2=" + m_address_2 + ", tProgramNames=" + tProgramNames + ", trainerPrograms="
-				+ trainerPrograms + ", t_text=" + t_text + ", t_career=" + t_career + ", t_counsel_hours="
-				+ t_counsel_hours + ", c_name=" + c_name + ", t_img=" + t_img + ", sns_homepage=" + sns_homepage
-				+ ", sns_instagram=" + sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
+				+ trainerPrograms + ", buyInfo=" + buyInfo + ", buy=" + buy + ", buyCount=" + buyCount + ", t_text="
+				+ t_text + ", t_career=" + t_career + ", t_counsel_hours=" + t_counsel_hours + ", c_name=" + c_name
+				+ ", t_img=" + t_img + ", sns_homepage=" + sns_homepage + ", sns_instagram=" + sns_instagram
+				+ ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + "]";
 	}
 	
 	
