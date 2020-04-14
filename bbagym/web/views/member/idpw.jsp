@@ -3,6 +3,9 @@
 <%@ page import="com.bbagym.model.vo.Member"%>
 
 <%@ include file="/views/common/header.jsp"%>
+<% 
+	Member info = (Member)session.getAttribute("info");
+%>
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
 
@@ -33,11 +36,16 @@
 			</h3>
 
 			<div>
-				<form action="<%=request.getContextPath()%>/member/searchId.do" method="post" >
+				<form action="<%=request.getContextPath()%>/member/searchId.do" method="post" onsubmit="return fn_enroll_validate();">
 					<div>
 					<input type="text" class="form-control" name="M_NAME" id="M_NAME" placeholder="   이름" required> <br>
-					<input type="email" class="form-control" name="M_EMAIL" id="M_EMAIL"  placeholder="   이메일" required> <br>
-				
+					<button type="button"  class="btn btn-warning"  onclick="verify();">인증하기</button>
+					<input type="email" class="form-control" name="M_EMAIL" id="M_EMAIL"  placeholder="   이메일" required
+						<%if(info!=null&&info.getM_EMAIL()!=null) {%>
+							value="<%=info.getM_EMAIL() %>" readonly
+						<%} %>
+						required> <br>
+						<input type="hidden" id="verifyEmail" value="2">
 					<br>
 
 					</div>
@@ -71,7 +79,47 @@
 
 	</div>
 
+<script>
+	function fn_enroll_validate() {
+	
+		var verifyEmail = $("#verifyEmail").val();
+		//현재text에 입력되어 있는 값
+		if(verifyEmail==2){
+			alert("이메일 인증이 되어있지 않습니다.");
+			$("M_EMAIL").focus();
+			return false;
+		}
+		
+		return true;
+	}
+		
+		   verify= function() {
+			  // 이메일 검증 스크립트 작성
+			  var M_EMAIL = document.querySelector("#M_EMAIL").value;
+			  var ouath =generateRandom(10000000,999999999);
+			  var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			  // 검증에 사용할 정규식 변수 regExp에 저장
 
+			  if (M_EMAIL.match(regExp) != null) {
+				  
+
+	 			window.open("<%=request.getContextPath() %>/views/member/mail_certification.jsp?M_EMAIL="+M_EMAIL+"&ouath="+ouath, "", "width=370, height=360");
+	 			code = ouath;
+			  }
+			  else {
+			    alert('이메일 형식을 다시 확인해주세요');
+			  }
+			};
+			
+			
+
+			
+			var generateRandom = function (min, max) {
+				  var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+				  return ranNum;
+				}
+
+	</script>
 
 
 

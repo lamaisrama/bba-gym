@@ -3,6 +3,10 @@
 <%@ page import="com.bbagym.model.vo.Member"%>
 <%
 	Member logginMember = (Member) session.getAttribute("logginMember");
+ 			StringBuilder M_ID = new StringBuilder(logginMember.getM_ID());
+				M_ID.setCharAt(2, '*');
+				M_ID.setCharAt(3, '*');
+				
 
 Cookie[] cookies = request.getCookies();
 String saveId = "";
@@ -49,7 +53,8 @@ if (cookies != null) {
 
 			<form action="<%=request.getContextPath()%>/member/searchId.do" method="post" onsubmit="">
 				<div style="width:50%;padding-top:250px">
-					<div style="text-align:center;">♥회원가입 시 등록한 아이디는 <br><br><strong><h1> [ <%=logginMember.getM_ID()%> ]</h1></strong><br> 입니다.♥</div>
+				
+					<div style="text-align:center;" >♥회원가입 시 등록한 아이디는 <br><br><strong><h1> [ <%=M_ID%> ]</h1></strong><br> 입니다.♥</div>
 					
 
 				</div>

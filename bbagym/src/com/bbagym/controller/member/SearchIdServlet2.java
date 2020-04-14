@@ -37,6 +37,10 @@ public class SearchIdServlet2 extends HttpServlet {
 			String name=request.getParameter("M_NAME");
 			String email=request.getParameter("M_EMAIL");
 			Member m=new MemberService().searchId(name,email);
+			System.out.println(name);
+			System.out.println(email);
+			System.out.println(m.getM_ID());
+			
 			
 			if(m!=null) {
 				HttpSession session=request.getSession();
