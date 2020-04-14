@@ -55,14 +55,10 @@
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
                             <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
-                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
-                                	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                               		if(i==0||!preName.equals(cp.getpName())) {
-                               			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
-                                <%}
-                                }%>
+                                
+                                <%for(CenterPrograms cp : cd.getCenterPrograms()) {%> 
+                                	<option value="<%=cp.getpCode() %>">프로그램명 : <%=cp.getpName() %> 가격: <%=cp.getPrice() %>원 개월 수 : <%=cp.getMonth() %>개월</option>
+                                <%} %>
                             </select>
                         </div>
                         <div id="basket-button"><!--담기-->
@@ -79,7 +75,7 @@
                             <a class="nav-link" href="#section1"><h5>시설정보</h5></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#section2"><h5>사진</h5></a>
+                            <a class="nav-link" href="#section2"><h5>사진<	/h5></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#section3"><h5>이용후기</h5></a>
@@ -385,6 +381,16 @@
 	    			}
 	    		});
 	    	});
+	        
+	        
+	        /* price comma추가하기 */
+	        
+        $(function () {
+            $('.output').append($("#pChoice option").each(function (i, item) {
+                console.log($(item).text());
+                /[\d]+/.exec($(item).text());
+            }))
+        })
 			
 	</script>
 
