@@ -204,6 +204,73 @@ public class NoticeDao {
 		}
 		return result;
 	}
+
+	public List<Notice> searchNotice(Connection conn, String searchType, String searchKeyword, int cPage, int numPerPage) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Notice> list = new ArrayList();
+		
+		String sql = "";
+		
+		switch(searchType) {
+			case "title" : sql=prop.getProperty("selectTitle"); break; 
+			case "n_content" : sql=prop.getProperty("selectContent"); break; 
+		}
+		System.out.println(sql);
+		try{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage+1);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Notice n = new Notice();
+				
+				n.setnCode(rs.getInt("n_code"));
+				n.setTitle(rs.getString("title"));
+				n.setnContent(rs.getString("n_content"));
+				n.setnDate(rs.getDate("n_date"));
+				n.setOriFileName(rs.getString("ori_filename"));
+				n.setNewFileName(rs.getString("new_filename"));
+				n.setmCode(rs.getInt("m_code"));
+				n.setReadCount(rs.getInt("readcount"));
+				n.setmId(rs.getString("m_id"));
+				
+				list.add(n);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public int selectCount(Connection conn, String searchType, String searchKeyword) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		String sql = prop.getProperty("selectCountSearch");
+		sql = sql.replace("searchType", searchType);
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			rs=pstmt.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	

@@ -78,6 +78,19 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
+	public List<Notice> searchNotice(String searchType, String searchKeyword, int cPage, int numPerPage) {
+		Connection conn = getConnection();
+		List<Notice> list = dao.searchNotice(conn, searchType, searchKeyword, cPage, numPerPage);
+		close(conn);
+		return list;
+	}
+
+	public int selectCount(String searchType, String searchKeyword) {
+		Connection conn = getConnection();
+		int count = dao.selectCount(conn, searchType, searchKeyword);
+		return count;
+	}
 	
 	
 	
