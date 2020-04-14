@@ -144,7 +144,7 @@ body * {
 
 /********* 본문 *********/
 #table {
-	background-color: gainsboro;
+	/* background-color: gainsboro; */
 	margin: 10px 10px 30px;
 }
 

@@ -34,12 +34,22 @@ public class MypageDao2 {
 	public List<CenterEnroll> findMyCenter(Connection conn, int mCode) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = prop.getProperty("findMyCenter");
+		//String sql = prop.getProperty("findMyCenter");
+		String sql = "select * from center where m_code=?";
 		List<CenterEnroll> list = new ArrayList();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
-			
+			pstmt.setInt(1, mCode);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CenterEnroll c = new CenterEnroll();
+				c.setCode(rs.getInt("c_code"));
+				c.setName(rs.getString("c_name"));
+				c.setAddress(rs.getString("c_address"));
+				c.setTel(rs.getString("c_phone"));
+				c.setApproval(rs.getString("approval"));
+				list.add(c);
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
