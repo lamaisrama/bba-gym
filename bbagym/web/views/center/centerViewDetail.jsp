@@ -119,7 +119,7 @@
                                     	if(i==0||!preName1.equals(cp.getpName())) {
                                     			preName1=cp.getpName();%>
 
-													<div class="alert alert-info" style="display:flex; justify-content:center;width:100px;height:50px;"><h6><%=cp.getpName() %></h6></div>
+													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6>𓂃𓊝 𓂃<%=cp.getpName() %></h6></div>
 														<div >
 														<table id="price_table">
 															<tr>

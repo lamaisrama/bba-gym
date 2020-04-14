@@ -100,7 +100,7 @@
 	
 	    <div id="search">
 	       <div>
-	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="50px" background-color:"grey">
+	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="75px" >
 	       </div>
 	   	</div>
 	   	
