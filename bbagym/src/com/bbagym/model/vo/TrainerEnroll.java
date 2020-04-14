@@ -1,5 +1,6 @@
 package com.bbagym.model.vo;
 
+import java.sql.Date;
 import java.util.List;
 
 public class TrainerEnroll {
@@ -21,6 +22,7 @@ public class TrainerEnroll {
 	private List<Program> program;
 	private boolean prefer;
 	private double score;
+	private Date enrollDate;
 	
 	public TrainerEnroll() {
 		// TODO Auto-generated constructor stub
@@ -193,6 +195,17 @@ public class TrainerEnroll {
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+	
+	
+	
+
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
 	@Override

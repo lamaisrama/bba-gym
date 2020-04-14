@@ -31,9 +31,6 @@
 			<div>
 				<hr>
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
-				<a class="updateMyProfile" href="" onclick="updateMyProfile()">MY
-					찜목록</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">나의
-					회원권</a> <a class="updateMyProfile" href="" onclick="updateMyProfile()">장바구니</a>
 				<a class="updateMyProfile"  onclick="removeCheck();">회원탈퇴</a>
 				
 				<hr>
@@ -76,7 +73,7 @@
 					<th> </th>
 				</tr>
 				
-			<%if(myCenter.isEmpty()){ %>
+			<%if(myCenter==null||myCenter.isEmpty()){ %>
 				<tr>	
 					<td colspan="5"><h3>데이터가 존재하지 않습니다.</h3></td>
 				</tr>
@@ -108,7 +105,7 @@
 					<th>상태</th>
 					<th> </th>
 				</tr>
-		<%if(myTrainer.isEmpty()){ %>
+		<%if(myTrainer==null||myTrainer.isEmpty()){ %>
 				<tr>	
 					<td colspan="5"><h3>데이터가 존재하지 않습니다.</h3></td>
 				</tr>
@@ -132,7 +129,10 @@
 			<%}
 			}%>
 			</table>
-
+			
+			<div id="program-modal">
+				
+			</div>
 
 			<a class="top" href="#" title="”맨"위로">TOP</a>
 	
@@ -171,32 +171,46 @@
 		function centerDelete(e){
 			var cCode=e.value;
 			if(confirm('정말 삭제하시겠습니까?')){
-				
-			}else{
-				return;
+				location.replace('<%=request.getContextPath()%>/mypage/centerDelete?cCode='+cCode);
+			}
+			else{
+				return
 			}
 		}
 		
 		
 		function trainerDelete(e){
-			var cCode=e.value;
+			var tCode=e.value;
+			console.log(tCode);
 			if(confirm('정말 삭제하시겠습니까?')){
-				
+				location.replace('<%=request.getContextPath()%>/mypage/trainerDelete?tCode='+tCode);
 			}else{
 				return;
 			}
 		} 
 		
 		function trainerInactivate(e){
+			var tCode=e.value;
 			$.ajax({
-				url:"<%=request.getContextPath()%>/trainer/trainerProgram",
+				url:"<%=request.getContextPath()%>/mypage/trainerInactivate?tCode="+tCode,
 				type:"get",
-				data:{code:$(e).val()},
 				success : function(data){
-					
+					$("#program-modal").html(data);
+					$("#modalBtn").click();
+	                /* setTimeout(() => {
+						$("#modalBtn").trigger("click");
+					}, 300); */
 				}
 				
 			})
+		}
+		
+		function changeProgramStatus(e){
+			var split = e.value.split(',');
+			var pCode=split[0];
+			var status=split[1];
+			location.replace("<%=request.getContextPath()%>/mypage/statusChange?pCode="+pCode+"&status="+status);
+			
 		}
 	</script>	
 </section>

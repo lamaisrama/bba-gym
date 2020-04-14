@@ -1,13 +1,17 @@
 package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
+import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
+import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
 
 import com.bbagym.dao.MypageDao2;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Program;
+import com.bbagym.model.vo.TrainerEnroll;
 import com.bbagym.model.vo.TrainerView;
 
 public class MyPageService2 {
@@ -33,5 +37,76 @@ public class MyPageService2 {
 		
 	}
 	
+	public int deleteCenter(int cCode) {
+		Connection conn = getConnection();
+		//1. 해당 center 정보 select해옴
+		CenterEnroll ce = dao.selectCenter(conn, cCode);
+		if(ce==null) return 0;
+		//2. old tbl로 데이터 이전
+		int result=dao.shiftDeleteCenter(conn, ce);
+		if(result>0) {
+			//데이터 삭제
+			result=dao.deleteCenter(conn,cCode);
+			if(result>0) {
+				commit(conn);
+				close(conn);
+				return 1;
+			}else {
+				rollback(conn);
+				close(conn);
+				return 0;
+			}
+		}else {
+			rollback(conn);
+			close(conn);
+			return 0;
+		}
+		
+	}
 	
+	public int deleteTrainer(int tCode) {
+		Connection conn = getConnection();
+		//1. 해당 center 정보 select해옴
+		TrainerEnroll te = dao.selectTrainer(conn, tCode);
+		if(te==null) return 0;
+		//2. old tbl로 데이터 이전
+		int result=dao.shiftDeleteTrainer(conn, te);
+		if(result>0) {
+			//데이터 삭제
+			result=dao.deleteTrainer(conn,tCode);
+			if(result>0) {
+				commit(conn);
+				close(conn);
+				return 1;
+			}else {
+				rollback(conn);
+				close(conn);
+				return 0;
+			}
+		}else {
+			rollback(conn);
+			close(conn);
+			return 0;
+		}
+		
+	}
+
+	public List<Program> selectProgram(int tCode) {
+		Connection conn = getConnection();
+		List<Program> programs = dao.selectProgram(conn, tCode);
+		close(conn);
+		return programs;
+	}
+
+	public int changeStatus(int pCode, String status) {
+		Connection conn = getConnection();
+		int result=dao.changeStatus(conn, pCode, status);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
