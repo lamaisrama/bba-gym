@@ -38,8 +38,8 @@ $(function(){
          })
     })
 
-    $(function(){
-        $("li").hover(function(){
+
+     $("li").hover(function(){
             $(this).css({
                 textDecoration :  "none"
             });
@@ -52,10 +52,10 @@ $(function(){
                 color : "white"
             })
         });
+    	
+    	
+       
 
-        
-
-    });
 
     $($("#box").children()[1]).click(function(){
         location.href="main2.html";
