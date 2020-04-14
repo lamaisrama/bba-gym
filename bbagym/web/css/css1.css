@@ -1,14 +1,20 @@
 * {
-     /* border : 1px solid red; */
+    /*   border : 1px solid red;  */
      list-style-type: none;
      font-family: "Noto Sans KR", Helvetica,"Apple SD Gothic Neo", Sans-serif;
  }
 
 ::placeholder{
-    color : white;
     font-weight: bolder;
     font-size: 20px;
-    padding-left: 10px;
+    padding: 10px;
+}
+
+input::placeholder {
+  padding-left: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
 
  header{
@@ -32,13 +38,22 @@
     z-index: 1;
     background-color: rgb(128, 128, 128 , 0.7);
  }
+ 
  #leftbar ul{
  	margin-top:20px;
+ 	padding : 0;
+ 	height : 700px;
  }
+ 
  #leftbar li{
+ 	width : 100%;
+ 	margin-top:20px;
+ }
+ 
+ #leftbar a{
      color: white;
      font-size: 20px;
-     padding-top:10px;
+     width : 100%;
      user-select: none;
  }
 
@@ -71,7 +86,9 @@
  }
 
 #content p{
+	color : white;
 	font-size: 40px;
+	font-weight: bold;
 }
 
  #search{
@@ -82,8 +99,9 @@
  }
 
  #search>div{
-     border: 2px solid white;
-     padding: 20px 10px 20px 10px;
+     border: 2px solid lightskyblue;
+     border-radius : 20px;
+     padding: 25px 10px 25px 10px;
  }
 
  #search input,#login input{

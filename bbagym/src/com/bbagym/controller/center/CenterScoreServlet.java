@@ -59,8 +59,8 @@ public class CenterScoreServlet extends HttpServlet {
 			lat = (String) session.getAttribute("user_lat");
 			lng = (String) session.getAttribute("user_lng");
 		}else {
-			lat = "134.06688515940303";
-			lng = "37.50133440959408";
+			lat = "--37.50133440959408";
+			lng = "127.040599895tpsx69686";
 		}
 		
 		List<CenterEnroll> list = new CenterService().centerScorePageData(cPage,numPerpage,m,lat,lng);

@@ -660,7 +660,6 @@ public class CenterDao {
 			ResultSet rs =null;
 			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
 			String sql =prop.getProperty("centerReviewPageData");
-			System.out.println(sql);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, (cPage-1)*numPerpage+1);
@@ -697,7 +696,6 @@ public class CenterDao {
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
 				pstmt.setInt(3, ((cPage-1)*numPerpage+1));
-				System.out.println("start"+((cPage-1)*numPerpage+1));
 				pstmt.setInt(4, cPage*numPerpage);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {

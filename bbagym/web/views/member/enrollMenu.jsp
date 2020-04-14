@@ -34,7 +34,7 @@
 <body>    
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run2.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	        	<div>
