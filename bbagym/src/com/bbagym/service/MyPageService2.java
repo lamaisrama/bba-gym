@@ -17,7 +17,6 @@ public class MyPageService2 {
 		Connection conn = getConnection();
 		List<CenterEnroll> list = dao.findMyCenter(conn, mCode);
 		close(conn);
-		
 		return list;
 		
 	}

@@ -39,7 +39,7 @@
 
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	      
@@ -187,6 +187,6 @@
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>
-<br>
-<br><br>
+<br><br><br><br>
+<br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

@@ -5,6 +5,8 @@
 <%
 	List<Notice> list = (List)request.getAttribute("list"); 
 	String pageBar = (String)request.getAttribute("pageBar");
+	String searchType = request.getParameter("searchType");  
+	String searchKeyword = request.getParameter("searchKeyword"); 
 %>	
 	
 <%@ include file="/views/common/header.jsp"%>
@@ -16,17 +18,31 @@
         <div class="container">
             <h1 class="display-4" style="text-align: center;">Notice<i class="fa fa-heart heart"></i></h1>
             <br><br>
-            <!-- 검색 -->
-           <!--  <div align="right">
+            <!-- 검색start -->
+            <div align="right">
                 <label for="">SearchType:</label>
-                <select id="">
+                <select id="searchType">
                     <option>Category</option>
-                    <option value="">Notice</option>
-                    <option value="">Event</option>
+                    <option value="title" <%=searchType!=null&&searchType.equals("title")?"selected":"" %>>Title</option>
+                    <option value="content" <%=searchType!=null&&searchType.equals("content")?"selected":"" %>>Content</option>
                 </select>
-                <input type="text" name="" id="">
-                <button type="button" class="btn btn-sm btn-outline-secondary">search</button>
-            </div> -->
+               
+            	<div id="search-title">
+					<form action="<%=request.getContextPath()%>/board/noticeFinder" method="post">
+						<input type="hidden" value="title" name="searchType">
+						<input type="text" name="searchKeyword" placeholder="제목입력" value="<%=searchType!=null&&searchType.equals("title")?searchKeyword:""%>">
+						<button type="submit" class="btn btn-sm btn-outline-secondary">검색</button>
+					</form>
+				</div>
+            	<div id="search-content">
+					<form action="<%=request.getContextPath()%>/board/noticeFinder" method="post">
+						<input type="hidden" value="n_content" name="searchType">
+						<input type="text" name="searchKeyword" placeholder="내용입력" value="<%=searchType!=null&&searchType.equals("n_content")?searchKeyword:""%>">
+						<button type="submit" class="btn btn-sm btn-outline-secondary">검색</button>
+					</form>
+				</div>
+            </div>
+			<!-- 검색end -->
 
             <!-- 게시판테이블 start -->
             <table class="table table-hover">
@@ -84,4 +100,33 @@
 	</section>
 	
 <br><br><br><br><br>
+
+<script>
+	$(function(){
+		$("#searchType").change(function(){
+			const title = $("#search-title");
+			const content = $("#search-content");
+			title.hide();
+			content.hide();
+			const type = $(this).val();
+			$("#search-"+type).css("display", "inline-block");
+		});	
+		$("#searchType").change();
+	});
+</script>
+
 <%@ include file="/views/common/footer.jsp"%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -50,21 +50,23 @@
  <br><br><br><br><br>
  <script>
 	 $('#summernote').summernote({
-	 	placeholder: 'Hello Bbagym',
+	 	 placeholder: 'Hello Bbagym',
 	     height: 500,                 // set editor height
 	     minHeight: null,             // set minimum height of editor
 	     maxHeight: null,             // set maximum height of editor
-	     focus: true,                  // set focus to editable area after initializing summernote
+	     focus: true,                 // set focus to editable area after initializing summernote
+	     lang: 'ko-KR', 			
 	     callbacks: {
-				onImageUpload: function(files, editor, welEditable) {
-		            for (var i = files.length - 1; i >= 0; i--) {
-		            	sendFile(files[i], this);
-		            }
+				onImageUpload: function(files) {
+					onloadSummernoteImgFile(files[i], this);
+/* 		            for (var i=0; i=files.length-1; i--) {
+		            	onloadSummernoteImgFile(files[i], this);
+		            } */
 		        }
 			}
 	});
 	
-	 function sendFile(file,editor,welEditable) 
+	 function uploadSummernoteImgFile(file) 
 	  {
 	  data = new FormData();
 	  data.append("file", file);
@@ -78,14 +80,14 @@
 	            processData: false,
 	            success: function(url) {
 	                alert(url);
-	                   editor.insertImage(welEditable, url);
+	                editor.insertImage(url);
 	            }
 	        });
 	  } 
 	 
 	$(document).ready(function() {
 	  $('#summernote').summernote({
-		  lang: 'ko-KR' // default: 'en-US'
+		  
 	 });
 	});
 	
