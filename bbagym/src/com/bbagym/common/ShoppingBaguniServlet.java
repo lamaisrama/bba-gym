@@ -37,8 +37,7 @@ public class ShoppingBaguniServlet extends HttpServlet {
 		int mcode =  ((Member)session.getAttribute("logginMember")).getM_CODE();
 		boolean flag=false;
 		String baguni = request.getParameter("baguni");
-		System.out.println(baguni);
-		
+
 		Cookie[] cookies = request.getCookies();
 		if(cookies!=null) {
 			

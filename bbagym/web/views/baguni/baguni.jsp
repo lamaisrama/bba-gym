@@ -1,7 +1,15 @@
+<%@page import="com.bbagym.model.vo.Baguni"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/views/common/header.jsp"%>
 
+<%
+
+	List<Baguni> centerlist = (List)request.getAttribute("centerlist");
+	List<Baguni> trainerlist = (List)request.getAttribute("trainerlist");
+
+%>
 
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -12,113 +20,113 @@
 	 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
 
- <div class="container-fluid">
-        <div class="d-flex flex-row title-container ">
+
+        <div class="d-flex flex-row title-container ">	
             <div class="title p-2 w-10 h-100 text-wrap">
-                카트
+             	   카트
             </div>
-            <div class="sub-title p-2 text-wrap">회원권선택</div>
-
-            <div class="p-2 count ml-auto">
-                (<span class="count-2">2</span>개/최대3개)</div>
-        </div>
-
     </div>
+
+    
     <div class="container-fluid" style="border: none;">
+    
+    
+    <!-- 박스 --><%for(Baguni ba : centerlist){ %>
         <div class="baguni d-flex flex-row">
             <div class="checkbox-cont">
                 <input type="checkbox" name="checkbox" id="checkbox">
 
             </div>
-            <div class="img-container d-flex flex-row">
-                <img src="https://www.ambatel.com/RES/PRODUCT/201805/FITNESS2PC1216x608_20180504134633.png" alt="">
+            <div class="img-container d-flex flex-row" >
+                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
             </div>
             <div class="detail-container d-flex col">
                 <div>
                     <div class="name-container d-flex align-items-start flex-row">
                         <div class="name-container2 flex-row d-flex">
-                            <a href="" class="gym-name">선릉 보리스짐</a>
+                            <a href="" class="gym-name"><%=ba.getCname() %></a>
                         </div>
-                    </div>
-                    <div class="close">
-                        <i class="fas fa-times fa-lg"></i>
                     </div>
                 </div>
                 <div class="price-container">
-
                     <table class="table1">
                         <tr>
-                            <th colspan="2"> <span class="program">헬스 정원제</span></th>
-
+                            <th colspan="2"> <span class="program"><%=ba.getPname() %></span></th>
                         </tr>
                         <tr>
-                            <td class="align-bottom" style="width: 60px;"><span class="months">3개월</span></td>
-                            <td class="align-bottom" colspan="2"><span class="price">150,000</span></td>
+                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %></span></td>
+                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
                             <td class="align-bottom"><span class="won">원</span></td>
                         </tr>
                     </table>
-                    <div class="dropdown">
-                        <button class="option-btn btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            옵션 변경
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="width: 200px;">
-                            <button class="dropdown-item" type="button">헬스 정원제</button>
-                            <button class="dropdown-item" type="button">헬스+G.X.</button>
-                            <button class="dropdown-item" type="button">헬스</button>
-                        </div>
+                    <div>
+                    	<button type="button" class="btn btn-info">삭제</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="gym-search-container text1" onclick="location.href='https://www.da-gym.co.kr/dagym-list'">
-            마음에 드는 운동시설을 더 추가해보세요.
+		<%} %>
+	    <!-- 박스 -->
+	    
+	    
+	     <!-- 박스 --><%for(Baguni ba : trainerlist){ %>
+        <div class="baguni d-flex flex-row">
+            <div class="checkbox-cont">
+                <input type="checkbox" name="checkbox" id="checkbox">
 
-            <span class="text2">함께 다닐수록 할인율이 올라가요!</span>
-            <i class="fas fa-chevron-right" id="link-arrow"></i>
-        </div>
-        <div id="selectmonth-container">
-            <h4 id="selectmonth-title">등록기간선택</h4>
-            <div id="table-container" class="flex-row d-flex">
-                <div class="month-container month-container-click month-container-notclick"
-                    style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
-                    <div id="month">1개월</div>
+            </div>
+            <div class="img-container d-flex flex-row" >
+                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
+            </div>
+            <div class="detail-container d-flex col">
+                <div>
+                    <div class="name-container d-flex align-items-start flex-row">
+                        <div class="name-container2 flex-row d-flex">
+                            <a href="" class="gym-name"><%=ba.getMname() %></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="month-container month-container-click month-container-notclick ">
-                    <div id="month3">3개월</div>
-                </div>
-                <div class="month-container month-container-click month-container-notclick ">
-                    <div id="month6">6개월</div>
-                </div>
-                <div class="month-container month-container-click month-container-notclick "
-                    style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
-                    <div id="month12">12개월</div>
+                <div class="price-container">
+                    <table class="table1">
+                        <tr>
+                            <th colspan="2"> <span class="program"><%=ba.getPname() %></span></th>
+                        </tr>
+                        <tr>
+                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %></span></td>
+                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
+                            <td class="align-bottom"><span class="won">원</span></td>
+                        </tr>
+                    </table>
+                    <div>
+                    	<button type="button" class="btn btn-info">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="total-price-container">
-            <div class="desc-row">
-                <span class="pricetitle" id="pricetitle1">상품 금액</span>
-                <span class="total-price" id="total-price" style="float: right;">231,000
-                    &nbsp;원</span>
-            </div>
-            <div class="desc-row">
-                <span class="pricetitle" id="pricetitle2">다짐 회원 할인</span>
-                <span class="sale-price" id="sale-price" style="float: right;">-21,000 &nbsp;원</span>
-            </div>
-            <div class="desc-row">
-                <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
-                <span class="new-price" id="new-price" style="float: right;">210,000 &nbsp;원</span>
-            </div>
-        </div>
-        <div id="button-container" class="d-flex flex-row">
-            <button class="btn-center btn-more btn btn-primary btn-lg" routerlink="">
-                더 돌아보기
-            </button>
-            <button class="btn-center btn-pay btn btn-block btn-primary btn-lg">결제하기</button>
-        </div>
-    </div>
-    
+		<%} %>
+	    <!-- 박스 -->
+       
+	        <div class="total-price-container">
+	            <div class="desc-row">
+	                <span class="pricetitle" id="pricetitle1">상품 금액</span>
+	                <span class="total-price" id="total-price" style="float: right;">231,000
+	                    &nbsp;원</span>
+	            </div>
+	            <div class="desc-row">
+	                <span class="pricetitle" id="pricetitle2">다짐 회원 할인</span>
+	                <span class="sale-price" id="sale-price" style="float: right;">-21,000 &nbsp;원</span>
+	            </div>
+	            <div class="desc-row">
+	                <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
+	                <span class="new-price" id="new-price" style="float: right;">210,000 &nbsp;원</span>
+	            </div>
+		        <div id="button-container" class="d-flex flex-row">
+		            <button class="btn-center btn-more btn btn-primary btn-lg" routerlink="">더 돌아보기</button>
+		            <button class="btn-center btn-pay btn btn-block btn-primary btn-lg">결제하기</button>
+		        </div>
+		    </div>
+		    
+	     </div>
        <script>
         $(".month-container").removeClass("month-container-click");
 
