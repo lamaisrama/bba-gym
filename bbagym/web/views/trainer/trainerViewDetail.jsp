@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.bbagym.model.vo.*" %>
+<%@ page import="com.bbagym.model.vo.*, java.util.List" %>
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
+	List<Comment> comments = (List)request.getAttribute("comments");
 	int tCode = (int)request.getAttribute("tCode");
 	int mCode = (int)request.getAttribute("mCode");
 	int score=1;
@@ -23,12 +24,12 @@
         <div class="name">
           <h4 class="title"><%=td.getT_name() %>
             <br />
-          </h4><%for(String s : td.gettProgramNames()){  %>
+<%--           </h4><%for(String s : td.gettProgramNames()){  %>
         	<h6><%=s %></h6>
-          <%} %>
+          <%} %> --%>
         </div>
       </div>
-      <div class="row">
+      <div class="row">	
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
            <br><br>
@@ -191,7 +192,7 @@
 																	BuyInfo bi = td.getBuyInfo().get(i);{
 																	if(bi.getScore()==0) {
 																	flag = true;%>
-																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getCount() %>회</option>
+																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getCount()%>"><%=bi.getpName()%>/<%=bi.getCount() %>회</option>
 
 																<%}else {%>
 																	
@@ -322,7 +323,7 @@
 					"display":"none", "text-align":"left"
 				}).attr("colspan",2);
 				const form = $("<form>").attr({
-					"action":"<%=request.getContextPath()%>/center/commentInsert.do", "method":"post"
+					"action":"<%=request.getContextPath()%>/trainer/commentInsert.do", "method":"post"
 				});
 				const textarea = $("<textarea>").attr({"cols":"50","rows":"2","name":"commentContent", "id":"commentContent"});
 				const button = $("<input>").attr({"type":"submit","value":"답글", "class":"btn btn-primary", "id":"btn-reply2"});
@@ -342,7 +343,18 @@
 		});
 	});
   
-  
+	  /* price comma추가하기 */
+	  
+	  $(function () {
+	      let reg = new RegExp(/\d+/);
+	
+	      $("#pChoice>option").each(function (i, item) {
+	          let a = $(item).text();
+	          console.log(reg.exec(a)[0]);
+	          $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+	      })
+	  })
   	
   </script>
   

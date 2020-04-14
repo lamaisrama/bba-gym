@@ -1,7 +1,9 @@
 package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
+import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
+import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 import com.bbagym.dao.TrainerDao;
 import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.Comment;
 import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerView;
 
@@ -115,7 +118,31 @@ public class TrainerService {
 		close(conn);
 		return td;
 	}
-
+	
+	public List<Comment> selectComment(int tCode){
+		Connection conn = getConnection();
+		List<Comment> c = dao.selectComment(conn, tCode);
+		close(conn);
+		return c;
+	}
+	
+	public int insertComment(Comment c) {
+		Connection conn=getConnection();
+		int result = dao.insertComment(conn, c);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int insertScore(Comment c) {
+		Connection conn=getConnection();
+		int result1 = dao.insertScore(conn, c);
+		if(result1>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result1;
+	}
 	
 
 }

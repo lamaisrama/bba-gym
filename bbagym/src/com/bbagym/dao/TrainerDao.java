@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbagym.model.vo.BuyInfo;
 import com.bbagym.model.vo.Center;
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Comment;
 import com.bbagym.model.vo.CommentScore;
 import com.bbagym.model.vo.Trainer;
 import com.bbagym.model.vo.TrainerDetail;
@@ -384,6 +386,7 @@ public class TrainerDao {
 				td.setSns_instagram(rs.getString("SNS_INSTAGRAM"));
 				td.setSns_blog(rs.getString("SNS_BLOG"));
 				td.setSns_etc(rs.getString("SNS_ETC"));
+				System.out.println(td);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -487,8 +490,6 @@ public class TrainerDao {
 				System.out.println(cs);
 				td.getCommentScore().add(cs);
 				
-				
-//				cd.getCommentScore().add(cs);
 			}
 			
 		}catch(SQLException e) {
@@ -497,6 +498,151 @@ public class TrainerDao {
 			close(rs);
 			close(pstmt);
 		}
+	}
+	
+	public void getBuy(Connection conn,List<TrainerDetail> list, int tCode, int mCode, TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		String sql =prop.getProperty("getBuy");
+		
+		try {		
+			for(int i=0;i<list.size();i++) {
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mCode);
+				pstmt.setInt(2, tCode); //센터에 있는 프로그램 중 하나라도 결제했는지 확인
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					if(rs.getInt(1)>0) { // 1이상이면 결제함(orderhistory에서 mcode갯수를 채크) 
+						list.get(i).setBuy(true);
+						td.setBuyCount(rs.getInt(1));
+						
+					}else {
+						list.get(i).setBuy(false);
+						td.setBuyCount(0);
+					}
+					
+				}
+				
+				}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
+	
+	public void getBuyInfo(Connection conn, int tCode, int mCode, TrainerDetail td) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		td.setBuyInfo(new ArrayList());
+		
+		String sql =prop.getProperty("getBuyInfo");
+		
+		try {		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mCode);
+			pstmt.setInt(2, tCode); //센터에 있는 프로그램 중 하나라도 결제했는지 확인
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				BuyInfo bi = new BuyInfo();
+				bi.setOrderCode(rs.getInt("ORDER_CODE"));
+				bi.setmName(rs.getString("m_name"));
+				bi.setpName(rs.getString("p_name"));
+				bi.setCount(rs.getInt("count"));
+				bi.setBuyDate(rs.getDate("ORDER_DATE"));
+				bi.setScore(rs.getInt("score"));
+				td.getBuyInfo().add(bi);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
+	
+	public List<Comment> selectComment(Connection conn, int tCode){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Comment> list = new ArrayList<Comment>();
+		
+		String sql = prop.getProperty("selectComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, tCode);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Comment c = new Comment();
+				c.setCommentCode(rs.getInt("C_comment_code"));
+				c.setCommentLevel(rs.getInt("C_comment_level"));
+				c.setmCode(rs.getInt("M_CODE"));
+				c.setmName(rs.getString("M_NAME"));
+				c.setCommentContent(rs.getString("C_comment_content"));
+				c.settCode(rs.getInt("t_code"));
+				c.setCommentRef(rs.getInt("C_comment_ref"));
+				c.setCommentDate(rs.getDate("C_comment_date"));
+				c.setOrderCode(rs.getInt("Order_code"));
+				c.setpName(rs.getString("p_name"));
+				c.setCount(rs.getInt("count"));
+				c.setmId(rs.getString("M_ID"));
+				c.setOrderScore(rs.getInt("score"));
+				c.setStatus(rs.getString("status").charAt(0));
+				list.add(c);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int insertComment(Connection conn, Comment c) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getCommentLevel());
+			pstmt.setInt(2, c.getmCode());
+			pstmt.setInt(3, c.gettCode());
+			pstmt.setString(4, c.getCommentRef()==0?null:String.valueOf(c.getCommentRef()));
+			pstmt.setString(5, c.getCommentContent());
+			pstmt.setInt(6, c.getOrderCode());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertScore(Connection conn, Comment c) {
+		PreparedStatement pstmt = null;
+		int result1 = 0;
+		
+		String sql = prop.getProperty("insertScore");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c.getOrderScore());
+			pstmt.setInt(2, c.getOrderCode());
+			result1=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result1;
 	}
 	
 	

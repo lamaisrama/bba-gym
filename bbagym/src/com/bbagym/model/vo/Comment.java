@@ -11,6 +11,7 @@ public class Comment {
 	private String mId;
 	private String pName;
 	private int month;
+	private int count;
 	private int mCode;
 	private int cCode;
 	private int tCode;
@@ -26,8 +27,8 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 
-	Comment(int commentCode, int commentLevel, String mName, String mId, String pName, int month, int mCode, int cCode,
-			int tCode, int pCode, int commentRef, String commentContent, Date commentDate, int orderCode,
+	Comment(int commentCode, int commentLevel, String mName, String mId, String pName, int month, int count, int mCode,
+			int cCode, int tCode, int pCode, int commentRef, String commentContent, Date commentDate, int orderCode,
 			int orderScore, char status) {
 		super();
 		this.commentCode = commentCode;
@@ -36,6 +37,7 @@ public class Comment {
 		this.mId = mId;
 		this.pName = pName;
 		this.month = month;
+		this.count = count;
 		this.mCode = mCode;
 		this.cCode = cCode;
 		this.tCode = tCode;
@@ -94,6 +96,14 @@ public class Comment {
 
 	public void setMonth(int month) {
 		this.month = month;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public int getmCode() {
@@ -179,10 +189,11 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [commentCode=" + commentCode + ", commentLevel=" + commentLevel + ", mName=" + mName + ", mId="
-				+ mId + ", pName=" + pName + ", month=" + month + ", mCode=" + mCode + ", cCode=" + cCode + ", tCode="
-				+ tCode + ", pCode=" + pCode + ", commentRef=" + commentRef + ", commentContent=" + commentContent
-				+ ", commentDate=" + commentDate + ", orderCode=" + orderCode + ", orderScore=" + orderScore
-				+ ", status=" + status + "]";
+				+ mId + ", pName=" + pName + ", month=" + month + ", count=" + count + ", mCode=" + mCode + ", cCode="
+				+ cCode + ", tCode=" + tCode + ", pCode=" + pCode + ", commentRef=" + commentRef + ", commentContent="
+				+ commentContent + ", commentDate=" + commentDate + ", orderCode=" + orderCode + ", orderScore="
+				+ orderScore + ", status=" + status + "]";
 	}
-
+	
+	
 }

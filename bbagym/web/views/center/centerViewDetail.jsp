@@ -386,10 +386,14 @@
 	        /* price comma추가하기 */
 	        
         $(function () {
-            $('.output').append($("#pChoice option").each(function (i, item) {
-                console.log($(item).text());
-                /[\d]+/.exec($(item).text());
-            }))
+            let reg = new RegExp(/\d+/);
+
+            $("#pChoice>option").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
         })
 			
 	</script>
