@@ -78,8 +78,8 @@ public class CenterSortCategoryServlet extends HttpServlet {
 			lat = (String) session.getAttribute("user_lat");
 			lng = (String) session.getAttribute("user_lng");
 		}else {
-			lat = "134.06688515940303";
-			lng = "37.50133440959408";
+			lat = "37.50133440959408";
+			lng = "127.0405998969686";
 		}
 		
 		List<CenterEnroll> list = new CenterService().SearchCategoryPageData(cPage,numPerpage,m,type,keyword,lat,lng);

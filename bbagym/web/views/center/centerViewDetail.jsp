@@ -1,12 +1,20 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ page import="com.bbagym.model.vo.CenterDetail, com.bbagym.model.vo.CenterPrograms" %>
 <%@ include file="/views/common/header.jsp"%>
+
+<%@ page import="com.bbagym.model.vo.*, java.util.List" %>
+
+
 <%
 	CenterDetail cd = (CenterDetail)request.getAttribute("cd");
+	List<Comment> comments = (List)request.getAttribute("comments");
 	int cCode = (int)request.getAttribute("cCode");
 	int mCode = (int)request.getAttribute("mCode");
 	int score=1;
+	int count=0;
 %>
 	
 
@@ -21,7 +29,7 @@
             <div id="detail-header">
                 <div id="all-info">
                     <div class="img-info">
-                        <img src="<%=request.getContextPath()%>/resources/img/Gym-1.jpg" width="450" height="450">
+                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="450" height="450">
                     </div>
                     <div class="text-info">
                         <div id="title"><h2 style="margin-right: auto;"><%=cd.getCenterName() %></h2>
@@ -45,24 +53,23 @@
                             		<i class="fa fa-star-half"></i>
                             	<%} score=1;%>
                             	<%=cd.getCenterScore()==0 ?  "0" : cd.getCenterScore() %>
-                        </div><!--평점 어찌넣지?-->
+                        </div>
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
-                            <select name="choice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
+                            <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
                                 <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
                                 for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
                                 	CenterPrograms cp = cd.getCenterPrograms().get(i);
                                		if(i==0||!preName.equals(cp.getpName())) {
                                			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpName()%>"><%=cp.getpName()%></option>
+                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
                                 <%}
                                 }%>
                             </select>
                         </div>
                         <div id="basket-button"><!--담기-->
-                            <button onclick="javascript:btn()" type="button" class="btn btn-primary" style="width: 100%; height: 100%;" >회원권 담기</button>
+                            <button type="button" class="btn btn-primary btn-baguni" style="width: 100%; height: 100%;" >회원권 담기</button>
                         </div>
-                        <script> function btn(){ alert('담기 성공'); } </script>
                     </div>
                 </div>    
             </div><!--detail-header-->
@@ -177,29 +184,118 @@
                                 <div id="image-sebu">    
                                     <div class="img">
                                         <div class="col-md-12 ml-auto mr-auto">
-                                        <%for(int i=0; i<cd.getCenterImgs().size();i++) { %>
+                                        <%if(cd.getCenterImgs()!=null && cd.getCenterImgs().isEmpty()) {
+                                        	for(int i=0; i<cd.getCenterImgs().size();i++) { %>
                                             <a href="img/light01_s.jpg"><img src="img/light01.jpg" alt="이미지"></a>
                                             <%if(i%4==0&&i!=0){ %>
                                             	<br>
                                             <%} %>
-							            <%} %>    
+							            <%}
+                                        }else {%>
+                                        	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
+                                        <% }%>    
                                         </div>    
                                     </div>
                                 </div>
-                                <div class="button">펼쳐보기</div>    
+                                <!-- <div class="button">펼쳐보기</div>     -->
                             </div>
                         </div>
+                        <div id="section4" class="container-fluid">
+                            <div id="map-title"><h5>위치</h5></div>
+                            <div id="map-api">지도api</div>
+                        </div>
                     
-                        <div id="section3" class="container-fluid">
+                        <div id="section3" class="container-fluid" style="height:auto;">
                             <div id="review-zone">
                                 <div class="title-button">
                                     <div id="review-title"><h5>이용후기</h5></div>
-                                    <div id="review-button">
-                                        <button onclick="inputData();">후기 쓰기</button>
+                            <%if(logginMember!=null&&cd.isBuy()==true) {%>
+								<div id="review-button">
+                                        <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
                                     </div>  
+							<%}%>
                                 </div>    
                                 <div id="review-content">
-                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+                                	<div id="comment-container">
+                                		<div class="comment-editor hidden">
+	                                		 <%if(logginMember!=null&&cd.isBuy()==true) {%>
+												<form action="<%=request.getContextPath()%>/center/commentInsert.do" method="post" id="comment-form">
+													    <div>
+													    	<label style="margin:0px">평점</label><br>
+        													<input type="number" name="orderScore" id="orderScore" min="1" max="5" required>/5점
+    													</div>
+													<button type="submit" id="btn-insert" class="btn btn-primary">등록</button>
+													<textarea name="commentContent" cols="88" rows="3"></textarea>
+														<div id="choice1">
+															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
+																<option value="">결제내역 선택</option>
+																<%for(int i=0; i<cd.getBuyInfo().size(); i++) {
+																	BuyInfo bi = cd.getBuyInfo().get(i);{
+																	if(bi.getScore()==0) {%>
+																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
+
+																<%}else {%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} break;
+																	} 
+																}%>
+															</select>
+														</div>
+													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
+													<input type="hidden" name="centerCode" value="<%=cCode%>">
+													<input type="hidden" name="memberName" value="<%=logginMember.getM_NAME()%>">
+													<input type="hidden" name="level" value="1">
+													<input type="hidden" name="commentRef" value="0">
+												</form>
+											<%}%>
+										</div>
+									<%if(comments!=null && !comments.isEmpty()) { %>
+										<table id="tbl-comment">
+											<!-- 뎃글 출력하기 -->
+												<%for(Comment c : comments) {
+												if(c.getCommentLevel()==1) {%>
+												<tr class="level1">
+													<td>
+													<div id="star-point1" style="color: black;">
+														<%for(int i=1;i<=c.getOrderScore();i++){%>
+						                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+						                            	<%}%>
+						                             	 <%-- if(score-c.getOrderScore()<0.5){%>
+						                            		<i class="fa fa-star-half"></i>
+						                            	<%} score=1;%> --%>
+						                            	<%=c.getOrderScore()==0 ?  "0" : c.getOrderScore() %>
+						                        </div>
+														<sub class="comment-writer"><%=c.getmId() %></sub>
+														<input type="hidden" name="mCode" value="<%=c.getmCode()%>">
+														<sub class="comment-date"><%=c.getCommentDate() %></sub>
+														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getMonth() %>개월</sub>
+														<input type="hidden" name="orderCode" value="<%=c.getOrderCode()%>">
+														<br>
+														<%=c.getCommentContent() %>
+													</td>
+													<td>
+														<button class="btn-reply btn btn-primary" value="<%=c.getCommentCode()%>">등록</button>
+													</td>
+												</tr>
+												<%} else {%>
+												<tr class="level2">
+													<td>
+														<sub><%=c.getmId() %></sub>
+														<sub><%=c.getCommentDate() %></sub>
+														<br>
+														<%=c.getCommentContent() %>
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<%}
+												}%>
+										</table>
+											<%} else {%>
+	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+	                                    	<%} %>
+									</div>
                                 </div>
                                 <script>
                                     function inputData(){
@@ -211,10 +307,6 @@
                             </div>
                         </div>
 
-                        <div id="section4" class="container-fluid">
-                            <div id="map-title"><h5>위치</h5></div>
-                            <div id="map-api">지도api</div>
-                        </div>
 
                     </div><!--bord-section-->
                     </div>    
@@ -225,6 +317,14 @@
     <!-- sectio끝 -->
 
 	<script>
+	
+	$(function(){
+		$(".btn-baguni").click(function(){
+			location.href="<%=request.getContextPath()%>/baguni/baguniView.do?pCode=$('#pChoice option:selected').val()";
+		})
+	});
+	
+	
 			<%if(logginMember!=null){%>
 			$(".fa-heart").parent().on("click",function(){
 				var code = {ccode:$(this).parents(".jjim").find("input[type=hidden]").val()};
@@ -249,6 +349,39 @@
 			        alert("로그인후 이용하세요");
 				});
 			<%}%>
+			
+	        $(".enterComment").click(function(){
+	            $(".comment-editor").toggleClass("hidden")
+	        })
+			
+	    	$(function(){
+	    		$(".btn-reply").click(function(){
+	    			if(<%=logginMember!=null%>) {
+	    				const tr = $("<tr>");
+	    				const td = $("<td>").css({
+	    					"display":"none", "text-align":"left"
+	    				}).attr("colspan",2);
+	    				const form = $("<form>").attr({
+	    					"action":"<%=request.getContextPath()%>/center/commentInsert.do", "method":"post"
+	    				});
+	    				const textarea = $("<textarea>").attr({"cols":"50","rows":"2","name":"commentContent", "id":"commentContent"});
+	    				const button = $("<input>").attr({"type":"submit","value":"답글", "class":"btn btn-primary", "id":"btn-reply2"});
+	    				const writer = $("<input>").attr({"type":"hidden","name":"commentWriter", "value":"<%=logginMember!=null?logginMember.getM_CODE():""%>"});
+	    				const centerCode = $("<input>").attr({"type":"hidden","name":"centerCode", "value":"<%=cCode%>"});
+	    				const level = $("<input>").attr({"type":"hidden","name":"level", "value":"2"});
+	    				const commentRef = $("<input>").attr({"type":"hidden","name":"commentRef", "value":$(this).val()});
+	    				const ordercode =$("<input>").attr({"type":"hidden","name":"orderChoice","value":$(this).parent().prev().find("input[name=orderCode]").val(), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta"), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta2")})
+	    				form.append(textarea).append(button).append(writer).append(centerCode).append(level).append(commentRef).append(ordercode);
+	    				td.append(form);
+	    				tr.append(td);
+	    				($(this).parent().parent()).after(tr);
+	    				tr.children("td").slideDown(500);
+	    				$(this).off("click");   /* off=>이벤트 삭제 */
+
+	    			}
+	    		});
+	    	});
+			
 	</script>
 
 

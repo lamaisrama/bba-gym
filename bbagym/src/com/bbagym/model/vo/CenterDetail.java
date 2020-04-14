@@ -10,8 +10,12 @@ public class CenterDetail {
 	private String centerAddr;
 	private String centerPhone;
 	private boolean jjim;
+	private boolean buy;
+	private int buyCount;
+	private List<BuyInfo> buyInfo;
 	private List<CenterPrograms> centerPrograms;
 	private List<String> centerFacilityNames;
+	private List<CommentScore> commentScore;
 	private String centerIntro;  //db에서는 c_text임
 	private String centerOpenHours;
 	private String centerHolidays;
@@ -27,7 +31,8 @@ public class CenterDetail {
 	}
 
 	CenterDetail(String centerMainImg, String centerName, double centerScore, String centerAddr, String centerPhone,
-			boolean jjim, List<CenterPrograms> centerPrograms, List<String> centerFacilityNames, String centerIntro,
+			boolean jjim, boolean buy, int buyCount, List<BuyInfo> buyInfo, List<CenterPrograms> centerPrograms,
+			List<String> centerFacilityNames, List<CommentScore> commentScore, String centerIntro,
 			String centerOpenHours, String centerHolidays, String centerSchedule, List<String> centerImgs,
 			String sns_homepage, String sns_instagram, String sns_blog, String sns_etc) {
 		super();
@@ -37,8 +42,12 @@ public class CenterDetail {
 		this.centerAddr = centerAddr;
 		this.centerPhone = centerPhone;
 		this.jjim = jjim;
+		this.buy = buy;
+		this.buyCount = buyCount;
+		this.buyInfo = buyInfo;
 		this.centerPrograms = centerPrograms;
 		this.centerFacilityNames = centerFacilityNames;
+		this.commentScore = commentScore;
 		this.centerIntro = centerIntro;
 		this.centerOpenHours = centerOpenHours;
 		this.centerHolidays = centerHolidays;
@@ -98,6 +107,30 @@ public class CenterDetail {
 		this.jjim = jjim;
 	}
 
+	public boolean isBuy() {
+		return buy;
+	}
+
+	public void setBuy(boolean buy) {
+		this.buy = buy;
+	}
+
+	public int getBuyCount() {
+		return buyCount;
+	}
+
+	public void setBuyCount(int buyCount) {
+		this.buyCount = buyCount;
+	}
+
+	public List<BuyInfo> getBuyInfo() {
+		return buyInfo;
+	}
+
+	public void setBuyInfo(List<BuyInfo> buyInfo) {
+		this.buyInfo = buyInfo;
+	}
+
 	public List<CenterPrograms> getCenterPrograms() {
 		return centerPrograms;
 	}
@@ -112,6 +145,14 @@ public class CenterDetail {
 
 	public void setCenterFacilityNames(List<String> centerFacilityNames) {
 		this.centerFacilityNames = centerFacilityNames;
+	}
+
+	public List<CommentScore> getCommentScore() {
+		return commentScore;
+	}
+
+	public void setCommentScore(List<CommentScore> commentScore) {
+		this.commentScore = commentScore;
 	}
 
 	public String getCenterIntro() {
@@ -190,7 +231,8 @@ public class CenterDetail {
 	public String toString() {
 		return "CenterDetail [centerMainImg=" + centerMainImg + ", centerName=" + centerName + ", centerScore="
 				+ centerScore + ", centerAddr=" + centerAddr + ", centerPhone=" + centerPhone + ", jjim=" + jjim
-				+ ", centerPrograms=" + centerPrograms + ", centerFacilityNames=" + centerFacilityNames
+				+ ", buy=" + buy + ", buyCount=" + buyCount + ", buyInfo=" + buyInfo + ", centerPrograms="
+				+ centerPrograms + ", centerFacilityNames=" + centerFacilityNames + ", commentScore=" + commentScore
 				+ ", centerIntro=" + centerIntro + ", centerOpenHours=" + centerOpenHours + ", centerHolidays="
 				+ centerHolidays + ", centerSchedule=" + centerSchedule + ", centerImgs=" + centerImgs
 				+ ", sns_homepage=" + sns_homepage + ", sns_instagram=" + sns_instagram + ", sns_blog=" + sns_blog
@@ -198,5 +240,6 @@ public class CenterDetail {
 	}
 	
 	
-
+	
+	
 }

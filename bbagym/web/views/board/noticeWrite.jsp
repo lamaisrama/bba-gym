@@ -55,14 +55,40 @@
 	     minHeight: null,             // set minimum height of editor
 	     maxHeight: null,             // set maximum height of editor
 	     focus: true,                  // set focus to editable area after initializing summernote
-	     lang: 'ko-KR'
+	     callbacks: {
+				onImageUpload: function(files, editor, welEditable) {
+		            for (var i = files.length - 1; i >= 0; i--) {
+		            	sendFile(files[i], this);
+		            }
+		        }
+			}
 	});
 	
+	 function sendFile(file,editor,welEditable) 
+	  {
+	  data = new FormData();
+	  data.append("file", file);
+	            $.ajax({
+	            data: data,
+	            type: "POST",
+	                    // 이미지 업로드하는 파일 path 
+	            url: rooturl+'/upload/board/',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            success: function(url) {
+	                alert(url);
+	                   editor.insertImage(welEditable, url);
+	            }
+	        });
+	  } 
+	 
 	$(document).ready(function() {
 	  $('#summernote').summernote({
 		  lang: 'ko-KR' // default: 'en-US'
 	 });
 	});
+	
  </script>
     
 <%@ include file="/views/common/footer.jsp"%>

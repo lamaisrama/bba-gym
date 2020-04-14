@@ -94,14 +94,14 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 		}
 		int result=new CenterService().enrollCenter(c);
 		String msg="", loc="";
-		/*
-		 * if(result==1) { session.removeAttribute("CenterEnroll");
-		 * msg="등록 완료! 관리자의 승인이 완료되면 자동으로 시설 찾기에 업로드 됩니다. 자세한 사항은 마이페이지의 등록 현황을 확인해주세요";
-		 * loc="/index.jsp"; }else {
-		 */
+
+		 if(result==1) { session.removeAttribute("CenterEnroll");
+		 	msg="등록 완료! 관리자의 승인이 완료되면 자동으로 시설 찾기에 업로드 됩니다. 자세한 사항은 마이페이지의 등록 현황을 확인해주세요";
+		 	loc="/index.jsp"; 
+	 	}else {
 			msg="등록 실패, 관리자에게 문의하세요";
 			loc="/center/centerEnroll.do";
-		//}
+		}
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

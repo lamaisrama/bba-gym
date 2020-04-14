@@ -101,7 +101,6 @@ public class TrainerService {
 			dao.trainerViewDetailPrograms(conn, t_code, td);
 			dao.trainerViewDetailImgs(conn, t_code, td);
 		}
-		System.out.println(td);
 		close(conn);
 		return td;
 	}
