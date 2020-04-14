@@ -39,7 +39,7 @@
 
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run4.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	      
@@ -150,9 +150,13 @@
 	</section>
 	
 	<script>
-		/*  onload=function(){
+
+		onload=function(){
+
 			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
-		}  */
+
+		}
+
 		
 		function handleGeoSucces(position){
 			const latitude = position.coords.latitude;

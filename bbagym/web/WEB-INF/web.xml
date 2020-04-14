@@ -12,9 +12,9 @@
    <error-page>
   	<error-code>404</error-code>
   	<location>/views/error404.jsp</location>
-  </error-page>
+  </error-page> -->
   
-   -->
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
