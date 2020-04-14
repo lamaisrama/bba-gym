@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.CommentScore;
 import com.bbagym.model.vo.Trainer;
 import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerProgram;
@@ -468,19 +470,34 @@ public class TrainerDao {
 		}
 	}
 	
-	/*
-	 * public void getBuy(Connection conn, List<TrainerDetail> list, int tCode, int
-	 * mCode, TrainerDetail td) { PreparedStatement pstmt = null; ResultSet rs =
-	 * null;
-	 * 
-	 * String sql = prop.getProperty("getBuy");
-	 * 
-	 * try { for(int i=0; i<list.size(); i++) { pstmt=conn.prepareStatement(sql);
-	 * pstmt.setInt(1, mCode); pstmt.setInt(2, tCode); rs=pstmt.executeQuery();
-	 * while(rs.next()) { if(rs.getInt(1)>0) { list.get(i).setBuy(true);
-	 * td.setBuyCount(rs.getInt(1)); }else { list.get(i).setBuy(false);
-	 * td.setBuyCount(0); } } } } }
-	 */
+	public void getScoreForComment(Connection conn, TrainerDetail td, int tCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		td.setCommentScore(new ArrayList());
+		
+		String sql =prop.getProperty("getCommentScore");
+		
+		try {		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, tCode);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				CommentScore cs = new CommentScore();
+				cs.setCommentScore(rs.getInt("score"));
+				System.out.println(cs);
+				td.getCommentScore().add(cs);
+				
+				
+//				cd.getCommentScore().add(cs);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+	}
 	
 	
 }

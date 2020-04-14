@@ -98,16 +98,19 @@ public class TrainerService {
 		Connection conn = getConnection();
 		TrainerDetail td = dao.trainerViewDetail(conn, tCode);
 		if(td!=null) {
-			dao.trainerViewDetailpNames(conn, tCode, td);
+//			dao.trainerViewDetailpNames(conn, tCode, td);
 			dao.trainerViewDetailPrograms(conn, tCode, td);
 			dao.trainerViewDetailImgs(conn, tCode, td);
 			List<TrainerDetail> list = new ArrayList<TrainerDetail>();
 			list.add(td);
-			/*
-			 * if(mCode!=0) { dao.getScoreForComment(conn, td, tCode); dao.getBuy(conn,
-			 * list, tCode, mCode, td); if(td.isBuy()==true) {
-			 * System.out.println(td.isBuy()); dao.getBuyInfo(conn, tCode, mCode, td); } }
-			 */
+			 if(mCode!=0) { 
+				dao.getScoreForComment(conn, td, tCode); 
+			 	dao.getBuy(conn,list, tCode, mCode, td); 
+			 	if(td.isBuy()==true) {
+			 		System.out.println(td.isBuy()); 
+			 		dao.getBuyInfo(conn, tCode, mCode, td); 
+			 	} 
+			 }
 		}
 		close(conn);
 		return td;

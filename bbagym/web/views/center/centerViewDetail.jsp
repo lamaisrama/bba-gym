@@ -231,7 +231,7 @@
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
 
 																<%}else {%>
-																	<!-- <option value="" disabled>선택 항목 없음</option> -->
+																	
 																<%}
 																	} 
 																} 
