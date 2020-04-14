@@ -33,12 +33,12 @@
             <%=td.getM_address_2() %>
           </p>
           <br />
-           <select class="custom-select" style="width:500px;">
+           <select class="custom-select" style="width:500px;" id="baguni">
          		<%for(TrainerProgram s : td.getTrainerPrograms()){  %>
-	           		<option value="<%=s.getPcode() %>">프로그램명 : <%=s.getpName() %> 가격 : <%=s.getPrice() %>원 횟수: <%=s.getCount() %>회</option>
+	           		<option value="<%="t/"+s.getPcode()+"/"+s.getCount()%>">프로그램명 : <%=s.getpName() %> 가격 : <%=s.getPrice() %>원 횟수: <%=s.getCount() %>회</option>
 	            <%} %> 
 		 </select>
-		 <button type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button>
+		 <button id="baguni2" type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button>
         </div>
       </div>
       <br/><br>
@@ -280,5 +280,29 @@
       </div>
     </div>
   </footer>
+  
+  <script>
+  
+  $("#baguni2").on("click",function(){
+  		
+  		var baguni =  {"baguni":$("#baguni").val()};
+  		
+  		console.log(baguni);
+  		
+  		$.ajax({
+  			url : "<%=request.getContextPath() %>/ShoppingBaguniServlet.do",
+  			data : baguni,
+  			success : function(data){
+  				alert("바구니 담기 성공!");
+  			},
+  			error : function(r,e,m){
+  				alert("바구니 담기 실패!");
+  			}
+  		})
+  		
+  	});
+  	
+  </script>
+  
 
 <%@ include file="/views/common/footer.jsp"%>
