@@ -268,4 +268,6 @@ span {
 	left: 50px;
 }
 </style>
+
+<br><br><br><br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

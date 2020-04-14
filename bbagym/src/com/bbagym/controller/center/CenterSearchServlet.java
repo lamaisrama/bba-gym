@@ -63,8 +63,8 @@ public class CenterSearchServlet extends HttpServlet {
 			lat = (String) session.getAttribute("user_lat");
 			lng = (String) session.getAttribute("user_lng");
 		}else {
-			lat = "--37.50133440959408";
-			lng = "127.040599895tpsx69686";
+			lat = "37.50133440959408";
+			lng = "127.0405998969686";
 		}
 		List<CenterEnroll> list = new CenterService().searchKeywordPageData(cPage,numPerpage,m,keyword,lat,lng);
 		int totalData = new CenterService().searchCountCenter(keyword);

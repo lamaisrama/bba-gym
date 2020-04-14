@@ -54,19 +54,23 @@
                         </div>
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
+<<<<<<< HEAD
                             <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
-                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
-                                	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                               		if(i==0||!preName.equals(cp.getpName())) {
-                               			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
-                                <%}
-                                }%>
+                                
+                                <%for(CenterPrograms cp : cd.getCenterPrograms()) {%> 
+                                	<option value="<%=cp.getpCode() %>">프로그램명 : <%=cp.getpName() %> 가격: <%=cp.getPrice() %>원 개월 수 : <%=cp.getMonth() %>개월</option>
+                                <%} %>
                             </select>
+=======
+                            <select class="custom-select" style="width:500px;" id="baguni">
+				         		<%for(CenterPrograms c: cd.getCenterPrograms()){  %>
+					           		<option value="<%="c/"+c.getpCode()+"/"+c.getMonth()%>">프로그램명 : <%=c.getpName() %> 가격 : <%=c.getPrice() %>원  이용달수: <%=c.getMonth() %>회</option>
+					            <%} %> 
+						 </select>
+>>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
                         </div>
                         <div id="basket-button"><!--담기-->
-                            <button type="button" class="btn btn-primary btn-baguni" style="width: 100%; height: 100%;" >회원권 담기</button>
+                            <button id="baguni2" type="submit" class="btn btn-info" style="width:100%;height:100%;" >장바구니에 담기</button>
                         </div>
                     </div>
                 </div>    
@@ -79,7 +83,7 @@
                             <a class="nav-link" href="#section1"><h5>시설정보</h5></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#section2"><h5>사진</h5></a>
+                            <a class="nav-link" href="#section2"><h5>사진<	/h5></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#section3"><h5>이용후기</h5></a>
@@ -227,16 +231,22 @@
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
-																<%for(int i=0; i<cd.getBuyInfo().size(); i++) {
+																<%boolean flag= false;
+																for(int i=0; i<cd.getBuyInfo().size(); i++) {
 																	BuyInfo bi = cd.getBuyInfo().get(i);{
-																	if(bi.getScore()==0) {%>
+																	if(bi.getScore()==0) {
+																	flag = true;%>
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
 
 																<%}else {%>
-																	<option value="" disabled>선택 항목 없음</option>
-																<%} break;
+																	
+																<%}
 																	} 
-																}%>
+																} 
+																if(flag=false){%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} %>
+																
 															</select>
 														</div>
 													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
@@ -379,6 +389,40 @@
 	    			}
 	    		});
 	    	});
+	        
+	        
+	        /* price comma추가하기 */
+	        
+        $(function () {
+            let reg = new RegExp(/\d+/);
+
+            $("#pChoice>option").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+
+	        $("#baguni2").on("click",function(){
+	      		
+	      		var baguni =  {"baguni":$("#baguni").val()};
+	      		
+	      		console.log(baguni);
+	      		
+	      		$.ajax({
+	      			url : "<%=request.getContextPath() %>/ShoppingBaguniServlet.do",
+	      			data : baguni,
+	      			success : function(data){
+	      				alert("바구니 담기 성공!");
+	      			},
+	      			error : function(r,e,m){
+	      				alert("바구니 담기 실패!");
+	      			}
+	      		})
+	      		
+	      	});
+
 			
 	</script>
 

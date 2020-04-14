@@ -743,7 +743,6 @@ public class CenterDao {
 					bi.setBuyDate(rs.getDate("ORDER_DATE"));
 					bi.setScore(rs.getInt("score"));
 					cd.getBuyInfo().add(bi);
-					System.out.println(bi);
 				}
 				
 			}catch(SQLException e) {
@@ -849,7 +848,6 @@ public class CenterDao {
 				while(rs.next()) {
 					CommentScore cs = new CommentScore();
 					cs.setCommentScore(rs.getInt("score"));
-					System.out.println(cs);
 					cd.getCommentScore().add(cs);
 					
 					
@@ -872,7 +870,7 @@ public class CenterDao {
 			String sql =prop.getProperty("centerMainPageDataByDistance")
 			try {
 				pstmt = conn.prepareStatement(sql);
-				//System.out.println(("latitude?"+lat +" || lng? "+lng));
+				
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
 				pstmt.setInt(3, ((cPage-1)*numPerpage+1));

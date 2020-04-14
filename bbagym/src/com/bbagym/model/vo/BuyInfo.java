@@ -9,6 +9,7 @@ public class BuyInfo {
 	private String mName;
 	private String pName;
 	private int month;
+	private int count;
 	private Date buyDate;
 	private int score;
 	
@@ -16,13 +17,14 @@ public class BuyInfo {
 		// TODO Auto-generated constructor stub
 	}
 
-	BuyInfo(int orderCode, int pCode, String mName, String pName, int month, Date buyDate, int score) {
+	BuyInfo(int orderCode, int pCode, String mName, String pName, int month, int count, Date buyDate, int score) {
 		super();
 		this.orderCode = orderCode;
 		this.pCode = pCode;
 		this.mName = mName;
 		this.pName = pName;
 		this.month = month;
+		this.count = count;
 		this.buyDate = buyDate;
 		this.score = score;
 	}
@@ -67,6 +69,14 @@ public class BuyInfo {
 		this.month = month;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public Date getBuyDate() {
 		return buyDate;
 	}
@@ -86,9 +96,10 @@ public class BuyInfo {
 	@Override
 	public String toString() {
 		return "BuyInfo [orderCode=" + orderCode + ", pCode=" + pCode + ", mName=" + mName + ", pName=" + pName
-				+ ", month=" + month + ", buyDate=" + buyDate + ", score=" + score + "]";
+				+ ", month=" + month + ", count=" + count + ", buyDate=" + buyDate + ", score=" + score + "]";
 	}
 
+	
 	
 	
 

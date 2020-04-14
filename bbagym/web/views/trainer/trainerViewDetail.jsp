@@ -1,38 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.bbagym.model.vo.TrainerDetail, com.bbagym.model.vo.TrainerProgram" %>
+<%@ page import="com.bbagym.model.vo.*, java.util.List" %>
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
+	List<Comment> comments = (List)request.getAttribute("comments");
+	int tCode = (int)request.getAttribute("tCode");
+	int mCode = (int)request.getAttribute("mCode");
+	int score=1;
+	int count=0;
 %>	
 
- <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');">
+ <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img()%>');">
     <div class="filter"></div>
   </div>
   <div class="section profile-content">
     <div class="container">
       <div class="owner">
         <div class="avatar">
-          <img src="<%=request.getContextPath()%>/assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+          <img src="<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img() %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
         </div>
         <div class="name">
           <h4 class="title"><%=td.getT_name() %>
             <br />
-          </h4>
-          <h6 class="description">manager</h6>
+<%--           </h4><%for(String s : td.gettProgramNames()){  %>
+        	<h6><%=s %></h6>
+          <%} %> --%>
         </div>
       </div>
-      <div class="row">
+      <div class="row">	
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
-            	<%=td.getT_intro() %><br><br>
+           <br><br>
             <strong>전화번호</strong>&nbsp;&nbsp;<%=td.getM_phone_2() %> <br>
             <strong>근무지</strong>&nbsp;&nbsp; <%=td.getC_name() %><br>
             <%=td.getM_address_2() %>
           </p>
           <br />
-          <btn class="btn btn-outline-default btn-round">Personal Training</btn>
+           <select class="custom-select" style="width:500px;" id="baguni">
+         		<%for(TrainerProgram s : td.getTrainerPrograms()){  %>
+	           		<option value="<%="t/"+s.getPcode()+"/"+s.getCount()%>">프로그램명 : <%=s.getpName() %> 가격 : <%=s.getPrice() %>원 횟수: <%=s.getCount() %>회</option>
+	            <%} %> 
+		 </select>
+		 <button id="baguni2" type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button>
         </div>
       </div>
       <br/><br>
@@ -50,9 +61,7 @@
       </div>
       <!-- Tab panes -->
       <div class="tab-content following">
-
         <div class="tab-pane active" id="follows" role="tabpanel">
-
           <div class="row">
           <% String preName=(td.getTrainerPrograms().get(0)).getpName();%>
             <div class="col-md-6 ml-auto mr-auto text-center">
@@ -123,11 +132,8 @@
               <br>
               <div class="row">
               <%for(int i=0; i<td.getT_img().size();i++) { %>
-                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
+                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="<%=request.getContextPath()%>/upload/trainer/<%=td.getT_img() %>" alt="Image" style="max-width:100%;"></a></div>
               <%} %>
-                  <!-- <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
-                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
-                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div> -->
               </div>
             </div>
           </div>
@@ -135,33 +141,129 @@
           <hr>
           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
-              <h5 style="width:600px;">소셜미디어
+              <h5>소셜미디어
                 <br/>
                 <%if(td.getSns_instagram()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/instagramlogo1.png" style="height: 52.5px;">인스타그램</a></small>
-				<%}else { %>
-                <small></small>
-                <%} %>
+                <small><a href="<%=td.getSns_instagram()%>"><img src="<%=request.getContextPath() %>/assets/img/instagramlogo1.png" style="height: 52.5px;">인스타그램</a></small>
+				<%}%>
                   <%if(td.getSns_homepage()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/homebutton1.png" style="height: 52.5px">홈페이지</a></small>
- 				<%}else { %>
-                <small></small>
-                 <%} %>
+                <small><a href="<%=td.getSns_homepage() %>"><img src="<%=request.getContextPath() %>/assets/img/homebutton1.png" style="height: 52.5px">홈페이지</a></small>
+ 				<%}%>
                 <%if(td.getSns_blog()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/blogicon1.jpg" style="height: 52.5px">블로그</a></small>
-                 <%}else { %> 
-                 <small></small>
-                 <%} %>
+                <small><a href="<%=td.getSns_blog() %>"><img src="<%=request.getContextPath() %>/assets/img/blogicon1.jpg" style="height: 52.5px">블로그</a></small>
+                 <%}%>
                 <%if(td.getSns_etc()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/othericon1.jpg" style="height: 52.5px">기타</a></small>
-                 <%}else { %> 
-                 <small></small>
+                <small><a href="<%=td.getSns_etc() %>"><img src="<%=request.getContextPath() %>/assets/img/othericon1.jpg" style="height: 52.5px">기타</a></small>
                  <%} %> 
+               
+       
               </h5>
             </div>  
           </div>
+          <br/>
+          <br/>
+          <hr>
+           <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <h5>리뷰
+                <br/>
+					<%if(logginMember!=null&&td.isBuy()==true) {%>
+								<div id="review-button">
+                                        <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
+                                    </div>  
+							<%}%>
+                                </div>    
+                                <div id="review-content">
+                                	<div id="comment-container">
+                                		<div class="comment-editor hidden">
+	                                		 <%if(logginMember!=null&&td.isBuy()==true) {%>
+												<form action="<%=request.getContextPath()%>/trainer/commentInsert.do" method="post" id="comment-form">
+													    <div>
+													    	<label style="margin:0px">평점</label><br>
+        													<input type="number" name="orderScore" id="orderScore" min="1" max="5" required>/5점
+    													</div>
+													<button type="submit" id="btn-insert" class="btn btn-primary">등록</button>
+													<textarea name="commentContent" cols="88" rows="3"></textarea>
+														<div id="choice1">
+															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
+																<option value="">결제내역 선택</option>
+																<%boolean flag=false;
+																for(int i=0; i<td.getBuyInfo().size(); i++) {
+																	BuyInfo bi = td.getBuyInfo().get(i);{
+																	if(bi.getScore()==0) {
+																	flag = true;%>
+																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getCount()%>"><%=bi.getpName()%>/<%=bi.getCount() %>회</option>
 
-        </div>  
+																<%}else {%>
+																	
+																<%}
+																	} 
+																}
+																if(flag=false){%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} %>
+															</select>
+														</div>
+													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
+													<input type="hidden" name="trainerCode" value="<%=tCode%>">
+													<input type="hidden" name="memberName" value="<%=logginMember.getM_NAME()%>">
+													<input type="hidden" name="level" value="1">
+													<input type="hidden" name="commentRef" value="0">
+												</form>
+											<%}%>
+										</div>
+									<%if(comments!=null && !comments.isEmpty()) { %>
+										<table id="tbl-comment">
+											<!-- 뎃글 출력하기 -->
+												<%for(Comment c : comments) {
+												if(c.getCommentLevel()==1) {%>
+												<tr class="level1">
+													<td>
+													<div id="star-point1" style="color: black;">
+														<%for(int i=1;i<=c.getOrderScore();i++){%>
+						                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
+						                            	<%}%>
+						                             	 <%-- if(score-c.getOrderScore()<0.5){%>
+						                            		<i class="fa fa-star-half"></i>
+						                            	<%} score=1;%> --%>
+						                            	<%=c.getOrderScore()==0 ?  "0" : c.getOrderScore() %>
+						                        </div>
+														<sub class="comment-writer"><%=c.getmId() %></sub>
+														<input type="hidden" name="mCode" value="<%=c.getmCode()%>">
+														<sub class="comment-date"><%=c.getCommentDate() %></sub>
+														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getMonth() %>개월</sub>
+														<input type="hidden" name="orderCode" value="<%=c.getOrderCode()%>">
+														<br>
+														<%=c.getCommentContent() %>
+													</td>
+													<td>
+														<button class="btn-reply btn btn-primary" value="<%=c.getCommentCode()%>">등록</button>
+													</td>
+												</tr>
+												<%} else {%>
+												<tr class="level2">
+													<td>
+														<sub><%=c.getmId() %></sub>
+														<sub><%=c.getCommentDate() %></sub>
+														<br>
+														<%=c.getCommentContent() %>
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<%}
+												}%>
+										</table>
+											<%} else {%>
+	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+	                                    	<%} %>
+									</div>
+                                </div>
+              </h5> 
+            </div>  
+          </div>
+        </div> 
 
         <div class="tab-pane text-center" id="following" role="tabpanel">
           <h3 class="text-muted">트레이너상담연결뭐몰라ㅣ</h3>
@@ -187,5 +289,74 @@
       </div>
     </div>
   </footer>
+  
+  <script>
+  
+  $("#baguni2").on("click",function(){
+  		
+  		var baguni =  {"baguni":$("#baguni").val()};
+  		
+  		console.log(baguni);
+  		
+  		$.ajax({
+  			url : "<%=request.getContextPath() %>/ShoppingBaguniServlet.do",
+  			data : baguni,
+  			success : function(data){
+  				alert("바구니 담기 성공!");
+  			},
+  			error : function(r,e,m){
+  				alert("바구니 담기 실패!");
+  			}
+  		})
+  		
+  	});
+  
+  $(".enterComment").click(function(){
+      $(".comment-editor").toggleClass("hidden")
+  })
+	
+	$(function(){
+		$(".btn-reply").click(function(){
+			if(<%=logginMember!=null%>) {
+				const tr = $("<tr>");
+				const td = $("<td>").css({
+					"display":"none", "text-align":"left"
+				}).attr("colspan",2);
+				const form = $("<form>").attr({
+					"action":"<%=request.getContextPath()%>/trainer/commentInsert.do", "method":"post"
+				});
+				const textarea = $("<textarea>").attr({"cols":"50","rows":"2","name":"commentContent", "id":"commentContent"});
+				const button = $("<input>").attr({"type":"submit","value":"답글", "class":"btn btn-primary", "id":"btn-reply2"});
+				const writer = $("<input>").attr({"type":"hidden","name":"commentWriter", "value":"<%=logginMember!=null?logginMember.getM_CODE():""%>"});
+				const trainerCode = $("<input>").attr({"type":"hidden","name":"trainerCode", "value":"<%=tCode%>"});
+				const level = $("<input>").attr({"type":"hidden","name":"level", "value":"2"});
+				const commentRef = $("<input>").attr({"type":"hidden","name":"commentRef", "value":$(this).val()});
+				const ordercode =$("<input>").attr({"type":"hidden","name":"orderChoice","value":$(this).parent().prev().find("input[name=orderCode]").val(), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta"), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta2")})
+				form.append(textarea).append(button).append(writer).append(trainerCode).append(level).append(commentRef).append(ordercode);
+				td.append(form);
+				tr.append(td);
+				($(this).parent().parent()).after(tr);
+				tr.children("td").slideDown(500);
+				$(this).off("click");   /* off=>이벤트 삭제 */
+
+			}
+		});
+	});
+  
+	  /* price comma추가하기 */
+	  
+	  $(function () {
+	      let reg = new RegExp(/\d+/);
+	
+	      $("#pChoice>option").each(function (i, item) {
+	          let a = $(item).text();
+	          console.log(reg.exec(a)[0]);
+	          $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+	      })
+	  })
+  	
+  </script>
+  
 
 <%@ include file="/views/common/footer.jsp"%>

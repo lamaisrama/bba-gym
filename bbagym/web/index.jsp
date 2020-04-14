@@ -39,7 +39,7 @@
 
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	      
@@ -77,10 +77,7 @@
 <!-- 로그인x기본 -->		 <li><a href="<%=request.getContextPath()%>/trainer/trainerView.do">트레이너 찾기</a></li>	<!-- /views/trainner/trainnerView.jsp -->
 				         <li><a href="<%=request.getContextPath()%>/board/noticeList">Notice</a></li>			<!-- /views/board/noticeList.jsp -->
 				         <li><a href="<%=request.getContextPath()%>/board/boardList">Q&A</a></li>						<!-- /views/board/boardList.jsp -->
-				     <%} %>
-
-			
-				        
+				     <%} %> 
 				    </ul>
 			    </div>				          
 			</div>  
@@ -190,6 +187,6 @@
 
 <script src="<%=request.getContextPath()%>/js/js1.js">
 </script>
-<br>
-<br><br>
+<br><br><br><br>
+<br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

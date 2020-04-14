@@ -50,19 +50,47 @@
  <br><br><br><br><br>
  <script>
 	 $('#summernote').summernote({
-	 	placeholder: 'Hello Bbagym',
+	 	 placeholder: 'Hello Bbagym',
 	     height: 500,                 // set editor height
 	     minHeight: null,             // set minimum height of editor
 	     maxHeight: null,             // set maximum height of editor
-	     focus: true,                  // set focus to editable area after initializing summernote
-	     lang: 'ko-KR'
+	     focus: true,                 // set focus to editable area after initializing summernote
+	     lang: 'ko-KR', 			
+	     callbacks: {
+				onImageUpload: function(files) {
+					onloadSummernoteImgFile(files[i], this);
+/* 		            for (var i=0; i=files.length-1; i--) {
+		            	onloadSummernoteImgFile(files[i], this);
+		            } */
+		        }
+			}
 	});
 	
+	 function uploadSummernoteImgFile(file) 
+	  {
+	  data = new FormData();
+	  data.append("file", file);
+	            $.ajax({
+	            data: data,
+	            type: "POST",
+	                    // 이미지 업로드하는 파일 path 
+	            url: rooturl+'/upload/board/',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            success: function(url) {
+	                alert(url);
+	                editor.insertImage(url);
+	            }
+	        });
+	  } 
+	 
 	$(document).ready(function() {
 	  $('#summernote').summernote({
-		  lang: 'ko-KR' // default: 'en-US'
+		  
 	 });
 	});
+	
  </script>
     
 <%@ include file="/views/common/footer.jsp"%>
