@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-
+<%@ page import="com.bbagym.model.vo.CenterEnroll" %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 <!-- 카카오맵 API 불러오는 script -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=910ff98ddccfbc580e580a9ce7d7285d&libraries=services"></script>
-
 
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/resources/img/runners-test.gif');"></div>
 <div class="container pt-3 center-info">
@@ -26,7 +25,7 @@
             <div class="form-group">
               <label for="c-address">센터 주소</label>
               <button type="button" class="btn btn-warning" onclick="goPopup()">센터주소</button>
-              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr" required readonly>
+              <input type="text" class="form-control" type="text" name="c-address" id="c-address" placeholder="Enter Addr">
               <input type="hidden" id="addrX" name="addrX" value="">
 			  <input type="hidden" id="addrY" name="addrY" value="">
               <!-- 주소 api를 통해 오는 데이터   -->
@@ -39,7 +38,7 @@
             <br>
             <div class="form-group">
               <label for="c-operating-hr">운영시간</label>
-              <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control" required>
+              <input type="text" name="c-operating-hr" id="c-operating-hr" class="form-control"  required>
             </div>
             <br>
             <div class="form-group">

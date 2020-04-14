@@ -76,7 +76,7 @@
 					<div class="form-group">
 					<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>나이</label><input type="number"class="form-control" name="M_AGE" id="M_AGE" required><br>
 						<label for="c-time"><pre style="color:red ; display:inline-block">*</pre>이메일</label>
-						<button type="button"  class="btn btn-warning"  onclick="verify();">인증하기</button>
+						<button type="button"  class="btn btn-warning"  onclick="verify();">인증하기</button><br>
 						<input type="email"class="form-control" name="M_EMAIL" id="M_EMAIL"
 						<%if(info!=null&&info.getM_EMAIL()!=null) {%>
 							value="<%=info.getM_EMAIL() %>" readonly

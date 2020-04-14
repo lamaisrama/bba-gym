@@ -10,12 +10,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import com.bbagym.model.vo.BuyInfo;
 import com.bbagym.model.vo.CenterDetail;
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.CenterPrograms;
+import com.bbagym.model.vo.Comment;
+import com.bbagym.model.vo.CommentScore;
 
 public class CenterDao {
 	private Properties prop=new Properties();
@@ -373,6 +377,7 @@ public class CenterDao {
 			
 			while(rs.next()) {
 				CenterPrograms cp = new CenterPrograms();
+				cp.setpCode(rs.getInt("p_code"));
 				cp.setpName(rs.getString("p_name"));
 				cp.setPrice(rs.getInt("price"));
 				cp.setMonth(rs.getInt("month"));
@@ -660,7 +665,6 @@ public class CenterDao {
 			ResultSet rs =null;
 			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
 			String sql =prop.getProperty("centerReviewPageData");
-			System.out.println(sql);
 			try {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, (cPage-1)*numPerpage+1);
@@ -684,6 +688,181 @@ public class CenterDao {
 			
 			return list;
 		}
+		
+		public void getBuy(Connection conn,List<CenterDetail> list, int cCode, int mCode, CenterDetail cd) {
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			String sql =prop.getProperty("getBuy");
+			
+			try {		
+				for(int i=0;i<list.size();i++) {
+					
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, mCode);
+					pstmt.setInt(2, cCode); //센터에 있는 프로그램 중 하나라도 결제했는지 확인
+					rs=pstmt.executeQuery();
+					while(rs.next()) {
+						if(rs.getInt(1)>0) { // 1이상이면 결제함(orderhistory에서 mcode갯수를 채크) 
+							list.get(i).setBuy(true);
+							cd.setBuyCount(rs.getInt(1));
+							
+						}else {
+							list.get(i).setBuy(false);
+							cd.setBuyCount(0);
+						}
+						
+					}
+					
+					}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+		}
+		
+		public void getBuyInfo(Connection conn, int cCode, int mCode, CenterDetail cd) {
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			cd.setBuyInfo(new ArrayList());
+			
+			String sql =prop.getProperty("getBuyInfo");
+			
+			try {		
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, mCode);
+				pstmt.setInt(2, cCode); //센터에 있는 프로그램 중 하나라도 결제했는지 확인
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					BuyInfo bi = new BuyInfo();
+					bi.setOrderCode(rs.getInt("ORDER_CODE"));
+					bi.setmName(rs.getString("m_name"));
+					bi.setpName(rs.getString("p_name"));
+					bi.setMonth(rs.getInt("month"));
+					bi.setBuyDate(rs.getDate("ORDER_DATE"));
+					bi.setScore(rs.getInt("score"));
+					cd.getBuyInfo().add(bi);
+					System.out.println(bi);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+		}
+		
+		public int insertComment(Connection conn, Comment c) {
+			PreparedStatement pstmt = null;
+			int result = 0;
+			
+			String sql = prop.getProperty("insertComment");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, c.getCommentLevel());
+				pstmt.setInt(2, c.getmCode());
+				pstmt.setInt(3, c.getcCode());
+				pstmt.setString(4, c.getCommentRef()==0?null:String.valueOf(c.getCommentRef()));
+				pstmt.setString(5, c.getCommentContent());
+				pstmt.setInt(6, c.getOrderCode());
+				result=pstmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result;
+		}
+		
+		public int insertScore(Connection conn, Comment c) {
+			PreparedStatement pstmt = null;
+			int result1 = 0;
+			
+			String sql = prop.getProperty("insertScore");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, c.getOrderScore());
+				pstmt.setInt(2, c.getOrderCode());
+				result1=pstmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			return result1;
+		}
+		
+		public List<Comment> selectComment(Connection conn, int cCode){
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<Comment> list = new ArrayList<Comment>();
+			
+			String sql = prop.getProperty("selectComment");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, cCode);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					Comment c = new Comment();
+					c.setCommentCode(rs.getInt("C_comment_code"));
+					c.setCommentLevel(rs.getInt("C_comment_level"));
+					c.setmCode(rs.getInt("M_CODE"));
+					c.setmName(rs.getString("M_NAME"));
+					c.setCommentContent(rs.getString("C_comment_content"));
+					c.setcCode(rs.getInt("C_CODE"));
+					c.setCommentRef(rs.getInt("C_comment_ref"));
+					c.setCommentDate(rs.getDate("C_comment_date"));
+					c.setOrderCode(rs.getInt("Order_code"));
+					c.setpName(rs.getString("p_name"));
+					c.setMonth(rs.getInt("month"));
+					c.setmId(rs.getString("M_ID"));
+					c.setOrderScore(rs.getInt("score"));
+					c.setStatus(rs.getString("status").charAt(0));
+					list.add(c);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			return list;
+		}
+		
+		public void getScoreForComment(Connection conn, CenterDetail cd, int cCode) {
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			cd.setCommentScore(new ArrayList());
+			
+			String sql =prop.getProperty("getCommentScore");
+			
+			try {		
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, cCode);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					CommentScore cs = new CommentScore();
+					cs.setCommentScore(rs.getInt("score"));
+					System.out.println(cs);
+					cd.getCommentScore().add(cs);
+					
+					
+//					cd.getCommentScore().add(cs);
+				}
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+		}
 
 		public List<CenterEnroll> centerMainPageDataDistance(Connection conn, int cPage, int numPerpage, String lat,
 				String lng) {
@@ -693,11 +872,10 @@ public class CenterDao {
 			String sql =prop.getProperty("centerMainPageDataByDistance");
 			try {
 				pstmt = conn.prepareStatement(sql);
-				System.out.println(("latitude?"+lat +" || lng? "+lng));
-				System.out.println("between  ? and ? "+ (cPage-1)*numPerpage+1+" and "+ cPage*numPerpage);
+				//System.out.println(("latitude?"+lat +" || lng? "+lng));
 				pstmt.setString(1, lat);
 				pstmt.setString(2, lng);
-				pstmt.setInt(3, (cPage-1)*numPerpage+1);
+				pstmt.setInt(3, ((cPage-1)*numPerpage+1));
 				pstmt.setInt(4, cPage*numPerpage);
 				rs=pstmt.executeQuery();
 				while(rs.next()) {
@@ -706,8 +884,7 @@ public class CenterDao {
 					c.setName(rs.getString("C_NAME"));
 					c.setAddress(rs.getString("C_ADDRESS"));
 					c.setMainImage(rs.getString("C_MAIN_IMAGE"));
-					c.setDistance(rs.getString("distance"));
-					System.out.println(c.getName()+"의 거리?:"+c.getDistance());
+					c.setDistance(String.valueOf(rs.getDouble("distance")));
 					list.add(c);
 				}
 				
@@ -717,6 +894,36 @@ public class CenterDao {
 			
 			
 			return list;
+		}
+		
+		public void checkXY(Connection conn,List<CenterEnroll> list,String lat,String lng){
+			PreparedStatement pstmt = null;
+			ResultSet rs =null;
+			String sql =prop.getProperty("checkXY");
+			try {
+				
+				for(CenterEnroll ce : list) {
+					
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, lat);
+				pstmt.setString(2, lng);
+				pstmt.setInt(3, ce.getCode());
+				rs=pstmt.executeQuery();
+				
+				rs.next();
+				
+				ce.setDistance(String.valueOf(rs.getDouble(1)));
+				
+				}
+				
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
 		}
 	
 }

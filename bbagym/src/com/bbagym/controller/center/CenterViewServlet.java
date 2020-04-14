@@ -62,9 +62,11 @@ public class CenterViewServlet extends HttpServlet {
 				lat = (String) session.getAttribute("user_lat");
 				lng = (String) session.getAttribute("user_lng");
 			}else {
-				lat = "134.06688515940303";
-				lng = "37.50133440959408";
+				lat = "--37.50133440959408";
+				lng = "127.040599895tpsx69686";
 			}
+			
+
 
 		int numPerpage=3; //페이지당 3개 데이터 출력
 

@@ -2,6 +2,7 @@ package com.bbagym.model.vo;
 
 public class CenterPrograms {
 	
+	private int pCode;
 	private String pName;
 	private int price;
 	private int month;
@@ -10,11 +11,20 @@ public class CenterPrograms {
 		// TODO Auto-generated constructor stub
 	}
 
-	CenterPrograms(String pName, int price, int month) {
+	CenterPrograms(int pCode, String pName, int price, int month) {
 		super();
+		this.pCode = pCode;
 		this.pName = pName;
 		this.price = price;
 		this.month = month;
+	}
+
+	public int getpCode() {
+		return pCode;
+	}
+
+	public void setpCode(int pCode) {
+		this.pCode = pCode;
 	}
 
 	public String getpName() {
@@ -43,7 +53,7 @@ public class CenterPrograms {
 
 	@Override
 	public String toString() {
-		return "CenterPrograms [pName=" + pName + ", price=" + price + ", month=" + month + "]";
+		return "CenterPrograms [pCode=" + pCode + ", pName=" + pName + ", price=" + price + ", month=" + month + "]";
 	}
 	
 	

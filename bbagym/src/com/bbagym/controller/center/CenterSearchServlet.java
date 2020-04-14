@@ -41,6 +41,7 @@ public class CenterSearchServlet extends HttpServlet {
 		String url2= "&keyword="+keyword;
 		int cPage;
 		int m;
+		HttpSession session = request.getSession();
 			try {
 				cPage = Integer.parseInt(request.getParameter("cPage"));
 			}catch(NumberFormatException e) {
@@ -48,15 +49,27 @@ public class CenterSearchServlet extends HttpServlet {
 			}
 			
 			try {
-				HttpSession session = request.getSession();
+				
 				m=((Member)session.getAttribute("logginMember")).getM_CODE();
 			}catch(NullPointerException e) {
 				m=0;
 			} //로그인이면 m에 mcode를 가져오고 아니면 m=0으로 받는다
 			
 		int numPerpage=3;
-		List<CenterEnroll> list = new CenterService().searchKeywordPageData(cPage,numPerpage,m,keyword);
+		
+
+		String lat="", lng="";
+		if(session.getAttribute("user_lat")!=null&&session.getAttribute("user_lng")!=null) {
+			lat = (String) session.getAttribute("user_lat");
+			lng = (String) session.getAttribute("user_lng");
+		}else {
+			lat = "--37.50133440959408";
+			lng = "127.040599895tpsx69686";
+		}
+		List<CenterEnroll> list = new CenterService().searchKeywordPageData(cPage,numPerpage,m,keyword,lat,lng);
 		int totalData = new CenterService().searchCountCenter(keyword);
+		
+		
 		
 		String pageBar = pageBar(url,url2, totalData, cPage, numPerpage); 
 

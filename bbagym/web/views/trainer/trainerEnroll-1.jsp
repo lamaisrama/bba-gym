@@ -33,8 +33,8 @@
 			              <label for="c-address">소속 센터</label>
 			              <br>
 			              <button class="btn btn-warning btn-sm" type="button" onclick="searchcenter();">찾기</button><!-- 자바스크립트를 통해 open 을한다  -->
-			              <input type="text" class="form-control" name="c_name" id="c_name" style="margin-top:10px" readonly >
-			              <input type="hidden" class="form-control" name="c_code" id="c_code" readonly>
+			              <input type="text" class="form-control" name="c_name" id="c_name" value="프리랜서" style="margin-top:10px" readonly >
+			              <input type="hidden" class="form-control" name="c_code" id="c_code" value="0" readonly>
 			            </div>
 		            <br>
 			            <div class="form-group">
