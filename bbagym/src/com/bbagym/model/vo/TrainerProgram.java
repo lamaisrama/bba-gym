@@ -7,11 +7,16 @@ public class TrainerProgram {
 	private int price;
 	private int count;
 	
+	
 	public TrainerProgram() {
 		// TODO Auto-generated constructor stub
 	}
 
+
 	
+
+
+
 	public TrainerProgram(int pcode, String pName, int price, int count) {
 		super();
 		this.pcode = pcode;
@@ -20,11 +25,16 @@ public class TrainerProgram {
 		this.count = count;
 	}
 
-	
+
+
+
+
 
 	public int getPcode() {
 		return pcode;
 	}
+
+
 
 
 	public void setPcode(int pcode) {
@@ -32,29 +42,50 @@ public class TrainerProgram {
 	}
 
 
+
+
 	public String getpName() {
 		return pName;
 	}
+
+
+
 
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
 
+
+
+
 	public int getPrice() {
 		return price;
 	}
+
+
+
 
 	public void setPrice(int price) {
 		this.price = price;
 	}
 
+
+
+
 	public int getCount() {
 		return count;
 	}
 
+
+
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+
+
+
 
 
 	@Override
@@ -62,7 +93,10 @@ public class TrainerProgram {
 		return "TrainerProgram [pcode=" + pcode + ", pName=" + pName + ", price=" + price + ", count=" + count + "]";
 	}
 
-	
-	
+
+
+		
+
+
 
 }
