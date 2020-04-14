@@ -48,8 +48,6 @@ public class CenterViewDetailServlet extends HttpServlet {
 		}
 			
 			int cCode = Integer.parseInt(request.getParameter("cCode"));
-			System.out.println(cCode);
-			System.out.println(mCode);
 			
 			
 			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);

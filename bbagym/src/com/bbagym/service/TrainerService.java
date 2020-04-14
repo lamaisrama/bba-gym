@@ -112,7 +112,6 @@ public class TrainerService {
 				}
 			}
 		}
-		System.out.println(td);
 		close(conn);
 		return td;
 	}

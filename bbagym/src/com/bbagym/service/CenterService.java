@@ -42,7 +42,6 @@ public class CenterService {
 				dao.findFacility(conn, c);
 			}
 		}
-		System.out.println(centerEnrollList);
 		close(conn);
 		return centerEnrollList;
 	}
@@ -119,7 +118,6 @@ public class CenterService {
 				}
 			}
 		}
-		System.out.println(cd);
 		close(conn);
 		return cd;
 	}

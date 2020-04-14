@@ -20,13 +20,12 @@
           <h4 class="title"><%=td.getT_name() %>
             <br />
           </h4>
-          <h6 class="description">manager</h6>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
-            	<%=td.getT_intro() %><br><br>
+           <br><br>
             <strong>전화번호</strong>&nbsp;&nbsp;<%=td.getM_phone_2() %> <br>
             <strong>근무지</strong>&nbsp;&nbsp; <%=td.getC_name() %><br>
             <%=td.getM_address_2() %>

@@ -18,6 +18,7 @@
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/istock.jpg');"></div>
 
     <div class="container outer">
+    	<hr>
         <div class="row">
             <div class="searchBox">
                 <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">

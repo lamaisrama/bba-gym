@@ -94,6 +94,7 @@ ox input{
 }
 
 #pageBar{
+	margin-top : 50px;
     height: 100px;
     display: flex;
     justify-content: center;
@@ -101,7 +102,7 @@ ox input{
 }
 
 *{
-	/*  border : 1px solid green;  */
+	/*   border : 1px solid green;  */ 
 }
 
 .outer{
@@ -109,4 +110,5 @@ ox input{
     justify-content: center; 
 	align-items: center;
 	flex-direction: column;
+	margin-top : 100px;
 }

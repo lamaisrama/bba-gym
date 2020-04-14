@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypageUser.css">
+<%@ page import="com.bbagym.model.vo.*, java.util.*" %>
+<%
+	List<TrainerView> myTrainer = (List<TrainerView>)request.getAttribute("myTrainer");
 
+%>
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypageUser.css">
 <div class="page-header page-header-xs" data-parallax="true"
 	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
 <section class="section-container">
@@ -149,143 +154,40 @@
 			</div>
 			<hr/>
 			<div></div>
+
 			<table id="table">
-				<tr id="tr"">
-					<th>ID</th>
-					<th>이름</th>
-					<th>나이</th>
-					<th>성별</th>
-					<th>연락처</th>
-					<th>등록종류</th>
+				<tr id="tr">
+					<th>트레이너이름</th>
+					<th>소속센터</th>
 					<th>등록일시</th>
 					<th>상태</th>
 				</tr>
+		<%if(myTrainer.isEmpty()){ %>
+				<tr>	
+					<td colspan="5"><h3>데이터가 존재하지 않습니다.</h3></td>
+				</tr>
+		<%}else{ 
+			for(TrainerView t : myTrainer){
+			%>
 				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>헬스</td>
-					<td>20/04/01</td>
+					<td><%=t.getMname()%></td>
+					<td><%= t.getCcenter()%></td>
+					<td><%= t.getEnrollDate() %></td>
+					<td><%= t.getApproval() %></td>
 					<td>
-						<button>심사중</button>
+						<button>수정</button>
+						<button>삭제</button>
+						<button>전환</button>
 					</td>
 				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>요가</td>
-					<td>20/04/01</td>
-					<td>
-						<button>승인완료</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>피트니스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>심사중</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>피트니스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>심사중</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>피트니스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>심사중</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>수영</td>
-					<td>20/04/01</td>
-					<td>
-						<button>심사중</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>헬스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>승인완료</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>헬스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>승인완료</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>헬스</td>
-					<td>20/04/01</td>
-					<td>
-						<button>승인완료</button>
-					</td>
-				</tr>
-				<tr>
-					<td>user01</td>
-					<td>김상학</td>
-					<td>27</td>
-					<td>남자</td>
-					<td>01074947383</td>
-					<td>수영</td>
-					<td>20/04/01</td>
-					<td>
-						<button>승인완료</button>
-					</td>
-				</tr>
+			<%}
+			}%>
 			</table>
 	
-			<div class="MyEnroll3">
+<!-- 			<div class="MyEnroll3">
 				<a name="3"> <span>실시간 상담 내용</span>
 				</a>
-			</div>
+			</div> -->
 	<hr/>
 			<a class="top" href="#" title="”맨"위로">TOP</a>
 	

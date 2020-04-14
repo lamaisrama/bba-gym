@@ -102,29 +102,24 @@ if (cookies != null) {
             <%} %>
            
            <div id="box">
-            <%
-					if (logginMember == null) {
-				%>
+            <%if (logginMember == null) {%>
 				
 	        <div>
 	        
-	       <input type="button" class="btn btn-outline-primary text-red"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
-	       <input type="button" class="btn btn-outline-primary text-red" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
+	       <input type="button" class="btn btn-outline-dark"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
+	       <input type="button" class="btn btn-outline-dark" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
 	        	
 	        	&nbsp; 
 	 		 	 
 	 		</div>
+	     <%} else if(logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N'){%>
+				
 			
-	   			 
-	    
-	     <%
-					} else if(logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N'){
-				%>
 
           <!-- HelloUser Dropdown -->
-    <li class="nav-item dropdown">
+    	<li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
-           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
+           <%=logginMember.getM_NAME()%>님 안녕하세요!<!-- ◟( ˘ ³˘)◞ ♥, -->
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageUser.do">My Page</a>
@@ -139,7 +134,7 @@ if (cookies != null) {
 		   <!-- HelloUser Dropdown -->
    		 <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
-           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
+           <%=logginMember.getM_NAME()%>님 안녕하세요!
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원 정보수정</a>
@@ -159,7 +154,7 @@ if (cookies != null) {
 		   <!-- HelloUser Dropdown -->
    		 <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">
-           <%=logginMember.getM_NAME()%>님◟( ˘ ³˘)◞ ♥, 안녕하세요!
+           <%=logginMember.getM_NAME()%>님 안녕하세요!
           </a>
             <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">My Page-사업자</a>
