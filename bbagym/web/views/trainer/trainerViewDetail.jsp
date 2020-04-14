@@ -19,7 +19,9 @@
         <div class="name">
           <h4 class="title"><%=td.getT_name() %>
             <br />
-          </h4>
+          </h4><%for(String s : td.gettProgramNames()){  %>
+        	<h6><%=s %></h6>
+          <%} %>
         </div>
       </div>
       <div class="row">
@@ -31,7 +33,12 @@
             <%=td.getM_address_2() %>
           </p>
           <br />
-          <btn class="btn btn-outline-default btn-round">Personal Training</btn>
+           <select class="custom-select" style="width:500px;">
+         		<%for(TrainerProgram s : td.getTrainerPrograms()){  %>
+	           		<option value="<%=s.getPcode() %>">프로그램명 : <%=s.getpName() %> 가격 : <%=s.getPrice() %>원 횟수: <%=s.getCount() %>회</option>
+	            <%} %> 
+		 </select>
+		 <button type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button>
         </div>
       </div>
       <br/><br>
@@ -49,9 +56,7 @@
       </div>
       <!-- Tab panes -->
       <div class="tab-content following">
-
         <div class="tab-pane active" id="follows" role="tabpanel">
-
           <div class="row">
           <% String preName=(td.getTrainerPrograms().get(0)).getpName();%>
             <div class="col-md-6 ml-auto mr-auto text-center">
@@ -124,9 +129,6 @@
               <%for(int i=0; i<td.getT_img().size();i++) { %>
                   <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
               <%} %>
-                  <!-- <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
-                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div>
-                  <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/200x200" alt="Image" style="max-width:100%;"></a></div> -->
               </div>
             </div>
           </div>
@@ -137,25 +139,19 @@
               <h5 style="width:600px;">소셜미디어
                 <br/>
                 <%if(td.getSns_instagram()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/instagramlogo1.png" style="height: 52.5px;">인스타그램</a></small>
-				<%}else { %>
-                <small></small>
-                <%} %>
+                <small><a href="<%=td.getSns_instagram()%>"><img src="<%=request.getContextPath() %>/assets/img/instagramlogo1.png" style="height: 52.5px;">인스타그램</a></small>
+				<%}%>
                   <%if(td.getSns_homepage()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/homebutton1.png" style="height: 52.5px">홈페이지</a></small>
- 				<%}else { %>
-                <small></small>
-                 <%} %>
+                <small><a href="<%=td.getSns_homepage() %>"><img src="<%=request.getContextPath() %>/assets/img/homebutton1.png" style="height: 52.5px">홈페이지</a></small>
+ 				<%}%>
                 <%if(td.getSns_blog()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/blogicon1.jpg" style="height: 52.5px">블로그</a></small>
-                 <%}else { %> 
-                 <small></small>
-                 <%} %>
+                <small><a href="<%=td.getSns_blog() %>"><img src="<%=request.getContextPath() %>/assets/img/blogicon1.jpg" style="height: 52.5px">블로그</a></small>
+                 <%}%>
                 <%if(td.getSns_etc()!=null) { %>
-                <small><a href="https://www.instagram.com"><img src="<%=request.getContextPath() %>/assets/img/othericon1.jpg" style="height: 52.5px">기타</a></small>
-                 <%}else { %> 
-                 <small></small>
+                <small><a href="<%=td.getSns_etc() %>"><img src="<%=request.getContextPath() %>/assets/img/othericon1.jpg" style="height: 52.5px">기타</a></small>
                  <%} %> 
+               
+       
               </h5>
             </div>  
           </div>

@@ -431,6 +431,7 @@ public class TrainerDao {
 			while(rs.next()) {
 				//List<String> temp=td.getT_program_name();
 				TrainerProgram tp=new TrainerProgram();
+				tp.setPcode(rs.getInt("p_code"));
 				tp.setpName(rs.getString("p_name"));
 				tp.setPrice(rs.getInt("price"));
 				tp.setCount(rs.getInt("count"));

@@ -21,15 +21,18 @@ public class TrainerDetail {
 	private String sns_instagram;
 	private String sns_blog;
 	private String sns_etc;
+	private int pcode;
 	
 	public TrainerDetail() {
 		// TODO Auto-generated constructor stub
 	}
 
-	TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
+	
+
+	public TrainerDetail(String prof_img, String t_name, String t_intro, String m_phone_2, String m_address_2,
 			List<String> tProgramNames, List<TrainerProgram> trainerPrograms, String t_text, String t_career,
 			String t_counsel_hours, String c_name, List<String> t_img, String sns_homepage, String sns_instagram,
-			String sns_blog, String sns_etc) {
+			String sns_blog, String sns_etc, int pcode) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
@@ -47,7 +50,24 @@ public class TrainerDetail {
 		this.sns_instagram = sns_instagram;
 		this.sns_blog = sns_blog;
 		this.sns_etc = sns_etc;
+		this.pcode = pcode;
 	}
+
+
+	
+	
+
+	public int getPcode() {
+		return pcode;
+	}
+
+
+
+	public void setPcode(int pcode) {
+		this.pcode = pcode;
+	}
+
+
 
 	public String getProf_img() {
 		return prof_img;
