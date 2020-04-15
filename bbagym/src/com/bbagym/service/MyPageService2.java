@@ -109,43 +109,4 @@ public class MyPageService2 {
 		close(conn);
 		return result;
 	}
-
-	public int insertOrderHistory(int mCode, String[] centerList, String[] trainerList) {
-		Connection conn=getConnection();
-		if(centerList!=null&&centerList.length>0) {
-			for(String center : centerList ) {
-				String[] info = center.split("/");
-				String pCode = info[0];
-				String month = info[1];
-				int result=dao.insertCenterOrderHistory(conn, mCode, pCode, month);
-				System.out.println("센ㅌ ㅓ 오더히스토리에 인서트 됌?"+result);
-				if(result==0) {
-					rollback(conn);
-					close(conn);
-					return 0;
-				}
-				
-			}
-		}
-		
-		if(trainerList!=null&&trainerList.length>0) {
-			for(String trainer : trainerList) {
-				String[] info = trainer.split("/");
-				String pCode = info[0];
-				String count = info[1];
-				int result=dao.insertTrainerOrderHistory(conn, mCode, pCode, count);
-				System.out.println("트레이너에 인서트 됨?"+result);
-				if(result==0) {
-					rollback(conn);
-					close(conn);
-					return 0;
-				}
-				
-			}
-		}
-		commit(conn);
-		close(conn);
-		return 1;
-		
-	}
 }
