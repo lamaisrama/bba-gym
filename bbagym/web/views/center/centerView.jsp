@@ -209,7 +209,6 @@
 			//서블릿 연결 로직 구현하기
 			location.replace("<%=request.getContextPath()%>/center/centerView.do");
 		}
-
     </script>
 <script src="<%=request.getContextPath()%>/js/kakaomap.js"></script>
 <script src="<%=request.getContextPath() %>/js/centerViewJs.js"></script>
