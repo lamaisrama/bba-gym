@@ -35,15 +35,8 @@ public class ShoppingBaguniServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		int mcode;
-		try {
-		 mcode = ((Member)session.getAttribute("logginMember")).getM_CODE();
-		}catch (NullPointerException e) {
-			mcode=0;
-			request.setAttribute("msg", "로그인해주세요");
-			request.setAttribute("loc", "");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		}
+		int mcode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		
 		boolean flag=false;
 		String baguni = request.getParameter("baguni");
 		Cookie[] cookies = request.getCookies();
