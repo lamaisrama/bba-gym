@@ -44,15 +44,17 @@ public class ShoppingBaguniDeleteServlet extends HttpServlet {
 		String value = request.getParameter("value");
 		Cookie[] cookies = request.getCookies();
 		System.out.println(mcode+"삭제");
+		System.out.println(value+"-들어온 value값");
 		if(cookies!=null) {
 			for(Cookie c : cookies) {
 				String name=c.getName();
 				String cvalue=c.getValue();
 				if(name.equals(mcode)) {
-					
+					System.out.println(cvalue+"처음");
 					if(cvalue.indexOf(value)!=-1) {
 
 						 cvalue=cvalue.replace(value+"&", "");
+						 System.out.println(cvalue+"수정후");
 						 c= new Cookie(""+mcode, cvalue);
 						 	if(!cvalue.equals("")) {
 							c.setMaxAge(31*24*60*60);
