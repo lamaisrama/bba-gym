@@ -322,45 +322,4 @@ public class MypageDao2 {
 		}
 		return result;
 	}
-
-
-
-	public int insertCenterOrderHistory(Connection conn, int mCode, String pCode, String month) {
-		PreparedStatement pstmt= null;
-		String sql="insert into c_order_history values(seq_coh.nextval, sysdate, add_months(sysdate, ?), ?, ?, ?, 0, null)";
-		int result=0;
-		try{
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(month));
-			pstmt.setInt(2, Integer.parseInt(month));
-			pstmt.setInt(3, Integer.parseInt(pCode));
-			pstmt.setInt(4, mCode);
-			result=pstmt.executeUpdate();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
-
-
-
-	public int insertTrainerOrderHistory(Connection conn, int mCode, String pCode, String count) {
-		PreparedStatement pstmt= null;
-		String sql="insert into t_order_history values(seq_coh.nextval, sysdate, ?, ?, ?, 0, null)";
-		int result=0;
-		try{
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(pCode));
-			pstmt.setInt(2, mCode);
-			pstmt.setInt(3, Integer.parseInt(count));
-			result=pstmt.executeUpdate();
-		}catch(SQLException e){
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-	}
 }

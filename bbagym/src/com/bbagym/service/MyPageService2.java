@@ -110,6 +110,7 @@ public class MyPageService2 {
 		return result;
 	}
 
+
 	public int insertOrderHistory(int mCode, String[] centerList, String[] trainerList) {
 		Connection conn=getConnection();
 		if(centerList!=null&&centerList.length>0) {
@@ -146,4 +147,5 @@ public class MyPageService2 {
 		return 1;
 		
 	}
+
 }
