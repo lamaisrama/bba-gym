@@ -6,6 +6,7 @@
  			StringBuilder M_ID = new StringBuilder(logginMember.getM_ID());
 				M_ID.setCharAt(2, '*');
 				M_ID.setCharAt(3, '*');
+				M_ID.setCharAt(4, '*');
 				
 
 Cookie[] cookies = request.getCookies();
@@ -62,8 +63,7 @@ if (cookies != null) {
 				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logoutgologin.do?M_ID=<%=logginMember.getM_ID()%>')">로그인페이지로 이동</button>
 				<br><button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')">메인 화면으로 돌아가기</button>
 				
-				<br>
-				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logoutgopw.do?M_ID=<%=logginMember.getM_ID()%>')">비밀번호 찾기</button>
+			
 				<br>
 		</div>
 		</form>

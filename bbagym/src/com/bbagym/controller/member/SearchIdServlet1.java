@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SearchIdServlet1
  */
-@WebServlet("/member/idpw.do")
+@WebServlet("/member/id.do")
 public class SearchIdServlet1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class SearchIdServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/member/idpw.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/searchId.jsp").forward(request, response);
 	}
 
 	/**
