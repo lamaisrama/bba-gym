@@ -51,22 +51,21 @@ public class BaguniPaymentServlet extends HttpServlet {
 		System.out.println(centerList); System.out.println(trainerList);
 		//DB에 결제 내역 넣기
 		int result=new MyPageService2().insertOrderHistory(mCode, centerList, trainerList);
+		String msg="", loc="/mypage/mypageUser.do";
+		Cookie del=null;
 		if(result>0) {
 			//결제된 쿠키 지우기
-			Cookie del = new Cookie("p"+mCode, "deletePlz...");
-			del.setMaxAge(0);
-			response.addCookie(del);
-			request.setAttribute("msg","결제 완료! 감사합니다."); 
-			request.setAttribute("loc","/mypage/mypageUser.do");
-	  		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
-			//response.sendRedirect(request.getContextPath()+"/mypage/mypageUser.do");
+			del = new Cookie(""+mCode, "deletePlz...");
+			del.setMaxAge(1);
+			msg="결제 완료. 감사합니다.";
+	  		//request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 		}else{
-			request.setAttribute("msg","결제는 완료되었으나, 결제내역에 저장을 실패하였습니다. 관리자에게 문의 해주세요.");
-			request.setAttribute("loc", "/mypage/mypageUser.do");
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			msg="결제는 완료되었으나, 결제내역에 저장을 실패하였습니다. 관리자에게 문의 해주세요.";
 		}
-		
-		
+		response.addCookie(del);
+		request.setAttribute("msg", msg); 
+		request.setAttribute("loc", loc);
+		response.sendRedirect(request.getContextPath()+"/mypage/mypageUser.do");
 	}
 
 	/**

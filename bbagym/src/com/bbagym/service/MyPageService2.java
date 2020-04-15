@@ -118,7 +118,6 @@ public class MyPageService2 {
 				String pCode = info[0];
 				String month = info[1];
 				int result=dao.insertCenterOrderHistory(conn, mCode, pCode, month);
-				System.out.println("센ㅌ ㅓ 오더히스토리에 인서트 됌?"+result);
 				if(result==0) {
 					rollback(conn);
 					close(conn);
@@ -134,7 +133,6 @@ public class MyPageService2 {
 				String pCode = info[0];
 				String count = info[1];
 				int result=dao.insertTrainerOrderHistory(conn, mCode, pCode, count);
-				System.out.println("트레이너에 인서트 됨?"+result);
 				if(result==0) {
 					rollback(conn);
 					close(conn);
