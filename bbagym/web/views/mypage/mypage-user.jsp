@@ -119,7 +119,7 @@
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
 				<%for(MypageUser my : myPerfer) {%>
 				<tr>
-					<td><a href="#"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
+					<td><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=my.getCcode() %>"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
 					<td><%=my.getAddress() %></td>
 					<td><%=my.getPhone() %></td>
 					<td><%=my.getAvgscore() %></td>
