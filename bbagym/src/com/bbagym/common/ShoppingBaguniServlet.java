@@ -46,7 +46,7 @@ public class ShoppingBaguniServlet extends HttpServlet {
 				String name=c.getName();
 				String value=c.getValue();
 				
-				if(String.valueOf(mcode).equals(name)) {
+				if(name.equals("p"+mcode)) {
 					
 					String[] check=value.split("&");
 					
@@ -56,7 +56,7 @@ public class ShoppingBaguniServlet extends HttpServlet {
 						}
 					}
 					
-					c= new Cookie(""+mcode, value+baguni+"&");
+					c= new Cookie("p"+mcode, value+baguni+"&");
 					c.setMaxAge(31*24*60*60);
 					response.addCookie(c);
 					flag=true;
@@ -67,7 +67,7 @@ public class ShoppingBaguniServlet extends HttpServlet {
 			
 			
 			if(flag==false) {
-				Cookie c= new Cookie(""+mcode, baguni+"&");
+				Cookie c= new Cookie("p"+mcode, baguni+"&");
 				c.setMaxAge(31*24*60*60);
 				response.addCookie(c);
 			}

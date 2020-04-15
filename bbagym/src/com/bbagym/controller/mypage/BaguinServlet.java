@@ -56,7 +56,7 @@ public class BaguinServlet extends HttpServlet {
 				String name=c.getName();
 				
 				
-				if(name.equals(String.valueOf(mcode))) {
+				if(name.equals("p"+mcode)) {
 					String value=c.getValue();
 					baguni=value;
 				}

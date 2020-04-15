@@ -48,12 +48,12 @@ public class ShoppingBaguniDeleteServlet extends HttpServlet {
 			for(Cookie c : cookies) {
 				String name=c.getName();
 				String cvalue=c.getValue();
-				if(name.equals(mcode)) {
+				if(name.equals("p"+mcode)) {
 					
 					if(cvalue.indexOf(value)!=-1) {
 
 						 cvalue=cvalue.replace(value+"&", "");
-						 c= new Cookie(""+mcode, cvalue);
+						 c= new Cookie("p"+mcode, cvalue);
 						 	if(!cvalue.equals("")) {
 							c.setMaxAge(31*24*60*60);
 						 	}else {

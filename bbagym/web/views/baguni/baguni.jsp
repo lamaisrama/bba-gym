@@ -41,7 +41,7 @@
         </div>
     </div>
     
-    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post">
+    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
     <div class="container-fluid" style="border: none;">
         <%if(centerlist==null){ %>
         <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
@@ -174,7 +174,9 @@
             var userName = "<%=logginMember.getM_NAME() %>";
             var userTel = "<%=logginMember.getM_PHONE() %>";
             var userAddr = "<%=logginMember.getM_ADDRESS() %>";
-            IMP.request_pay({
+            $("#baguniForm").submit();
+            
+/*             IMP.request_pay({
                 pg: 'html5_inicis', // version 1.1.0부터 지원.
                 pay_method: 'card',
                 merchant_uid: 'merchant_' + new Date().getTime(),
@@ -197,7 +199,7 @@
                     var msg = '결제에 실패하였습니다.';
                     msg += '에러내용 : ' + rsp.error_msg;
                 }
-            });
+            }); */
             
 		});
 
