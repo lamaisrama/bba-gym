@@ -1,7 +1,8 @@
 
 <style>
 	footer{
-		font-family: "Montserrat"; 
+		font-family: "Montserrat";
+		margin-top:80px;
 	}
 </style>
 
