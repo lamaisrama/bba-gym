@@ -1,9 +1,7 @@
 package com.bbagym.model.vo;
 
-import java.util.Arrays;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Properties;
 
 public class CenterEnroll {
 	private int code;
@@ -32,6 +30,8 @@ public class CenterEnroll {
 	private String addrX;
 	private String addrY;
 	private String distance;
+	
+	private Date enrollDate;
 	
 	public CenterEnroll() {
 		// TODO Auto-generated constructor stub
@@ -239,6 +239,17 @@ public class CenterEnroll {
 
 	public void setDistance(String distance) {
 		this.distance = distance;
+	}
+
+	
+	
+	
+	public Date getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(Date enrollDate) {
+		this.enrollDate = enrollDate;
 	}
 
 	@Override

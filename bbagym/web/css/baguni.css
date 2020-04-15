@@ -1,4 +1,9 @@
-div {
+	
+	* {
+		/* border : 1px solid red;  */
+	}
+		
+		div {
             /* border: 1px solid red; */
             font-family: 'Nanum Square', Dotum, sans-serif;
         }
@@ -55,9 +60,7 @@ div {
             height: 280px;
             display: inline-flex;
             min-width: 920px;
-            border-top: 1px solid gray;
-            border-left: 1px solid gray;
-            border-right: 1px solid gray;
+            border : 1px solid black;
         }
 
         .checkbox-cont {
@@ -288,14 +291,13 @@ div {
         }
 
         .total-price-container {
+        	margin-top:50px;
             min-width: 920px;
             margin-left: 200px;
             margin-right: 200px;
             height: 220px;
             padding: 30px 30px;
-            border-left: 1px solid gray;
-            border-right: 1px solid gray;
-            border-bottom: 1px solid gray;
+           border : 1px solid black;
         }
 
         .desc-row {

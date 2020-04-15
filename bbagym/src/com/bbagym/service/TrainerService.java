@@ -1,13 +1,17 @@
 package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
+import static com.bbagym.common.JDBCTemplate.commit;
 import static com.bbagym.common.JDBCTemplate.getConnection;
+import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.bbagym.dao.TrainerDao;
 import com.bbagym.model.vo.Center;
+import com.bbagym.model.vo.Comment;
 import com.bbagym.model.vo.TrainerDetail;
 import com.bbagym.model.vo.TrainerView;
 
@@ -93,18 +97,52 @@ public class TrainerService {
 		return name;
 	}
 	
-	public TrainerDetail trainerViewDetail(int t_code) {
+	public TrainerDetail trainerViewDetail(int tCode, int mCode) {
 		Connection conn = getConnection();
-		TrainerDetail td = dao.trainerViewDetail(conn, t_code);
+		TrainerDetail td = dao.trainerViewDetail(conn, tCode);
 		if(td!=null) {
-			dao.trainerViewDetailpNames(conn, t_code, td);
-			dao.trainerViewDetailPrograms(conn, t_code, td);
-			dao.trainerViewDetailImgs(conn, t_code, td);
+//			dao.trainerViewDetailpNames(conn, tCode, td);
+			dao.trainerViewDetailPrograms(conn, tCode, td);
+			dao.trainerViewDetailImgs(conn, tCode, td);
+			List<TrainerDetail> list = new ArrayList<TrainerDetail>();
+			list.add(td);
+			 if(mCode!=0) { 
+				dao.getScoreForComment(conn, td, tCode); 
+			 	dao.getBuy(conn,list, tCode, mCode, td); 
+			 	if(td.isBuy()==true) {
+			 		System.out.println(td.isBuy()); 
+			 		dao.getBuyInfo(conn, tCode, mCode, td); 
+			 	} 
+			 }
 		}
 		close(conn);
 		return td;
 	}
-
+	
+	public List<Comment> selectComment(int tCode){
+		Connection conn = getConnection();
+		List<Comment> c = dao.selectComment(conn, tCode);
+		close(conn);
+		return c;
+	}
+	
+	public int insertComment(Comment c) {
+		Connection conn=getConnection();
+		int result = dao.insertComment(conn, c);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int insertScore(Comment c) {
+		Connection conn=getConnection();
+		int result1 = dao.insertScore(conn, c);
+		if(result1>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result1;
+	}
 	
 
 }

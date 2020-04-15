@@ -26,9 +26,6 @@
                     <option>Category</option>
                     <option value="title" <%=searchType!=null&&searchType.equals("title")?"selected":"" %>>Title</option>
                     <option value="content" <%=searchType!=null&&searchType.equals("content")?"selected":"" %>>Content</option>
-            <!--         <option value="">Center</option>
-                    <option value="">Trainer</option>
-                    <option value="">Bbagym</option> -->
                 </select>
                
             	<div id="search-title">
