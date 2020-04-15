@@ -3,6 +3,7 @@
 	<%@ page
 	import="com.bbagym.model.vo.Member"%>
 
+
 <% 
 	Member info = (Member)session.getAttribute("info");
 %>
@@ -51,8 +52,9 @@
 					</div>
 					<br> <label for="c-address"><pre style="color:red ; display:inline-block">*</pre>패스워드</label>
 					<div class="form-group" style="display: flex">
-						<input class="form-control" style="width: 50%;" type=password placeholder="패스워드" name="M_PW" id="password_" required> 
+						<input class="form-control" style="width: 50%;" type=password placeholder="패스워드" name="M_PW" id="password_"required> 
 						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required><br>
+					
 					</div>
 					<span id="result"></span>
 
@@ -105,6 +107,7 @@
 	</div>
 	<hr>
 <script>
+
 	function fn_enroll_validate() {
 		//아이디가 4글자이상 입력되었는지
 		//패스워드가맞는지
@@ -121,6 +124,8 @@
 		if(!reg.test(userId.trim())){
 			alert("영문자(대소)나 숫자로 이루어진 8글자이상 13글자 이하로 작성하세요");
 		} */
+		 //var regPw = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		 // 특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
 
 		if (userId.trim().length < 4) {
 			alert("아이디를 4글자이상입력하세요.");
@@ -137,7 +142,23 @@
 		}
 		
 		return true;
-	}
+	}var pwck=document.getElementById("password_");
+    	pwck.onkeyup=function(){
+        var pw=document.getElementById("password_2");
+        var span=document.getElementById("result");
+        var reg=/[a-zA-Z0-9]{8,13}/
+
+        if(pw.value==this.value){
+            span.innerHTML="비밀번호가 일치합니다.";
+            span.style.color="green";
+            span.style.fontWeight="bolder";
+        }else{
+            span.innerHTML="비밀번호가 일치하지 않습니다.";
+            span.style.color="red";
+            span.style.fontWeight="bolder";
+            // this.value="";
+        }
+    }
 	
 	 var pwck=document.getElementById("password_2");
      pwck.onkeyup=function(){
@@ -191,7 +212,7 @@
 		    alert('이메일 형식을 다시 확인해주세요');
 		  }
 		};
-		
+	
 		
 
 		

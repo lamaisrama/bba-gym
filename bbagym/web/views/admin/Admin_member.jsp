@@ -6,7 +6,9 @@
 	List<Member> list=(List)request.getAttribute("members");
 %>
  <script src="http://code.jquery.com/jquery-3.4.1.min.js" ></script>
+ <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css"> 
 <style type="text/css">
+
     section#memberList-container {text-align:center;}
     
     section#memberList-container table#tbl-member {width:100%; border:1px solid gray; border-collapse:collapse;}
@@ -21,7 +23,7 @@
 					<!--회원 관리-->
                     <div id="member-list"style="width:100%; padding-left:20px;">
                         <div style="display: flex; justify-content: space-between; align-items: center;width: 100%;">
-                            <h1>회원 관리</h1>
+                            <br><h1>회원 관리</h1><br>
                             
                             
                         </div><!-- 상단 -->
@@ -48,7 +50,7 @@
 					<td colspan="9">조회된 회원이 존재하지 않습니다</td>
 				</tr>			
 			<%}else{ 
-				for(Member m : list){
+				for(Member m : list){	
 			%>
 	            <tr>
 	            	<input name="CODE" type="hidden" style="width:50px" value="<%=m.getM_CODE()%>" readonly>
@@ -63,7 +65,7 @@
 	                	<%
 					if(m.getM_STATUS()=='N'){
 				%>
-	                <button style="background-color:red;"onclick="removeCheck();" >탈퇴</button>
+	                <button style="background-color:red;color:white;"onclick="removeCheck();" >탈퇴</button>
 	            	<%}else{%>
 	            		<button style="background-color:black;color:yellow;" onclick="" >탈퇴완료</button>
 	            	<% 
@@ -93,9 +95,10 @@
             </tbody>
         </table>
         <br>
-        <div id="pageBar" style="display:flex; justify-content:center;">
+        <nav aria-label="Page navigation example" id="pageBar" style="display:flex; justify-content:center;">
         	<%=request.getAttribute("pageBar") %>
-        </div>
+        </nav>
+        
         <br>
         <br>
 

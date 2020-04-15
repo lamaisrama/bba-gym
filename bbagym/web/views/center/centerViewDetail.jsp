@@ -1,7 +1,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="com.bbagym.model.vo.CenterDetail, com.bbagym.model.vo.CenterPrograms" %>
+<%@ include file="/views/common/header.jsp"%>
+
 <%@ page import="com.bbagym.model.vo.*, java.util.List" %>
+
 
 <%
 	CenterDetail cd = (CenterDetail)request.getAttribute("cd");
@@ -12,10 +17,7 @@
 	int count=0;
 %>
 	
-
-<%@ include file="/views/common/header.jsp"%>
-
-
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -27,10 +29,10 @@
             <div id="detail-header">
                 <div id="all-info">
                     <div class="img-info">
-                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="450" height="450">
+                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="430" height="506">
                     </div>
                     <div class="text-info">
-                        <div id="title"><h2 style="margin-right: auto;"><%=cd.getCenterName() %></h2>
+                        <div id="title"><h2 style="margin-right:auto;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><%=cd.getCenterName() %><strong></strong></h2>
                             <div class="jjim"><!--찜 좋아요-->
                             	<input type="hidden" value="<%=cCode %>">
 								<h2 style="cursor: pointer;">
@@ -43,6 +45,7 @@
 	                            </h2>
                             </div>
                         </div>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>평점</strong>
                         <div id="star-point" style="color: black;">
                         	<%for(;score<=cd.getCenterScore();score++){ %>
                             		<i class="fa fa-star"></i>&nbsp;&nbsp;
@@ -52,58 +55,72 @@
                             	<%} score=1;%>
                             	<%=cd.getCenterScore()==0 ?  "0" : cd.getCenterScore() %>
                         </div>
-                        <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
-                        <div id="choice">옵션 선택
+
+                        
+        				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 주소</strong><div id="address-phone"><small><%=cd.getCenterAddr() %></small></div>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 전화번호</strong><div id="address-phone"><small>☎&nbsp<%=cd.getCenterPhone() %></small></div>
+                        
+                        
+                        
+                        <div id="choice" style="text-align:center;">옵션 선택<br>
                             <select class="custom-select" style="width:500px;" id="baguni">
-				         		<%for(CenterPrograms c: cd.getCenterPrograms()){  %>
-					           		<option value="<%="c/"+c.getpCode()+"/"+c.getMonth()%>">프로그램명 : <%=c.getpName() %> 가격 : <%=c.getPrice() %>원  이용달수: <%=c.getMonth() %>회</option>
-					            <%} %> 
-						 </select>
+					         		<%for(CenterPrograms cp : cd.getCenterPrograms()){  %>
+						           		<option value="<%="c/"+cp.getpCode()+"/"+cp.getMonth()%>">프로그램명 : <%=cp.getpName() %> 가격 : <%=cp.getPrice() %>원 횟수: <%=cp.getMonth() %>달</option>
+						            <%} %> 
+							 </select>
+							 <button id="baguni2" type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button> 
+
                         </div>
-                        <div id="basket-button"><!--담기-->
-                            <button id="baguni2" type="submit" class="btn btn-info" style="width:100%;height:100%;" >장바구니에 담기</button>
-                        </div>
+
                     </div>
                 </div>    
             </div><!--detail-header-->
-            
+            <br><br>
             <div id="detail-window">
                 <div id="window-menu">
                     <ul class="nav nav-tabs nav-justified"><!--클릭시 메뉴바 태그 연결-->
                         <li class="nav-item">
-                            <a class="nav-link" href="#section1"><h5>시설정보</h5></a>
+                            <a class="nav-link" href="#section1"><h5><small>시설정보</small></h5></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#section2"><h5>사진</h5></a>
+
+                            <a class="nav-link" href="#section2"><h5><small>사진</h5></small></a>
+
+
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#section3"><h5>이용후기</h5></a>
+                            <a class="nav-link" href="#section3"><h5><small>이용후기</h5></small></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#section4"><h5>위치</h5></a>
+                            <a class="nav-link" href="#section4"><h5><small>위치</h5></small></a>
                         </li>
                     </ul>
                 </div>
                 <div id="menu-sebu">
                     <div class="bord-section">
-                        <div id="section1" class="container-fluid">
-	                    	<div id="notice-zone">
+                        <div id="price" class="container-fluid">
+	                    	<div id="price-title"><h5>센터소개</h5>
 	                            <div id="notice">
 	                                <p><%=cd.getCenterIntro() %></p>
 	                            </div>
 	                        </div> 
-                            <div id="price-zone">    
-                                <div id="price">
+	                      <br><hr>
+                            <div id="price-zone"> 
+                               
+                                <div id="price">                              
                                     <div class="price-title"><h5>가격정보</h5></div>
+                                    
+                                    
+                                    
                                     <div id="price-buga">
 										<%String preName1=(cd.getCenterPrograms().get(0)).getpName(); 
                                     	for(int i=0; i<cd.getCenterPrograms().size(); i++) {
                                     		CenterPrograms cp = cd.getCenterPrograms().get(i);
-                                    		if(i==0||!preName1.equals(cp.getpName())) {
+                                    	if(i==0||!preName1.equals(cp.getpName())) {
                                     			preName1=cp.getpName();%>
 
-										<div class="buga-title"><h6><%=cp.getpName() %></h6></div>
-														<div style="width: 730px;">
+													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6>𓂃𓊝 𓂃<%=cp.getpName() %></h6></div>
+														<div >
 														<table id="price_table">
 															<tr>
 																<th></th>
@@ -114,7 +131,7 @@
                                                 				<%} 
                                         						}%>    
                                         				   	</tr>
-                                        				   	<tr style="color: lightgray;">
+                                        				   	<tr style="color: grey;">
                                         				   		<td>정상가</td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
@@ -123,7 +140,7 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr>
+                                        				   	<tr style="color:blue;">
                                         				   		<td>BBAGYM 회원가</td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
@@ -139,41 +156,44 @@
 	                                        					if(preName1.equals(cp2.getpName())) {%>
 																	<td><span>월 <%=(int)(cp2.getPrice()/cp2.getMonth()) %>원</span></td>						
                                                 				<%} 
-                                        						}%>
+                                        						}%><br>
                                         				   	</tr>
                                         				</table>                                   			
-
+<br>
 		                                        <%} 
 		                                        }%>
                                         	</div>  
                                 </div>
                             </div>
-                            <div id="time-zone">
+                           
+                                <hr><div id="time-zone">  <hr>
                                 <div id="time">
-                                    <div id="time-play"><h5>운영시간</h5></div>
-                                    <div id="time-con">
-                                        <%=cd.getCenterOpenHours() %><br>
+                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
+                                    <small> <div id="time-con" style="color: rgb(146, 142, 142);"> 
+                                       <%=cd.getCenterOpenHours() %><br><br>
                                         [휴관일] <%=cd.getCenterHolidays() %>
-                                    </div>
+                                    </div></small>
                                 </div>
                             </div>
+                             <hr>
                             <div id="program-zone">
                                 <div id="program">
-                                    <div class="program-title"><h5>시설</h5></div>
-                                    <div class="program-sebu">
+                                    <div class="program-title"><h5><b>시설</b></h5></div>
+                                   <small> <div class="program-sebu" style="color: rgb(146, 142, 142);">
 
                                         	<%for(int i=0; i<cd.getCenterFacilityNames().size(); i++){ %>
                                         		<%=cd.getCenterFacilityNames().get(i) %>&nbsp;&nbsp;
                                         	<%} %>
 
-                                    </div>
+                                    </div></small>
                                 </div>
                             </div>
                         </div>
+                         <hr>
                         <!--이미지구역-->
                         <div id="section2" class="container-fluid">
                             <div id="image-zone">
-                                <div id="image-title"><h5>사진</h5></div>
+                                <div id="image-title"><h5><b>사진</b></h5></div>
                                 <div id="image-sebu">    
                                     <div class="img">
                                         <div class="col-md-12 ml-auto mr-auto">
@@ -193,13 +213,14 @@
                                 <!-- <div class="button">펼쳐보기</div>     -->
                             </div>
                         </div>
-                        <div id="section4" class="container-fluid">
-                            <div id="map-title"><h5>위치</h5></div>
-                            <div id="map-api">지도api</div>
+                       <hr>
+                        <div id="section4" class="container-fluid">  <hr><br>
+                            <div id="map-title"><h5><b>위치</b></h5></div>
+                            <div id="map-api"></div>
                         </div>
-                    
+                          
                         <div id="section3" class="container-fluid" style="height:auto;">
-                            <div id="review-zone">
+                            <hr><div id="review-zone">
                                 <div class="title-button">
                                     <div id="review-title"><h5>이용후기</h5></div>
                             <%if(logginMember!=null&&cd.isBuy()==true) {%>
@@ -230,7 +251,7 @@
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
 
 																<%}else {%>
-																	<!-- <option value="" disabled>선택 항목 없음</option> -->
+																	
 																<%}
 																	} 
 																} 
@@ -382,6 +403,19 @@
 	    	});
 	        
 	        
+	        /* price comma추가하기 */
+	        
+        $(function () {
+            let reg = new RegExp(/\d+/);
+
+            $("#pChoice>option").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+
 	        $("#baguni2").on("click",function(){
 	      		
 	      		var baguni =  {"baguni":$("#baguni").val()};
@@ -395,11 +429,12 @@
 	      				alert("바구니 담기 성공!");
 	      			},
 	      			error : function(r,e,m){
-	      				alert("바구니 담기 실패!");
+	      				alert("바구니 담기 실패! 로그인을 확익해주세요");
 	      			}
 	      		})
 	      		
 	      	});
+
 			
 	</script>
 

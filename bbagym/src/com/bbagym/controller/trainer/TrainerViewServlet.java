@@ -44,7 +44,7 @@ public class TrainerViewServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerpage=9; //페이지당 9개 데이터 출력
+		int numPerpage=6; //페이지당 9개 데이터 출력
 		List<TrainerView> list = new TrainerService().AllTrainerDataList(cPage,numPerpage);
 		int totalData = new TrainerService().AllTrainerDataCount();
 		

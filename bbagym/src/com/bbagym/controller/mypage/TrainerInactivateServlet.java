@@ -1,23 +1,28 @@
-package com.bbagym.controller.member;
+package com.bbagym.controller.mypage;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.model.vo.Program;
+import com.bbagym.service.MyPageService2;
+
 /**
- * Servlet implementation class SearchIdServlet1
+ * Servlet implementation class TrainerInvalidateServlet
  */
-@WebServlet("/member/id.do")
-public class SearchIdServlet1 extends HttpServlet {
+@WebServlet("/mypage/trainerInactivate")
+public class TrainerInactivateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet1() {
+    public TrainerInactivateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +32,11 @@ public class SearchIdServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/member/searchId.jsp").forward(request, response);
+		int tCode=Integer.parseInt(request.getParameter("tCode"));
+		List<Program> programs = new MyPageService2().selectProgram(tCode);
+		request.setAttribute("programs", programs);
+		request.getRequestDispatcher("/views/mypage/selectProgram.jsp").forward(request, response);
+		
 	}
 
 	/**

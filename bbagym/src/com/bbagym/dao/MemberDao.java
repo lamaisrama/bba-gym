@@ -376,7 +376,7 @@ import com.bbagym.model.vo.Member;
 				m.setM_AGE(rs.getInt("M_AGE"));
 				m.setBUSINESS_CODE(rs.getString("BUSINESS_CODE"));
 			
-			}
+			}System.out.println(rs);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {

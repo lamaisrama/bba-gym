@@ -16,6 +16,7 @@
 		}
 	}
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
             </div>
             <div id="welcome"><!-- 관리자페이지 타이틀 -->
                 <nav>
-                    <h1 style="font-size: 50px; color: white;">빠짐 관리자페이지</h1>
+                    <h1 style="font-size: 50px; color: white;">빠짐 관리자페이지<i class="fa fa-heart heart"></i></h1>
                 </nav>
             </div>
         </div>

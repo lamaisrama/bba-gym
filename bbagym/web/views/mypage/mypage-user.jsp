@@ -128,10 +128,6 @@
 			</table>
 		</div>
 		
-		<div id="my-1">장바구니</div>
-		<div style="width: 95%; height: 150px; margin: 0 auto;"></div>
-
-		
 		
 		<div class="parent">
 			<div class="first">

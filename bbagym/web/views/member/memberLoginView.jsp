@@ -45,7 +45,7 @@
 						placeholder="Enter Password" name="M_PW" id="M_PW"
 						placeholder="PW" placeholder="비밀번호입력" required> <br><br><input
 						type="checkbox" style="float: left" name="saveId" id="saveId"
-						<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
+						<%=!saveId.equals("") ? "checked" : ""%>>&nbsp&nbsp아이디 저장
 						<div id="goka" style="float:right">
 						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
 						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="padding-left:20px;"></div>
@@ -54,9 +54,10 @@
 						<br>
 					<button class="submit" style="">Login</button><br>
 					<input type="button" class="find" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')"><br> 
-					<input type="button" class="find" value="아이디/비밀번호 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/idpw.do')">
-
-
+					<div style="display:flex;width:87%;">
+						<input type="button" class="find" value="아이디 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/id.do')">&nbsp&nbsp&nbsp&nbsp
+						<input type="button" class="find" value="비밀번호 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')">
+					</div>
 				</div>
 			</form>
 	</div>

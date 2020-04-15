@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.bbagym.model.vo.TrainerDetail, com.bbagym.model.vo.TrainerProgram" %>
+<%@ page import="com.bbagym.model.vo.*, java.util.List" %>
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 	TrainerDetail td = (TrainerDetail)request.getAttribute("td");
+	List<Comment> comments = (List)request.getAttribute("comments");
+	int tCode = (int)request.getAttribute("tCode");
+	int mCode = (int)request.getAttribute("mCode");
+	int score=1;
+	int count=0;
 %>	
 
  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img()%>');">
@@ -14,17 +19,17 @@
     <div class="container">
       <div class="owner">
         <div class="avatar">
-          <img src="<%=request.getContextPath()%>/assets/img/faces/joe-gardner-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+          <img src="<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img() %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
         </div>
         <div class="name">
           <h4 class="title"><%=td.getT_name() %>
             <br />
-          </h4><%for(String s : td.gettProgramNames()){  %>
+<%--           </h4><%for(String s : td.gettProgramNames()){  %>
         	<h6><%=s %></h6>
-          <%} %>
+          <%} %> --%>
         </div>
       </div>
-      <div class="row">
+      <div class="row">	
         <div class="col-md-6 ml-auto mr-auto text-center">
           <p>
            <br><br>
@@ -158,11 +163,11 @@
           <br/>
           <br/>
           <hr>
-         <%--  <div class="row">
+           <div class="row">
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>리뷰
                 <br/>
-					<%if(logginMember!=null&&cd.isBuy()==true) {%>
+					<%if(logginMember!=null&&td.isBuy()==true) {%>
 								<div id="review-button">
                                         <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
                                     </div>  
@@ -171,8 +176,8 @@
                                 <div id="review-content">
                                 	<div id="comment-container">
                                 		<div class="comment-editor hidden">
-	                                		 <%if(logginMember!=null&&cd.isBuy()==true) {%>
-												<form action="<%=request.getContextPath()%>/center/commentInsert.do" method="post" id="comment-form">
+	                                		 <%if(logginMember!=null&&td.isBuy()==true) {%>
+												<form action="<%=request.getContextPath()%>/trainer/commentInsert.do" method="post" id="comment-form">
 													    <div>
 													    	<label style="margin:0px">평점</label><br>
         													<input type="number" name="orderScore" id="orderScore" min="1" max="5" required>/5점
@@ -182,20 +187,25 @@
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
-																<%for(int i=0; i<cd.getBuyInfo().size(); i++) {
-																	BuyInfo bi = cd.getBuyInfo().get(i);{
-																	if(bi.getScore()==0) {%>
-																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
+																<%boolean flag=false;
+																for(int i=0; i<td.getBuyInfo().size(); i++) {
+																	BuyInfo bi = td.getBuyInfo().get(i);{
+																	if(bi.getScore()==0) {
+																	flag = true;%>
+																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getCount()%>"><%=bi.getpName()%>/<%=bi.getCount() %>회</option>
 
 																<%}else {%>
-																	<option value="" disabled>선택 항목 없음</option>
-																<%} break;
+																	
+																<%}
 																	} 
-																}%>
+																}
+																if(flag=false){%>
+																	<option value="" disabled>선택 항목 없음</option>
+																<%} %>
 															</select>
 														</div>
 													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
-													<input type="hidden" name="centerCode" value="<%=cCode%>">
+													<input type="hidden" name="trainerCode" value="<%=tCode%>">
 													<input type="hidden" name="memberName" value="<%=logginMember.getM_NAME()%>">
 													<input type="hidden" name="level" value="1">
 													<input type="hidden" name="commentRef" value="0">
@@ -213,9 +223,9 @@
 														<%for(int i=1;i<=c.getOrderScore();i++){%>
 						                            		<i class="fa fa-star"></i>&nbsp;&nbsp;
 						                            	<%}%>
-						                             	 if(score-c.getOrderScore()<0.5){%>
+						                             	 <%-- if(score-c.getOrderScore()<0.5){%>
 						                            		<i class="fa fa-star-half"></i>
-						                            	<%} score=1;%>
+						                            	<%} score=1;%> --%>
 						                            	<%=c.getOrderScore()==0 ?  "0" : c.getOrderScore() %>
 						                        </div>
 														<sub class="comment-writer"><%=c.getmId() %></sub>
@@ -250,11 +260,10 @@
 	                                    	<%} %>
 									</div>
                                 </div>
-              </h5> --%>
-          <!--   </div>  
+              </h5> 
+            </div>  
           </div>
-
-        </div>   -->
+        </div> 
 
         <div class="tab-pane text-center" id="following" role="tabpanel">
           <h3 class="text-muted">트레이너상담연결뭐몰라ㅣ</h3>
@@ -296,11 +305,56 @@
   				alert("바구니 담기 성공!");
   			},
   			error : function(r,e,m){
-  				alert("바구니 담기 실패!");
+  				alert("바구니 담기 실패! 로그인을 확익해주세요");
   			}
   		})
   		
   	});
+  
+  $(".enterComment").click(function(){
+      $(".comment-editor").toggleClass("hidden")
+  })
+	
+	$(function(){
+		$(".btn-reply").click(function(){
+			if(<%=logginMember!=null%>) {
+				const tr = $("<tr>");
+				const td = $("<td>").css({
+					"display":"none", "text-align":"left"
+				}).attr("colspan",2);
+				const form = $("<form>").attr({
+					"action":"<%=request.getContextPath()%>/trainer/commentInsert.do", "method":"post"
+				});
+				const textarea = $("<textarea>").attr({"cols":"50","rows":"2","name":"commentContent", "id":"commentContent"});
+				const button = $("<input>").attr({"type":"submit","value":"답글", "class":"btn btn-primary", "id":"btn-reply2"});
+				const writer = $("<input>").attr({"type":"hidden","name":"commentWriter", "value":"<%=logginMember!=null?logginMember.getM_CODE():""%>"});
+				const trainerCode = $("<input>").attr({"type":"hidden","name":"trainerCode", "value":"<%=tCode%>"});
+				const level = $("<input>").attr({"type":"hidden","name":"level", "value":"2"});
+				const commentRef = $("<input>").attr({"type":"hidden","name":"commentRef", "value":$(this).val()});
+				const ordercode =$("<input>").attr({"type":"hidden","name":"orderChoice","value":$(this).parent().prev().find("input[name=orderCode]").val(), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta"), "data": $(this).parent().prev().find("input[name=orderCode]").data("meta2")})
+				form.append(textarea).append(button).append(writer).append(trainerCode).append(level).append(commentRef).append(ordercode);
+				td.append(form);
+				tr.append(td);
+				($(this).parent().parent()).after(tr);
+				tr.children("td").slideDown(500);
+				$(this).off("click");   /* off=>이벤트 삭제 */
+
+			}
+		});
+	});
+  
+	  /* price comma추가하기 */
+	  
+	  $(function () {
+	      let reg = new RegExp(/\d+/);
+	
+	      $("#pChoice>option").each(function (i, item) {
+	          let a = $(item).text();
+	          console.log(reg.exec(a)[0]);
+	          $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+	      })
+	  })
   	
   </script>
   

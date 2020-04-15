@@ -38,18 +38,26 @@ public class BaguinServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		ArrayList<Baguni> centerlist = new ArrayList<Baguni>();
 		ArrayList<Baguni> trainerlist = new ArrayList<Baguni>();
-
-		int mcode = ((Member)session.getAttribute("logginMember")).getM_CODE();
-		System.out.println(mcode);
+		int mcode;
+		try {
+		 mcode = ((Member)session.getAttribute("logginMember")).getM_CODE();
+		}catch (NullPointerException e) {
+			mcode=0;
+			request.setAttribute("msg", "로그인해주세요");
+			request.setAttribute("loc", "");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
+		
 		String baguni="";
 		Cookie[] cookies = request.getCookies();
 		
 		if(cookies!=null) {
 			for(Cookie c : cookies) {
 				String name=c.getName();
-				String value=c.getValue();
+				
 				
 				if(name.equals(String.valueOf(mcode))) {
+					String value=c.getValue();
 					baguni=value;
 				}
 				
@@ -62,13 +70,13 @@ public class BaguinServlet extends HttpServlet {
 		
 			if(data!=null) {
 				for(String s : data) {
-					if(s.charAt(0)=='t') {
+					if(s.charAt(0)=='t') { //tariner 상품일 때
 						String[] info=s.split("/");
 						Baguni bg =  new Baguni();
 						bg.setPcode(Integer.parseInt(info[1]));
 						bg.setCount(Integer.parseInt(info[2]));
 						trainerlist.add(bg);
-					}else {
+					}else { //center 상품일 때
 						String[] info=s.split("/");
 						Baguni bg =  new Baguni();
 						bg.setPcode(Integer.parseInt(info[1]));
@@ -77,9 +85,13 @@ public class BaguinServlet extends HttpServlet {
 					}
 				}
 				
-				
+				if(!trainerlist.isEmpty()) {
 				new BaguniService().searchtrainer(trainerlist);
+				}
+				
+				if(!centerlist.isEmpty()){
 				 new BaguniService().searchcenter(centerlist);
+				}
 			}
 		
 		}

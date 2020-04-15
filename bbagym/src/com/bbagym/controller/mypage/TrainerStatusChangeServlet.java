@@ -1,4 +1,4 @@
-package com.bbagym.controller.member;
+package com.bbagym.controller.mypage;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.service.MyPageService2;
+
 /**
- * Servlet implementation class SearchIdServlet1
+ * Servlet implementation class TrainerStatusChangeServlet
  */
-@WebServlet("/member/id.do")
-public class SearchIdServlet1 extends HttpServlet {
+@WebServlet("/mypage/statusChange")
+public class TrainerStatusChangeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet1() {
+    public TrainerStatusChangeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +28,20 @@ public class SearchIdServlet1 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/member/searchId.jsp").forward(request, response);
+		int pCode=Integer.parseInt(request.getParameter("pCode"));
+		String status=request.getParameter("status");
+		int result=new MyPageService2().changeStatus(pCode, status);
+		String msg="";
+		if(result>0) {
+			msg="해당 프로그램의 상태 전환에 성공하였습니다.";
+		}else {
+			msg="상태 전환 실패. 관리자에게 문의하세요";
+		}
+		String loc="/mypage/mypageBusiness.do";
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		
 	}
 
 	/**

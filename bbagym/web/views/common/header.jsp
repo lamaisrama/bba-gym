@@ -106,8 +106,8 @@ if (cookies != null) {
 				
 	        <div>
 	        
-	       <input type="button" class="btn btn-outline-dark"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
-	       <input type="button" class="btn btn-outline-dark" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
+	       <input type="button" class="btn btn-info"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
+	       <input type="button" class="btn btn-info" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
 	        	
 	        	&nbsp; 
 	 		 	 

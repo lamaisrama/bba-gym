@@ -39,7 +39,7 @@
 
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run4.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	      
@@ -100,7 +100,7 @@
 	
 	    <div id="search">
 	       <div>
-	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="50px" background-color:"grey">
+	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="75px" >
 	       </div>
 	   	</div>
 	   	
@@ -147,12 +147,12 @@
 	</section>
 	
 	<script>
-
+/* 
 		onload=function(){
 
 			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
 
-		}
+		} */
 
 		
 		function handleGeoSucces(position){

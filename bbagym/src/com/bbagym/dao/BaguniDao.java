@@ -34,6 +34,9 @@ public class BaguniDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = prop.getProperty("searchtrainer");
+		for(Baguni ba : trainerlist) {
+			System.out.println(ba);
+		}
 		try {
 			
 			for(Baguni ba : trainerlist) {

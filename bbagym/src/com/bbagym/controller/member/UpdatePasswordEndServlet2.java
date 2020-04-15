@@ -1,30 +1,25 @@
 package com.bbagym.controller.member;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 
 /**
- * Servlet implementation class SearchIdServlet
+ * Servlet implementation class UpdatePasswordEndServlet
  */
-@WebServlet("/member/searchId.do")
-public class SearchIdServlet2 extends HttpServlet {
+@WebServlet(name="UpdatePasswordEndServle2t",urlPatterns="/member/PasswordEnd")
+public class UpdatePasswordEndServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdServlet2() {
+    public UpdatePasswordEndServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,26 +28,35 @@ public class SearchIdServlet2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	
+		String id=request.getParameter("M_ID");
+		String pw=request.getParameter("password");
+		String changePw=request.getParameter("password_new");
 		
-			String name=request.getParameter("M_NAME");
-			String email=request.getParameter("M_EMAIL");
-			Member m=new MemberService().searchId(name,email);
-		;
-			
-			
-			if(m!=null) {
-				HttpSession session=request.getSession();
-							
-				session.setAttribute("logginMember", m);
-				
-				request.getRequestDispatcher("/views/member/idpw_id.jsp").forward(request, response);
-				
-			}else {
-				request.setAttribute("msg","입력한 정보가 맞지않습니다.다시 입력해 주세요.");
-				request.setAttribute("loc", "/member/id.do");
-				RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
-				rd.forward(request, response);
-			}
+		int result=new MemberService().updatePassword(id,pw,changePw);
+		
+		System.out.println(result);
+		
+		
+		String msg="";
+		String loc="";
+		String script="";
+		if(result>0) {
+			//비밀번호 성공
+			msg="비밀번호 변경성공";
+			loc="/member/logoutgologin.do";
+		}else {
+			//비밀번호 변경 실패
+			msg="비밀번호 변경실패";
+			loc="/member/pw.do";
+		
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.setAttribute("script", script);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**
