@@ -1,7 +1,8 @@
 * {
       /* border : 1px solid red;   */
      list-style-type: none;
-     font-family: "Noto Sans KR", Helvetica,"Apple SD Gothic Neo", Sans-serif;
+     font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+     /* font-family: "Noto Sans KR", Helvetica,"Apple SD Gothic Neo", Sans-serif; */
  }
 
 ::placeholder{

@@ -1,7 +1,13 @@
+* {
+ /* 	border : 1px solid red;  */
+}
 
 
 .searchBox{
     margin: 10px auto;
+    display : flex;
+    justfiy-content : center;
+    align-items: center;
 }
 ox input{
     
@@ -10,6 +16,8 @@ ox input{
 }
 .searchBox button{
     padding-bottom: 3px;
+    margin-left : 5px;
+    width : 80px;
 }
 .sortBox{
     /* border: 1px solid; */
@@ -74,6 +82,7 @@ ox input{
 .content-box-outer td{
     width: 160px;
     padding-left: 40px;
+    padding-right: 40px;
 }
 
 

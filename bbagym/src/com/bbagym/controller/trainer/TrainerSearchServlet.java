@@ -52,7 +52,7 @@ public class TrainerSearchServlet extends HttpServlet {
 			cPage=1;
 		}
 		
-		int numPerpage=9; //페이지당 9개의 데이터를 출력
+		int numPerpage=6; //페이지당 9개의 데이터를 출력
 		
 		 list = new TrainerService().searchTrainerData(cPage,numPerpage,type,searchKeyword);
 		 totalData = new TrainerService().serachTrainerAllData(type,searchKeyword);

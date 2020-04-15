@@ -21,7 +21,7 @@
     	<hr>
         <div class="row">
             <div class="searchBox">
-                <input type="text" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
+                <input type="text" class="form-control" name="search" id="search" placeholder="시설명, 주소로 검색해보세요" size="40" value="<%=keyword!=null ? keyword : "" %>">
                 <button class="btn btn-warning" onclick="searchByKeyword();">찾기</button>
             </div>
         </div>
@@ -103,8 +103,8 @@
                             </i></h2></td><!-- 찜목록 ON/OFF-->
                         </tr>
                         <tr>
-                            <td colspan="2"><%=c.getAddress() %></td><!-- 위치 API-->
-                            <td><%=c.getDistance().equals("0.0")? "0.0" :c.getDistance().substring(0, 4)%>km</td><!-- 거리 API-->
+                            <td colspan="3"><%=c.getAddress() %></td><!-- 위치 API-->
+
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -116,7 +116,7 @@
                             	<%} score=1;%>
                             	<%=c.getScore()==0 ?  "0" : c.getScore() %>
                             </td><!-- 평점 점수에따른 이미지변경-->
-                            <td></td>
+                            <td><%=c.getDistance().equals("0.0")? "0.0" :c.getDistance().substring(0, 4)%>km</td>
                         </tr>
                         <tr>
                         	<td colspan="2">

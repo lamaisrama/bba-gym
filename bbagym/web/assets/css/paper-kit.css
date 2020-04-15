@@ -4212,8 +4212,8 @@ License - nucleoapp.com/license/
 .nav-pills .nav-item.active .nav-link,
 .nav-pills .nav-item.active .nav-link:hover,
 .nav-pills .nav-item.active .nav-link:focus {
-  background-color: #66615B;
-  color: #FFFFFF;
+  /* background-color: #66615B;
+  color: #FFFFFF; */
 }
 
 .nav-pills .nav-item:first-child .nav-link {
