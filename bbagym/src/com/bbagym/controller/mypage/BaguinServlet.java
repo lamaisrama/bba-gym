@@ -70,13 +70,13 @@ public class BaguinServlet extends HttpServlet {
 		
 			if(data!=null) {
 				for(String s : data) {
-					if(s.charAt(0)=='t') {
+					if(s.charAt(0)=='t') { //tariner 상품일 때
 						String[] info=s.split("/");
 						Baguni bg =  new Baguni();
 						bg.setPcode(Integer.parseInt(info[1]));
 						bg.setCount(Integer.parseInt(info[2]));
 						trainerlist.add(bg);
-					}else {
+					}else { //center 상품일 때
 						String[] info=s.split("/");
 						Baguni bg =  new Baguni();
 						bg.setPcode(Integer.parseInt(info[1]));
