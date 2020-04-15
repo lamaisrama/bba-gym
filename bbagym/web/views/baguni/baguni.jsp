@@ -46,11 +46,9 @@
         <%if(centerlist==null){ %>
         <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
         <div class="baguni d-flex flex-row">
-            <div class="checkbox-cont">
-                <input type="checkbox" name="checkbox" id="checkbox">
-    
-            </div>
-            <div class="img-container d-flex flex-row">
+
+            <div class="img-container d-flex flex-row" >
+
                 <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
             </div>
             <div class="detail-container d-flex col">
