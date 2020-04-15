@@ -70,22 +70,16 @@
 					</a>
 					<div><%=myPerfer.size() %>개</div>
 				</div>
-				<div id="menu4">
-					장바구니<a href="#4" style="text-decoration: none;">
-						<button style="float: right;">></button>
-					</a>
-					<div>0개</div>
-				</div>
 			</div>
 		</div>
 
 		<div id="my-1">나의 센터 회원권</div>
-		<div style="width: 95%; height: 150px; margin: 0 auto;">
+		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="mycenter">
 				<tr><th>센터명</th><th>프로그램명</th><th>이용달수</th><th>결제일</th><th>만료일</th><th>내점수</th></tr>
 				<%for(MypageUser my : cmembership) {%>
 				<tr>
-					<td><a href="#"><%=my.getCname() %></a></td>
+					<td><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=my.getCcode() %>"><%=my.getCname() %></a></td>
 					<td><%=my.getPname() %></td>
 					<td><%=my.getMonth() %></td>
 					<td><%=my.getPaydate() %></td>
@@ -97,12 +91,12 @@
 		</div>
 		
 		<div id="my-1">나의 트레이너 회원권</div>
-		<div style="width: 95%; height: 150px; margin: 0 auto;">
+		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="mytrainer">
 				<tr><th>센터명</th><th>프로그램명</th><th>PT이용횟수</th><th>결제일</th><th>내점수</th></tr>
 				<%for(MypageUser my : tmembership) {%>
 				<tr>
-					<td><a href="#"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
+					<td><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=my.getCcode() %>"><%=my.getCname()==null ? "프리랜서" : my.getCname()%></a></td>
 					<td><%=my.getPname() %></td>
 					<td><%=my.getCount() %></td>
 					<td><%=my.getPaydate() %></td>
@@ -114,7 +108,7 @@
 		</div>
 		
 		<div id="my-1">My 찜</div>
-		<div style="width: 95%; height: 150px; margin: 0 auto;">
+		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="myprefer">
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
 				<%for(MypageUser my : myPerfer) {%>
