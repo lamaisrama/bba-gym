@@ -129,7 +129,8 @@
 					$(".content-box-outer").on("click",function(){;
 					var tcode = $(this).find("input").val(); /* 생성되어있는 content-box 즉 트레이너 설명 box를 클릭하면 상세보기로 이동하기위한 servlet으로 이동한다  */
 					/* alert(tcode); */
-					location.href="<%=request.getContextPath() %>/trainer/trainerDetail.do?tCode="+tCode;
+					console.log(tcode);
+					location.href="<%=request.getContextPath() %>/trainer/trainerDetail.do?tcode="+tcode;
 					/* 클릭한박스에 input을 찾아 tcode를 동봉해 보낸다 */
 					})
 					/* 트레이너박스 클릭시 상세 화면으로 이동 */

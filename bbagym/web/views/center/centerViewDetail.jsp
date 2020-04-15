@@ -54,20 +54,11 @@
                         </div>
                         <div id="address-phone"><h7><%=cd.getCenterAddr() %><br><%=cd.getCenterPhone() %></h7></div>
                         <div id="choice">옵션 선택
-<<<<<<< HEAD
-                            <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                
-                                <%for(CenterPrograms cp : cd.getCenterPrograms()) {%> 
-                                	<option value="<%=cp.getpCode() %>">프로그램명 : <%=cp.getpName() %> 가격: <%=cp.getPrice() %>원 개월 수 : <%=cp.getMonth() %>개월</option>
-                                <%} %>
-                            </select>
-=======
                             <select class="custom-select" style="width:500px;" id="baguni">
 				         		<%for(CenterPrograms c: cd.getCenterPrograms()){  %>
 					           		<option value="<%="c/"+c.getpCode()+"/"+c.getMonth()%>">프로그램명 : <%=c.getpName() %> 가격 : <%=c.getPrice() %>원  이용달수: <%=c.getMonth() %>회</option>
 					            <%} %> 
 						 </select>
->>>>>>> branch 'develop' of https://github.com/lamaisrama/bba-gym.git
                         </div>
                         <div id="basket-button"><!--담기-->
                             <button id="baguni2" type="submit" class="btn btn-info" style="width:100%;height:100%;" >장바구니에 담기</button>

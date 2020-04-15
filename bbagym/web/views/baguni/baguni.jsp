@@ -8,7 +8,18 @@
 
 	List<Baguni> centerlist = (List)request.getAttribute("centerlist");
 	List<Baguni> trainerlist = (List)request.getAttribute("trainerlist");
-
+	int total=0;
+	if(!centerlist.isEmpty()){
+		for(Baguni ba : centerlist){
+			total += ba.getPrice();
+		}
+	}
+	if(!centerlist.isEmpty()){
+		for(Baguni ba : trainerlist){
+			total += ba.getPrice();
+		}
+	}
+	
 %>
 
 
@@ -59,7 +70,8 @@
                         </tr>
                     </table>
                     <div>
-                    	<button type="button" class="btn btn-info">삭제</button>
+                    	<button type="button" class="btn btn-info delete" >삭제</button>
+                    	<input type="hidden" id="info" value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
                     </div>
                 </div>
             </div>
@@ -97,7 +109,8 @@
                         </tr>
                     </table>
                     <div>
-                    	<button type="button" class="btn btn-info">삭제</button>
+                    	<button type="button" class="btn btn-info delete">삭제</button>
+                       	<input type="hidden" id="info" value="t/<%=ba.getPcode()%>/<%=ba.getCount()%>">
                     </div>
                 </div>
             </div>
@@ -108,16 +121,16 @@
 	        <div class="total-price-container">
 	            <div class="desc-row">
 	                <span class="pricetitle" id="pricetitle1">상품 금액</span>
-	                <span class="total-price" id="total-price" style="float: right;">231,000
+	                <span class="total-price" id="total-price" style="float: right;"><%=total+total*0.1 %>
 	                    &nbsp;원</span>
 	            </div>
 	            <div class="desc-row">
 	                <span class="pricetitle" id="pricetitle2">다짐 회원 할인</span>
-	                <span class="sale-price" id="sale-price" style="float: right;">-21,000 &nbsp;원</span>
+	                <span class="sale-price" id="sale-price" style="float: right;"><%=-total*0.1 %> &nbsp;원</span>
 	            </div>
 	            <div class="desc-row">
 	                <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
-	                <span class="new-price" id="new-price" style="float: right;">210,000 &nbsp;원</span>
+	                <span class="new-price" id="new-price" style="float: right;"><%=total %> &nbsp;원</span>
 	            </div>
 		        <div id="button-container" class="d-flex flex-row">
 		            <button class="btn-center btn-more btn btn-primary btn-lg" routerlink="">더 돌아보기</button>
@@ -139,6 +152,12 @@
         $(".close").on("click", function () {
             $(this).parent().parent().parent().remove();
         })
+        
+       $(".delete").on("click",function(){
+    	   var value = $(this).next().val();
+    	   location.replace("<%=request.getContextPath() %>/ShoppingBaguniDeleteServlet.do?value="+value);
+       })
+       
 
     </script>
 

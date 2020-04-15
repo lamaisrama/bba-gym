@@ -867,7 +867,7 @@ public class CenterDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs =null;
 			List<CenterEnroll> list = new ArrayList<CenterEnroll>();
-			String sql =prop.getProperty("centerMainPageDataByDistance")
+			String sql =prop.getProperty("centerMainPageDataByDistance");
 			try {
 				pstmt = conn.prepareStatement(sql);
 				
