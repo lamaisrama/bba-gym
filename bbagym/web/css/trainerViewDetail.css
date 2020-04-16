@@ -71,3 +71,19 @@ table#tbl-comment{width:100%; min-width:750px; border-collapse:collapse; clear:b
     		margin-left: auto;
     		margin-right: auto;
         }
+        
+        #section2{border: solid 0px hotpink; padding-top:70px;padding-bottom:70px; display: flex;  text-align:center;}
+	#image-zone{border: solid 0px peru; margin: auto;  text-align:center;}
+	#image-title{border: solid 0px red; }
+	#image-sebu{border: solid 0px blue; }
+	.button{border: solid 0px green;}
+	
+	.following img {
+		width: auto;
+		max-width: none;
+		max-height: 500px;
+	}
+	
+	.profile-content .tab-content .tab-pane {
+		min-height: auto;
+	}
