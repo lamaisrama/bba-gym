@@ -2,21 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.bbagym.model.vo.Member"%>
 
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberLoginView.css">
 <%@ include file="/views/common/header.jsp"%>
 <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="946353110887-1fa9j79efa5b3bo0kr4oeu210qnp2tqj">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.4.1.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css">
 <!-- <link rel="stylesheet" href="css/member-register.css"> -->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
-
+<style>
+	*{
+ 	/* 	border : 1px solid red;  */
+	}
+</style>
 
 
 
@@ -39,24 +42,21 @@
 			<form action="<%=request.getContextPath()%>/member/login.do"
 				method="post" onsubmit="return invalidate();">
 				<div id="info-content">
-					<input type="text" class="input-field" placeholder="UserId"
-						name="M_ID" id="M_ID" placeholder="ID" value="<%=saveId%>"
-						required> <input type="password" class="input-field"
-						placeholder="Enter Password" name="M_PW" id="M_PW"
-						placeholder="PW" placeholder="비밀번호입력" required> <br><br>
-						<input type="checkbox" style="float: left" name="saveId" id="saveId"<%=!saveId.equals("") ? "checked" : ""%>>아이디 저장
-						<div id="goka" style="float:right">
-						<img src="//img.echosting.cafe24.com/skin/base_ko_KR/member/btn_kakao_login.gif" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
-						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="padding-left:20px;"></div>
-						</div>			
-						 <br>
-						<br>
-					<button class="submit" style="">Login</button><br>
-					<input type="button" class="find" value="회원가입" onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')"><br> 
-					<div style="display:flex;width:87%;">
-						<input type="button" class="find" value="아이디 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/id.do')">&nbsp&nbsp&nbsp&nbsp
-						<input type="button" class="find" value="비밀번호 찾기"onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')">
+
+					<input type="text" class="input-field" placeholder="ID"name="M_ID" id="M_ID" value="<%=saveId%>"required>
+					<input type="password" class="input-field"placeholder="Password" name="M_PW" id="M_PW" required>
+					<div id="checkbox"><input type="checkbox" style="float: left" name="saveId" id="saveId"<%=!saveId.equals("") ? "checked" : ""%> ><label for="saveId"><span></span>아이디 저장</label></div>
+					<button class="submit" style=""><span>로그인</span></button><br>
+
+					<div id="kind">		
+						<button class="find" onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')"><span>회원가입</span></button>
+						<button class="find"onclick="location.replace('<%=request.getContextPath()%>/member/id.do')"><span>아이디찾기</span></button>
+						<button class="find" onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')"><span>비밀번호 찾기</span></button>
 					</div>
+					<div id="goka" style="float:right">
+					<img src="<%=request.getContextPath() %>/resources/img/kakaologin.png" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
+					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="margin-left:20px;"></div>
+					</div>			
 				</div>
 			</form>
 	</div>
@@ -152,122 +152,4 @@
 			<br>
 
 
-<style>
-
-* {
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
- 	/* border : 1px solid red;  */
-}
-
-.row{
-	display : flex;
-	flex-direction : colum;
-	justify-content : center;
-}
-
-.togglebtn {
-	padding: 10px 30px;
-	cursor: pointer;
-	background: transparent;
-	border: 0;
-	outline: none;
-	position: relative;
-}
-
-#btn {
-	top: 0;
-	left: 0;
-	position: absolute;
-	width: 110px;
-	height: 100%;
-	background: linear-gradient(to right, #fffff6, rgb(255, 199, 199));
-	border-radius: 30px;
-	transition: .5s;
-}
-
-#goka{
-	display : flex;
-	flex-direction : row;
-}
-
-.g-signin2 span{
-	position: inherit;
-	color : black;
-}
-
-.input-group {
-	top: 90px;
-	position: absolute;
-	width: 280px;
-	transition: .5s;
-}
-
-.input-field {
-	width: 100%;
-	padding: 10px 0;
-	margin: 5px 0;
-	border: none;
-	border-bottom: 1px solid #999;
-	outline: none;
-	background: transparent;
-}
-
-.submit {
-	width: 85%;
-	padding: 10px 30px;
-	padding-left: 40px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	background: linear-gradient(to right, #fffff6, rgb(255, 199, 199));
-	border: 0;
-	outline: none;
-	border-radius: 30px;
-}
-
-#info-content{
-	width : 600px
-}
-
-.find {
-	width: 85%;
-	padding: 10px 30px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	background: linear-gradient(to right, #fffff6, rgb(255, 199, 199));
-	border: 0;
-	outline: none;
-	border-radius: 30px;
-}
-
-.kakao {
-	padding: 10px 30px;
-	cursor: pointer;
-	display: block;
-	margin: auto;
-	border: 0;
-	outline: none;
-	border-radius: 30px;
-}
-
-.checkbox {
-	margin: 30px 10px 30px 0;
-}
-
-span {
-	color: #777;
-	font-size: 12px;
-	bottom: 126px; /*68px*/
-	position: absolute;
-}
-
-#login {
-	left: 50px;
-}
-</style>
-
-<br><br><br><br><br><br><br><br>
 <%@ include file="/views/common/footer.jsp"%>

@@ -40,11 +40,11 @@
 	        	<div>
 
 				    <ul>		        
-						 <a href="<%=request.getContextPath()%>/member/membeLoginView.do"> <li>Login</li></a>
-				         <a href="<%=request.getContextPath()%>/center/centerSearch.do"> <li>센터 찾기</li></a>		<!-- /views/center/centerView.jsp -->
-<!-- 로그인x기본 -->		 <a href="<%=request.getContextPath()%>/trainer/trainerView.do"> <li>트레이너 찾기</li></a>	<!-- /views/trainner/trainnerView.jsp -->
-				         <a href="<%=request.getContextPath()%>/notice/notice.do"><li>Notice</li></a>				<!-- /views/board/noticeList.jsp -->
-				         <a href="<%=request.getContextPath()%>/notice/q&a.do"><li>Q&A</li></a>						<!-- /views/board/boardList.jsp -->
+						 <li><a href="<%=request.getContextPath()%>/member/memberloginview.do"> Login</a></li>
+				         <li><a href="<%=request.getContextPath()%>/center/centerSearch.do">센터 찾기</a></li>		<!-- /views/center/centerView.jsp -->
+<!-- 로그인x기본 -->		 <li><a href="<%=request.getContextPath()%>/trainer/trainerView.do">트레이너 찾기</a></li>	<!-- /views/trainner/trainnerView.jsp -->
+				         <li><a href="<%=request.getContextPath()%>/notice/notice.do">Notice</a></li>				<!-- /views/board/noticeList.jsp -->
+				         <li><a href="<%=request.getContextPath()%>/notice/q&a.do">Q&A</a></li>						<!-- /views/board/boardList.jsp -->
 				    
 
 				        
@@ -91,16 +91,16 @@
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
+	
+	<script>
+	
+	function log(){
+		location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
+	}
+	</script>
+	
 
-<script>
-
-function log(){
-	location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
-}
-</script>
-
-
-<script src="<%=request.getContextPath()%>/js/js1.js"></script>
+	<script src="<%=request.getContextPath()%>/js/js1.js"></script>
 
 
 
