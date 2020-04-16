@@ -40,20 +40,6 @@
 							<%} %>
 							required> 
 							<input type="button" onclick="fn_duplicateId();" style="width: 20%;" value="중복확인">
-									<script>
-               		function fn_duplicateId(){
-                	  var userId=$("#userId_").val();
-                  	  if(userId.trim().length<4){
-                      alert("아이디를 4글자 이상 입력하세요!");
-                     return;
-                  }
-                  
-                  const url="<%=request.getContextPath()%>/member/userIdCheck.do?M_ID="+ userId;
-				  var status = "height=200px, width=300px";
-				  open(url, "_blank", status);
-
-						}
-				</script>
 					</div>
 					<br> <label for="c-address"><pre style="color:red ; display:inline-block">*</pre>패스워드</label>
 					<div class="form-group" style="display: flex">
@@ -108,7 +94,7 @@
 					<br>
 					<div class="form-group">
 						 <button type="button" class="btn btn-warning" onclick="goPopup2()">사업장 주소</button>
-			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;" readonly> <!-- 주소 api를 통해 오는 데이터   -->
+			              <input type="text" class="form-control" type="text" name="M_ADDRESS_2" id="M_ADDRESS_2" placeholder="주소를 클릭하세요"  style="margin-top:10px;" readonly required> <!-- 주소 api를 통해 오는 데이터   -->
 					<br>
 		
 					<div class="info-footer-inner">
@@ -122,7 +108,26 @@
 	</div>
 	<hr>
 <script>
+
+	function fn_duplicateId(){
+		  var userId=$("#userId_").val();
+		  var reg = /^[A-za-z0-9]/g;
+		  
+		  if(userId.trim().length<4){
+	    	alert("아이디를 4글자 이상 입력하세요!");
+	   		return;
+		  }else if(!reg.test(userId)){
+			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요");
+			   	return;	
+		  }
 	
+		
+		const url="<%=request.getContextPath()%>/member/userIdCheck.do?M_ID="+ userId;
+		var status = "height=200px, width=300px";
+		open(url, "_blank", status);
+		
+			}
+			
 	
 	var pwck=document.getElementById("password_2");
 	pwck.onkeyup=function(){
@@ -150,6 +155,8 @@
 		var pw = $("#password_").val();
 		var pwck = $("#password_2").val();
 		var verifyEmail = $("#verifyEmail").val();
+		var reg1 = /^[A-za-z0-9]/g;
+		var reg2 = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 		//현재text에 입력되어 있는 값
 
 		//정규표현식
@@ -163,6 +170,12 @@
 			alert("아이디를 4글자이상입력하세요.");
 			$("#userId_").focus();
 			return false;
+		} else if(!reg2.test(pw)){
+			alert('숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력해야합니다');
+			return false;
+		}else if(!reg1.test(userId)){
+			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요");
+			   	return;
 		} else if (pw.trim() != pwck.trim()) {
 			alert("패스워드가 일치하지 않습니다.");
 			$("password_").focus();
