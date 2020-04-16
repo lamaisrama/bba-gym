@@ -152,7 +152,7 @@ public class AESEncrypt {
 	public static void encryptMember(Member m) {
 
 		
-		m.setM_PHONE(encrypt(m.getM_PHONE())); // 회원정보수정드가서 복호화되게 나오게 하기
+		m.setM_PHONE(encrypt(m.getM_PHONE())); // 회원정보수정드가서 암호화되게 나오게 하기
 		m.setM_ADDRESS(encrypt(m.getM_ADDRESS()));
 		
 

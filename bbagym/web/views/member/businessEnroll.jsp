@@ -34,7 +34,7 @@
 					<div class="form-group" style="display: flex">
 
 						<input type="text" class="form-control" 
-							style="width: 80%;" placeholder="4글자 이상 입력하세요" name="userId" id="userId_" 
+							style="width: 80%;" placeholder="영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요" name="userId" id="userId_" 
 							<%if(info!=null ){ %> 
 								value="<%=info.getM_ID() %>" readonly
 							<%} %>
@@ -43,10 +43,10 @@
 					</div>
 					<br> <label for="c-address"><pre style="color:red ; display:inline-block">*</pre>패스워드</label>
 					<div class="form-group" style="display: flex">
-						<input class="form-control" style="width: 50%;" type=password placeholder="패스워드" name="M_PW" id="password_" required> 
-						<input class="form-control" style="width: 50%;" type="password" placeholder="패스워드확인" id="password_2" required><br>
+						<input class="form-control" style="width: 40%;" type=password placeholder="패스워드" name="M_PW" id="password_" required> 
+						<input class="form-control" style="width: 40%;" type="password" placeholder="패스워드확인" id="password_2" required><span  style="width:30%;" id="result"></span>
 					</div>
-					<span id="result"></span>
+					<span><small>※ 비밀번호는 숫자, 특수문자 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상입니다. </small></span>
 
 
 					<br> 
@@ -113,8 +113,8 @@
 		  var userId=$("#userId_").val();
 		  var reg = /^[A-za-z0-9]/g;
 		  
-		  if(userId.trim().length<4){
-	    	alert("아이디를 4글자 이상 입력하세요!");
+		  if(userId.trim().length<5){
+	    	alert("아이디를 5글자 이상 입력하세요!");
 	   		return;
 		  }else if(!reg.test(userId)){
 			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요");
@@ -166,8 +166,8 @@
 			alert("영문자(대소)나 숫자로 이루어진 8글자이상 13글자 이하로 작성하세요");
 		} */
 
-		if (userId.trim().length < 4) {
-			alert("아이디를 4글자이상입력하세요.");
+		if (userId.trim().length < 5) {
+			alert("아이디를 5글자이상입력하세요.");
 			$("#userId_").focus();
 			return false;
 		} else if(!reg2.test(pw)){

@@ -5,16 +5,22 @@ import static com.bbagym.common.JDBCTemplate.close;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Properties;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Member;
+import com.bbagym.common.encrypt.AESEncrypt;
 import com.bbagym.model.vo.AdminTrainer;
 
 
@@ -190,6 +196,8 @@ public class AdminDao {
 			close(pstmt);
 		}return result;
 	}
+
+
 	public List<Member> selectMemberList(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;  //select문있으면 써야함.
@@ -209,14 +217,20 @@ public class AdminDao {
 				b.setM_ID(rs.getString("M_ID"));
 				b.setM_NAME(rs.getString("M_NAME"));
 				b.setM_EMAIL(rs.getString("M_EMAIL"));
-				b.setM_PHONE(rs.getString("M_PHONE"));
-				b.setM_ADDRESS(rs.getString("M_ADDRESS"));
+				
+				b.setM_PHONE(AESEncrypt.decrypt(rs.getString("M_PHONE")));
+				b.setM_ADDRESS(AESEncrypt.decrypt(rs.getString("M_ADDRESS")));
+				
+				
 				b.setM_STATUS(rs.getString("M_STATUS").charAt(0));
 				b.setM_GENDER(rs.getString("M_GENDER").charAt(0));
 				b.setM_AGE(rs.getInt("M_AGE"));
+				
 				list.add(b); // row를 가져온다계속;
 			}
-		} catch (SQLException e) {
+		}catch(UnsupportedEncodingException e) {
+			
+		}catch (SQLException e) {
 			e.printStackTrace();
 			
 		} finally {

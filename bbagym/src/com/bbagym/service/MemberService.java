@@ -128,7 +128,7 @@ public class MemberService {
 	public int updatePassword1(String id, String pw, String changePw) {
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
-		
+		System.out.println(m);
 		
 		int result=-1;
 		if(m !=null) {
