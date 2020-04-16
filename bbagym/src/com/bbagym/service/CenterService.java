@@ -105,6 +105,7 @@ public class CenterService {
 			dao.centerViewDetailPrograms(conn, cCode, cd);
 			dao.centerViewDetailImgs(conn, cCode, cd);
 			dao.centerViewDetailFacility(conn, cCode, cd);
+			dao.centerLatLng(conn, cCode, cd);
 			dao.getScore1(conn, cCode, cd);
 			List<CenterDetail> list = new ArrayList<CenterDetail>();
 			list.add(cd);

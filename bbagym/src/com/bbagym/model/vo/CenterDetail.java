@@ -26,6 +26,11 @@ public class CenterDetail {
 	private String sns_blog;
 	private String sns_etc;
 	
+	private String addrX;
+	private String addrY;
+	
+	
+	
 	public CenterDetail() {
 		// TODO Auto-generated constructor stub
 	}
@@ -225,6 +230,22 @@ public class CenterDetail {
 
 	public void setSns_etc(String sns_etc) {
 		this.sns_etc = sns_etc;
+	}
+	
+	public String getAddrX() {
+		return addrX;
+	}
+
+	public void setAddrX(String addrX) {
+		this.addrX = addrX;
+	}
+
+	public String getAddrY() {
+		return addrY;
+	}
+
+	public void setAddrY(String addrY) {
+		this.addrY = addrY;
 	}
 
 	@Override

@@ -14,7 +14,7 @@
 	String searchKeyword = (String)request.getAttribute("searchKeyword");
 %>
 
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/trainerView.jpg');"></div>
 <section>   
 
             <div id="box-search-outline">
