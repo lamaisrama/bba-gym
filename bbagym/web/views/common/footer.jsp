@@ -2,27 +2,41 @@
 <style>
 	footer{
 		font-family: "Montserrat";
-		margin-top:80px;
 	}
 </style>
 
 
 	<footer class="footer">
-	    <div class="container">
-	      <div class="row">
-	      <div class="col align-self-start">
+	    <div class="f-1">
+	      <div class="f-2">
+	      <div class="f-3">
 		  </div>
-      		  <div class="col align-self-center">
-		          <span class="copyright">@
+      		  <div class="f-3">
+		          <span class="content">@
 		            <script>
 		              document.write(new Date().getFullYear())
 		            </script>, made with <i class="fa fa-heart heart"></i> by Creative BBAGYM
 		          </span>
 	          </div>
-	      <div class="col align-self-end">
+	      <div class="f-3">
 	      </div>    
 	      </div>
 	    </div>
 	</footer>
 </body>
 </html>
+
+<style>
+	/* *{ 
+	border : 1px solid red;
+	} */
+	
+	.f-2{
+		display : flex; 
+	}
+	
+	.f-3{
+		flex : 1;
+		text-align : center;
+	}
+</style>

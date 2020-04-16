@@ -171,17 +171,7 @@
 		<!-- 댓글 수정 창 end -->
 
 
-    <footer>
-    <div class="container">
-      <div class="row">
-        <div class="credits ml-auto">
-          <span class="copyright">
-           <i class="fa fa-heart heart"></i>
-          </span>
-        </div>
-      </div>
-    </div>
-    </footer>
+    
     <br><br><br><br><br>
     
 <script>

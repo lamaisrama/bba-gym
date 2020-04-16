@@ -35,7 +35,6 @@
                         </tr>
                         <tr>
 	                        <td colspan="2">
-	                        	<!-- <form name="writeForm" action="/views/board/summernoteImgUpload.jsp" method="post"> -->
 	                        	<form name="writeForm" action="/board/noticeSnImg" method="post">
     	                        	<textarea type="text" id="summernote" name="content" class="form-control"></textarea>
     	                    	</form>    
@@ -57,12 +56,6 @@
 	 $(document).ready(function() {
 	     $('#summernote').summernote({ // summernote를 사용하기 위한 선언
 	    	 
-	    	 /* callbacks: { 
-	             //이미지를 업로드할 경우 이벤트를 발생
-	             onImageUpload: function(files, editor, welEditable) {
-	                 sendFile(files[0], editor, welEditable);
-	             }
-	         }  */
 	     });
 	 });
 	 
@@ -77,10 +70,9 @@
     		 onImageUpload: function(files) {
     		             for (var i = files.length - 1; i >= 0; i--) {
     		              sendFile(files[i], this);
-    		              
     		             }
-    		         }
-    		 } 
+		         }
+   		 } 
 	});
 	
 	 // 이미지업로드 실행
