@@ -45,10 +45,14 @@
                             </td>
                         </tr>   
                         <tr>
-                            <th colspan="2">내용</th>
+                            <th colspan="2">&nbsp;</th>
                         </tr>
                         <tr>
-                            <td colspan="2"><textarea type="text" id="summernote" name="content" class="form-control" cols="500" rows="1000"><%=b.getQaContent() %></textarea></td>
+                            <td colspan="2">
+                            	<form name="writeForm" action="/board/boardSnImg" method="post">
+                            		<textarea type="text" id="summernote" name="content" class="form-control" cols="500" rows="1000"><%=b.getQaContent() %></textarea>
+                           		</form>	
+                         	</td>
                         </tr>
                         <tr>
                         <%if(logginMember!=null && logginMember.getM_ID().equals(b.getmId())){ %>
@@ -67,20 +71,49 @@
 <script>
 
 	//summernote
-	$('#summernote').summernote({
-    	placeholder: 'Hello Bbagym',
-        height: 500,                 // set editor height
-        minHeight: null,             // set minimum height of editor
-        maxHeight: null,             // set maximum height of editor
-        focus: true                  // set focus to editable area after initializing summernote
-     });
-        
      $(document).ready(function() {
           $('#summernote').summernote({
 
          });
      });
 	
+	$('#summernote').summernote({
+    	placeholder: 'Hello Bbagym',
+        height: 500,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true,                  // set focus to editable area after initializing summernote
+        callbacks: {
+   		 	onImageUpload: function(files) {
+ 		         for (var i = files.length - 1; i >= 0; i--) {
+   		              sendFile(files[i], this);
+   		             }
+		         }
+  		 } 
+		 
+	});
+        
+	// 이미지업로드 실행
+	 function sendFile(file, editor, welEdtiable) {
+	     var data = new FormData();
+	     data.append("file", file);
+	     $.ajax({ 
+	         data : data,
+	         type : "POST",
+	         url : "<%=request.getContextPath()%>/board/boardSnImg",
+	         cache : false,
+	         contentType : false,
+	         processData : false,
+	         success : function(data) { 
+	        	console.log(data);
+	             $(editor).summernote('editor.insertImage', data.url);
+	         },
+	         error: function(data) {
+	             console.log(data);
+	         }
+	     });
+	 } 
+     
 	// file
 	$(function(){
 		$("[name=upfile]").change(function(){
