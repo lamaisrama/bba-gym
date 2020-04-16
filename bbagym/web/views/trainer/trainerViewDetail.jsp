@@ -55,9 +55,6 @@
             <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#follows" role="tab">트레이너정보</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#following" role="tab">상담하기</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -66,7 +63,7 @@
         <div class="tab-pane active" id="follows" role="tabpanel">
           <div class="row">
           <% String preName=(td.getTrainerPrograms().get(0)).getpName();%>
-            <div class="col-md-6 ml-auto mr-auto text-center">
+            <div class="col-md-6 ml-auto mr-auto text-center" >
               <%for(int i=0; i<td.getTrainerPrograms().size(); i++){
             	  TrainerProgram tp=td.getTrainerPrograms().get(i);
               	if(i==0||!preName.equals(tp.getpName())){
@@ -74,7 +71,7 @@
               	%>
               		<h5><%=tp.getpName() %>
                 	<br/>
-                <small>
+                <small id="program-price">
                 <% 
                 	for(int j=0;j<td.getTrainerPrograms().size();j++){
                 		TrainerProgram tp2=td.getTrainerPrograms().get(j);
@@ -123,7 +120,7 @@
             <div class="col-md-6 ml-auto mr-auto text-center">
               <h5>소속
                 <br/>
-                <small><a href="#"><%=td.getC_name() %></a></small>
+                <small><a href="<%=request.getContextPath()%>/center/centerDetail.do?cCode=<%=td.getcCode()%>"><%=td.getC_name() %></a></small>
               </h5>
             </div>  
           </div>
@@ -268,17 +265,17 @@
 					</div>
 				 </div> 
 
-        <div class="tab-pane text-center" id="following" role="tabpanel">
+<!--         <div class="tab-pane text-center" id="following" role="tabpanel">
           <h3 class="text-muted">트레이너상담연결뭐몰라ㅣ</h3>
           <button class="btn btn-warning btn-round">1:1 상담하기</button>
-        </div>
+        </div> -->
 
       </div>
     </div>
   </div>
   
 
-  <footer class="footer">
+<!--   <footer class="footer">
     <div class="container">
       <div class="row">
         <div class="credits ml-auto">
@@ -291,7 +288,7 @@
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
   
   <script>
   
@@ -351,10 +348,18 @@
 	  $(function () {
 	      let reg = new RegExp(/\d+/);
 	
-	      $("#pChoice>option").each(function (i, item) {
+	      $(".custom-select>option").each(function (i, item) {
 	          let a = $(item).text();
 	          console.log(reg.exec(a)[0]);
 	          $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+	      });
+	      
+	      let reg1 = new RegExp(/\d{4,}+/);
+	      $("#program-price").next(function (i, item) {
+	          let a = $(item).text();
+	          console.log(reg1.exec(a)[0]);
+	          $(item).html(a.replace(reg1.exec(a)[0],reg1.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
 	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
 	      })
 	  })

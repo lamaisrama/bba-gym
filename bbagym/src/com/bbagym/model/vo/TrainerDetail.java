@@ -26,6 +26,7 @@ public class TrainerDetail {
 	private String sns_blog;
 	private String sns_etc;
 	private int pcode;
+	private int cCode;
 	
 	public TrainerDetail() {
 		// TODO Auto-generated constructor stub
@@ -35,7 +36,7 @@ public class TrainerDetail {
 			List<String> tProgramNames, List<TrainerProgram> trainerPrograms, List<BuyInfo> buyInfo,
 			List<CommentScore> commentScore, boolean buy, int buyCount, String t_text, String t_career,
 			String t_counsel_hours, String c_name, List<String> t_img, String sns_homepage, String sns_instagram,
-			String sns_blog, String sns_etc, int pcode) {
+			String sns_blog, String sns_etc, int pcode, int cCode) {
 		super();
 		this.prof_img = prof_img;
 		this.t_name = t_name;
@@ -58,6 +59,7 @@ public class TrainerDetail {
 		this.sns_blog = sns_blog;
 		this.sns_etc = sns_etc;
 		this.pcode = pcode;
+		this.cCode = cCode;
 	}
 
 	public String getProf_img() {
@@ -228,6 +230,14 @@ public class TrainerDetail {
 		this.pcode = pcode;
 	}
 
+	public int getcCode() {
+		return cCode;
+	}
+
+	public void setcCode(int cCode) {
+		this.cCode = cCode;
+	}
+
 	@Override
 	public String toString() {
 		return "TrainerDetail [prof_img=" + prof_img + ", t_name=" + t_name + ", t_intro=" + t_intro + ", m_phone_2="
@@ -236,9 +246,9 @@ public class TrainerDetail {
 				+ ", buyCount=" + buyCount + ", t_text=" + t_text + ", t_career=" + t_career + ", t_counsel_hours="
 				+ t_counsel_hours + ", c_name=" + c_name + ", t_img=" + t_img + ", sns_homepage=" + sns_homepage
 				+ ", sns_instagram=" + sns_instagram + ", sns_blog=" + sns_blog + ", sns_etc=" + sns_etc + ", pcode="
-				+ pcode + "]";
+				+ pcode + ", cCode=" + cCode + "]";
 	}
-
+	
 	
 	
 	

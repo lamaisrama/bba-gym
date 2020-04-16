@@ -119,7 +119,7 @@
                                     	if(i==0||!preName1.equals(cp.getpName())) {
                                     			preName1=cp.getpName();%>
 
-													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6>𓂃𓊝 𓂃<%=cp.getpName() %></h6></div>
+													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6><strong><%=cp.getpName() %></strong></h6></div>
 														<div >
 														<table id="price_table">
 															<tr>
@@ -140,7 +140,7 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr style="color:blue;">
+                                        				   	<tr style="color:blue; font-size: 18px; font-weight: bolder;">
                                         				   		<td>BBAGYM 회원가</td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
@@ -149,7 +149,7 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr style="font-size: 18px; font-weight: bolder;">
+<%--                                         				   	<tr style="font-size: 18px; font-weight: bolder;">
                                         				   		<td></td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
@@ -157,7 +157,7 @@
 																	<td><span>월 <%=(int)(cp2.getPrice()/cp2.getMonth()) %>원</span></td>						
                                                 				<%} 
                                         						}%><br>
-                                        				   	</tr>
+                                        				   	</tr> --%>
                                         				</table>                                   			
 <br>
 		                                        <%} 
@@ -199,7 +199,7 @@
                                         <div class="col-md-12 ml-auto mr-auto">
                                         <%if(cd.getCenterImgs()!=null && cd.getCenterImgs().isEmpty()) {
                                         	for(int i=0; i<cd.getCenterImgs().size();i++) { %>
-                                            <a href="img/light01_s.jpg"><img src="img/light01.jpg" alt="이미지"></a>
+                                            <a href=""><img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs() %>" alt="이미지"></a>
                                             <%if(i%4==0&&i!=0){ %>
                                             	<br>
                                             <%} %>
@@ -407,7 +407,7 @@
         $(function () {
             let reg = new RegExp(/\d+/);
 
-            $("#pChoice>option").each(function (i, item) {
+            $(".custom-select>option").each(function (i, item) {
                 let a = $(item).text();
                 console.log(reg.exec(a)[0]);
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
