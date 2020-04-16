@@ -11,6 +11,8 @@
 	int score=1;
 	int count=0;
 %>	
+	
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/trainerViewDetail.css">
 
  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img()%>');">
     <div class="filter"></div>
@@ -162,17 +164,18 @@
           </div>
           <br/>
           <br/>
-          <hr>
            <div class="row">
-            <div class="col-md-6 ml-auto mr-auto text-center">
-              <h5>리뷰
-                <br/>
+            <div class="col-md ml-auto mr-auto text-center">
+            <hr><div id="review-zone">
+              <div id="review-title"><h5>리뷰</h5></div>
+                <div class="title-button">
+                <div id="review-title" style="text-align: initial"><h5 style="margin-top:8px">이용후기</h5></div>
 					<%if(logginMember!=null&&td.isBuy()==true) {%>
 								<div id="review-button">
                                         <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
                                     </div>  
 							<%}%>
-                                </div>    
+							</div>
                                 <div id="review-content">
                                 	<div id="comment-container">
                                 		<div class="comment-editor hidden">
@@ -183,23 +186,22 @@
         													<input type="number" name="orderScore" id="orderScore" min="1" max="5" required>/5점
     													</div>
 													<button type="submit" id="btn-insert" class="btn btn-primary">등록</button>
-													<textarea name="commentContent" cols="88" rows="3"></textarea>
+													<textarea name="commentContent" cols="88" rows="3" required style="width:80%"></textarea>
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
 																<%boolean flag=false;
 																for(int i=0; i<td.getBuyInfo().size(); i++) {
-																	BuyInfo bi = td.getBuyInfo().get(i);{
+																	BuyInfo bi = td.getBuyInfo().get(i);
 																	if(bi.getScore()==0) {
 																	flag = true;%>
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getCount()%>"><%=bi.getpName()%>/<%=bi.getCount() %>회</option>
 
 																<%}else {%>
 																	
-																<%}
-																	} 
-																}
-																if(flag=false){%>
+																<%} 
+																} System.out.println("flag: "+flag);
+																if(flag==false){%>
 																	<option value="" disabled>선택 항목 없음</option>
 																<%} %>
 															</select>
@@ -256,14 +258,15 @@
 												}%>
 										</table>
 											<%} else {%>
-	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." readonly>
 	                                    	<%} %>
-									</div>
+										</div>
+                                	</div>
                                 </div>
-              </h5> 
-            </div>  
-          </div>
-        </div> 
+				            </div>  
+						</div>    
+					</div>
+				 </div> 
 
         <div class="tab-pane text-center" id="following" role="tabpanel">
           <h3 class="text-muted">트레이너상담연결뭐몰라ㅣ</h3>

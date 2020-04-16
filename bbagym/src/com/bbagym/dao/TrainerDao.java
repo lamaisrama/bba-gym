@@ -577,14 +577,14 @@ public class TrainerDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Comment c = new Comment();
-				c.setCommentCode(rs.getInt("C_comment_code"));
-				c.setCommentLevel(rs.getInt("C_comment_level"));
+				c.setCommentCode(rs.getInt("t_comment_code"));
+				c.setCommentLevel(rs.getInt("t_comment_level"));
 				c.setmCode(rs.getInt("M_CODE"));
 				c.setmName(rs.getString("M_NAME"));
-				c.setCommentContent(rs.getString("C_comment_content"));
+				c.setCommentContent(rs.getString("t_comment_content"));
 				c.settCode(rs.getInt("t_code"));
-				c.setCommentRef(rs.getInt("C_comment_ref"));
-				c.setCommentDate(rs.getDate("C_comment_date"));
+				c.setCommentRef(rs.getInt("t_comment_ref"));
+				c.setCommentDate(rs.getDate("t_comment_date"));
 				c.setOrderCode(rs.getInt("Order_code"));
 				c.setpName(rs.getString("p_name"));
 				c.setCount(rs.getInt("count"));

@@ -226,8 +226,9 @@
                           
                         <div id="section3" class="container-fluid" style="height:auto;">
                             <hr><div id="review-zone">
+                            	<div id="review-title"><h5>리뷰</h5></div>
                                 <div class="title-button">
-                                    <div id="review-title"><h5>이용후기</h5></div>
+                                    <div id="review-title" style="text-align: initial"><h5 style="margin-top:8px">이용후기</h5></div>
                             <%if(logginMember!=null&&cd.isBuy()==true) {%>
 								<div id="review-button">
                                         <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
@@ -244,13 +245,13 @@
         													<input type="number" name="orderScore" id="orderScore" min="1" max="5" required>/5점
     													</div>
 													<button type="submit" id="btn-insert" class="btn btn-primary">등록</button>
-													<textarea name="commentContent" cols="88" rows="3"></textarea>
+													<textarea name="commentContent" cols="88" rows="3" required></textarea>
 														<div id="choice1">
 															<select id="orderChoice" name="orderChoice" aria-placeholder="결제내역 선택" required>
 																<option value="">결제내역 선택</option>
 																<%boolean flag= false;
 																for(int i=0; i<cd.getBuyInfo().size(); i++) {
-																	BuyInfo bi = cd.getBuyInfo().get(i);{
+																	BuyInfo bi = cd.getBuyInfo().get(i);
 																	if(bi.getScore()==0) {
 																	flag = true;%>
 																	<option name="orderCode" value="<%=bi.getOrderCode()%>" data-meta="<%=bi.getpCode()%>" data-meta2="<%=bi.getMonth()%>"><%=bi.getpName()%>/<%=bi.getMonth() %>개월</option>
@@ -258,12 +259,10 @@
 																<%}else {%>
 																	
 																<%}
-																	} 
 																} 
-																if(flag=false){%>
+																if(flag==false){%>
 																	<option value="" disabled>선택 항목 없음</option>
 																<%} %>
-																
 															</select>
 														</div>
 													<input type="hidden" name="commentWriter" value="<%=logginMember.getM_CODE()%>">
@@ -318,7 +317,7 @@
 												}%>
 										</table>
 											<%} else {%>
-	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." >
+	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." readonly>
 	                                    	<%} %>
 									</div>
                                 </div>
