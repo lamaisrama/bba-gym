@@ -88,6 +88,19 @@ public int updateApproval2(int c_code) {
 	return result;
 }
 
+public int noApproval2(int c_code) {
+	// TODO Auto-generated method stub
+	Connection conn=getConnection();
+	int result=dao.noApproval2(conn,c_code);
+	if (result > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+
+	return result;
+}
+
 public List<Member> selectMemberList(int cPage, int numPerPage) {
 	// TODO Auto-generated method stub
 	Connection conn =getConnection();
@@ -117,6 +130,9 @@ public int updateStatus(int userId) {
 
 	return result;
 }
+
+
+
 
 
 

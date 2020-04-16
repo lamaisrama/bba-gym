@@ -28,6 +28,7 @@
 				<th>트레이너소개</th>
 				<th >사업자승인</th>
 				<th>상태</th>
+				<th>확인</th>
 				
 			</tr>
 		</thead>
@@ -54,18 +55,25 @@
 				<td><%=t.getT_INTRODUCTION()%></td>
 				<td><input style="text-align:center;border:1px solid white;width:35px;" type="text" name="APPROVAL" value="<%=t.getAPPROVAL()%>" readonly></td>
 				<!-- if( ) {-->
+			
+				<td>
+					<button onclick="updateCheck();">승인</button>
+					<button onclick="noCheck();">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
+				</td>
+				
+				
 				<%
 					if (t.getAPPROVAL() == null) {
 				%>
 				<td>
-					<button onclick="updateCheck();">승인</button>
-					<button onclick="">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
+					<button onclick="" style="color: yellow; background-color: black;">심사중</button>
+
 				</td>
 				<%
 					} else if (t.getAPPROVAL() != null) {
 				%>
 				<td>
-					<button onclick="" style="color: yellow; background-color: black;">승인완료</button>
+					<button onclick="" style="color: yellow; background-color: black;">확인</button>
 
 				</td>
 
@@ -83,6 +91,22 @@
 					//	console.log($(event.target).parent().parent().find("input[name='CODE']"));
 					//	console.log(l);
 						location.replace('<%=request.getContextPath()%>/admin/updateaApproval2?CODE='+ l);
+
+						} else { //취소
+
+							return false;
+						}
+
+					}
+				function noCheck() {
+					if (confirm("'거절'하시겠습니까??") == true){    //확인
+						
+						
+						let l=$(event.target).parent().parent().find("input[name='CODE']")[0].value
+						$(event.target).parent().parent().find("input[name='CODE']")[0].value
+					//	console.log($(event.target).parent().parent().find("input[name='CODE']"));
+					//	console.log(l);
+						location.replace('<%=request.getContextPath()%>/admin/noApproval2?CODE='+ l);
 
 						} else { //취소
 

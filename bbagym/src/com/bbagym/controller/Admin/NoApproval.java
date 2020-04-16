@@ -39,10 +39,10 @@ public class NoApproval extends HttpServlet {
 
 
 			if(result>0) {
-				msg="승인취소 완료.";
+				msg="센터 등록요청을 거절했습니다.";
 				loc="/admin/centerList.do";
 			}else {
-				msg="승인실패.";
+				msg="거절실패.";
 				loc="/admin/centerList.do";
 			}
 			request.setAttribute("msg", msg);

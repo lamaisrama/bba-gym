@@ -196,6 +196,21 @@ public class AdminDao {
 			close(pstmt);
 		}return result;
 	}
+	public int noApproval2(Connection conn, int c_code) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("noApproval2");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, c_code);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
 	
 	public int updateStatus(Connection conn, int userId) {
 		PreparedStatement pstmt=null;

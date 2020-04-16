@@ -26,6 +26,7 @@
 				<th>연락처</th>
 				<th >사업자승인</th>
 				<th>상태</th>
+				<th>확인</th>
 			</tr>
 		</thead>
 
@@ -50,28 +51,33 @@
 				<td><input style="text-align:center;border:1px solid white;width:35px;"type="text" name="APPROVAL"
 					value="<%=c.getApproval()%>" readonly></td>
 				<!-- if( ) {-->
+				
+				<td>
+					<button onclick="updateCheck();">승인</button>
+					<button  onclick="noCheck();">거절</button>
+				</td>
+				
+				
+				
 				<%
 					if (c.getApproval() == null) {
 				%>
-				<td>
-					<button onclick="updateCheck();">승인</button>
+					<td>
 					
-				</td>
+						<button onclick="" style="color: yellow; background-color: black;">심사중</button>
+					
+					</td>
+				
 				<%
 					} else if (c.getApproval() != null) {
 				%>
-				<td>
-					<button onclick="" style="color: yellow; background-color: black;">승인완료</button>
-					<button  onclick="noCheck();">취소</button>
-				</td>
+					<td>
+					
+						<button onclick="" style="color: yellow; background-color: black;">확인</button>
+					
+					</td>
 
-				<%
-					}else if(c.getApproval()=="N"){
-				%>
-				<td>
-					<button onclick="" style="color: yellow; background-color: black;">승인취소완료</button>
-					<button onclick="updateCheck();">승인</button>
-				</td>
+				
 				<%
 					}
 				%>
@@ -95,7 +101,7 @@
 
 					}
 				function noCheck() {
-					if (confirm("'승인취소'하시겠습니까??") == true){    //확인
+					if (confirm("'거절'하시겠습니까??") == true){    //확인
 						
 						
 						let l=$(event.target).parent().parent().find("input[name='CODE']")[0].value
