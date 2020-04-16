@@ -12,7 +12,7 @@ import com.bbagym.service.MemberService;
 /**
  * Servlet implementation class UpdatePasswordEndServlet
  */
-@WebServlet(name="UpdatePasswordEndServlet",urlPatterns="/member/SearchPasswordEnd")
+@WebServlet(name="UpdatePasswordEndServlet",urlPatterns="/member/updatePasswordEnd")
 public class UpdatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

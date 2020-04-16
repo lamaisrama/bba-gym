@@ -129,9 +129,7 @@ public class MemberService {
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
 		
-		System.out.println("도착1"+id);
-		System.out.println("도착2"+pw);
-		System.out.println("도착3"+m);
+		
 		int result=-1;
 		if(m !=null) {
 			result=dao.updatePassword1(conn, id, changePw);

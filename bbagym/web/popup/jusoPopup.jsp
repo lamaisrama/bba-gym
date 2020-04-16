@@ -29,7 +29,7 @@ function init(){
 		document.form.submit();
 	}else{
 		opener.jusoCallBack("<%=roadFullAddr%>");
-		window.close();
+		self.close();
 	}
 	
 }

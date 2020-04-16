@@ -28,7 +28,7 @@ function init(){
 		document.form.submit();
 	}else{
 		opener.jusoCallBack("<%=roadFullAddr%>", "<%=entX%>", "<%=entY%>");
-		window.close();
+		self.close();
 	}
 }
 </script>
