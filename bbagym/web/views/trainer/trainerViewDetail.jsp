@@ -221,7 +221,7 @@
             <hr><div id="review-zone">
               <div id="review-title"><h5>리뷰</h5></div>
                 <div class="title-button">
-                <div id="review-title" style="text-align: initial"><h5 style="margin-top:8px">이용후기</h5></div>
+                <div id="review-title" style="text-align: initial"><!-- <h5 style="margin-top:8px">이용후기</h5> --></div>
 					<%if(logginMember!=null&&td.isBuy()==true) {%>
 								<div id="review-button">
                                         <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
@@ -310,6 +310,7 @@
 												}%>
 										</table>
 											<%} else {%>
+												
 	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." readonly>
 	                                    	<%} %>
 										</div>
