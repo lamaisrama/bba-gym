@@ -64,6 +64,17 @@ public int updateApproval(int c_code) {
 
 	return result;
 }
+public int noApproval(int c_code) {
+	Connection conn=getConnection();
+	int result=dao.noApproval(conn,c_code);
+	if (result > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+
+	return result;
+}
 
 public int updateApproval2(int c_code) {
 	Connection conn=getConnection();
@@ -106,6 +117,9 @@ public int updateStatus(int userId) {
 
 	return result;
 }
+
+
+
 
 
 

@@ -52,7 +52,7 @@
 				<td><%=t.getM_ADDRESS_2()%></td>
 				<td><%=t.getM_PHONE_2()%></td>
 				<td><%=t.getT_INTRODUCTION()%></td>
-				<td><input style="text-align:center;" type="text" name="APPROVAL" value="<%=t.getAPPROVAL()%>" readonly></td>
+				<td><input style="text-align:center;border:1px solid white;width:35px;" type="text" name="APPROVAL" value="<%=t.getAPPROVAL()%>" readonly></td>
 				<!-- if( ) {-->
 				<%
 					if (t.getAPPROVAL() == null) {
