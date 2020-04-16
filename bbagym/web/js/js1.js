@@ -57,10 +57,6 @@ $(function(){
        
 
 
-    $($("#box").children()[1]).click(function(){
-        location.href="main2.html";
-    });
-    
 
 
 	

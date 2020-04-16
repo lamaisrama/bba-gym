@@ -42,6 +42,9 @@ public class ShoppingBaguniDeleteServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		}
 		String value = request.getParameter("value");
+		System.out.println(value);
+		
+		if(!value.equals("delete")) {
 		Cookie[] cookies = request.getCookies();
 		System.out.println(mcode+"삭제");
 		System.out.println(value+"-들어온 value값");
@@ -50,11 +53,10 @@ public class ShoppingBaguniDeleteServlet extends HttpServlet {
 				String name=c.getName();
 				String cvalue=c.getValue();
 				if(name.equals(mcode)) {
-					System.out.println(cvalue+"처음");
 					if(cvalue.indexOf(value)!=-1) {
 
 						 cvalue=cvalue.replace(value+"&", "");
-						 System.out.println(cvalue+"수정후");
+
 						 c= new Cookie(""+mcode, cvalue);
 						 	if(!cvalue.equals("")) {
 							c.setMaxAge(31*24*60*60);
@@ -62,13 +64,18 @@ public class ShoppingBaguniDeleteServlet extends HttpServlet {
 						 		c.setMaxAge(0);
 						 	}
 							response.addCookie(c);
-						
+							
+						}
+					
 					}
-				
 				}
-			}
+			}	
+		}else {
+			Cookie c = new Cookie(""+mcode, "");
+			c.setMaxAge(0);
+			response.addCookie(c);
 		}
-		
+			
 		
 		response.sendRedirect(request.getContextPath()+"/mypage/baguni.do");
 	}

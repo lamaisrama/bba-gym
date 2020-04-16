@@ -29,17 +29,7 @@
 					<span><%=logginMember.getM_NAME()%>님 환영합니다</span>
 				</div>
 			</div>
-			<div class="parent1">
-				<a href="http://fb.com/"><img
-					src="<%=request.getContextPath()%>/resources/img/fb.png"
-					width="30px" overflow="hidden" id="img1"></a> <a
-					href="https://www.instagram.com/"><img
-					src="<%=request.getContextPath()%>/resources/img/ist.png"
-					width="30px" overflow="hidden" id="img2"></a> <a
-					href="https://twitter.com/"><img
-					src="<%=request.getContextPath()%>/resources/img/twi.png"
-					width="30px" overflow="hidden" id="img3"></a>
-			</div>
+			
 			<div>
 				<hr />
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
@@ -73,7 +63,7 @@
 			</div>
 		</div>
 
-		<div id="my-1">나의 센터 회원권</div>
+		<div id="my-3">나의 센터 회원권</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="mycenter">
 				<tr><th>센터명</th><th>프로그램명</th><th>이용달수</th><th>결제일</th><th>만료일</th><th>내점수</th></tr>
@@ -90,7 +80,7 @@
 			</table>
 		</div>
 		
-		<div id="my-1">나의 트레이너 회원권</div>
+		<div id="my-3">나의 트레이너 회원권</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="mytrainer">
 				<tr><th>센터명</th><th>프로그램명</th><th>PT이용횟수</th><th>결제일</th><th>내점수</th></tr>
@@ -107,7 +97,7 @@
 			</table>
 		</div>
 		
-		<div id="my-1">My 찜</div>
+		<div id="my-3">My 찜</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="myprefer">
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
@@ -123,36 +113,7 @@
 		</div>
 		
 		
-		<div class="parent">
-			<div class="first">
-				<img src="<%=request.getContextPath()%>/resources/img/1.png"
-					id="img">
-				<div>
-					<a href="#1">시설등록 요청</a>
-				</div>
-			</div>
-			<div class="second">
-				<img src="<%=request.getContextPath()%>/resources/img/2.png"
-					id="img">
-				<div>
-					<a href="#2">공지/이벤트</a>
-				</div>
-			</div>
-			<div class="third">
-				<img src="<%=request.getContextPath()%>/resources/img/3.png"
-					id="img">
-				<div>
-					<a href="#3">고객센터</a>
-				</div>
-			</div>
-			<div class="third">
-				<img src="<%=request.getContextPath()%>/resources/img/sh.png"
-					id="img">
-				<div>
-					<a href="#3">나의정보</a>
-				</div>
-			</div>
-		</div>
+		
 
 	</div>
 </section>
