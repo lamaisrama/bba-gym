@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.common.encrypt.AESEncrypt;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.AdminService;
 
@@ -41,6 +42,7 @@ public class AdminMemberList extends HttpServlet {
 		
 		int numPerPage=8;
 		
+
 		
 		List<Member> list =new AdminService().selectMemberList(cPage,numPerPage);
 		int totalData=new AdminService().selectCountMember();
@@ -74,6 +76,8 @@ public class AdminMemberList extends HttpServlet {
 			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'>   [다음]</a>";  //pageNo+1 아님 하면 7나옴.
 		}
 		//pageBar 만들기 끝.!
+	
+		  
 		request.setAttribute("pageBar", pageBar);	
 		
 		request.setAttribute("members", list);

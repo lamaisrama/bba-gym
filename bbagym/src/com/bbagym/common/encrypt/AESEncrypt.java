@@ -11,6 +11,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -148,7 +149,21 @@ public class AESEncrypt {
 		return new String(decryptStr,"utf-8");
 		
 	}
-	
-	
-	
+	public static void encryptMember(Member m) {
+
+		
+		m.setM_PHONE(encrypt(m.getM_PHONE())); // 회원정보수정드가서 복호화되게 나오게 하기
+		m.setM_ADDRESS(encrypt(m.getM_ADDRESS()));
+		
+
+	}
+	public static void decryptMember(Member m) {
+		try{
+		
+		m.setM_PHONE(decrypt(m.getM_PHONE()));    	  //회원정보수정드가서 복호화되게 나오게 하기
+		m.setM_ADDRESS(decrypt(m.getM_ADDRESS()));
+		}catch(UnsupportedEncodingException e) {
+			
+		}
+	}
 }

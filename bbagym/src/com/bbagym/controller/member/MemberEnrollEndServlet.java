@@ -1,7 +1,6 @@
 package com.bbagym.controller.member;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.bbagym.common.encrypt.AESEncrypt;
+import com.bbagym.common.filter.MyEncryptWrapper;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
@@ -57,16 +57,21 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		String userId =mr.getParameter("userId");  //오류수정
-		String pw = mr.getParameter("M_PW");
+		String pw = MyEncryptWrapper.getSha512(mr.getParameter("M_PW"));
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
 		int age = Integer.parseInt(mr.getParameter("M_AGE"));
 		String email = mr.getParameter("M_EMAIL");
 		String address = mr.getParameter("M_ADDRESS");
-		String phone = mr.getParameter("M_PHONE"); 						
+				address=AESEncrypt.encrypt(address);  //암호화
+		String phone = mr.getParameter("M_PHONE"); 		
+				phone=AESEncrypt.encrypt(phone);	 //암호화
 	    String image=mr.getFilesystemName("M_IMAGE");
-	    System.out.println(email);
+	    
 
+	    
+	    
+	    
 	      Member m = new Member(1,userId,pw,name,email,phone,address,1,null,' ',image,null,null,gender,age,null);
 	      int result=new MemberService().insertMember(m);
 		
@@ -85,7 +90,7 @@ public class MemberEnrollEndServlet extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-			
+				
 		
 		
 		

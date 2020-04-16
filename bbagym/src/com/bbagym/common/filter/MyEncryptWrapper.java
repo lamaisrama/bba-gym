@@ -21,7 +21,7 @@ public class MyEncryptWrapper extends HttpServletRequestWrapper {
 		String value="";
 		//name값이 password에 관련된 사항이면 암호화처리
 		//아니면 원본값 반환
-		if(name!=null && (name.equals("")|| name.equals("") )) {		//
+		if(name!=null && (name.equals("M_PW")|| name.equals("password")) ||name.equals("password_new")) {		//
 		System.out.println("암호화 전 " + super.getParameter(name));
 			value=getSha512(super.getParameter(name));
 		System.out.println("암호화 후 " + value);
@@ -34,7 +34,7 @@ public class MyEncryptWrapper extends HttpServletRequestWrapper {
 		
 	}
 	
-	private String getSha512(String name) {
+	public static String getSha512(String name) {
 		//암호화 처리할 수 있는 객체를 생성
 		MessageDigest md =null;
 		try {
