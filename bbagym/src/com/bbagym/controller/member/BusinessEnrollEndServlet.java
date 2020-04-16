@@ -1,6 +1,7 @@
 package com.bbagym.controller.member;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.bbagym.common.encrypt.AESEncrypt;
+import com.bbagym.common.filter.MyEncryptWrapper;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
@@ -52,13 +55,15 @@ public class BusinessEnrollEndServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request,path,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		
 		String userId =mr.getParameter("userId");  //오류수정
-		String pw = mr.getParameter("M_PW");
+		String pw = MyEncryptWrapper.getSha512(mr.getParameter("M_PW"));
 		String name = mr.getParameter("M_NAME");
 		char gender = mr.getParameter("M_GENDER").charAt(0);
 		int age = Integer.parseInt(mr.getParameter("M_AGE"));
 		String email = mr.getParameter("M_EMAIL");
 		String address = mr.getParameter("M_ADDRESS");
-		String phone = mr.getParameter("M_PHONE"); 						
+		address=AESEncrypt.encrypt(address); 
+		String phone = mr.getParameter("M_PHONE"); 		
+		phone=AESEncrypt.encrypt(phone); 
 	    String image=mr.getFilesystemName("M_IMAGE");
 	    String b_code=mr.getParameter("BUSINESS_CODE");
 	    String m_phone2=mr.getParameter("M_PHONE2");

@@ -13,7 +13,7 @@ import com.bbagym.service.MemberService;
 /**
  * Servlet implementation class AdminPasswordEndServlet
  */
-@WebServlet("/admin/admInupdatePasswordEnd")
+@WebServlet(name="AdminPasswordEndServlet",urlPatterns="/admin/admInupdatePasswordEnd")
 public class AdminPasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,6 +34,8 @@ public class AdminPasswordEndServlet extends HttpServlet {
 		String pw=request.getParameter("password");
 		String changePw=request.getParameter("password_new");
 		int result=new MemberService().updatePassword1(id,pw,changePw);
+		System.out.println(id);
+		System.out.println(pw);
 		System.out.println(result);
 		
 		String msg="";
@@ -41,8 +43,8 @@ public class AdminPasswordEndServlet extends HttpServlet {
 		String script="";
 		if(result<0) {
 			msg="현재비밀번호가 일치하지않습니다!";
-			loc="/admin/passwordModify.do?M_ID="+id;;
-			System.out.println(result);
+			loc="/admin/passwordModify.do?M_ID="+id;
+			
 		}else if(result>0) {
 			//비밀번호 성공
 			msg="비밀번호 변경성공";

@@ -13,6 +13,7 @@ import com.bbagym.common.encrypt.AESEncrypt;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 
+
 /**
  * Servlet implementation class MemberEnrollModify
  */
@@ -46,6 +47,7 @@ public class MemberViewServlet extends HttpServlet {
 	    	  
 	    	  Member m=new MemberService().selectMemberId(userId);
 	    	 
+	    	  AESEncrypt.decryptMember(m);
 	    	  
 	    	  request.setAttribute("member", m);
 	    	  

@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.bbagym.common.MyFileRenamePolicy;
 import com.bbagym.model.vo.Price;
 import com.bbagym.model.vo.Program;
 import com.bbagym.model.vo.TrainerEnroll;
 import com.bbagym.service.TrainerService2;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class TrainerEnrollFinalServlet
@@ -47,7 +47,7 @@ public class TrainerEnrollFinalServlet extends HttpServlet {
 		
 		String path=getServletContext().getRealPath("/upload/trainer/");
 		int maxsize=1024*1024*100;
-		MultipartRequest mr = new MultipartRequest(request,path,maxsize,"utf-8",new DefaultFileRenamePolicy());
+		MultipartRequest mr = new MultipartRequest(request,path,maxsize,"utf-8",new MyFileRenamePolicy());
 		te.setText(mr.getParameter("t-text"));
 		te.setCareer(mr.getParameter("t-career"));
 		te.setMainImage(mr.getFilesystemName("t_photo_main"));

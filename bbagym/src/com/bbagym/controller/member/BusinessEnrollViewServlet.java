@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.bbagym.common.encrypt.AESEncrypt;
 import com.bbagym.model.vo.Member;
 import com.bbagym.service.MemberService;
 
@@ -44,7 +45,7 @@ public class BusinessEnrollViewServlet extends HttpServlet {
 	    	  String userId=request.getParameter("M_ID");
 	    	  
 	    	  Member m=new MemberService().selectBusinessId(userId);
-	    	 
+	    	  AESEncrypt.decryptMember(m);
 	    	  
 	    	  request.setAttribute("member", m);
 	    	  

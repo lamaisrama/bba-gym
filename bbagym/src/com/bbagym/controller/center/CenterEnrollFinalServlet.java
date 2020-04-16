@@ -12,12 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.bbagym.common.MyFileRenamePolicy;
 import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Price;
 import com.bbagym.model.vo.Program;
 import com.bbagym.service.CenterService;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class CenterEnrollFinalServlet
@@ -51,7 +51,7 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 		String path=getServletContext().getRealPath("/upload/center/");
 		int maxSize=1024*1024*10;
 		
-		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new DefaultFileRenamePolicy());
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8",new MyFileRenamePolicy());
 		c.setMainImage(mr.getFilesystemName("c-photo0"));
 		c.setPhotos(new ArrayList());
 		c.getPhotos().add(mr.getFilesystemName("c-photo1"));

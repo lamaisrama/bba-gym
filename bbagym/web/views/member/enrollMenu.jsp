@@ -83,7 +83,7 @@
 	        	<button type="button" class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" >사업자 회원가입</button> &nbsp; 
 	      	</div>
 	      	<div>
-	      		<button type="button" class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do');">로그인</button>
+	      		<button type="button" class="btn btn-outline-info" onclick="log();">로그인</button>
 	      	</div>
 	   	 </div>
 	    	
@@ -91,6 +91,13 @@
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
+
+<script>
+
+function log(){
+	location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
+}
+</script>
 
 
 <script src="<%=request.getContextPath()%>/js/js1.js"></script>

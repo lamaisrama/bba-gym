@@ -41,8 +41,12 @@
           </p>
           <br />
            <select class="custom-select" style="width:500px;" id="baguni">
-         		<%for(TrainerProgram s : td.getTrainerPrograms()){  %>
+         		<%if(td.getTrainerPrograms()!=null && !td.getTrainerPrograms().isEmpty()) {
+         		for(TrainerProgram s : td.getTrainerPrograms()){  %>
 	           		<option value="<%="t/"+s.getPcode()+"/"+s.getCount()%>">프로그램명 : <%=s.getpName() %> 가격 : <%=s.getPrice() %>원 횟수: <%=s.getCount() %>회</option>
+	            <%} 
+	            }else {%>
+	            	<option value=""  selected disabled>선택 항목 없음</option>
 	            <%} %> 
 		 </select>
 		 <button id="baguni2" type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button>
@@ -62,9 +66,11 @@
       <div class="tab-content following">
         <div class="tab-pane active" id="follows" role="tabpanel">
           <div class="row">
-          <% String preName=(td.getTrainerPrograms().get(0)).getpName();%>
+          <% if(td.getTrainerPrograms()!=null && !td.getTrainerPrograms().isEmpty()) { 
+          String preName=(td.getTrainerPrograms().get(0)).getpName();%>
             <div class="col-md-6 ml-auto mr-auto text-center" >
-              <%for(int i=0; i<td.getTrainerPrograms().size(); i++){
+              <%
+              for(int i=0; i<td.getTrainerPrograms().size(); i++){
             	  TrainerProgram tp=td.getTrainerPrograms().get(i);
               	if(i==0||!preName.equals(tp.getpName())){
               		preName=tp.getpName();
@@ -83,6 +89,9 @@
                 </small>
               </h5>
               	<% }%>
+              <%} 
+              } else {%>
+              		<h3 style="margin-left: auto; margin-right:auto; margin-top:10px;">현재 프로그램이 없습니다.</h3>
               <%} %>
             </div>
           </div>
@@ -125,14 +134,60 @@
             </div>  
           </div>
           <br><hr><br> 
-          <div class="row">
-            <div class="col-md-12 ml-auto mr-auto text-center">
-              <h5>사진</h5>
+          <div id="section2" class="container-fluid">
+			<div id="image-zone">
+              <div id="image-title">
+              	<h5><b>사진</b></h5>
+              </div>
               <br>
-              <div class="row">
+	       <div id="image-sebu">
+			<div class="img">
+				<div class="col-md-12 ml-auto mr-auto">
+					<div id="demo" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ul class="carousel-indicators">
+							<li data-target="#demo" data-slide-to="0" class="active"></li>
+							<li data-target="#demo" data-slide-to="1"></li>
+							<li data-target="#demo" data-slide-to="2"></li>
+						</ul>
+	
+						<!-- The slideshow -->
+						<div class="carousel-inner">
+				<%if(td.getT_img()!=null &&!td.getT_img().isEmpty()) { 
+					
+				%>
+							<div class="carousel-item active">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(0)%>" alt="centerImg1" style="">
+							</div>													
+                           	<% if(td.getT_img().size()>1){
+                           		for(int i=1;i<td.getT_img().size();i++) { %>
+							<div class="carousel-item">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(i)%>" alt="centerImg">
+							</div>
+					<%} 
+					}%>
+						</div>
+	
+						<!-- Left and right controls -->
+						<a class="carousel-control-prev" href="#demo" data-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+						</a>
+						<a class="carousel-control-next" href="#demo" data-slide="next">
+							<span class="carousel-control-next-icon"></span>
+						</a>
+	
+					</div>
+	                                 
+	                                 <%}else {%>
+	                                 	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
+	                                 <% }%>    
+	                                 </div>    
+	                             </div>
+	                         </div>
+              <%-- <div class="row">
               <%for(int i=0; i<td.getT_img().size();i++) { %>
                   <div class="col-md-3"><a href="#" class="thumbnail"><img src="<%=request.getContextPath()%>/upload/trainer/<%=td.getT_img() %>" alt="Image" style="max-width:100%;"></a></div>
-              <%} %>
+              <%} %> --%>
               </div>
             </div>
           </div>
@@ -166,7 +221,7 @@
             <hr><div id="review-zone">
               <div id="review-title"><h5>리뷰</h5></div>
                 <div class="title-button">
-                <div id="review-title" style="text-align: initial"><h5 style="margin-top:8px">이용후기</h5></div>
+                <div id="review-title" style="text-align: initial"><!-- <h5 style="margin-top:8px">이용후기</h5> --></div>
 					<%if(logginMember!=null&&td.isBuy()==true) {%>
 								<div id="review-button">
                                         <button class="btn btn-primary enterComment" style="width:100px">후기 쓰기</button>
@@ -255,6 +310,7 @@
 												}%>
 										</table>
 											<%} else {%>
+												
 	                                    <input type="text" id="content" placeholder="아직 작성된 후기가 없어요. 첫번째 후기를 남겨주세요." readonly>
 	                                    	<%} %>
 										</div>

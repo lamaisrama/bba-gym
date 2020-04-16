@@ -28,6 +28,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bbagym</title>
+    <link rel="apple-touch-icon" sizes="76x76" href="<%=request.getContextPath() %>/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="<%=request.getContextPath() %>/assets/img/logo_favicon.png">
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/css1.css">
 	<link href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<%=request.getContextPath() %>/assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
@@ -88,7 +90,6 @@
 		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px">
 		         </nav>       
 	   		</div>
-			
 	     <div id="content">
 	         <nav>
 	             <p>
@@ -108,7 +109,7 @@
 	    <%if (logginMember == null) {%>
 	        <div>																								
 	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')">회원가입</button> &nbsp; 
-	      		<button type="button" class="btn btn-outline-info text-white" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do');">로그인</button>
+	      		<button type="button" class="btn btn-outline-info text-white" onclick="log();">로그인</button>
 
 	        	</div>
 	    	</div>
@@ -154,6 +155,9 @@
 
 		} */
 
+		function log(){
+			location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
+		}
 		
 		function handleGeoSucces(position){
 			const latitude = position.coords.latitude;
