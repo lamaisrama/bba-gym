@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypageUser.css">
 <div class="page-header page-header-xs" data-parallax="true"
-	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
+	style="background-image: url('<%=request.getContextPath()%>/assets/img/mypage.jpg');"></div>
 <section class="section-container">
 	
 	<nav>
@@ -17,7 +17,7 @@
 		<div class="left-menu-container">
 			<div class="profile-img">
 			<%if(logginMember.getM_IMAGE()!=null){ %>
-				<img src="<%=request.getContextPath()%>/upload/member/<%=logginMember.getM_IMAGE()%>" alt="my image" id="myImage" />
+				<img src="<%=request.getContextPath()%>/upload/business/<%=logginMember.getM_IMAGE()%>" alt="my image" id="myImage" />
 			<%}else{ %>
 				<img src="<%=request.getContextPath()%>/resources/img/admin/log.png" alt="my image" id="myImage" />
 			<%} %>
@@ -32,32 +32,19 @@
 				<hr>
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
 				<a class="updateMyProfile"  onclick="removeCheck();">회원탈퇴</a>
-				
+				<a class="updateMyProfile" href="#1">시설 등록 현황</a>
+				<a class="updateMyProfile" href="#1">트레이너 등록 현황</a>
 				<hr>
 			</div>
 		</div>
-			
 	</nav>
 	<!-- 본문 -->
+	
 	<div class="content-container">
-	  <br>
+	  <br><br>
 	  <h1 style="text-align:center;">My Page</h1>
-	  <div class="parent">
-		<div class="first">
-			<img src="<%=request.getContextPath()%>/resources/img/1.png"
-				id="img">
-			<div>
-				<a href="#1">시설 등록현황</a>
-			</div>
-		</div>
-		<div class="second">
-			<img src="<%=request.getContextPath()%>/resources/img/2.png"
-				id="img">
-			<div>
-				<a href="#2">트레이너 등록 현황</a>
-			</div>
-		</div>		 
-	  </div>
+	  <br>
+	  <hr>
 
 		<div class="category-1">
 			<div class="MyEnroll">

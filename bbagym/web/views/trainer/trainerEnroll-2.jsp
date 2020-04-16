@@ -66,6 +66,7 @@
           </div>
           <div class="col-xs-2">
             <button type="button" class="btn btn-primary btn-sm btn-t-price" onclick="addCount();">추가</button>
+            
           </div>
         </div>        
       </div>
@@ -78,13 +79,14 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12" style="text-align: center;">
         <button type="button" class="btn btn-warning" onclick="addProgram();">프로그램 추가</button>
+        <button type="button" class="btn btn-secondary" onclick="delProgram();">삭제</button>
+        <br><small style="color:red;"> &nbsp;삭제 시에는 마지막 프로그램이 삭제됩니다.</small>
       </div>
+
     </div>
     <hr>
     <div class="row">
-      <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
-          <button type="button" class="btn btn-secondary">미리보기</button>
-          &nbsp;&nbsp;&nbsp;
+      <div class="col-lg-8 col-md-8 col-sm-12 info-footer">	
           <button type="submit" class="btn btn-secondary" >등록</button>
         </div>
       </div>
