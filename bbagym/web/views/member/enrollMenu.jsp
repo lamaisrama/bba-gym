@@ -24,7 +24,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bbagym</title>
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/css1.css">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/css2.css">
 	<link href="<%=request.getContextPath() %>/assets/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="<%=request.getContextPath() %>/assets/css/paper-kit.css?v=2.2.0" rel="stylesheet" />
 	<link href="<%=request.getContextPath() %>/assets/demo/demo.css" rel="stylesheet" />
@@ -34,7 +34,7 @@
 <body>    
 
 	<video autoplay muted loop id="backgroundvideo">
-		<source src="<%=request.getContextPath() %>/resources/video/run3.mp4" type="video/mp4">
+		<source src="<%=request.getContextPath() %>/resources/video/run4.mp4" type="video/mp4">
 	</video>
 	        <div id="leftbar"> 
 	        	<div>
@@ -79,57 +79,25 @@
 	      <div id ="box">
 	   
 	        <div >																								
-	        	<button type="button" class="btn a text-white" data-toggle="modal" data-target="#join"  
-	        	style="width:290px; height:290px; margin:45px;padding-bottom: 20px; border-radius: 50%;border: 8px solid #e7e7e7;"
-	        	onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" /><h2><strong>일반 회원가입</strong></h2></button> &nbsp; 
-	        	
-	        	<button type="button" class="btn b text-white" data-toggle="modal" data-target="#join"
-	        	style="width:290px; height:290px; margin:45px; padding-bottom: 20px; border-radius: 50%;border: 8px solid #e7e7e7;"  
-	        	onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" /><h2><strong>사업자 회원가입</strong></h2></button> &nbsp; 
+	        	<button type="button" class="btn btn-outline-info"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" >일반 회원가입</button> &nbsp; 
+	        	<button type="button" class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" >사업자 회원가입</button> &nbsp; 
 	      	</div>
-	      
-	    </div>
-	    	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
-	    	<style>	    	 
- border: 1px solid rgb(211, 208, 208);
-	    	  
-.a {
-color: #fff;
-	background-color: #007bff;
-	border-color: #007bff;
-	font-size: 35px;
-}
+	      	<div>
+	      		<button type="button" class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do');">로그인</button>
+	      	</div>
+	   	 </div>
+	    	
 
-.a:hover {
-	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff
-}
-
-.b:hover {
-	color: #fff;
-	background-color: #007bff;
-	border-color: #007bff
-}
-	    	   
-	    	</style>
-	   	
-
-	   	
-	   
-	   
 
 		</div>	<!-- 첫 div 끝 -->
 	</section>
 
-<script src="<%=request.getContextPath()%>/js/js1.js">
-</script>
-<br>
 
-<br>
-<br>
-<br>
-<br>
+<script src="<%=request.getContextPath()%>/js/js1.js"></script>
+
+
+
+
 
 
 <%@ include file="/views/common/footer.jsp"%>

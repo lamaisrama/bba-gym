@@ -57,8 +57,8 @@
                         </div>
 
                         
-        				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 주소</strong><div id="address-phone"><small><%=cd.getCenterAddr() %></small></div>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 전화번호</strong><div id="address-phone"><small>☎&nbsp<%=cd.getCenterPhone() %></small></div>
+        				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 주소</strong><div id="address-phone"><p><%=cd.getCenterAddr() %></p></div>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 전화번호</strong><div id="address-phone"><p>☎&nbsp<%=cd.getCenterPhone() %></p></div>
                         
                         
                         
@@ -99,7 +99,7 @@
                 <div id="menu-sebu">
                     <div class="bord-section">
                         <div id="price" class="container-fluid">
-	                    	<div id="price-title"><h5>센터소개</h5>
+	                    	<div id="price-title"><h5><b>센터소개</b></h5>
 	                            <div id="notice">
 	                                <p><%=cd.getCenterIntro() %></p>
 	                            </div>
@@ -108,7 +108,7 @@
                             <div id="price-zone"> 
                                
                                 <div id="price">                              
-                                    <div class="price-title"><h5>가격정보</h5></div>
+                                    <div class="price-title"><h5><b>가격정보</b></h5></div>
                                     
                                     
                                     
@@ -119,9 +119,9 @@
                                     	if(i==0||!preName1.equals(cp.getpName())) {
                                     			preName1=cp.getpName();%>
 
-													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6><strong><%=cp.getpName() %></strong></h6></div>
+													<div style="display:flex; color: #17A2B8;justify-content:center;width:100px;height:50px;"><h5><b><%=cp.getpName() %></b></h5></div>
 														<div >
-														<table id="price_table">
+														<table id="price_table" >
 															<tr>
 																<th></th>
 	                                        				<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
@@ -145,19 +145,11 @@
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
 	                                        					if(preName1.equals(cp2.getpName())) {%>
-																	<td><%=cp2.getPrice() %>원</td>						
+																	<td><b><%=cp2.getPrice() %>원</b></td>						
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-<%--                                         				   	<tr style="font-size: 18px; font-weight: bolder;">
-                                        				   		<td></td>
-                                        				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
-	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
-	                                        					if(preName1.equals(cp2.getpName())) {%>
-																	<td><span>월 <%=(int)(cp2.getPrice()/cp2.getMonth()) %>원</span></td>						
-                                                				<%} 
-                                        						}%><br>
-                                        				   	</tr> --%>
+
                                         				</table>                                   			
 <br>
 		                                        <%} 
@@ -166,45 +158,77 @@
                                 </div>
                             </div>
                            
-                                <hr><div id="time-zone">  <hr>
-                                <div id="time">
-                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
-                                    <small> <div id="time-con" style="color: rgb(146, 142, 142);"> 
-                                       <%=cd.getCenterOpenHours() %><br><br>
-                                        [휴관일] <%=cd.getCenterHolidays() %>
-                                    </div></small>
-                                </div>
-                            </div>
-                             <hr>
+                                <hr>
+                                <div id="time-zone">
+	                                <div id="time">
+	                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
+	                                    <div id="time-con" style="color: rgb(146, 142, 142);"> 
+	                                       <%=cd.getCenterOpenHours() %><br><br>
+	                                        [휴관일] <%=cd.getCenterHolidays() %>
+	                                    </div>
+	                                </div>
+                            	</div>
+                             	<hr>
                             <div id="program-zone">
                                 <div id="program">
                                     <div class="program-title"><h5><b>시설</b></h5></div>
-                                   <small> <div class="program-sebu" style="color: rgb(146, 142, 142);">
+                                   <div class="program-sebu" style="color: rgb(146, 142, 142);">
 
                                         	<%for(int i=0; i<cd.getCenterFacilityNames().size(); i++){ %>
                                         		<%=cd.getCenterFacilityNames().get(i) %>&nbsp;&nbsp;
                                         	<%} %>
 
-                                    </div></small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                         <hr>
-                        <!--이미지구역-->
-                        <div id="section2" class="container-fluid">
-                            <div id="image-zone">
-                                <div id="image-title"><h5><b>사진</b></h5></div>
-                                <div id="image-sebu">    
-                                    <div class="img">
-                                        <div class="col-md-12 ml-auto mr-auto">
-                                        <%if(cd.getCenterImgs()!=null && cd.getCenterImgs().isEmpty()) {
-                                        	for(int i=0; i<cd.getCenterImgs().size();i++) { %>
-                                            <a href=""><img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs() %>" alt="이미지"></a>
-                                            <%if(i%4==0&&i!=0){ %>
-                                            	<br>
-                                            <%} %>
-							            <%}
-                                        }else {%>
+
+						</div>
+						<hr>
+						<!--이미지구역-->
+						<div id="section2" class="container-fluid">
+							<div id="image-zone">
+								<div id="image-title">
+									<h5><b>사진</b></h5>
+								</div>
+								<div id="image-sebu">
+									<div class="img">
+										<div class="col-md-12 ml-auto mr-auto">
+											<div id="demo" class="carousel slide" data-ride="carousel">
+												<!-- Indicators -->
+												<ul class="carousel-indicators">
+													<li data-target="#demo" data-slide-to="0" class="active"></li>
+													<li data-target="#demo" data-slide-to="1"></li>
+													<li data-target="#demo" data-slide-to="2"></li>
+												</ul>
+						
+												<!-- The slideshow -->
+												<div class="carousel-inner">
+										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { 
+											
+										%>
+													<div class="carousel-item active">
+														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(0)%>" alt="centerImg1">
+													</div>													
+                                        	<% if(cd.getCenterImgs().size()>1){
+                                        		for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+													<div class="carousel-item">
+														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(i)%>" alt="centerImg">
+													</div>
+											<%} 
+											}%>
+												</div>
+						
+												<!-- Left and right controls -->
+												<a class="carousel-control-prev" href="#demo" data-slide="prev">
+													<span class="carousel-control-prev-icon"></span>
+												</a>
+												<a class="carousel-control-next" href="#demo" data-slide="next">
+													<span class="carousel-control-next-icon"></span>
+												</a>
+						
+											</div>
+                                        
+                                        <%}else {%>
                                         	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
                                         <% }%>    
                                         </div>    

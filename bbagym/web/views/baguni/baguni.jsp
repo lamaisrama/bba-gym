@@ -73,6 +73,7 @@
                     </table>
                     <div>
                         <button type="button" class="btn btn-info delete">삭제</button>
+                        <input type="hidden" id="info"  value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
                         <input type="hidden" id="info" name="centerList" value="<%=ba.getPcode()%>/<%=ba.getMonth()%>/">
                     </div>
                 </div>
@@ -113,7 +114,8 @@
                     </table>
                     <div>
                         <button type="button" class="btn btn-info delete">삭제</button>
-                        <input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>">
+                        <input type="hidden" id="info"  value="t/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
+                        <input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>/">
                     </div>
                 </div>
             </div>
@@ -165,6 +167,7 @@
         })
 
         $(".delete").on("click", function () {
+        	console.log("???");
             var value = $(this).next().val();
             location.replace("<%=request.getContextPath() %>/ShoppingBaguniDeleteServlet.do?value=" + value);
         })
@@ -178,8 +181,8 @@
             var userName = "<%=logginMember.getM_NAME() %>";
             var userTel = "<%=logginMember.getM_PHONE() %>";
             var userAddr = "<%=logginMember.getM_ADDRESS() %>";
-            $("#baguniForm").submit();
-/*              IMP.request_pay({
+            /* $("#baguniForm").submit(); */
+               IMP.request_pay({
                 pg: 'html5_inicis', // version 1.1.0부터 지원.
                 pay_method: 'card',
                 merchant_uid: 'merchant_' + new Date().getTime(),
@@ -201,8 +204,8 @@
                 } else {
                     var msg = '결제에 실패하였습니다.';
                     msg += '에러내용 : ' + rsp.error_msg;
-                }
-            });  */
+                } 
+             });   
             
 		});
 

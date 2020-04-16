@@ -108,7 +108,7 @@
 	    <%if (logginMember == null) {%>
 	        <div>																								
 	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')">회원가입</button> &nbsp; 
-	        	<input type="button" class="btn btn-outline-primary text-white"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인"><%-- <a href="<%=request.getContextPath()%>/common/mainlogin.do"> --%>
+	      		<button type="button" class="btn btn-outline-info text-white" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do');">로그인</button>
 
 	        	</div>
 	    	</div>

@@ -51,9 +51,8 @@ public class CenterViewDetailServlet extends HttpServlet {
 			
 			
 			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
-			
 			List<Comment> comments = new CenterService().selectComment(cCode);
-
+			
 			
 			request.setAttribute("comments", comments);
 			request.setAttribute("cCode", cCode);

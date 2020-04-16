@@ -48,6 +48,9 @@ public class BaguniPaymentServlet extends HttpServlet {
 		//결제된 센터/트레이너 내역 불러오기
 		String[] centerList = request.getParameterValues("centerList");	
 		String[] trainerList = request.getParameterValues("trainerList");
+		
+		
+		
 		//DB에 결제 내역 넣기
 		int result=new MyPageService2().insertOrderHistory(mCode, centerList, trainerList);
 		String msg="", loc="/mypage/mypageUser.do";
@@ -66,7 +69,7 @@ public class BaguniPaymentServlet extends HttpServlet {
 			}
 			msg="결제 완료. 감사합니다.";
 			request.setAttribute("msg", msg); 
-			request.setAttribute("loc", "/ShoppingBaguniDeleteServlet.do?value="+value);
+			request.setAttribute("loc", "/ShoppingBaguniDeleteServlet.do?value=delete");
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
 		}else{
 			msg="결제는 완료되었으나, 결제내역에 저장을 실패하였습니다. 관리자에게 문의 해주세요.";

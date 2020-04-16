@@ -75,13 +75,13 @@
 				
 			<%if(myCenter==null||myCenter.isEmpty()){ %>
 				<tr>	
-					<td colspan="5"><h3>데이터가 존재하지 않습니다.</h3></td>
+					<td colspan="5"><h6>데이터가 존재하지 않습니다.</h6></td>
 				</tr>
 			<%}else{
 				for(CenterEnroll c : myCenter){ %>
 				<tr>
 					<td><%=c.getName()%></td>
-					<td><%=c.getAddress().substring(0,10) %>...</td>
+					<td><%=c.getAddress() %></td>
 					<td><%=c.getTel() %></td>
 					<td><%=c.getApproval() %></td>
 					<td>
@@ -92,7 +92,7 @@
 				<%} 
 			}%>
 			</table>
-			
+			<br>
 			<div class="MyEnroll2">
 				<h4 id="2" style="color:#6E675F; font-weight:bolder">트레이너 등록 현황</h4>
 			</div>
@@ -107,7 +107,7 @@
 				</tr>
 		<%if(myTrainer==null||myTrainer.isEmpty()){ %>
 				<tr>	
-					<td colspan="5"><h3>데이터가 존재하지 않습니다.</h3></td>
+					<td colspan="5"><h5>데이터가 존재하지 않습니다.</h5></td>
 				</tr>
 		<%}else{ 
 			for(TrainerView t : myTrainer){
