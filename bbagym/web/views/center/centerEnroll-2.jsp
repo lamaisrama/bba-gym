@@ -100,8 +100,6 @@
     <div class="row">
       <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
         <div class="info-footer-inner">
-          <button type="button" class="btn btn-secondary">미리보기</button>
-          &nbsp;&nbsp;&nbsp;
           <input type="submit" class="btn btn-secondary" value="enroll"></button>
         </div>
       </div>
