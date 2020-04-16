@@ -134,13 +134,15 @@ body { position: relative;/*시설 이용후기등 메뉴바 클릭시 이동과
         
 		#btn-insert {
             width: 80px;
+            height: 40px;
+            margin-top: auto;
             margin-left: auto;
             margin-right: 167px;
             margin-bottom: 5px;
         }
     	
     	#orderChoice {
-            width: 150px;
+            width: auto;
             height: 40px;
         }
         
