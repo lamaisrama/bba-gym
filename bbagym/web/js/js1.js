@@ -5,19 +5,6 @@
 
 $(function(){
 	
-	
-	$("#cpwd").blur(function(){
-        const pwd=$("#pwd").val();
-        const cpwd=$("#cpwd").val();
-
-        if(pwd==cpwd){
-            $("#result").html("비밀번호가 일치합니다.").css("color","green");
-        }else{
-            $("#result").html("비밀번호가 일치하지 않습니다.").css("color","red");
-        }
-
-    })
-    
 
 
     $("#log").mouseover(function(){

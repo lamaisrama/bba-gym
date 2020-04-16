@@ -88,7 +88,6 @@
 		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px">
 		         </nav>       
 	   		</div>
-			
 	     <div id="content">
 	         <nav>
 	             <p>
@@ -108,7 +107,7 @@
 	    <%if (logginMember == null) {%>
 	        <div>																								
 	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')">회원가입</button> &nbsp; 
-	      		<button type="button" class="btn btn-outline-info text-white" onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do');">로그인</button>
+	      		<button type="button" class="btn btn-outline-info text-white" onclick="log();">로그인</button>
 
 	        	</div>
 	    	</div>
@@ -154,6 +153,9 @@
 
 		} */
 
+		function log(){
+			location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
+		}
 		
 		function handleGeoSucces(position){
 			const latitude = position.coords.latitude;
