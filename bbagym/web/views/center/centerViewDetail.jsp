@@ -17,7 +17,7 @@
 	int count=0;
 %>
 	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -196,16 +196,19 @@
 											<div id="demo" class="carousel slide" data-ride="carousel">
 												<!-- Indicators -->
 												<ul class="carousel-indicators">
+												<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
 													<li data-target="#demo" data-slide-to="0" class="active"></li>
-													<li data-target="#demo" data-slide-to="1"></li>
-													<li data-target="#demo" data-slide-to="2"></li>
+												
+												<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+													<li data-target="#demo" data-slide-to=i></li>
+												<%}
+												
+												}%>
 												</ul>
 						
 												<!-- The slideshow -->
 												<div class="carousel-inner">
-										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { 
-											
-										%>
+										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
 													<div class="carousel-item active">
 														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(0)%>" alt="centerImg1">
 													</div>													
@@ -214,7 +217,7 @@
 													<div class="carousel-item">
 														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(i)%>" alt="centerImg">
 													</div>
-											<%} 
+												<%} 
 											}%>
 												</div>
 						
@@ -229,12 +232,11 @@
 											</div>
                                         
                                         <%}else {%>
-                                        	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
+                                        	<h4>No image :-( </h4>
                                         <% }%>    
                                         </div>    
                                     </div>
                                 </div>
-                                <!-- <div class="button">펼쳐보기</div>     -->
                             </div>
                         </div>
                        <hr>
