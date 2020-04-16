@@ -74,20 +74,13 @@
 	     focus: true,                 // set focus to editable area after initializing summernote
 	     lang: 'ko-KR',
 	     callbacks: {
-    		 onImageUpload: function(files, editor, welEditable) {
+    		 onImageUpload: function(files) {
     		             for (var i = files.length - 1; i >= 0; i--) {
     		              sendFile(files[i], this);
+    		              
     		             }
     		         }
     		 } 
-	     /* callbacks: {
-				onImageUpload: function(files) {
-					onloadSummernoteImgFile(files[i], this);
- 		            for (var i=0; i=files.length-1; i--) {
-		            	onloadSummernoteImgFile(files[i], this);
-		            } 
-		        } 
-			}*/
 	});
 	
 	 // 이미지업로드 실행
@@ -98,11 +91,12 @@
          $.ajax({ // ajax를 통해 파일 업로드
              data : data,
              type : "POST",
-             url : "/views/board/summernoteImgUpload.jsp",
+             url : "<%=request.getContextPath()%>/board/noticeSnImg",
              cache : false,
              contentType : false,
              processData : false,
              success : function(data) { 
+            	console.log(data);
                 // 에디터에 이미지 출력
                  $(editor).summernote('editor.insertImage', data.url);
              },
@@ -111,13 +105,7 @@
              }
          });
      }
-	 
-	 
-	/* $(document).ready(function() {
-	  $('#summernote').summernote({
-		  
-	 });
-	}); */
+	
 	
  </script>
     

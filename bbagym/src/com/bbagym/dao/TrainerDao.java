@@ -386,6 +386,7 @@ public class TrainerDao {
 				td.setSns_instagram(rs.getString("SNS_INSTAGRAM"));
 				td.setSns_blog(rs.getString("SNS_BLOG"));
 				td.setSns_etc(rs.getString("SNS_ETC"));
+				td.setcCode(rs.getInt("c_code"));
 				System.out.println(td);
 			}
 		}catch(SQLException e) {

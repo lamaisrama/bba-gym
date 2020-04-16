@@ -140,7 +140,7 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr style="color:blue;">
+                                        				   	<tr style="color:blue; font-size: 18px; font-weight: bolder;">
                                         				   		<td>BBAGYM 회원가</td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
@@ -149,6 +149,7 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
+
                                         				</table>                                   			
 <br>
 		                                        <%} 
@@ -180,6 +181,7 @@
                                     </div>
                                 </div>
                             </div>
+
 						</div>
 						<hr>
 						<!--이미지구역-->
@@ -429,7 +431,7 @@
         $(function () {
             let reg = new RegExp(/\d+/);
 
-            $("#pChoice>option").each(function (i, item) {
+            $(".custom-select>option").each(function (i, item) {
                 let a = $(item).text();
                 console.log(reg.exec(a)[0]);
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
