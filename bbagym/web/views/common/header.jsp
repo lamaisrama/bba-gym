@@ -106,7 +106,7 @@ if (cookies != null) {
 				
 	        <div>
 	        
-	       <input type="button" class="btn btn-info"  onclick="location.replace('<%=request.getContextPath()%>/member/membeLoginView.do')"  value="로그인">
+	       <input type="button" class="btn btn-info"  onclick="log();"  value="로그인"/>
 	       <input type="button" class="btn btn-info" value="회원가입"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')" />
 	        	
 	        	&nbsp; 
@@ -114,6 +114,7 @@ if (cookies != null) {
 	 		</div>
 	     <%} else if(logginMember!=null&&logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N'){%>
 				
+
 			
 
           <!-- HelloUser Dropdown -->
@@ -173,6 +174,11 @@ if (cookies != null) {
     </div>
   </nav>
  
+ 				<script>
+					function log(){
+						location.href= "<%=request.getContextPath()%>/member/memberloginview.do";
+					}
+				</script>
   <!-- End Navbar -->
 
   <!-- 아래 div는 각 jsp마다 제일 위에 붙여줘야 header background가 생깁니다.-->
