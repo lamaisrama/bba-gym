@@ -34,7 +34,12 @@
                             <th class="th-write" colspan="2">내용</th>
                         </tr>
                         <tr>
-                            <td colspan="2"><textarea type="text" id="summernote" name="content" class="form-control" cols="500" rows="1000"></textarea></td>
+	                        <td colspan="2">
+	                        	<!-- <form name="writeForm" action="/views/board/summernoteImgUpload.jsp" method="post"> -->
+	                        	<form name="writeForm" action="/board/noticeSnImg" method="post">
+    	                        	<textarea type="text" id="summernote" name="content" class="form-control"></textarea>
+    	                    	</form>    
+    	                    </td>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-center" style="padding: 50px 50px;">
@@ -49,47 +54,70 @@
     </div>
  <br><br><br><br><br>
  <script>
+	 $(document).ready(function() {
+	     $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+	    	 
+	    	 /* callbacks: { 
+	             //이미지를 업로드할 경우 이벤트를 발생
+	             onImageUpload: function(files, editor, welEditable) {
+	                 sendFile(files[0], editor, welEditable);
+	             }
+	         }  */
+	     });
+	 });
+	 
 	 $('#summernote').summernote({
 	 	 placeholder: 'Hello Bbagym',
 	     height: 500,                 // set editor height
 	     minHeight: null,             // set minimum height of editor
 	     maxHeight: null,             // set maximum height of editor
 	     focus: true,                 // set focus to editable area after initializing summernote
-	     lang: 'ko-KR', 			
+	     lang: 'ko-KR',
 	     callbacks: {
+    		 onImageUpload: function(files, editor, welEditable) {
+    		             for (var i = files.length - 1; i >= 0; i--) {
+    		              sendFile(files[i], this);
+    		             }
+    		         }
+    		 } 
+	     /* callbacks: {
 				onImageUpload: function(files) {
 					onloadSummernoteImgFile(files[i], this);
-/* 		            for (var i=0; i=files.length-1; i--) {
+ 		            for (var i=0; i=files.length-1; i--) {
 		            	onloadSummernoteImgFile(files[i], this);
-		            } */
-		        }
-			}
+		            } 
+		        } 
+			}*/
 	});
 	
-	 function uploadSummernoteImgFile(file) 
-	  {
-	  data = new FormData();
-	  data.append("file", file);
-	            $.ajax({
-	            data: data,
-	            type: "POST",
-	                    // 이미지 업로드하는 파일 path 
-	            url: rooturl+'/upload/board/',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
-	            success: function(url) {
-	                alert(url);
-	                editor.insertImage(url);
-	            }
-	        });
-	  } 
+	 // 이미지업로드 실행
+     function sendFile(file, editor, welEdtiable) {
+        // 파일 전송을 위한 폼생성
+         var data = new FormData();
+         data.append("file", file);
+         $.ajax({ // ajax를 통해 파일 업로드
+             data : data,
+             type : "POST",
+             url : "/views/board/summernoteImgUpload.jsp",
+             cache : false,
+             contentType : false,
+             processData : false,
+             success : function(data) { 
+                // 에디터에 이미지 출력
+                 $(editor).summernote('editor.insertImage', data.url);
+             },
+             error: function(data) {
+                 console.log(data);
+             }
+         });
+     }
 	 
-	$(document).ready(function() {
+	 
+	/* $(document).ready(function() {
 	  $('#summernote').summernote({
 		  
 	 });
-	});
+	}); */
 	
  </script>
     

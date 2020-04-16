@@ -55,7 +55,7 @@
                         <th scope="col">Writer</th>
                         <th scope="col">File</th>
                         <th scope="col">Date</th>
-                        <th scope="col">vCount</th>
+                        <th scope="col">View</th>
                     </tr>
                 </thead>
                 <tbody>
