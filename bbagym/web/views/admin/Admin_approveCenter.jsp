@@ -47,7 +47,7 @@
 				<td><%=c.getName()%></td>
 				<td><%=c.getAddress()%></td>
 				<td><%=c.getTel()%></td>
-				<td><input style="text-align:center;"type="text" name="APPROVAL"
+				<td><input style="text-align:center;border:1px solid white;"type="text" name="APPROVAL"
 					value="<%=c.getApproval()%>" readonly></td>
 				<!-- if( ) {-->
 				<%

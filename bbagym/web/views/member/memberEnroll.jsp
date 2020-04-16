@@ -100,7 +100,7 @@
 		  var reg = /^[A-za-z0-9]/g;
 
 		  if(userId.trim().length<5){
-	    	alert("아이디를 5글자 이상 입력하세요!");
+	    	alert("아이디를 5글자 이상 입력하세요.");
 	   		return;
 		 }else if(!reg.test(userId)){
 			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요.");
@@ -114,7 +114,7 @@
 	}
 
 	function fn_enroll_validate() {
-		//아이디가 4글자이상 입력되었는지
+		//아이디가 5글자이상 입력되었는지
 		//패스워드가맞는지
 		//이메일 인증이 되었는지
 		var userId = $("#userId_").val();
