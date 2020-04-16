@@ -1,6 +1,6 @@
 	
 	* {
-		/* border : 1px solid red;  */
+		 /* border : 1px solid red;    */
 	}
 		
 		div {
@@ -8,10 +8,14 @@
             font-family: 'Nanum Square', Dotum, sans-serif;
         }
 
-        .container-fluid {
+        .container {
             /* border-top: 1px solid gray;
             border-bottom: 1px solid gray; */
             width: 100%;
+            display : flex;
+            justify-content : center;
+            flex-direction : column;
+            align-items :center;
         }
 
         .title-container {
@@ -55,12 +59,11 @@
 
         .baguni {
             margin-top: 30px;
-            margin-left: 200px;
-            margin-right: 200px;
-            height: 280px;
+            width:1000px;
+            height: 200px;
             display: inline-flex;
-            min-width: 920px;
-            border : 1px solid black;
+            border : 1px solid lightslategray;
+            border-radius : 20px;
         }
 
         .checkbox-cont {
@@ -84,6 +87,8 @@
             height: 100%;
             width: 400px;
             min-width: 400px;
+            border-top-left-radius: 20px;
+    		border-bottom-left-radius: 20px;
         }
 
         img {
@@ -111,20 +116,14 @@
             height: 50px;
             flex: 12;
         }
-
-        .name-container2:hover {
-            border-bottom: solid 3px #5467f5;
-        }
-
-        .gym-name:hover {
-            border-bottom: none;
-            color: #5467f5;
+        
+        .name-container2 a{
+        	text-decoration:none;
         }
 
         .gym-name {
             font-size: 30px;
             color: #565051;
-            border-bottom: solid 3px #565051;
             text-decoration: none;
         }
 
@@ -132,9 +131,6 @@
             text-decoration: none;
         }
 
-        .price-container {
-            margin-top: auto;
-        }
 
         .program {
             font-size: 20px;
@@ -175,7 +171,7 @@
             display: flex;
             flex-direction: row;
             flex: 6;
-            min-width: 200px;
+            margin-top: 10px;
         }
 
         .option-btn {
@@ -295,9 +291,9 @@
             min-width: 920px;
             margin-left: 200px;
             margin-right: 200px;
-            height: 220px;
+            height: 180px;
             padding: 30px 30px;
-           border : 1px solid black;
+           border : 1px solid lightslategray;
         }
 
         .desc-row {
@@ -309,11 +305,6 @@
             color: #736F6E;
         }
 
-        .pricetitle {
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #736F6E;
-            font-size: 25px;
-        }
 
         #total-price {
             font-family: 'Nanum Square', Dotum, sans-serif;
@@ -339,10 +330,8 @@
             height: 80px;
             font-weight: bolder;
             background: none;
-            color: #5467f5;
-            margin-left: auto;
             margin-top: 50px;
-            margin-right: 10px;
+            margin-left : 50px;
         }
 
         .btn-pay {
@@ -355,40 +344,23 @@
         }
 
         .btn-more:hover {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all .2s ease-in-out;
             background: none;
-            color: #5467f5;
+
         }
 
         .btn-pay:hover {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all .2s ease-in-out;
             background: #5467f5;
         }
 
-        /* .btn:focus,
-        .btn:active,
-        .btn.active,
-        .btn:active:focus,
-        .btn:active:hover,
-        .btn.active:focus {
-            background: #2840f5;
-        }
 
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .btn:not(:disabled):not(.disabled),
-        .show>.btn.dropdown-toggle {
-            background-color: #2840f5;
-            color: #FFFFFF;
-            border-color: #2840f5;
-            box-shadow: none;
-        } */
-
-        #button-container {
-            min-width: 920px;
+         #button-container {
             margin-left: 200px;
             margin-right: 200px;
-        }
+           	dispaly:flex;
+           	justify-content:center;
+
+        } 

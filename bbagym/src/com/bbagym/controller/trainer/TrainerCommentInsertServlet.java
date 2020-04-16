@@ -43,7 +43,7 @@ public class TrainerCommentInsertServlet extends HttpServlet {
 		
 		c.setCommentContent(commentContent);
 		c.setmCode(mCode);
-		c.setcCode(tCode);
+		c.settCode(tCode);
 		c.setCommentLevel(commentLevel);
 		c.setCommentRef(commentRef);
 		c.setOrderCode(orderCode);

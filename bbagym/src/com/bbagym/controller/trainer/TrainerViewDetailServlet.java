@@ -47,7 +47,7 @@ public class TrainerViewDetailServlet extends HttpServlet {
 			mCode=0;
 		}
 		
-		int tCode = Integer.parseInt(request.getParameter("tcode")); //TrainerView에서 받아와야 함
+		int tCode = Integer.parseInt(request.getParameter("tCode")); //TrainerView에서 받아와야 함
 //		int t_code = 1;
 		TrainerDetail td = new TrainerService().trainerViewDetail(tCode, mCode);
 		

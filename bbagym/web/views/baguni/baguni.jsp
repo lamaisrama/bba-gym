@@ -42,12 +42,12 @@
     </div>
     
     <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
-    <div class="container-fluid" style="border: none;">
+    <div class="container" style="border: none;">
         <%if(centerlist==null){ %>
         <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
-        <div class="baguni d-flex flex-row">
+        <div class="baguni">
 
-            <div class="img-container d-flex flex-row" >
+            <div class="img-container" >
 
                 <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
             </div>
@@ -55,17 +55,17 @@
                 <div>
                     <div class="name-container d-flex align-items-start flex-row">
                         <div class="name-container2 flex-row d-flex">
-                            <a href="" class="gym-name"><%=ba.getCname() %></a>
+                            <h2 class="gym-name"><%=ba.getCname() %></h2>
                         </div>
                     </div>
                 </div>
                 <div class="price-container">
                     <table class="table1">
                         <tr>
-                            <th colspan="2"> <span class="program"><%=ba.getPname() %></span></th>
+                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
                         </tr>
                         <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %></span>
+                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %>달</span>
                             </td>
                             <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
                             <td class="align-bottom"><span class="won">원</span></td>
@@ -83,29 +83,29 @@
     
         <%if(trainerlist==null){ %>
         <!-- 박스 --><%} else{for(Baguni ba : trainerlist){ %>
-        <div class="baguni d-flex flex-row">
+        <div class="baguni">
             <div class="checkbox-cont">
                 <input type="checkbox" name="checkbox" id="checkbox">
     
             </div>
-            <div class="img-container d-flex flex-row">
+            <div class="img-container">
                 <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
             </div>
             <div class="detail-container d-flex col">
                 <div>
                     <div class="name-container d-flex align-items-start flex-row">
                         <div class="name-container2 flex-row d-flex">
-                            <a href="" class="gym-name"><%=ba.getMname() %></a>
+                            <h2 class="gym-name"><%=ba.getMname() %></h2>
                         </div>
                     </div>
                 </div>
                 <div class="price-container">
                     <table class="table1">
                         <tr>
-                            <th colspan="2"> <span class="program"><%=ba.getPname() %></span></th>
+                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
                         </tr>
                         <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %></span>
+                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %>회</span>
                             </td>
                             <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
                             <td class="align-bottom"><span class="won">원</span></td>
@@ -135,14 +135,18 @@
                 <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
                 <span class="new-price" id="new-price" style="float: right;"><%=total %> &nbsp;원</span>
             </div>
-            <div id="button-container" class="d-flex flex-row">
-                <button type="button" class="btn-center btn-more btn btn-primary btn-lg" routerlink="">더 돌아보기</button>
-                <button type="button" class="btn-center btn-more btn btn-primary btn-lg" id="paymentBtn" routerlink="">결제하기</button>
-            </div>
         </div>
-    
+    	<div id="button-container" class="d-flex flex-row">
+                <button type="button" class="btn-more btn-pay btn btn-primary">더 돌아보기</button>
+                <button type="button" class="btn-more btn-pay btn btn-primary" id="paymentBtn">결제하기</button>
+            </div>
     </div>
+    
+    
     </form>
+    
+    <%@ include file="/views/common/footer.jsp"%>
+    
     <script>
     //회원가입 시 생성된 가맹점 식별코드를 통해 결제 관련 IMP 변수를 초기화함--페이지 로딩 시 실행 필요
     	var IMP = window.IMP;
@@ -205,4 +209,3 @@
 
     </script>   
 
-<%@ include file="/views/common/footer.jsp"%>
