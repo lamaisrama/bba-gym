@@ -58,7 +58,7 @@ public class TrainerCategorySearchServlet extends HttpServlet {
 					cPage=1;
 			}
 		
-		int numPerpage=9;
+		int numPerpage=6;
 		
 		List<TrainerView> list = new TrainerService().SearchCategoryPageData(cPage,numPerpage,type);
 		int totalData = new TrainerService().searchCategoryCountCenter(type);
@@ -71,7 +71,6 @@ public class TrainerCategorySearchServlet extends HttpServlet {
 		String url2= "&type="+type;
 		String pageBar = pageBar(url, url2,totalData, cPage, numPerpage); 
 
-		System.out.println(type);
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("type", type);
 		request.setAttribute("trainerList", list);

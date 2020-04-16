@@ -24,7 +24,7 @@
           <img src="<%=request.getContextPath()%>/upload/trainer/<%=td.getProf_img() %>" alt="Circle Image" class="img-circle img-no-padding img-responsive">
         </div>
         <div class="name">
-          <h4 class="title"><%=td.getT_name() %>
+          <h4 class="title"><%=td.getT_name() %></h4>
             <br />
 <%--           </h4><%for(String s : td.gettProgramNames()){  %>
         	<h6><%=s %></h6>

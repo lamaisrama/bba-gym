@@ -63,17 +63,12 @@
                         
                         
                         <div id="choice" style="text-align:center;">옵션 선택<br>
-                            <select id="pChoice" name="pchoice" aria-placeholder="옵션선택" style="width: 100%; height: 40px;" >
-                                <% String preName=(cd.getCenterPrograms().get(0)).getpName(); 
-                                for(int i=0; i<cd.getCenterPrograms().size(); i++){ 
-                                	CenterPrograms cp = cd.getCenterPrograms().get(i);
-                               		if(i==0||!preName.equals(cp.getpName())) {
-                               			preName=cp.getpName();%>
-                                	<option value="<%=cp.getpCode()%>"><%=cp.getpName()%></option>
-                                <%}
-                                }%>
-                            </select><br>
-                           &nbsp <button type="button" class="btn btn-primary btn-baguni" style="width: 100%; height: 100%;" >회원권 담기</button>
+                            <select class="custom-select" style="width:500px;" id="baguni">
+					         		<%for(CenterPrograms cp : cd.getCenterPrograms()){  %>
+						           		<option value="<%="c/"+cp.getpCode()+"/"+cp.getMonth()%>">프로그램명 : <%=cp.getpName() %> 가격 : <%=cp.getPrice() %>원 횟수: <%=cp.getMonth() %>달</option>
+						            <%} %> 
+							 </select>
+							 <button id="baguni2" type="submit" class="btn btn-info" style="margin-top:20px" >장바구니에 담기</button> 
 
                         </div>
 

@@ -119,7 +119,7 @@
 					<td><%= t.getApproval() %></td>
 					<td>
 						<%if(t.getApproval().equals("승인")){ %>
-						<button type="button" class="btn btn-secondary btn-sm" value="<%=t.getTcode()%>" onclick="trainerInactivate(this)">전환</button>
+						<button type="button" class="btn btn-secondary btn-sm" value="<%=t.getTcode()%>" onclick="trainerInactivate(this)">프로그램확인</button>
 						<%} %>
 						<%-- <button type="button" class="btn btn-secondary btn-sm" value="<%=t.getTcode()%>" onclick="trainerModity(this);">수정</button> --%>
 						<button type="button" class="btn btn-secondary btn-sm" value="<%=t.getTcode()%>" onclick="trainerDelete(this);">삭제</button>
