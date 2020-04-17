@@ -1,0 +1,43 @@
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	/*  border: 1px solid rgb(211, 208, 208);  */
+}
+
+ ::placeholder{
+            padding-left : 10px;
+       }
+
+#search-pw{
+	width : 500px;
+	margin : auto;
+}
+
+.bt1 {
+	width: 60%;
+	padding: 10px 30px;
+	padding-left: 40px;
+	cursor: pointer;
+	display: block;
+	margin :auto;
+	border : 0;
+	outline : none;
+	background-color : lightslategray;
+}
+
+
+#bt2{
+	display : flex;
+	justify-content :center;
+	border-top : 1px solid black;
+}
+
+#bt2 button{
+	margin-left : 10px;
+	border : 0;
+	outline : none;
+	background-color : white;
+	color : gray;
+}
