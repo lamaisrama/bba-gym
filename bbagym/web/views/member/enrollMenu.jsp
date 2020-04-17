@@ -78,12 +78,12 @@
 	  
 	      <div id ="box">
 	   
-	        <div >																								
+	        <div id="bt">																								
 	        	<button type="button" class="btn btn-outline-info"  onclick="location.replace('<%=request.getContextPath()%>/member/memberEnroll.do')" >일반 회원가입</button> &nbsp; 
 	        	<button type="button" class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/business/businessEnroll.do')" >사업자 회원가입</button> &nbsp; 
 	      	</div>
 	      	<div>
-	      		<button type="button" class="btn btn-outline-info" onclick="log();">로그인</button>
+	      		<button type="button" class="btn btn-outline-info" onclick="log();" style="margin-right:30px;">로그인</button>
 	      	</div>
 	   	 </div>
 	    	

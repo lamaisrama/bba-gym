@@ -63,17 +63,17 @@
             
             <div class="tab-pane container" id="category">
                 <form action="<%=request.getContextPath() %>/center/sortCategory.do" method="POST">
-                    <input type="checkbox" name="category" value="0" id="total" ><label for="total">전체</label>
-                    <input type="checkbox" name="category" value="1" id="swimming" ><label for="swimming">수영</label>
-                    <input type="checkbox" name="category" value="2" id="GX" ><label for="GX">GX</label>
-                    <input type="checkbox" name="category" value="3" id="health" ><label for="health" >헬스</label>
-                    <input type="checkbox" name="category" value="4" id="UFC" ><label for="UFC">격투기</label> 
-                    <br>
-                    <input type="checkbox" name="category" value="5" id="plites" ><label for="plites">필라테스</label>
-                    <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga">요가</label>
-                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc">테니스</label><br>
+                    <input type="checkbox" name="category" value="0" id="total" ><label for="total"><span></span>전체</label>
+                    <input type="checkbox" name="category" value="1" id="swimming" ><label for="swimming"><span></span>수영</label>
+                    <input type="checkbox" name="category" value="2" id="GX" ><label for="GX"><span></span>GX</label>
+                    <input type="checkbox" name="category" value="3" id="health" ><label for="health" ><span></span>헬스</label>
+                    <input type="checkbox" name="category" value="4" id="UFC" ><label for="UFC"><span></span>격투기</label> 
+                  	<br>
+                    <input type="checkbox" name="category" value="5" id="plites" ><label for="plites"><span></span>필라테스</label>
+                    <input type="checkbox" name="category" value="6" id="yoga" ><label for="yoga"><span></span>요가</label>
+                    <input type="checkbox" name="category" value="7" id="etc" ><label for="etc"><span></span>테니스</label><br>
                     <input type="hidden"  id="keyword"	name="keyword">
-                    <button type="submit" class="btn btn-info" >검색</button>
+                    <button type="submit" class="btn btn-dark" style="margin-top:20px;" >검색</button>
                 </form>
             </div>
         </div>

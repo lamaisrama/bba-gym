@@ -54,7 +54,7 @@
 						<button class="find" onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')"><span>비밀번호 찾기</span></button>
 					</div>
 					<div id="goka" style="float:right">
-					<img src="<%=request.getContextPath() %>/resources/img/kakaologin.png" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
+					<img src="<%=request.getContextPath() %>/resources/img/kakaologin.png" width="120px" height="40px" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
 					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="margin-left:20px;"></div>
 					</div>			
 				</div>
