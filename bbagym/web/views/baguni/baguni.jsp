@@ -156,13 +156,13 @@
 	
 				});
 		        $("#oriprice").html("기본가 : "+(test+test*0.1)+"원 + ")
-		        $("#saleprice").html("할인가 : -"+test*0.1+"원=")
+		        $("#saleprice").html("할인가 : -"+test*0.1+"원= ")
 		        $("#totalprice").html(test+"원");
 	        
 	        } else { $(".select_subject").prop('checked', false)
 	        	$("#oriprice").html("기본가 : 0원 + ")
-		        $("#saleprice").html("할인가 : -0원=")
-	        	 $("#totalprice").html("0원");
+		        $("#saleprice").html("할인가 : -0원= ")
+	        	 $("#totalprice").html(" 0원");
 	        	test=0;
 	        };
 	        
