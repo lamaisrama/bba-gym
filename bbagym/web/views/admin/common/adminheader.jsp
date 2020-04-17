@@ -32,12 +32,12 @@
 
 <body>
     <!-- header -->
-    <header >
+    <header style="width:100%;">
 
         <div class="container pt-4" >
             <div id="log"> 
                 <a class="navbar-brand" href="<%=request.getContextPath() %>/views/admin/Admin_Main.jsp" >
-+		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
+                		         	<img src="<%=request.getContextPath()%>/resources/img/logo-1.png" width="100px"></a>
             </div>
             <div id="welcome"><!-- 관리자페이지 타이틀 -->
                 <nav>
@@ -50,7 +50,7 @@
 
 
 
-    <section >
+    <section>
 
         <div >
             <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
@@ -82,7 +82,7 @@
 
             </aside>
 
-            <div id="section-view">
+            <div id="section-view" >
             
             <style>
             .body{
