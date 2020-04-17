@@ -22,16 +22,16 @@
                         <tr>
                             <th class="th-write">작성자</th>
                             <td>
-                            	<input type="text" name="writer" value="<%=logginMember.getM_ID()%>" readonly>
+                            	<input type="text" name="writer" class="form-control" value="<%=logginMember.getM_ID()%>" readonly>
                             	<input type="hidden" name="mcode" value="<%=logginMember.getM_CODE()%>">
                            	</td>
                         </tr>
                         <tr>
                             <th class="th-write">첨부파일</th>
-                            <td><input type="file" name="upfile"/></td>
+                            <td style="text-align:left;"><input type="file" name="upfile"/></td>
                         </tr>   
                         <tr>
-                            <th colspan="2">내용</th>
+                            <th colspan="2">&nbsp;</th>
                         </tr>
                         <tr>
                             <td colspan="2">
@@ -74,25 +74,24 @@
           		 } 
         });
         
-     // 이미지업로드 실행
-        function sendFile(file, editor, welEdtiable) {
-            var data = new FormData();
-            data.append("file", file);
-            $.ajax({ 
-                data : data,
-                type : "POST",
-                url : "<%=request.getContextPath()%>/board/boardSnImg",
-                cache : false,
-                contentType : false,
-                processData : false,
-                success : function(data) { 
-               	console.log(data);
-                    $(editor).summernote('editor.insertImage', data.url);
-                },
-                error: function(data) {
-                    console.log(data);
-                }
-            });
-        }
-		</script>
+	   function sendFile(file, editor, welEdtiable) {
+	       var data = new FormData();
+	       data.append("file", file);
+	       $.ajax({ 
+	           data : data,
+	           type : "POST",
+	           url : "<%=request.getContextPath()%>/board/boardSnImg",
+	           cache : false,
+	           contentType : false,
+	           processData : false,
+	           success : function(data) { 
+	          	console.log(data);
+	               $(editor).summernote('editor.insertImage', data.url);
+	           },
+	           error: function(data) {
+	               console.log(data);
+	           }
+	       });
+	   }
+	</script>
 <%@ include file="/views/common/footer.jsp"%>	

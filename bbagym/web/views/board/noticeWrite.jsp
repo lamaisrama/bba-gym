@@ -22,16 +22,16 @@
                         <tr>
                             <th class="th-write">작성자</th>
                             <td>
-                            	<input type="text" name="writer" value="<%=logginMember.getM_ID()%>" readonly>
+                            	<input type="text" name="writer" class="form-control" value="<%=logginMember.getM_ID()%>" readonly>
                             	<input type="hidden" name="mcode" value="<%=logginMember.getM_CODE()%>">
                            	</td>
                         </tr>
                         <tr>
                             <th class="th-write">첨부파일</th>
-                            <td><input type="file" name="upfile"/></td>
+                            <td style="text-align:left;"><input type="file" name="upfile"/></td>
                         </tr>   
                         <tr>
-                            <th class="th-write" colspan="2">내용</th>
+                            <th class="th-write" colspan="2">&nbsp;</th>
                         </tr>
                         <tr>
 	                        <td colspan="2">
@@ -54,17 +54,17 @@
  <br><br><br><br><br>
  <script>
 	 $(document).ready(function() {
-	     $('#summernote').summernote({ // summernote를 사용하기 위한 선언
+	     $('#summernote').summernote({ 
 	    	 
 	     });
 	 });
 	 
 	 $('#summernote').summernote({
 	 	 placeholder: 'Hello Bbagym',
-	     height: 500,                 // set editor height
-	     minHeight: null,             // set minimum height of editor
-	     maxHeight: null,             // set maximum height of editor
-	     focus: true,                 // set focus to editable area after initializing summernote
+	     height: 500,                 
+	     minHeight: null,             
+	     maxHeight: null,             
+	     focus: true,                 
 	     lang: 'ko-KR',
 	     callbacks: {
     		 onImageUpload: function(files) {
@@ -77,10 +77,9 @@
 	
 	 // 이미지업로드 실행
      function sendFile(file, editor, welEdtiable) {
-        // 파일 전송을 위한 폼생성
          var data = new FormData();
          data.append("file", file);
-         $.ajax({ // ajax를 통해 파일 업로드
+         $.ajax({ 
              data : data,
              type : "POST",
              url : "<%=request.getContextPath()%>/board/noticeSnImg",
@@ -88,8 +87,6 @@
              contentType : false,
              processData : false,
              success : function(data) { 
-            	console.log(data);
-                // 에디터에 이미지 출력
                  $(editor).summernote('editor.insertImage', data.url);
              },
              error: function(data) {

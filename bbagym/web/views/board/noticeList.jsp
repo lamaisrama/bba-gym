@@ -16,7 +16,7 @@
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
     <section id="board-container">
         <div class="container">
-            <h1 class="display-4" style="text-align: center;">Notice<i class="fa fa-heart heart"></i></h1>
+            <h1 class="display-4" style="text-align: center;">Notice</h1>
             <br><br>
             <!-- 검색start -->
             <div align="right">
