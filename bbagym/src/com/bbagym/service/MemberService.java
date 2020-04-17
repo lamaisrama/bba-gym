@@ -107,12 +107,9 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
-		System.out.println("도착1"+id);
-		System.out.println("도착2"+pw);
-		System.out.println("도착3"+m);
 		
 		int result=-1;
-		System.out.println(m);
+	
 		
 		if(m !=null) {
 			result=dao.updatePassword(conn, id, changePw);
@@ -128,7 +125,7 @@ public class MemberService {
 	public int updatePassword1(String id, String pw, String changePw) {
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
-		
+	
 		
 		int result=-1;
 		if(m !=null) {

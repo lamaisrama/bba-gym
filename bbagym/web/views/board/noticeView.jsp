@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css">
 
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/notice.jpg');"></div>
 
 <section>
         <div class="row">

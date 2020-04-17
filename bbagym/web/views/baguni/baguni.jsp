@@ -32,7 +32,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>    
 
     <div class="page-header page-header-xs" data-parallax="true"
-        style="background-image: url('<%=request.getContextPath() %>/assets/img/fabio-mangione.jpg');"></div>
+        style="background-image: url('<%=request.getContextPath() %>/assets/img/baguni.jpg');"></div>
     
     
     <div class="d-flex flex-row title-container ">

@@ -923,5 +923,27 @@ public class CenterDao {
 			
 			
 		}
+
+		public void centerLatLng(Connection conn, int cCode, CenterDetail cd) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			String sql= prop.getProperty("selectXY");
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, cCode);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					cd.setAddrX(rs.getString("c_x"));
+					cd.setAddrY(rs.getString("c_y"));
+				}
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+		}
+		
 	
 }

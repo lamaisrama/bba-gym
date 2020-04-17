@@ -67,12 +67,12 @@
 				     
 				     <%} else if (logginMember!=null&&logginMember.getM_LEVEL()==0&&logginMember.getM_STATUS()=='N') {%>		         
 				         <li><a href="<%=request.getContextPath()%>/center/centerView.do"> 센터 찾기</a></li>		<!-- /views/center/centerView.jsp -->
-				     	 <li><a href="<%=request.getContextPath()%>/center/centerEnroll.do">센터 등록</a></li>	
+				     	
 				         <li><a href="<%=request.getContextPath()%>/trainer/trainerView.do">트레이너 찾기</a></li>	<!-- /views/trainner/trainnerView.jsp -->				 
-<!--admin -->		 <li><a href="<%=request.getContextPath()%>/trainer/trainerEnroll.do">트레이너 등록</a></li>	
+<!--admin -->		
 				         <li><a href="<%=request.getContextPath()%>/board/noticeList">Notice</a></li>				<!-- /views/board/noticeList.jsp -->
 				         <li><a href="<%=request.getContextPath()%>/board/boardList">Q&A</a></li>						<!-- /views/board/boardList.jsp -->
-				         <li><a href="<%=request.getContextPath()%>/admin/adminMain.do">관리자페이지 이동</a></li><!-- /views/mypage/mypage-business.jsp -->
+				         <li ><a style="color:red;font-weight:bold; " href="<%=request.getContextPath()%>/admin/adminMain.do">관리자페이지 이동</a></li><!-- /views/mypage/mypage-business.jsp -->
 				    
 				     <%}else {%>
 				         <li><a href="<%=request.getContextPath()%>/center/centerView.do">센터 찾기</a></li>		<!-- /views/center/centerView.jsp -->

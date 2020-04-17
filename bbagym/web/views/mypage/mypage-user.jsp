@@ -14,7 +14,7 @@
 
 
 <div class="page-header page-header-xs" data-parallax="true"
-	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
+	style="background-image: url('<%=request.getContextPath()%>/assets/img/mypage.jpg');"></div>
 
 <!--************ 왼쪽메뉴 ************-->
 <section class="section-container">

@@ -17,9 +17,13 @@
 	int count=0;
 %>
 	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!-- 카카오맵 API 불러오는 script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=910ff98ddccfbc580e580a9ce7d7285d&libraries=services"></script>
+
+
 
 <body data-spy="scroll" data-target=".navbar" data-offset="100"> <!--시설 이용후기등 메뉴바 클릭시 이동과 관련-->
 <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
@@ -29,7 +33,7 @@
             <div id="detail-header">
                 <div id="all-info">
                     <div class="img-info">
-                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="430" height="506">
+                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="450" height="320">
                     </div>
                     <div class="text-info">
                         <div id="title"><h2 style="margin-right:auto;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><%=cd.getCenterName() %><strong></strong></h2>
@@ -53,7 +57,7 @@
                             	if(score-cd.getCenterScore()<0.5){%>
                             		<i class="fa fa-star-half"></i>
                             	<%} score=1;%>
-                            	<%=cd.getCenterScore()==0 ?  "0" : cd.getCenterScore() %>
+                            	<%=cd.getCenterScore()==0 ?  "<span style='color:grey; font-weight:lighter'>아직 등록된 평점이 없습니다  </span>" : cd.getCenterScore() %>
                         </div>
 
                         
@@ -80,7 +84,7 @@
                 <div id="window-menu">
                     <ul class="nav nav-tabs nav-justified"><!--클릭시 메뉴바 태그 연결-->
                         <li class="nav-item">
-                            <a class="nav-link" href="#section1"><h5>시설정보</h5></a>
+                            <a class="nav-link" href="#section1"><h5><small>시설정보</small></h5></a>
                         </li>
                         <li class="nav-item">
 
@@ -99,7 +103,7 @@
                 <div id="menu-sebu">
                     <div class="bord-section">
                         <div id="price" class="container-fluid">
-	                    	<div id="price-title"><h5>센터소개</h5>
+	                    	<div id="price-title"><h5><b>센터소개</b></h5>
 	                            <div id="notice">
 	                                <p><%=cd.getCenterIntro() %></p>
 	                            </div>
@@ -108,7 +112,7 @@
                             <div id="price-zone"> 
                                
                                 <div id="price">                              
-                                    <div class="price-title"><h5>가격정보</h5></div>
+                                    <div class="price-title"><h5><b>가격정보</b></h5></div>
                                     
                                     
                                     
@@ -119,9 +123,9 @@
                                     	if(i==0||!preName1.equals(cp.getpName())) {
                                     			preName1=cp.getpName();%>
 
-													<div style="display:flex;  color: #17A2B8;justify-content:center;width:100px;height:50px;"><h6>𓂃𓊝 𓂃<%=cp.getpName() %></h6></div>
+													<div style="display:flex; color: #17A2B8;justify-content:center;width:100px;height:50px;"><h5><b><%=cp.getpName() %></b></h5></div>
 														<div >
-														<table id="price_table">
+														<table id="price_table" >
 															<tr>
 																<th></th>
 	                                        				<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
@@ -140,24 +144,16 @@
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr style="color:blue;">
+                                        				   	<tr style="color:blue; font-size: 18px; font-weight: bolder;">
                                         				   		<td>BBAGYM 회원가</td>
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
 	                                        					if(preName1.equals(cp2.getpName())) {%>
-																	<td><%=cp2.getPrice() %>원</td>						
+																	<td><b><%=cp2.getPrice() %>원</b></td>						
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
-                                        				   	<tr style="font-size: 18px; font-weight: bolder;">
-                                        				   		<td></td>
-                                        				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
-	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
-	                                        					if(preName1.equals(cp2.getpName())) {%>
-																	<td><span>월 <%=(int)(cp2.getPrice()/cp2.getMonth()) %>원</span></td>						
-                                                				<%} 
-                                        						}%><br>
-                                        				   	</tr>
+
                                         				</table>                                   			
 <br>
 		                                        <%} 
@@ -166,57 +162,93 @@
                                 </div>
                             </div>
                            
-                                <hr><div id="time-zone">  <hr>
-                                <div id="time">
-                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
-                                    <small> <div id="time-con" style="color: rgb(146, 142, 142);"> 
-                                       <%=cd.getCenterOpenHours() %><br><br>
-                                        [휴관일] <%=cd.getCenterHolidays() %>
-                                    </div></small>
-                                </div>
-                            </div>
-                             <hr>
+                                <hr>
+                                <div id="time-zone">
+	                                <div id="time">
+	                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
+	                                    <div id="time-con" style="color: rgb(146, 142, 142);"> 
+	                                       <%=cd.getCenterOpenHours() %><br><br>
+	                                        [휴관일] <%=cd.getCenterHolidays() %>
+	                                    </div>
+	                                </div>
+                            	</div>
+                             	<hr>
                             <div id="program-zone">
                                 <div id="program">
                                     <div class="program-title"><h5><b>시설</b></h5></div>
-                                   <small> <div class="program-sebu" style="color: rgb(146, 142, 142);">
+                                   <div class="program-sebu" style="color: rgb(146, 142, 142);">
 
                                         	<%for(int i=0; i<cd.getCenterFacilityNames().size(); i++){ %>
                                         		<%=cd.getCenterFacilityNames().get(i) %>&nbsp;&nbsp;
                                         	<%} %>
 
-                                    </div></small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                         <hr>
-                        <!--이미지구역-->
-                        <div id="section2" class="container-fluid">
-                            <div id="image-zone">
-                                <div id="image-title"><h5><b>사진</b></h5></div>
-                                <div id="image-sebu">    
-                                    <div class="img">
-                                        <div class="col-md-12 ml-auto mr-auto">
-                                        <%if(cd.getCenterImgs()!=null && cd.getCenterImgs().isEmpty()) {
-                                        	for(int i=0; i<cd.getCenterImgs().size();i++) { %>
-                                            <a href="img/light01_s.jpg"><img src="img/light01.jpg" alt="이미지"></a>
-                                            <%if(i%4==0&&i!=0){ %>
-                                            	<br>
-                                            <%} %>
-							            <%}
-                                        }else {%>
-                                        	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
+
+						</div>
+						<hr>
+						<!--이미지구역-->
+						<div id="section2" class="container-fluid">
+							<div id="image-zone">
+								<div id="image-title">
+									<h5><b>사진</b></h5>
+								</div>
+								<div id="image-sebu">
+									<div class="img">
+										<div class="col-md-12 ml-auto mr-auto">
+											<div id="demo" class="carousel slide" data-ride="carousel">
+												<!-- Indicators -->
+												<ul class="carousel-indicators">
+												<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
+													<li data-target="#demo" data-slide-to="0" class="active"></li>
+												
+												<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+													<li data-target="#demo" data-slide-to=i></li>
+												<%}
+												
+												}%>
+												</ul>
+						
+												<!-- The slideshow -->
+												<div class="carousel-inner">
+										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
+													<div class="carousel-item active">
+														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(0)%>" alt="centerImg1">
+													</div>													
+                                        	<% if(cd.getCenterImgs().size()>1){
+                                        		for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+													<div class="carousel-item">
+														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(i)%>" alt="centerImg">
+													</div>
+												<%} 
+											}%>
+												</div>
+						
+												<!-- Left and right controls -->
+												<a class="carousel-control-prev" href="#demo" data-slide="prev">
+													<span class="carousel-control-prev-icon"></span>
+												</a>
+												<a class="carousel-control-next" href="#demo" data-slide="next">
+													<span class="carousel-control-next-icon"></span>
+												</a>
+						
+											</div>
+                                        
+                                        <%}else {%>
+                                        	<h4>No image :-( </h4>
                                         <% }%>    
                                         </div>    
                                     </div>
                                 </div>
-                                <!-- <div class="button">펼쳐보기</div>     -->
                             </div>
                         </div>
                        <hr>
-                        <div id="section4" class="container-fluid">  <hr><br>
+                        <div id="section4" class="container-fluid"> <br>
+
                             <div id="map-title"><h5><b>위치</b></h5></div>
-                            <div id="map-api"></div>
+                            <br>
+                           	<div id="map-api" style="width:600px; height:400px;"></div>
                         </div>
                           
                         <div id="section3" class="container-fluid" style="height:auto;">
@@ -407,7 +439,7 @@
         $(function () {
             let reg = new RegExp(/\d+/);
 
-            $("#pChoice>option").each(function (i, item) {
+            $(".custom-select>option").each(function (i, item) {
                 let a = $(item).text();
                 console.log(reg.exec(a)[0]);
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
@@ -434,7 +466,22 @@
 	      		
 	      	});
 
+			//지도 출력
+			var container = document.getElementById('map-api'),
+			    options = {
+			         center: new kakao.maps.LatLng(<%=cd.getAddrY()%>, <%=cd.getAddrX()%>),
+			         level: 3
+			    };
+			 
+			var map = new kakao.maps.Map(container, options);
 			
+			//지도 클릭한 위치에 표출할 마커 - 중앙에 마커 생성
+			var marker = new kakao.maps.Marker({
+				position: map.getCenter(),
+				clickable: true
+			});
+			//마커가 지도 위에 표시되도록 설정
+			marker.setMap(map);
 	</script>
 
 
