@@ -1,6 +1,6 @@
 	
 	* {
-		  border : 1px solid red;  
+		    /*  border : 1px solid red;    */  
 		  font-family: 'Nanum Square', Dotum, sans-serif;  
 	}
 
@@ -30,6 +30,14 @@
 	border-bottom : 1px solid gray;
 }
 
+.baguni tr{
+	border-bottom : 1px solid gray;
+}
+
+.delete {
+	
+}
+
 
 .baguni td{
 	height: 200px;
@@ -55,38 +63,34 @@
 
 .content-container>div{
 	display : flex;
+	flex-direction: row;
 }
+
+#button-container{
+	display: flex;
+	justify-content: center;
+	margin-top:30px;
+	margin-bottom:30px;	
+}
+
+#container{
+     display : flex;
+     justify-content: center;
+     align-items: center;
+     width: 800px;
+     height : 120px;
+     border : 2px solid gray;
+     margin: auto;
+}
+
+#container h6{
+	font-size: 35px;
+}
+
         
-        .title-container {
-            margin-left: 200px;
-            margin-right: 200px;
-            height: 100px;
-            min-width: 920px;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-        }
-        
-       
 
-        .title {
-            font-size: 50px;
-            margin-top: auto;
-            margin-bottom: auto;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-width: 120px;
-
-        }
-
-       
-	   #container {
-	    display :flex;
-	   	flex-direction : column;
-	   	justify-content : center;
-	   	align-items :center;
-	   }
    
+
 
        
 
