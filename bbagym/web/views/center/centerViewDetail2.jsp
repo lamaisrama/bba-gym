@@ -248,7 +248,7 @@
 
                             <div id="map-title"><h5><b>위치</b></h5></div>
                             <br>
-                           	<div id="map-api" style="width:600px; height:400px;"></div>
+                           	<div id="map-api" style="width:720px; height:400px;"></div>
                         </div>
                           
                         <div id="section3" class="container-fluid" style="height:auto;">
