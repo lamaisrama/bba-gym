@@ -56,6 +56,17 @@ public class MemberUpdateServlet extends HttpServlet {
 		int M_LEVEL = Integer.parseInt(mr.getParameter("M_LEVEL"));
 		String M_PHONE=mr.getParameter("M_PHONE");
 		String M_IMAGE=mr.getFilesystemName("M_IMAGE");
+		String oldImg = mr.getParameter("oldFileName");
+		
+		File f = mr.getFile("M_IMAGE");
+		
+		if(f!=null&&f.length()>0) {
+			File delFile = new File(path+oldImg);
+			boolean flag = delFile.delete();
+			System.out.println(flag);
+		}else {
+			M_IMAGE = oldImg;
+		}
 		
 		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,M_LEVEL,null,' ',M_IMAGE,null,null,M_GENDER,M_AGE,null);
 		

@@ -317,7 +317,7 @@
 						                            	<%} score=1;%> --%>
 						                            	<%=c.getOrderScore()==0 ?  "0" : c.getOrderScore() %>
 						                        </div>
-														<sub class="comment-writer"><%=c.getmId() %></sub>
+														<sub class="comment-writer" style="color: gray;"><%=c.getmId() %></sub>
 														<input type="hidden" name="mCode" value="<%=c.getmCode()%>">
 														<sub class="comment-date"><%=c.getCommentDate() %></sub>
 														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getMonth() %>개월</sub>
