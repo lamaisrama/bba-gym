@@ -103,7 +103,7 @@
 	    	alert("아이디를 5글자 이상 입력하세요.");
 	   		return;
 		 }else if(!reg.test(userId)){
-			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요.");
+			 alert("비밀번호는 영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요.");
 		   	return;
 		 }
 	
@@ -140,10 +140,10 @@
 			$("#userId_").focus();
 			return false;
 		} else if(!reg2.test(pw)){
-			alert('숫자, 특수문자 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력해야합니다');
+			alert('비밀번호는 숫자, 특수문자 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상 입력해야합니다');
 			return false;
 		}else if(!reg1.test(userId)){
-			 alert("영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요.");
+			 alert("아이디는 영문 대문자 또는 소문자로 시작하며 , 길이는 5~10자로 입력해주세요.");
 			   	return;
 		} else if (pw.trim() != pwck.trim()) {
 			alert("패스워드가 일치하지 않습니다.");
