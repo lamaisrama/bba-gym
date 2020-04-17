@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.bbagym.model.vo.CenterEnroll;
+import com.bbagym.model.vo.Member;
 import com.bbagym.model.vo.MypageUser;
 
 public class MypageDao {
@@ -149,6 +149,32 @@ public class MypageDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public Member getUpdateInfo(Connection conn, int mCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Member m = new Member();
+		
+		String sql = prop.getProperty("getUpdateInfo");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, mCode);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				m.setM_NAME(rs.getString("m_name"));
+				m.setM_IMAGE(rs.getString("m_image"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return m;
 	}
 	
 	

@@ -5,6 +5,7 @@
 <%
 	List<TrainerView> myTrainer = (List<TrainerView>)request.getAttribute("myTrainer");
 	List<CenterEnroll> myCenter = (List<CenterEnroll>)request.getAttribute("myCenter");
+	Member m = (Member)request.getAttribute("newM");
 %>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/mypageUser.css">
@@ -17,14 +18,14 @@
 		<div class="left-menu-container">
 			<div class="profile-img">
 			<%if(logginMember.getM_IMAGE()!=null){ %>
-				<img src="<%=request.getContextPath()%>/upload/business/<%=logginMember.getM_IMAGE()%>" alt="my image" id="myImage" />
+				<img src="<%=request.getContextPath()%>/upload/business/<%=m.getM_IMAGE()%>" alt="my image" id="myImage" />
 			<%}else{ %>
 				<img src="<%=request.getContextPath()%>/resources/img/admin/log.png" alt="my image" id="myImage" />
 			<%} %>
 			</div>
 			<div class="profile-info">
 				<div>
-					<span>♥<%=logginMember.getM_NAME()%>님 환영합니다♥</span>
+					<span>♥<%=m.getM_NAME()%>님 환영합니다♥</span>
 				</div>
 			</div>
 
