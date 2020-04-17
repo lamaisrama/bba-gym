@@ -73,11 +73,14 @@
 						<div class="div-here">
 							<%if(m.getM_IMAGE()!=null) { %>
         				 <input class="form-control-file" aria-describedby="fileHelp" type="file" name="M_IMAGE"/>
+         				<img alt="" src="<%=request.getContextPath()%>/upload/business/<%=m.getM_IMAGE()%>" style="max-width:120px; margin-top: 5px;"><br>
          					<span id="fname"><%=m.getM_IMAGE() %></span>
         				 <%} else{ %>
         				 <input class="form-control-file" aria-describedby="fileHelp" type="file" name="M_IMAGE"/>
+         				<img alt="" src="<%=request.getContextPath()%>/upload/business/<%=m.getM_IMAGE()%>" style="max-width:50px">
          					<%} %>
          				<input class="form-control-file" aria-describedby="fileHelp" type="hidden" name="M_IMAGE" value="<%=m.getM_IMAGE() %>"/>
+         				<input type="hidden" name="oldFileName" value="<%=m.getM_IMAGE()%>"/>
          				
 						<small id="fileHelp" class="form-text text-muted">자신을 보여줄 수 있는 사진을 업로드해주세요. </small>
 					<br>
@@ -133,6 +136,18 @@
    
     }
     
+    
+    $(function () {
+        $("input[type = file]").change(function () {
+            var fr = new FileReader();
+
+            fr.onload = function (e) {
+                $("img").attr('src', e.target.result);
+            }
+            fr.readAsDataURL(this.files[0])
+
+        });
+    });
 </script>
 
 	

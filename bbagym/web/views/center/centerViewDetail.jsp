@@ -317,7 +317,7 @@
 						                            	<%} score=1;%> --%>
 						                            	<%=c.getOrderScore()==0 ?  "0" : c.getOrderScore() %>
 						                        </div>
-														<sub class="comment-writer"><%=c.getmId() %></sub>
+														<sub class="comment-writer" style="color: gray;"><%=c.getmId() %></sub>
 														<input type="hidden" name="mCode" value="<%=c.getmCode()%>">
 														<sub class="comment-date"><%=c.getCommentDate() %></sub>
 														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getMonth() %>개월</sub>
@@ -447,6 +447,29 @@
                 //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
             })
         })
+        
+		$(function () {
+            let reg = new RegExp(/\d{4,}/);
+
+            $("#price_table>tbody>tr>td>b").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+        
+        		$(function () {
+            let reg = new RegExp(/\d{4,}/);
+
+            $("#price_table>tbody>tr").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+
 
 	        $("#baguni2").on("click",function(){
 	      		

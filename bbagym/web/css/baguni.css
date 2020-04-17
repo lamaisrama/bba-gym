@@ -1,366 +1,101 @@
 	
 	* {
-		 /* border : 1px solid red;    */
+		    /*  border : 1px solid red;    */  
+		  font-family: 'Nanum Square', Dotum, sans-serif;  
 	}
-		
-		div {
-            /* border: 1px solid red; */
-            font-family: 'Nanum Square', Dotum, sans-serif;
-        }
 
-        .container {
-            /* border-top: 1px solid gray;
-            border-bottom: 1px solid gray; */
-            width: 100%;
-            display : flex;
-            justify-content : center;
-            flex-direction : column;
-            align-items :center;
-        }
 
-        .title-container {
-            margin-left: 200px;
-            margin-right: 200px;
-            height: 100px;
-            min-width: 920px;
-            border-top: 1px solid gray;
-            border-bottom: 1px solid gray;
-        }
+#baguniForm{
+	display :flex;
+	flex-direction : column;
+	justify-cotent : center;
+	align-items :center;
+}
+	
+.baguni {
+    margin-top: 30px;
+    width: 1000px;
+    display: inline-flex;
+    border : 1px solid lightslategray;
+}
 
-        .title {
-            font-size: 50px;
-            margin-top: auto;
-            margin-bottom: auto;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-width: 120px;
+.baguni table{
+	width : 100%;
+	height: 100%;
+}
 
-        }
+.baguni th{
+	height: 50px;
+	border-top : 2px solid gray;
+	border-bottom : 1px solid gray;
+}
 
-        .sub-title {
-            margin-top: auto;
-            margin-bottom: auto;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-width: 100px;
-        }
+.baguni tr{
+	border-bottom : 1px solid gray;
+}
 
-        .count {
-            margin-top: auto;
-            margin-bottom: auto;
-            margin-right: 50px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            min-width: 130px;
-        }
+.delete {
+	
+}
 
-        .baguni {
-            margin-top: 30px;
-            width:1000px;
-            height: 200px;
-            display: inline-flex;
-            border : 1px solid lightslategray;
-            border-radius : 20px;
-        }
 
-        .checkbox-cont {
-            height: 100%;
-            width: 70px;
-            vertical-align: middle;
-            text-align: center;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
+.baguni td{
+	height: 200px;
+}
 
-        #checkbox {
-            margin-top: auto;
-            margin-left: auto;
-            height: 100%;
-            width: 25px;
+#good-info{
+	display: flex;
+	justify-content : center;
+	align-items : center;
+}
 
-        }
+.img-container {
+		border : 1px solid gray;
+       width: 200px;
+       height: 80%;
+       margin : 0;
+ }
+ 
+ .content-container{
+       width: 300px;
+       height: 150px;
+ }     
 
-        .img-container {
-            height: 100%;
-            width: 400px;
-            min-width: 400px;
-            border-top-left-radius: 20px;
-    		border-bottom-left-radius: 20px;
-        }
+.content-container>div{
+	display : flex;
+	flex-direction: row;
+}
 
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-        }
+#button-container{
+	display: flex;
+	justify-content: center;
+	margin-top:30px;
+	margin-bottom:30px;	
+}
 
-        .detail-container {
-            margin-left: 20px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            margin-right: 20px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
+#container{
+     display : flex;
+     justify-content: center;
+     align-items: center;
+     width: 800px;
+     height : 120px;
+     border : 2px solid gray;
+     margin: auto;
+}
 
-        .detail-container>div {
-            display: flex;
-            flex-direction: row;
-        }
+#container h6{
+	font-size: 35px;
+}
 
-        .name-container {
-            height: 50px;
-            flex: 12;
-        }
         
-        .name-container2 a{
-        	text-decoration:none;
-        }
 
-        .gym-name {
-            font-size: 30px;
-            color: #565051;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
+   
 
 
-        .program {
-            font-size: 20px;
-            font-weight: bolder;
-            color: #736F6E;
-        }
-
-        .months {
-            font-size: 20px;
-            color: #736F6E;
-        }
-
-        .price {
-            font-size: 20px;
-            color: #5467f5;
-            font-family: 'Nanum Square', Dotum, sans-serif;
-        }
-
-        .won {
-            font-size: 20px;
-            color: #5467f5;
-            font-family: 'Nanum Square', Dotum, sans-serif;
-        }
-
-        .close {
-            font-size: 40px;
-            float: right;
-        }
-
-        .dropdown {
-            margin-top: auto;
-            margin-bottom: auto;
-            text-align: center;
-            font-family: 'Nanum Square', Dotum, sans-serif;
-        }
-
-        .table1 {
-            display: flex;
-            flex-direction: row;
-            flex: 6;
-            margin-top: 10px;
-        }
-
-        .option-btn {
-            width: 200px;
-            background: #5467f5;
-        }
-
-        .dropdown-menu .dropdown-item {
-            width: 200px;
-
-        }
-
-        .dropdown-menu .dropdown-item:first-child {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        .dropdown-menu .dropdown-item:last-child {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .dropdown-menu .dropdown-item:hover,
-        .dropdown-menu .dropdown-item:focus {
-            background-color: #f9f9f9;
-            color: black !important;
-            opacity: 1;
-            text-decoration: none;
-        }
-
-        .gym-search-container {
-            height: 64px;
-            line-height: 64px;
-            background-color: #222d80;
-            color: white;
-            text-align: center;
-            min-width: 920px;
-            margin-left: 200px;
-            margin-right: 200px;
-            border-left: 1px solid gray;
-            border-right: 1px solid gray;
-        }
-
-        #link-arrow {
-            float: right;
-            margin: 23px 30px 0 0;
-        }
-
-        .gym-search-container:hover {
-            cursor: pointer;
-        }
-
-        .text2 {
-            font-weight: bold;
-        }
-
-        #selectmonth-container {
-            min-width: 920px;
-            margin-left: 200px;
-            margin-right: 200px;
-            height: 200px;
-            border-left: 1px solid gray;
-            border-right: 1px solid gray;
-            border-bottom: 1px solid gray;
-        }
-
-        #selectmonth-title {
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #736F6E;
-            margin-left: 20px;
-            margin-bottom: 30px;
-            padding-top: 30px;
-        }
-
-        .month-container {
-            border: 1px solid #736F6E;
-            width: 80%;
-            text-align: center;
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #736F6E;
-            font-size: 30px;
-        }
-
-        .month-container-notclick {
-            background-color: white;
-            /* transition: .5s; */
-            cursor: pointer;
-        }
-
-        .month-container>div {
-            line-height: 55px;
-        }
-
-        .month-container:hover {
-            background-color: #ffbf00;
-            transition: .5s;
-            cursor: pointer;
-        }
-
-        .month-container-click {
-            background-color: #ffbf00;
-            color: white;
-            font-weight: bolder;
-            cursor: pointer;
-        }
-
-        #table-container {
-            border-radius: 5px;
-            margin-left: auto;
-            margin-right: auto;
-            width: 80%;
-            height: 60px;
-        }
-
-        .total-price-container {
-        	margin-top:50px;
-            min-width: 920px;
-            margin-left: 200px;
-            margin-right: 200px;
-            height: 180px;
-            padding: 30px 30px;
-           border : 1px solid lightslategray;
-        }
-
-        .desc-row {
-            display: block;
-            flex-direction: row;
-            width: 100%;
-            margin-bottom: 20px;
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #736F6E;
-        }
+       
 
 
-        #total-price {
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #736F6E;
-            font-size: 23px;
-        }
 
-        #sale-price {
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: red;
-            font-size: 23px;
-        }
+        
 
-        #new-price {
-            font-family: 'Nanum Square', Dotum, sans-serif;
-            color: #5467f5;
-            font-size: 25px;
-            font-weight: bolder;
-        }
-
-        .btn-more {
-            width: 270px;
-            height: 80px;
-            font-weight: bolder;
-            background: none;
-            margin-top: 50px;
-            margin-left : 50px;
-        }
-
-        .btn-pay {
-            width: 270px;
-            height: 80px;
-            font-weight: bolder;
-            background-color: #5467f5;
-            margin-top: 50px;
-            margin-right: auto;
-        }
-
-        .btn-more:hover {
-            font-size: 1.2rem;
-            transition: all .2s ease-in-out;
-            background: none;
-
-        }
-
-        .btn-pay:hover {
-            font-size: 1.2rem;
-            transition: all .2s ease-in-out;
-            background: #5467f5;
-        }
-
-
-         #button-container {
-            margin-left: 200px;
-            margin-right: 200px;
-           	dispaly:flex;
-           	justify-content:center;
-
-        } 
+        

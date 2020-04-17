@@ -55,7 +55,7 @@ public class AdminMemberList extends HttpServlet {
 		
 		
 		if(pageNo==1) {
-			pageBar+="<span>[이전]    </span>";
+			pageBar+="<span>이전    </span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+(pageNo-1)+"'>[이전]>&nbsp</a>";
 			
@@ -71,7 +71,7 @@ public class AdminMemberList extends HttpServlet {
 		
 		//다음
 		if(pageNo>totalPage) {
-			pageBar+="<span>   [다음]</span>";
+			pageBar+="<span>   다음</span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'>   [다음]</a>";  //pageNo+1 아님 하면 7나옴.
 		}

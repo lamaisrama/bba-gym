@@ -35,146 +35,146 @@
         style="background-image: url('<%=request.getContextPath() %>/assets/img/baguni.jpg');"></div>
     
     
-    <div class="d-flex flex-row title-container ">
-        <div class="title p-2 w-10 h-100 text-wrap">
+    <div >
             카트
-        </div>
+    </div>
+    <div id="pay">
+	    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
+			<div class="baguni">
+			<table>
+					<tr>
+						<th><input type="checkbox" value="0" name="check" id="check_all" style="margin-left:20px;"></th><th colspan="2" style="text-align: center;">상품정보</th><th>상품금액</th>
+					<tr>
+	        <%if(centerlist==null){ %>
+	        <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
+	        				<td>
+	        					<input type="checkbox" name="check" class="select_subject" value="<%=ba.getPrice() %>"  style="margin-left:20px;">
+	        				</td>
+							<td id="good-info" >
+								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
+							</td>
+							<td>	
+								<div class="content-container">
+									<h6><%=ba.getCname() %></h6>
+									<h3 ><%=ba.getPname() %></h3>
+									<div>
+										<h6><%=ba.getPrice() %>원</h6>
+										<h6 style="text-decoration:line-through;color:blue;margin-left:5px;"><%=ba.getPrice()+(int)(ba.getPrice()*0.1)%></h6>										
+									</div>
+									<span class="months">이용 달수 : <%=ba.getMonth() %>달</span>
+									<button type="button" class="btn btn-outline-light text-dark delete">x</button>
+									<input type="hidden" id="info"  value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
+	                        		<input type="hidden" id="info" name="centerList" value="<%=ba.getPcode()%>/<%=ba.getMonth()%>/">
+								</div>
+							</td>
+							<td>
+								<h6><%=ba.getPrice() %>원</h6>
+							</td>
+						<tr>
+					</tr>
+				
+				
+
+	        <%} }%>
+	        
+	        
+	        <%if(trainerlist==null){ %>
+	        <!-- 박스 --><%}else {for(Baguni ba : trainerlist){ %>
+	        				<td>
+	        					<input type="checkbox" name="check" class="select_subject" value="<%=ba.getPrice() %>" style="margin-left:20px;">
+	        				</td>
+							<td id="good-info" >
+								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
+							</td>
+							<td>	
+								<div class="content-container">
+									<h6><%=ba.getMname() %></h6>
+									<h3 ><%=ba.getPname() %></h3>
+									<div>
+										<h6><%=ba.getPrice() %>원</h6>
+										<h6 style="text-decoration:line-through;color:blue;margin-left:5px;"><%=ba.getPrice()+(int)(ba.getPrice()*0.1) %></h6>										
+									</div>
+									<span class="months">횟수 : <%=ba.getCount() %>회</span>
+									<button type="button" class="btn btn-outline-light text-dark delete">x</button>
+	                        		<input type="hidden" id="info"  value="t/<%=ba.getPcode()%>/<%=ba.getCount()%>">
+	                        	<input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>/">
+								</div>
+							</td>
+							<td>
+								<h6><%=ba.getPrice() %>원</h6>
+							</td>
+						<tr>
+					</tr>
+	        <%} }%>
+
+	               </table>
+			</div>
+
+	    </form>
+       
     </div>
     
-    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
-    <div class="container" style="border: none;">
-        <%if(centerlist==null){ %>
-        <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
-        <div class="baguni">
-
-            <div class="img-container" >
-
-                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
+    <!-- 버튼  -->
+    	<br><br>
+     	<div id="container">
+            <div>
+                <h6 id="oriprice">기본가 : 0원  + </h6>
             </div>
-            <div class="detail-container d-flex col">
-                <div>
-                    <div class="name-container d-flex align-items-start flex-row">
-                        <div class="name-container2 flex-row d-flex">
-                            <h2 class="gym-name"><%=ba.getCname() %></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <table class="table1">
-                        <tr>
-                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
-                        </tr>
-                        <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %>달</span>
-                            </td>
-                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
-                            <td class="align-bottom"><span class="won">원</span></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <button type="button" class="btn btn-info delete">삭제</button>
-                        <input type="hidden" id="info"  value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
-                        <input type="hidden" id="info" name="centerList" value="<%=ba.getPcode()%>/<%=ba.getMonth()%>/">
-                    </div>
-                </div>
+            <div >
+                <h6 style="color:blue" id="saleprice">할인가 : 0원 = </h6>
             </div>
-        </div>
-        <%} }%>
-        <!-- 박스 -->
-    
-        <%if(trainerlist==null){ %>
-        <!-- 박스 --><%} else{for(Baguni ba : trainerlist){ %>
-        <div class="baguni">
-            <div class="checkbox-cont">
-                <input type="checkbox" name="checkbox" id="checkbox">
-    
+            <div>
+                <h6 id="totalprice">0원</h6>
             </div>
-            <div class="img-container">
-                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
-            </div>
-            <div class="detail-container d-flex col">
-                <div>
-                    <div class="name-container d-flex align-items-start flex-row">
-                        <div class="name-container2 flex-row d-flex">
-                            <h2 class="gym-name"><%=ba.getMname() %></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <table class="table1">
-                        <tr>
-                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
-                        </tr>
-                        <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %>회</span>
-                            </td>
-                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
-                            <td class="align-bottom"><span class="won">원</span></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <button type="button" class="btn btn-info delete">삭제</button>
-                        <input type="hidden" id="info"  value="t/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
-                        <input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>/">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%}} %>
-        <!-- 박스 -->
-    
-        <div class="total-price-container">
-            <div class="desc-row">
-                <span class="pricetitle" id="pricetitle1">상품 금액</span>
-                <span class="total-price" id="total-price" style="float: right;"><%=total+(int)(total*0.1) %>
-                    &nbsp;원</span>
-            </div>
-            <div class="desc-row">
-                <span class="pricetitle" id="pricetitle2">다짐 회원 할인</span>
-                <span class="sale-price" id="sale-price" style="float: right;"><%=(int)(-total*0.1) %> &nbsp;원</span>
-            </div>
-            <div class="desc-row">
-                <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
-                <span class="new-price" id="new-price" style="float: right;"><%=total %> &nbsp;원</span>
-            </div>
-        </div>
-    	<div id="button-container" class="d-flex flex-row">
-                <button type="button" class="btn-more btn-pay btn btn-primary">더 돌아보기</button>
-                <button type="button" class="btn-more btn-pay btn btn-primary" id="paymentBtn">결제하기</button>
-            </div>
-    </div>
-    
-    
-    </form>
+   		 </div>
+   		 
+   		 <div id="button-container" class="d-flex flex-row">
+                <button type="button" class="btn btn-dark" id="paymentBtn">결제하기</button>
+         	</div>
     
     <%@ include file="/views/common/footer.jsp"%>
     
     <script>
     //회원가입 시 생성된 가맹점 식별코드를 통해 결제 관련 IMP 변수를 초기화함--페이지 로딩 시 실행 필요
     	var IMP = window.IMP;
+    	var test=0;
     	IMP.init('imp27157799');
-    
-        $(".month-container").removeClass("month-container-click");
-
-        $(".month-container").on("click", function () {
-            $(this).addClass("month-container-click");
-            $(this).siblings().removeClass("month-container-click");
-
-        });
-
-        $(".close").on("click", function () {
-            $(this).parent().parent().parent().remove();
-        })
-
+    	var check = document.getElementsByName("check");
+    	
         $(".delete").on("click", function () {
-        	console.log("???");
             var value = $(this).next().val();
             location.replace("<%=request.getContextPath() %>/ShoppingBaguniDeleteServlet.do?value=" + value);
         })
         
-        
-	//결제버튼 클릭시 결제 API 실행
-		$("#paymentBtn").on("click", function(){
+     	   $("#check_all").click(function(){
+	        var chk = $(this).is(":checked");//.attr('checked');
+	        if(chk){ $(".select_subject").prop('checked', true);
+		        
+		        $("input[name=check]:checked").each(function() {
+	
+					test += parseInt($(this).val());
+	
+				});
+		        $("#oriprice").html("기본가 : "+(test+test*0.1)+"원 + ")
+		        $("#saleprice").html("할인가 : -"+test*0.1+"원= ")
+		        $("#totalprice").html(test+"원");
+	        
+	        } else { $(".select_subject").prop('checked', false)
+	        	$("#oriprice").html("기본가 : 0원 + ")
+		        $("#saleprice").html("할인가 : -0원= ")
+	        	 $("#totalprice").html(" 0원");
+	        	test=0;
+	        };
+	        
+	       
+	    });
+    	
+
+
+출처:
+        	
+        	//결제버튼 클릭시 결제 API 실행
+    		$("#paymentBtn").on("click", function(){
 			var totalPrice="<%=total%>";
 			alert("totalPrice="+totalPrice);
             var userMail = "<%=logginMember.getM_EMAIL() %>";

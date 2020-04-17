@@ -7,17 +7,63 @@
 	List<AdminTrainer> trainerList = (List) request.getAttribute("trainerList"); /* centerSearchServlet 가져온 데이터 */
 %>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<%--  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css"> --%>
+<!--===============================================================================================-->	
+<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--===============================================================================================-->	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--===============================================================================================-->	
+<style type="text/css">
 
+section#memberList-container {
+	text-align: center;
+}
+
+section#memberList-container table#tbl-member {
+	width: 100%;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+section#memberList-container table#tbl-member th, table#tbl-member td {
+	border: 1px solid gray;
+	padding: 10px;
+}
+
+div#search-container {
+	margin: 0 0 10px 0;
+	padding: 3px;
+	background-color: rgba(0, 188, 212, 0.3);
+}
+
+div#search-userId {
+	display: inline-block;
+}
+
+div#search-userName {
+	display: none;
+}
+
+div#search-gender {
+	display: none;
+}
+</style>
 <!-- 시설 등록 승인-->
-<div id="center-approve"style="width: 100%; ">
-
+<div class="" style="width: 100%; padding-left: 20px;">
 	<div
 		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-		<br><h1>트레이너 등록 승인</h1><br>
-		
+		<br>
+		<h1>트레이너 등록 승인</h1>
+		<br>
+
+
 	</div>
 	<!-- 상단 -->
-	<table >
+	<table class="table">   
 		<thead>
 			<tr>
 				<th>소속센터</th>	
@@ -26,9 +72,10 @@
 				<th>주소</th>
 				<th>폰</th>
 				<th>트레이너소개</th>
-				<th >사업자승인</th>
-				<th>상태</th>
+				
+				<th >승인 상태</th>
 				<th>확인</th>
+				<th>트레이너 등록승인</th>
 				
 			</tr>
 		</thead>
@@ -53,33 +100,35 @@
 				<td><%=t.getM_ADDRESS_2()%></td>
 				<td><%=t.getM_PHONE_2()%></td>
 				<td><%=t.getT_INTRODUCTION()%></td>
+				
 				<td><input style="text-align:center;border:1px solid white;width:35px;" type="text" name="APPROVAL" value="<%=t.getAPPROVAL()%>" readonly></td>
 				<!-- if( ) {-->
 			
-				<td>
-					<button onclick="updateCheck();">승인</button>
-					<button onclick="noCheck();">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
-				</td>
+				
 				
 				
 				<%
 					if (t.getAPPROVAL() == null) {
 				%>
 				<td>
-					<button onclick="" style="color: yellow; background-color: black;">심사중</button>
+					<button onclick="" class="w3-panel w3-round-xxlarge w3-teal">심사중</button>
 
 				</td>
 				<%
 					} else if (t.getAPPROVAL() != null) {
 				%>
 				<td>
-					<button onclick="" style="color: yellow; background-color: black;">확인</button>
+					<button onclick="" class="w3-panel w3-round-xxlarge w3-teal">Confirm</button>
 
 				</td>
 
 				<%
 					}
 				%>
+				<td>
+					<button class="w3-panel w3-green" onclick="updateCheck();">승인</button>
+					<button  class="w3-panel w3-red" onclick="noCheck();">거절</button> <!-- 초기상태시 나오고 관리자가 승인 또는 거절시 처리된 상태로 표시 -->
+				</td>
 
 				<script>
 				function updateCheck() {
@@ -126,12 +175,13 @@
 	</tbody>
 	</table>
 <br>
-	<div id="pageBar" class="pageBar" style="display:flex; justify-content:center;">
-		<!-- 페이지바 JSP구현-->
-		<br><br><br><br>
+	<div class="container" style="display:flex; justify-content:center;">
+	  <ul class="pagination" ><li>
+	
 		<%=request.getAttribute("pageBar")%>
-
-	</div>
+	
+</ul>
+</div>
 	<br>
 </div>
 
