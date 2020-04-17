@@ -22,7 +22,7 @@
 			</h6>
 			<hr>
 			
-			<form action="<%=request.getContextPath()%>/business/updateBusiness.do" method="post"  enctype="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/business/updateBusiness.do?mName=<%=m.getM_NAME() %>" method="post"  enctype="multipart/form-data">
 				<input type="hidden" name="M_CODE" value="<%=m.getM_CODE()%>"/>
 				<input type="hidden" name="M_LEVEL" value="<%=m.getM_LEVEL()%>"/>
 					

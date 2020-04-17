@@ -15,6 +15,7 @@ if (cookies != null) {
 		}
 	}
 }
+
 %>  
 <!DOCTYPE html>
 <html>
