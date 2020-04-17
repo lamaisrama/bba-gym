@@ -43,6 +43,7 @@
           </div>
           <button type="button" class="btn btn-secondary btn-sm" onclick="addPhoto();">+</button>
         </div>
+        <div class="imgs_wrap"></div>
         <br>
       </div>
     </div>
@@ -52,24 +53,24 @@
       <div class="col-md-8 div-t-price-0">
       	<label for="">프로그램 등록</label>
         <div class="form-group">
-          <label for="">프로그램명</label>
-          <input type="text" name="tp" class="form-control" required>
-        </div>
-        <div class="form-group row">
-          <div class="col-xs-3">
-            <label for="">횟수</label>
+          <label for="">프로그램 정보 입력</label>
+          <input type="text" name="tp" class="form-control " placeholder= " 프로그램명을 입력해주세요" required>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> 횟수 </span>
+            </div>
             <input type="text" class="form-control" name="t-p-count-0">
-          </div>
-          <div class="col-xs-7">
-            <label for="">가격</label>
+            <div class="input-group-prepend">
+              <span class="input-group-text"> 가격 </span>
+            </div>
             <input type="text" class="form-control" name="t-p-price-0">
+            <input type="button" class="btn btn-default btn-sm" value="삭제" disabled style="cursor: Default;">
+            <input type="button" class="btn btn-primary btn-sm" value="추가" onclick="addCount(this);">
           </div>
-          <div class="col-xs-2">
-            <button type="button" class="btn btn-primary btn-sm btn-t-price" onclick="addCount();">추가</button>
-            
-          </div>
-        </div>        
-      </div>
+        </div>     
+      </div> <!--첫번째 프로그램 div 끝-->
+
+
       <br>
     </div>
   </div>
