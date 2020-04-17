@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.common.filter.MyEncryptWrapper;
 import com.bbagym.service.AdminService;
 import com.bbagym.service.MemberService;
 
@@ -34,9 +35,9 @@ public class AdminPasswordEndServlet extends HttpServlet {
 		String pw=request.getParameter("password");
 		String changePw=request.getParameter("password_new");
 		int result=new MemberService().updatePassword1(id,pw,changePw);
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(result);
+		System.out.println("1"+id);
+		System.out.println("2"+pw);
+		System.out.println("3"+result);
 		
 		String msg="";
 		String loc="";

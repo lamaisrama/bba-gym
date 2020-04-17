@@ -4,7 +4,7 @@
 
 		function addPhoto(){
 		    count_photo++;
-		    if(count_photo<4){
+		    if(count_photo<5){
 		        const area=$(".div-photo");
 		        const new_Input=$("<input>").attr("class","form-control-file photo-").attr("name","c-photo"+count_photo).attr("type","file");
 		        //지우는 버튼 추가 해야함

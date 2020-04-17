@@ -14,25 +14,30 @@
 	int cCode = (int)request.getAttribute("cCode");
 	int mCode = (int)request.getAttribute("mCode");
 	int score=1;
-	int count=0;
+	int count=0;	
 %>
 	
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/centerViewDetail.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<!-- 카카오맵 API 불러오는 script -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=910ff98ddccfbc580e580a9ce7d7285d&libraries=services"></script>
+
+
 
 <body data-spy="scroll" data-target=".navbar" data-offset="100"> <!--시설 이용후기등 메뉴바 클릭시 이동과 관련-->
-<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>');"></div>
 <!-- section -->
     <div id="container">
         <div id="header-info">
             <div id="detail-header">
                 <div id="all-info">
+                	<br>
                     <div class="img-info">
-                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="430" height="506">
+                        <img src="<%=request.getContextPath()%>/upload/center/<%=cd.getCenterMainImg() %>" width="450" height="320">
                     </div>
                     <div class="text-info">
-                        <div id="title"><h2 style="margin-right:auto;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong><%=cd.getCenterName() %><strong></strong></h2>
+                        <div id="title"><h2 style="margin-right:auto;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><%=cd.getCenterName() %><strong></strong></h2>
                             <div class="jjim"><!--찜 좋아요-->
                             	<input type="hidden" value="<%=cCode %>">
 								<h2 style="cursor: pointer;">
@@ -45,7 +50,7 @@
 	                            </h2>
                             </div>
                         </div>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>평점</strong>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>평점</strong>
                         <div id="star-point" style="color: black;">
                         	<%for(;score<=cd.getCenterScore();score++){ %>
                             		<i class="fa fa-star"></i>&nbsp;&nbsp;
@@ -53,12 +58,12 @@
                             	if(score-cd.getCenterScore()<0.5){%>
                             		<i class="fa fa-star-half"></i>
                             	<%} score=1;%>
-                            	<%=cd.getCenterScore()==0 ?  "0" : cd.getCenterScore() %>
+                            	<%=cd.getCenterScore()==0 ?  "<span style='color:grey; font-weight:lighter'>아직 등록된 평점이 없습니다  </span>" : cd.getCenterScore() %>
                         </div>
 
                         
-        				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 주소</strong><div id="address-phone"><p><%=cd.getCenterAddr() %></p></div>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<strong>센터 전화번호</strong><div id="address-phone"><p>☎&nbsp<%=cd.getCenterPhone() %></p></div>
+        				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>센터 주소</strong><div id="address-phone"><p><%=cd.getCenterAddr() %></p></div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>센터 전화번호</strong><div id="address-phone"><p>☎&nbsp<%=cd.getCenterPhone() %></p></div>
                         
                         
                         
@@ -162,7 +167,7 @@
                                 <div id="time-zone">
 	                                <div id="time">
 	                                    <div id="time-play"><h5><b>운영시간</b></h5></div>
-	                                    <div id="time-con" style="color: rgb(146, 142, 142);"> 
+	                                    <div id="time-con"> 
 	                                       <%=cd.getCenterOpenHours() %><br><br>
 	                                        [휴관일] <%=cd.getCenterHolidays() %>
 	                                    </div>
@@ -196,16 +201,19 @@
 											<div id="demo" class="carousel slide" data-ride="carousel">
 												<!-- Indicators -->
 												<ul class="carousel-indicators">
+												<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
 													<li data-target="#demo" data-slide-to="0" class="active"></li>
-													<li data-target="#demo" data-slide-to="1"></li>
-													<li data-target="#demo" data-slide-to="2"></li>
+												
+												<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+													<li data-target="#demo" data-slide-to=i></li>
+												<%}
+												
+												}%>
 												</ul>
 						
 												<!-- The slideshow -->
 												<div class="carousel-inner">
-										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { 
-											
-										%>
+										<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
 													<div class="carousel-item active">
 														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(0)%>" alt="centerImg1">
 													</div>													
@@ -214,7 +222,7 @@
 													<div class="carousel-item">
 														<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterImgs().get(i)%>" alt="centerImg">
 													</div>
-											<%} 
+												<%} 
 											}%>
 												</div>
 						
@@ -229,18 +237,19 @@
 											</div>
                                         
                                         <%}else {%>
-                                        	<input type="text" id="content" placeholder="등록된 사진이 없습니다." >
+                                        	<h4>No image :-( </h4>
                                         <% }%>    
                                         </div>    
                                     </div>
                                 </div>
-                                <!-- <div class="button">펼쳐보기</div>     -->
                             </div>
                         </div>
                        <hr>
-                        <div id="section4" class="container-fluid">  <hr><br>
+                        <div id="section4" class="container-fluid"> <br>
+
                             <div id="map-title"><h5><b>위치</b></h5></div>
-                            <div id="map-api"></div>
+                            <br>
+                           	<div id="map-api" style="width:600px; height:400px;"></div>
                         </div>
                           
                         <div id="section3" class="container-fluid" style="height:auto;">
@@ -458,7 +467,22 @@
 	      		
 	      	});
 
+			//지도 출력
+			var container = document.getElementById('map-api'),
+			    options = {
+			         center: new kakao.maps.LatLng(<%=cd.getAddrY()%>, <%=cd.getAddrX()%>),
+			         level: 3
+			    };
+			 
+			var map = new kakao.maps.Map(container, options);
 			
+			//지도 클릭한 위치에 표출할 마커 - 중앙에 마커 생성
+			var marker = new kakao.maps.Marker({
+				position: map.getCenter(),
+				clickable: true
+			});
+			//마커가 지도 위에 표시되도록 설정
+			marker.setMap(map);
 	</script>
 
 

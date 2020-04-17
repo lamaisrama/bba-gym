@@ -35,8 +35,9 @@ public class UpdatePasswordEndServlet2 extends HttpServlet {
 		String changePw=request.getParameter("password_new");
 		
 		int result=new MemberService().updatePassword(id,pw,changePw);
-		
-		System.out.println(result);
+		System.out.println("id= "+id);
+		System.out.println("pw= "+pw);
+		System.out.println("result= "+result);
 		
 		
 		String msg="";
