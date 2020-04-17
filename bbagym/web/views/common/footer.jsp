@@ -12,7 +12,7 @@
 	      <div class="f-3">
 		  </div>
       		  <div class="f-3">
-		          <span class="content">@
+		          <span class="content"><img src="/assets/img/copyright.png">
 		            <script>
 		              document.write(new Date().getFullYear())
 		            </script>, made with <i class="fa fa-heart heart"></i> by Creative BBAGYM
