@@ -157,12 +157,12 @@
 					
 				%>
 							<div class="carousel-item active">
-								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(0)%>" alt="centerImg1" style="">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(0)%>" alt="centerImg1" style="max-width:500px; min-width:500px">
 							</div>													
                            	<% if(td.getT_img().size()>1){
                            		for(int i=1;i<td.getT_img().size();i++) { %>
 							<div class="carousel-item">
-								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(i)%>" alt="centerImg">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(i)%>" alt="centerImg" style="max-width:500px; min-width:500px">
 							</div>
 					<%} 
 					}%>
@@ -285,7 +285,7 @@
 														<sub class="comment-writer"><%=c.getmId() %></sub>
 														<input type="hidden" name="mCode" value="<%=c.getmCode()%>">
 														<sub class="comment-date"><%=c.getCommentDate() %></sub>
-														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getMonth() %>개월</sub>
+														<sub class="program">구매 상품 : <%=c.getpName() %>/<%=c.getCount() %>개월</sub>
 														<input type="hidden" name="orderCode" value="<%=c.getOrderCode()%>">
 														<br>
 														<%=c.getCommentContent() %>

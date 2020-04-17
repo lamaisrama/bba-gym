@@ -1,11 +1,14 @@
 package com.bbagym.controller.member;
 
+import java.io.File;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -57,6 +60,17 @@ public class BusinessEnrollUpdate extends HttpServlet {
 		String M_PHONE2=mr.getParameter("M_PHONE2");
 		String M_ADDRESS_2=mr.getParameter("M_ADDRESS_2");
 		String BUSINESS_CODE=mr.getParameter("BUSINESS_CODE");
+		String oldImg = mr.getParameter("oldFileName");
+		
+		File f = mr.getFile("M_IMAGE");
+		
+		if(f!=null&&f.length()>0) {
+			File delFile = new File(path+oldImg);
+			boolean flag = delFile.delete();
+			System.out.println(flag);
+		}else {
+			M_IMAGE = oldImg;
+		}
 		
 		Member m = new Member(M_CODE,M_ID,null,M_NAME,M_EMAIL,M_PHONE,M_ADDRESS,0,null,' ',M_IMAGE,M_PHONE2,M_ADDRESS_2,M_GENDER,M_AGE,BUSINESS_CODE);
 		
@@ -65,6 +79,10 @@ public class BusinessEnrollUpdate extends HttpServlet {
 		  System.out.println("멤버코드"+M_CODE);
 		  System.out.println("멤버아이디"+M_ID);
 		  System.out.println("멤버레벨"+M_LEVEL);
+		  
+		  
+		  HttpSession session = request.getSession();
+		  
 	
 		  String msg="";
 	      String loc="";
@@ -72,10 +90,12 @@ public class BusinessEnrollUpdate extends HttpServlet {
 	    
 	      if(result>0&&M_LEVEL==1) {
 	    	  msg="수정완료";
-	    	  loc="/mypage/mypageUser.do";  
+	    	  loc="/mypage/mypageUser.do";
+//	    	  session.setAttribute("logginMember", m);
 	    }else if(result>0&&M_LEVEL==2) {
 	    	  msg="수정완료";
 	    	  loc="/mypage/mypageBusiness.do"; 
+//	    	  session.setAttribute("logginMember", m);
 	      }else {
 	    	  msg="수정실패";
 	    	  loc="";
