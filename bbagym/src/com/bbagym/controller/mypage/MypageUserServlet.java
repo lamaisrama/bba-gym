@@ -42,7 +42,9 @@ public class MypageUserServlet extends HttpServlet {
 		List<MypageUser> tmembership = new MypageService().findTrainerData(mcode);
 		List<MypageUser> myPerfer = new MypageService().findMyPerfer(mcode);
 		
-	
+		Member m = new MypageService().getUpdateInfo(mcode);
+		
+		request.setAttribute("newM", m);
 		request.setAttribute("cmembership", cmembership);
 		request.setAttribute("tmembership", tmembership);
 		request.setAttribute("myPerfer", myPerfer);

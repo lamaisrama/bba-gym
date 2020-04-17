@@ -7,6 +7,7 @@
 	List<MypageUser> cmembership = (List)request.getAttribute("cmembership");
 	List<MypageUser> tmembership = (List)request.getAttribute("tmembership");
 	List<MypageUser> myPerfer = (List)request.getAttribute("myPerfer");
+	Member m = (Member)request.getAttribute("newM");
 %>
 
 <%@ include file="/views/common/header.jsp"%>
@@ -21,12 +22,12 @@
 	<nav>
 		<div class="left-menu-container">
 			<div class="profile-img">
-				<img src="<%=request.getContextPath()%>/upload/member/<%=logginMember.getM_IMAGE() %>"
+				<img src="<%=request.getContextPath()%>/upload/member/<%=m.getM_IMAGE() %>"
 					alt="my image" id="myImage" />
 			</div>
 			<div class="profile-info">
 				<div>
-					<span><%=logginMember.getM_NAME()%>님 환영합니다</span>
+					<span><%=m.getM_NAME()%>님 환영합니다</span>
 				</div>
 			</div>
 			

@@ -97,7 +97,7 @@ public class CenterDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			rs.next();
+			if(rs.next());
 			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -286,7 +286,7 @@ public class CenterDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
-			rs.next();
+			if(rs.next());
 			cCode=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -475,7 +475,7 @@ public class CenterDao {
 			pstmt.setInt(1, cCode);
 			
 			rs=pstmt.executeQuery();
-			rs.next();
+			if(rs.next());
 			cd.setCenterScore(rs.getDouble(1));
 			
 		}catch(SQLException e) {
@@ -493,7 +493,7 @@ public class CenterDao {
 		sql=sql.replace("TYPE", type); // '1','2','3', ....
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+keyword.toUpperCase()+"%");
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			
@@ -528,9 +528,9 @@ public class CenterDao {
 		sql=sql.replace("TYPE", type);
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+keyword.toUpperCase()+"%");
 			rs=pstmt.executeQuery();
-			rs.next();
+			if(rs.next());
 			result=rs.getInt(1);
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -549,7 +549,7 @@ public class CenterDao {
 		String sql =prop.getProperty("searchKeywordPageData");
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+keyword.toUpperCase()+"%");
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			
@@ -583,12 +583,16 @@ public class CenterDao {
 		ResultSet rs=null;
 		int result=0;
 		String sql = prop.getProperty("searchCountCenter");
+		System.out.println(sql);
+		System.out.println(keyword.toUpperCase());
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+keyword.toUpperCase()+"%");
 			rs=pstmt.executeQuery();
-			rs.next();
+			if(rs.next());
 			result=rs.getInt(1);
+			
+			System.out.println(result);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -609,7 +613,7 @@ public class CenterDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, (cPage-1)*numPerpage+1);
 			pstmt.setInt(2, cPage*numPerpage);
-			
+
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				CenterEnroll c =new CenterEnroll();
@@ -618,6 +622,7 @@ public class CenterDao {
 				c.setName(rs.getString("C_NAME"));
 				c.setAddress(rs.getString("C_ADDRESS"));
 				c.setMainImage(rs.getString("C_MAIN_IMAGE"));
+				c.setEnrollDate(rs.getDate("C_ENROLLDATE"));
 				list.add(c);
 			}
 			
@@ -909,7 +914,7 @@ public class CenterDao {
 				pstmt.setInt(3, ce.getCode());
 				rs=pstmt.executeQuery();
 				
-				rs.next();
+				if(rs.next());
 				
 				ce.setDistance(String.valueOf(rs.getDouble(1)));
 				

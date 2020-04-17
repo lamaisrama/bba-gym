@@ -260,9 +260,9 @@ public class CenterEnroll {
 				+ ", snsHome=" + snsHome + ", snsInsta=" + snsInsta + ", snsBlog=" + snsBlog + ", snsEtc=" + snsEtc
 				+ ", photos=" + photos + ", categories=" + categories + ", facilities=" + facilities + ", program="
 				+ program + ", prefer=" + prefer + ", score=" + score + ", addrX=" + addrX + ", addrY=" + addrY
-				+ ", distance=" + distance + "]";
+				+ ", distance=" + distance + ", enrollDate=" + enrollDate + "]";
 	}
 
-
+	
 	
 }

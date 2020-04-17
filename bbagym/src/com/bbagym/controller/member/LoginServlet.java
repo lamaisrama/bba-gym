@@ -53,10 +53,11 @@ public class LoginServlet extends HttpServlet {
 			Member m = new MemberService().login(id, pw);
 			Member m2 = new MemberService().login2(id);
 
+
 			 
 			 if (m != null && m.getM_STATUS()=='N') {
 					HttpSession session = request.getSession();
-
+					
 					session.setAttribute("logginMember", m);
 					String saveId = request.getParameter("saveId");
 					Cookie c = new Cookie("saveId", m.getM_ID());

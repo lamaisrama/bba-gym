@@ -14,6 +14,7 @@ import com.bbagym.model.vo.CenterEnroll;
 import com.bbagym.model.vo.Member;
 import com.bbagym.model.vo.TrainerView;
 import com.bbagym.service.MyPageService2;
+import com.bbagym.service.MypageService;
 
 /**
  * Servlet implementation class MypageBusinessServlet
@@ -64,7 +65,11 @@ public class MypageBusinessServlet extends HttpServlet {
 			}
 			
 		}
+		
+		Member m = new MypageService().getUpdateInfo(mCode);
+		
 		//Attribute에 저장
+		request.setAttribute("newM", m);
 		request.setAttribute("myCenter", ce);
 		request.setAttribute("myTrainer", tv);
 		request.getRequestDispatcher("/views/mypage/mypage-business.jsp").forward(request, response);
