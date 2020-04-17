@@ -154,14 +154,12 @@ body * {
 }
 
 #my-1 {
-
 	display: flex;
 	padding: 10px;
 	margin-top:10px;
 	margin-right: 20px;
 	margin-left: 20px;
 	font-weight: bolder;
-	border-bottom: 1px solid gainsboro;
 }
 
 #my-2 {
@@ -175,7 +173,7 @@ body * {
 #my-3{
 	display: flex;
 	padding: 10px;
-	margin-top:150px;
+	margin-top:20px;
 	margin-right: 20px;
 	margin-left: 20px;
 	font-weight: bolder;

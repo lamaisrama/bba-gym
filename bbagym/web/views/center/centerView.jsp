@@ -45,15 +45,15 @@
                 </ul>
             </div>
         </div>
-
         <div class="row tab-content">
             <div class="tab-pane container" id="kakaomap">
                 <div class="row">
-	                <div class="col-8 form-group">
-	                    <input type="text"  class="form-control" id="locKeyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!">
+                    <div class="col-2"></div>
+	                <div class="col-8 form-group" style="text-align: center;">
+	                    <input type="text"  class="form-control" id="locKeyword" size=30 placeholder="원하는 장소로 이동/검색해 핀을 클릭해 검색하세요!" onkeydown="mapKeyDown();">
 	                </div>
 	                <div class="col-2">
-	                	  <button class="btn btn-light" onclick="searchLocation();">이동</button>
+	                	  <button class="btn btn-light"  onclick="searchLocation();">이동</button>
 	                </div>
                 </div>
 	            <div class="row">
@@ -192,7 +192,15 @@
 		$("#search").on("keyup",function(){
 			$("#keyword").attr("value",$("#search").val());
 		});
-		
+        
+        /*지도 검색에서 엔터 눌렀을 때 장소 변경 후 검색하는 ftn */
+        function mapKeyDown() {
+            if (event.keyCode == 13) {
+                searchLocation();
+            }
+        }
+
+        
 		//장소 변경 후 검색하는 ftn
 		function relocation(){
 			console.log('현재 입력된 위/경도 :' + latitude, longitude);

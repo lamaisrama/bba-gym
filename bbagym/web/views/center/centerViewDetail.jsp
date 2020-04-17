@@ -205,7 +205,7 @@
 													<li data-target="#demo" data-slide-to="0" class="active"></li>
 												
 												<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
-													<li data-target="#demo" data-slide-to=i></li>
+													<li data-target="#demo" data-slide-to=<%=i %>></li>
 												<%}
 												
 												}%>

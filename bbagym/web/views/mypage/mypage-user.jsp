@@ -33,6 +33,8 @@
 			
 			<div>
 				<hr />
+				<a class="updateMyProfile">나의 회원권</a>
+				<a class="updateMyProfile">나의 찜</a>
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
 				<a class="updateMyProfile" onclick="removeCheck();" >회원탈퇴</a>
 			</div>
@@ -42,28 +44,28 @@
 	
 	<!--************ 본문 ************-->
 	<div class="content-container">
+		<br>
+		<br>
+
 		<h3>
 			<span>M</span> <span>Y</span> <span>P</span> <span>A</span> <span>G</span>
 			<span>E</span>
 		</h3>
 		<br>
+		<br>
 		<div style="text-align: center; margin-bottom: 20px;">-사용자-</div>
+
 		<div id="table">
 			<div id="my">
-				<div id="my-1">나의 회원권</div>
-				<div id="my-2"><%=cmembership.size()+tmembership.size() %>개</div>
+				<div id="my-1" width="200px">나의 회원권</div>
+				<div id="my-2"><span><%=cmembership.size()+tmembership.size() %>개</span></div>
 			</div>
-			<hr />
-			<div id="menu">	
-				<div id="menu3">
-					My 찜<a href="#myprefer" style="text-decoration: none;">
-						<button style="float: right;">></button>
-					</a>
-					<div><%=myPerfer.size() %>개</div>
-				</div>
+			<hr>
+			<div id="my">	
+				<div id="my-1"  width="200px">My 찜</div>
+				<div id="my-2"><span><%=myPerfer.size() %>개</span></div>
 			</div>
 		</div>
-
 		<div id="my-3">나의 센터 회원권</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
 			<table id="mycenter">

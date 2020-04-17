@@ -97,9 +97,15 @@
 	}
 
 	function delProgram(){
-		var area=$(".div-program-"+count_program);
-		$(area).remove();
-		count_program--;
+		if(count_program==0){
+			alert("프로그램은 반드시 하나 이상 등록하셔야 합니다.");
+			return;
+		}else{
+			var area=$(".div-program-"+count_program);
+			$(area).remove();
+			count_program--;
+		}
+
 	}
 	
 	var sel_files=[];
