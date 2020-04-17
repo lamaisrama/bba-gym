@@ -15,30 +15,26 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 
-<style>
-	*{
- 	/* 	border : 1px solid red;  */
-	}
-</style>
 
 
 
-<div class="page-header page-header-xs" data-parallax="true"
-	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');"></div>
-<div class="container pt-3 center-info ">
+	<div class="page-header page-header-xs" data-parallax="true"
+	style="background-image: url('<%=request.getContextPath()%>/assets/img/fabio-mangione.jpg');">
+	</div>
+	
+<div class="container">
 	
 
 
 
-	<div class="row">
-		<div class="col-lg-8 col-md-8 col-sm-12">
-			<h1 class="mt-4" style="text-align: center;">로그인</h1>
-			<br>
+	<div id="box">
+		<div>
+			<img src="<%=request.getContextPath()%>/resources/img/log.png" width="130px" height="100px">
 			<h6 style="text-align: center;">
 				<b>BBAGYM Login</b>
 			</h6>
 		</div>
-
+		<div>
 			<form action="<%=request.getContextPath()%>/member/login.do"
 				method="post" onsubmit="return invalidate();">
 				<div id="info-content">
@@ -54,11 +50,12 @@
 						<button class="find" onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')"><span>비밀번호 찾기</span></button>
 					</div>
 					<div id="goka" style="float:right">
-					<img src="<%=request.getContextPath() %>/resources/img/kakaologin.png" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
+					<img src="<%=request.getContextPath() %>/resources/img/kakaologin.png" width="120px" height="40px" alt="카카오계정 로그인" onclick="login();"  style="cursor: pointer;">
 					<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" style="margin-left:20px;"></div>
 					</div>			
 				</div>
 			</form>
+		</div>
 	</div>
 
 </div>

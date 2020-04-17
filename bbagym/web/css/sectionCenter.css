@@ -1,5 +1,10 @@
+@font-face { font-family: 'GmarketSansMedium'; 
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); 
+    font-weight: normal; font-style: normal; }
+
 * {
  /* 	border : 1px solid red;  */
+    font-family: 'GmarketSansMedium';
 }
 
 
@@ -111,8 +116,8 @@ ox input{
     align-items: center;
 }
 
-*{
-	/*   border : 1px solid green;  */ 
+*{/* 
+	  border : 1px solid green;   */
 }
 
 .outer{
@@ -122,3 +127,33 @@ ox input{
 	flex-direction: column;
 	margin-top : 100px;
 }
+
+#category {
+	margin-top : 30px;
+	
+}
+
+
+#category input[type="checkbox"] {
+    display:none;
+}
+
+#category input[type="checkbox"] + label {
+    color:black;
+}
+
+#category input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 0 0 3px;
+    vertical-align:middle;
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+    cursor:pointer;
+}
+
+#category input[type="checkbox"]:checked + label span {
+    background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
+}
+
+

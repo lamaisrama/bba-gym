@@ -35,95 +35,124 @@
         style="background-image: url('<%=request.getContextPath() %>/assets/img/baguni.jpg');"></div>
     
     
-    <div class="d-flex flex-row title-container ">
-        <div class="title p-2 w-10 h-100 text-wrap">
+    <div >
             카트
-        </div>
+    </div>
+    <div id="pay">
+	    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
+			<div class="baguni">
+			<table>
+					<tr>
+						<th colspan="2">상품정보</th><th>상품금액</th><th>배송비</th>
+	        <%if(centerlist==null){ %>
+	        <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
+	        		<tr>
+							<td id="good-info" >
+								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
+							</td>
+							<td>	
+								<div class="content-container">
+									<h6><%=ba.getCname() %></h6>
+									<h3 ><%=ba.getPname() %></h3>
+									<div>
+										<h6><%=ba.getPrice() %>원</h6>
+										<h6 style="text-decoration:line-through;color:blue;"><%=ba.getPrice()+ba.getPrice()*0.1%></h6>
+									</div>
+								</div>
+							</td>
+							<td>
+							</td>
+							<td>
+							</td>
+						<tr>
+					</tr>
+				
+				
+	            <%-- <div class="img-container" >
+	
+	           
+	            </div>
+	            <div class="detail-container d-flex col">
+	                <div>
+	                    <div class="name-container d-flex align-items-start flex-row">
+	                        <div class="name-container2 flex-row d-flex">
+	                            <h2 class="gym-name"><%=ba.getCname() %></h2>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="price-container">
+	                    <table class="table1">
+	                        <tr>
+	                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
+	                        </tr>
+	                        <tr>
+	                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %>달</span>
+	                            </td>
+	                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
+	                            <td class="align-bottom"><span class="won">원</span></td>
+	                        </tr>
+	                    </table>
+	                    <div>
+	                        <button type="button" class="btn btn-info delete">삭제</button>
+	                        <input type="hidden" id="info"  value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
+	                        <input type="hidden" id="info" name="centerList" value="<%=ba.getPcode()%>/<%=ba.getMonth()%>/">
+	                    </div>
+	                </div>
+	            </div> --%>
+
+	        <%} }%>
+	               </table>
+			</div>
+	        <!-- 박스 -->
+	    
+	        <%if(trainerlist==null){ %>
+	        <!-- 박스 --><%} else{for(Baguni ba : trainerlist){ %>
+	        <div class="baguni">
+	            <div class="checkbox-cont">
+	                <input type="checkbox" name="checkbox" id="checkbox">
+	    
+	            </div>
+	            <div class="img-container">
+	                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
+	                
+	            </div>
+	            <div class="detail-container d-flex col">
+	                <div>
+	                    <div class="name-container d-flex align-items-start flex-row">
+	                        <div class="name-container2 flex-row d-flex">
+	                            <h2 class="gym-name"><%=ba.getMname() %></h2>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="price-container">
+	                    <table class="table1">
+	                        <tr>
+	                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
+	                        </tr>
+	                        <tr>
+	                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %>회</span>
+	                            </td>
+	                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
+	                            <td class="align-bottom"><span class="won">원</span></td>
+	                        </tr>
+	                    </table>
+	                    <div>
+	                        <button type="button" class="btn btn-info delete">삭제</button>
+	                        <input type="hidden" id="info"  value="t/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
+	                        <input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>/">
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <%}} %>
+	        <!-- 박스 -->
+	    	
+	
+	    </form>
+       
     </div>
     
-    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
-    <div class="container" style="border: none;">
-        <%if(centerlist==null){ %>
-        <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
-        <div class="baguni">
-
-            <div class="img-container" >
-
-                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
-            </div>
-            <div class="detail-container d-flex col">
-                <div>
-                    <div class="name-container d-flex align-items-start flex-row">
-                        <div class="name-container2 flex-row d-flex">
-                            <h2 class="gym-name"><%=ba.getCname() %></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <table class="table1">
-                        <tr>
-                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
-                        </tr>
-                        <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getMonth() %>달</span>
-                            </td>
-                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
-                            <td class="align-bottom"><span class="won">원</span></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <button type="button" class="btn btn-info delete">삭제</button>
-                        <input type="hidden" id="info"  value="c/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
-                        <input type="hidden" id="info" name="centerList" value="<%=ba.getPcode()%>/<%=ba.getMonth()%>/">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%} }%>
-        <!-- 박스 -->
-    
-        <%if(trainerlist==null){ %>
-        <!-- 박스 --><%} else{for(Baguni ba : trainerlist){ %>
-        <div class="baguni">
-            <div class="checkbox-cont">
-                <input type="checkbox" name="checkbox" id="checkbox">
-    
-            </div>
-            <div class="img-container">
-                <img src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
-            </div>
-            <div class="detail-container d-flex col">
-                <div>
-                    <div class="name-container d-flex align-items-start flex-row">
-                        <div class="name-container2 flex-row d-flex">
-                            <h2 class="gym-name"><%=ba.getMname() %></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="price-container">
-                    <table class="table1">
-                        <tr>
-                            <th colspan="2"> <span class="program">프로그램 : <%=ba.getPname() %></span></th>
-                        </tr>
-                        <tr>
-                            <td class="align-bottom" style="width: 200px;"><span class="months"><%=ba.getCount() %>회</span>
-                            </td>
-                            <td class="align-bottom" colspan="2"><span class="price"><%=ba.getPrice() %></span></td>
-                            <td class="align-bottom"><span class="won">원</span></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <button type="button" class="btn btn-info delete">삭제</button>
-                        <input type="hidden" id="info"  value="t/<%=ba.getPcode()%>/<%=ba.getMonth()%>">
-                        <input type="hidden" id="info" name="trainerList" value="<%=ba.getPcode()%>/<%=ba.getCount()%>/">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%}} %>
-        <!-- 박스 -->
-    
-        <div class="total-price-container">
+     <div class="total-price-container">
             <div class="desc-row">
                 <span class="pricetitle" id="pricetitle1">상품 금액</span>
                 <span class="total-price" id="total-price" style="float: right;"><%=total+(int)(total*0.1) %>
@@ -137,15 +166,11 @@
                 <span class="pricetitle" id=" pricetitle3">결제 예정 금액</span>
                 <span class="new-price" id="new-price" style="float: right;"><%=total %> &nbsp;원</span>
             </div>
-        </div>
-    	<div id="button-container" class="d-flex flex-row">
+    		<div id="button-container" class="d-flex flex-row">
                 <button type="button" class="btn-more btn-pay btn btn-primary">더 돌아보기</button>
                 <button type="button" class="btn-more btn-pay btn btn-primary" id="paymentBtn">결제하기</button>
-            </div>
-    </div>
-    
-    
-    </form>
+         	</div>
+   		 </div>
     
     <%@ include file="/views/common/footer.jsp"%>
     

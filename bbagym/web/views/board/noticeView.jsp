@@ -43,7 +43,7 @@
                                 </td>
                             </tr>   
                             <tr>
-                                <th colspan="2">내용</th>
+                                <th colspan="2">&nbsp;</th>
                             </tr>
                             <tr><td colspan="2" style="padding:50px 30px;"><%=n.getnContent() %></td></tr>
                             <tr>

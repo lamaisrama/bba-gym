@@ -16,7 +16,7 @@
     <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('<%=request.getContextPath() %>/assets/img/notice.jpg');"></div>
     <section id="board-container">
         <div class="container">
-            <h1 class="display-4" style="text-align: center;">Notice<i class="fa fa-heart heart"></i></h1>
+            <h1 class="display-4" style="text-align: center;">Notice</h1>
             <br><br>
             <!-- 검색start -->
             <div align="right">
@@ -57,8 +57,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                <%if(list!=null){ %>
-                	<%for(Notice n : list) {%>
+                <% if(list.isEmpty()){%>
+						<tr>
+							<td colspan="6">조회된 게시글이 존재하지 않습니다!</td>
+						</tr>	
+					<%}else{ 
+                	for(Notice n : list) {%>
                     <tr>
                         <td scope="row"><%=n.getnCode() %></td>
                         <td>
@@ -75,8 +79,8 @@
                         <td><%=n.getnDate() %></td>
                         <td><%=n.getReadCount() %></td>
                     </tr>
-                    <%} %>
-                 <%} %>
+                    <%} 
+                 } %>
                 </tbody>
             </table>
             <!-- 게시판테이블 end -->

@@ -66,7 +66,7 @@ public class CenterSysDateServlet extends HttpServlet {
 		}
 		List<CenterEnroll> list = new CenterService().sortSysDatePageData(cPage,numPerpage,m,lat,lng);
 		int totalData = new CenterService().selectCountCenter();
-
+		
 		String pagebar = pageBar(url, totalData, cPage, numPerpage); 
 
 		request.setAttribute("pageBar", pagebar);

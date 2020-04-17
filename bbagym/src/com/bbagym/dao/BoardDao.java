@@ -283,7 +283,8 @@ public class BoardDao {
 		
 		try{
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+searchKeyword+"%");
+//			pstmt.setString(1, "%"+ searchKeyword +"%");
+			pstmt.setString(1, searchKeyword);
 			pstmt.setInt(2, (cPage-1)*numPerPage+1);
 			pstmt.setInt(3, cPage*numPerPage+1);
 			rs = pstmt.executeQuery();

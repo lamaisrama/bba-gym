@@ -157,7 +157,7 @@ public class TrainerDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+searchKeyword+"%");
+			pstmt.setString(1, "%"+searchKeyword.toUpperCase()+"%");
 			pstmt.setInt(2, (cPage-1)*numPerpage+1);
 			pstmt.setInt(3, cPage*numPerpage);
 			
@@ -196,7 +196,7 @@ public class TrainerDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+searchKeyword+"%");
+			pstmt.setString(1, "%"+searchKeyword.toUpperCase()+"%");
 			
 			rs=pstmt.executeQuery();
 			
