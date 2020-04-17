@@ -7,28 +7,77 @@
 	List<CenterEnroll> centerList = (List) request.getAttribute("centerList"); /* centerSearchServlet 가져온 데이터 */
 %>
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<%--  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/board.css"> --%>
+<!--===============================================================================================-->	
+<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!--===============================================================================================-->	
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!--===============================================================================================-->	
+<style type="text/css">
+
+section#memberList-container {
+	text-align: center;
+}
+
+section#memberList-container table#tbl-member {
+	width: 100%;
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+section#memberList-container table#tbl-member th, table#tbl-member td {
+	border: 1px solid gray;
+	padding: 10px;
+}
+
+div#search-container {
+	margin: 0 0 10px 0;
+	padding: 3px;
+	background-color: rgba(0, 188, 212, 0.3);
+}
+
+div#search-userId {
+	display: inline-block;
+}
+
+div#search-userName {
+	display: none;
+}
+
+div#search-gender {
+	display: none;
+}
+</style>
+
 
 <!-- 시설 등록 승인-->
-<div id="center-approve"style="width: 100%; ">
-
+<div class="" style="width: 100%; padding-left: 20px;">
 	<div
 		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-		<br><h1>시설 등록 승인</h1><br>
-		
+		<br>
+		<h1>시설 등록 승인</h1>
+		<br>
+
+
 	</div>
 	<!-- 상단 -->
-	<table >
+<!--===============================================================================================-->	
+	<table class="table">   
+<!--===============================================================================================-->	
+	
 		<thead>
 			<tr>
 				<th>시설 코드</th>
 				<th>시설 이름</th>
 				<th>시설 주소</th>
 				<th>연락처</th>
-				<th >사업자 시설승인</th>
+				
 				<th>승인 상태</th>
 				<th>확인</th>
+				<th >사업자 시설승인</th>
 			</tr>
 		</thead>
 
@@ -50,10 +99,7 @@
 				<td><%=c.getName()%></td>
 				<td><%=c.getAddress()%></td>
 				<td><%=c.getTel()%></td>
-				<td>
-					<button  class="w3-panel w3-green" onclick="updateCheck();">승인</button>
-					<button  class="w3-panel w3-red" onclick="noCheck();">거절</button>
-				</td>
+				
 				<td><input style="text-align:center;border:1px solid white;width:35px;"type="text" name="APPROVAL"
 					value="<%=c.getApproval()%>" readonly></td>
 				<!-- if( ) {-->
@@ -67,7 +113,7 @@
 				%>
 					<td>
 					
-						<button onclick="" class="w3-button w3-black w3-round-xxlarge">심사중</button>
+						<button onclick=""class="w3-panel w3-round-xxlarge w3-teal">심사중</button>
 					
 					</td>
 				
@@ -84,7 +130,10 @@
 				<%
 					}
 				%>
-				
+				<td>
+					<button  class="w3-panel w3-green" onclick="updateCheck();">승인</button>
+					<button  class="w3-panel w3-red" onclick="noCheck();">거절</button>
+				</td>
 
 				<script>
 				function updateCheck() {
@@ -131,12 +180,13 @@
 	</tbody>
 	</table>
 <br>
-	<div id="pageBar" class="pageBar" style="display:flex; justify-content:center;">
-		<!-- 페이지바 JSP구현-->
-		<br><br><br><br>
+	<div class="container" style="display:flex; justify-content:center;">
+	  <ul class="pagination" ><li>
+	
 		<%=request.getAttribute("pageBar")%>
-
-	</div>
+	
+</ul>
+</div>
 	<br><br>
 </div>
 
