@@ -13,7 +13,7 @@
 
 input::placeholder {
   padding-left: 10px;
-  color: white;
+  color: #7d7d7d;
   font-weight: bold;
   font-size: 20px;
 }
@@ -26,7 +26,7 @@ input::placeholder {
  .container-fiuld{
      flex : 5;
      text-align: center;
-     color : white;
+     color : #7d7d7d;
  }
 
  #leftbar{
@@ -87,7 +87,7 @@ input::placeholder {
  }
 
 #content p{
-	color : white;
+	color : #6f6f6f;
 	font-size: 40px;
 	font-weight: bold;
 }
@@ -100,8 +100,13 @@ input::placeholder {
  }
 
  #search>div{
-     border: 2px solid lightskyblue;
-     border-radius : 20px;
+     border-bottom: 4px solid #e8e8fa;
+     -webkit-box-shadow: 0 0 10px #6f6f6f;
+     -moz-box-shadow: 0 0 10px #6f6f6f;
+     box-shadow: 0 0 10px #6f6f6f;
+     background-color: rgba(255,255,255,0.1);
+     /* background: transparent; */
+     /* border-radius : 20px; */
      padding: 25px 10px 25px 10px;
  }
 

@@ -85,8 +85,8 @@
 	                        <td><%=b.getQaDate() %></td>
 	                        <td><%=b.getReadCount() %></td>
 	                    </tr>
-	                    <%} %>
-                 <%} %>
+	                    <%} 
+                 } %>
                 </tbody>
             </table>
             <!-- 게시판테이블 end -->

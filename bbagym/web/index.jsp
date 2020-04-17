@@ -101,15 +101,15 @@
 	
 	    <div id="search">
 	       <div>
-	       		<input type="text" id="search1" name="search" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="75px" >
+	       		<input type="text" id="search1" name="search" class="text-center" placeholder="찾는 시설의 주소나 이름을 입력해주세요" onclick="serachKeyword();" size="75px" >
 	       </div>
 	   	</div>
-	   	
+	   	<br><br><br><br>
 	    <div id="box">
 	    <%if (logginMember == null) {%>
 	        <div>																								
-	        	<button type="button" class="btn btn-outline-primary text-white" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')">회원가입</button> &nbsp; 
-	      		<button type="button" class="btn btn-outline-info text-white" onclick="log();">로그인</button>
+	        	<button type="button" class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#join"  onclick="location.replace('<%=request.getContextPath()%>/member/enrollMenu.do')">회원가입</button> &nbsp; 
+	      		<button type="button" class="btn btn-outline-info btn-lg" onclick="log();">로그인</button>
 
 	        	</div>
 	    	</div>
@@ -117,23 +117,23 @@
 			<div id="content">
          		<nav>
 		             <p>
-		             	<b><%=logginMember.getM_NAME()%>님 </b>환영합니다
+		             	<b><%=logginMember.getM_NAME()%></b>님 환영합니다
 		             </p>
 	             <div id="box">
 	             		  <div>
-	               			<button type="button" class="btn btn-outline-primary text-white"
+	               			<button type="button" class="btn btn-outline-primary btn-lg text-white"
 	               			onclick="location.replace('<%=request.getContextPath()%>/member/logout.do?M_ID=<%=logginMember.getM_ID()%>')"
 	               			>로그아웃</button>
 	               			 <%if (logginMember.getM_LEVEL()==1&&logginMember.getM_STATUS()=='N') {%>
-	               			<button type="button" class="btn btn-outline-primary text-white"
+	               			<button type="button" class="btn btn-outline-primary btn-lg text-white"
 	               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 	               			>정보수정</button>
 	               			<%}else if (logginMember.getM_LEVEL()==0&&logginMember.getM_STATUS()=='N') {%>
-	               			<button type="button" class="btn btn-outline-primary text-white"
+	               			<button type="button" class="btn btn-outline-primary btn-lg text-white"
 	               			onclick="location.replace('<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 	               			>정보수정</button>
 	               			<%}else if (logginMember.getM_LEVEL()==2&&logginMember.getM_STATUS()=='N') {%>
-	               			<button type="button" class="btn btn-outline-primary text-white"
+	               			<button type="button" class="btn btn-outline-primary btn-lg text-white"
 	               			onclick="location.replace('<%=request.getContextPath()%>/business/businessEnrollView.do?M_ID=<%=logginMember.getM_ID()%>')"
 	               			>정보수정</button>
 	               			<%}else %>
