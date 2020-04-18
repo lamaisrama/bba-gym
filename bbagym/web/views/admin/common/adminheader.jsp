@@ -23,13 +23,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Main</title>
+    <title>빠짐 관리자페이지</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  
+   <link rel="icon" type="image/png" href="<%=request.getContextPath() %>/assets/img/logo_favicon.png">
   	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/demo-page.css"  media="all">
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/hover.css"  media="all">
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
