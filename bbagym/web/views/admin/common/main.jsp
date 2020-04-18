@@ -296,9 +296,10 @@ float snoise(vec3 v)
     }
     // ]]></script>
 <canvas id="glscreen"></canvas>
-    
+    	
 
         <div class="wrapper">
+       
             <ui class="mainMenu">
                 <li class="item" id="account">
                     <a href="#account" class="btn"><i class="fas fa-user-circle"></i>BBAGYM 회원</a>
