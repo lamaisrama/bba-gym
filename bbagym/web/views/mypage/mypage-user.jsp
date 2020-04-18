@@ -34,6 +34,10 @@
 			<div>
 				<hr />
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
+				<a class="updateMyProfile" onclick="se1();">나의 센터 회원권</a>
+				<a class="updateMyProfile" onclick="se2();">나의 트레이너 회원권</a>
+				<a class="updateMyProfile" onclick="se3();">My 찜</a>
+				<a class="updateMyProfile" onclick="se4();">전체보기</a>
 				<a class="updateMyProfile" onclick="removeCheck();" >회원탈퇴</a>
 			</div>
 	</nav>
@@ -54,18 +58,10 @@
 				<div id="my-2"><%=cmembership.size()+tmembership.size() %>개</div>
 			</div>
 			<hr />
-			<div id="menu">	
-				<div id="menu3">
-					My 찜<a href="#myprefer" style="text-decoration: none;">
-						<button style="float: right;">></button>
-					</a>
-					<div><%=myPerfer.size() %>개</div>
-				</div>
-			</div>
 		</div>
 
-		<div id="my-3">나의 센터 회원권</div>
-		<div style="width: 95%; height: auto; margin: 0 auto;">
+		<div class="my-3">나의 센터 회원권
+		<div style="width: 95%; height: auto; margin: auto;">
 			<table id="mycenter">
 				<tr><th>센터명</th><th>프로그램명</th><th>이용달수</th><th>결제일</th><th>만료일</th><th>내점수</th></tr>
 				<%for(MypageUser my : cmembership) {%>
@@ -80,9 +76,10 @@
 				<%} %>
 			</table>
 		</div>
+		</div>
 		
-		<div id="my-3">나의 트레이너 회원권</div>
-		<div style="width: 95%; height: auto; margin: 0 auto;">
+		<div class="my-3">나의 트레이너 회원권
+		<div style="width: 95%; height: auto; margin: auto;">
 			<table id="mytrainer">
 				<tr><th>센터명</th><th>프로그램명</th><th>PT이용횟수</th><th>결제일</th><th>내점수</th></tr>
 				<%for(MypageUser my : tmembership) {%>
@@ -97,9 +94,10 @@
 				
 			</table>
 		</div>
+		</div>
 		
-		<div id="my-3">My 찜</div>
-		<div style="width: 95%; height: auto; margin: 0 auto;">
+		<div class="my-3">My 찜
+		<div style="width: 95%; height: auto; margin: auto;">
 			<table id="myprefer">
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
 				<%for(MypageUser my : myPerfer) {%>
@@ -111,6 +109,7 @@
 				</tr>
 				<%} %>
 			</table>
+		</div>
 		</div>
 		
 		
@@ -146,6 +145,30 @@
 						el.style = "visibility: visible;";
 						isUsClicked = true;
 					}
+				}
+				
+				function se1(){
+					$($(".my-3")[0]).css("display","flex");
+					$($(".my-3")[1]).css("display","none");
+					$($(".my-3")[2]).css("display","none");
+				}
+				
+				function se2(){
+					$($(".my-3")[0]).css("display","none");
+					$($(".my-3")[1]).css("display","flex");
+					$($(".my-3")[2]).css("display","none");			
+				}
+								
+				function se3(){
+					$($(".my-3")[0]).css("display","none");
+					$($(".my-3")[1]).css("display","none");
+					$($(".my-3")[2]).css("display","flex");
+				}
+				
+				function se4(){
+					$($(".my-3")[0]).css("display","flex");
+					$($(".my-3")[1]).css("display","flex");
+					$($(".my-3")[2]).css("display","flex");
 				}
 		</script>
 

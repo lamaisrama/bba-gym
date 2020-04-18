@@ -48,7 +48,7 @@ public class CenterViewDetailServlet extends HttpServlet {
 		}
 			
 			int cCode = Integer.parseInt(request.getParameter("cCode"));
-			
+			System.out.println(cCode);
 			
 			CenterDetail cd = new CenterService().centerViewDetail(cCode, mCode);
 			List<Comment> comments = new CenterService().selectComment(cCode);
