@@ -35,21 +35,22 @@
         style="background-image: url('<%=request.getContextPath() %>/assets/img/baguni.jpg');"></div>
     
     
-    <div >
-            카트
+    <div id="title">
+        <h1>장바구니</h1>
     </div>
+    
     <div id="pay">
 	    <form action="<%=request.getContextPath()%>/mypage/payment.do" method="post" id="baguniForm">
 			<div class="baguni">
 			<table>
 					<tr>
-						<th><input type="checkbox" value="0" name="check" id="check_all" style="margin-left:20px;"></th><th colspan="2" style="text-align: center;">상품정보</th><th>상품금액</th>
+						<!-- <th><input type="checkbox" value="0" name="check" id="check_all" style="margin-left:20px;"></th> --><th colspan="2" style="text-align: center;">상품정보</th><th>상품금액</th>
 					<tr>
 	        <%if(centerlist==null){ %>
 	        <!-- 박스 --><%}else {for(Baguni ba : centerlist){ %>
-	        				<td>
+	        				<%-- <td>
 	        					<input type="checkbox" name="check" class="select_subject" value="<%=ba.getPrice() %>"  style="margin-left:20px;">
-	        				</td>
+	        				</td> --%>
 							<td id="good-info" >
 								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getCmainimage() %>" alt="">
 							</td>
@@ -80,9 +81,9 @@
 	        
 	        <%if(trainerlist==null){ %>
 	        <!-- 박스 --><%}else {for(Baguni ba : trainerlist){ %>
-	        				<td>
+	        				<%-- <td>
 	        					<input type="checkbox" name="check" class="select_subject" value="<%=ba.getPrice() %>" style="margin-left:20px;">
-	        				</td>
+	        				</td> --%>
 							<td id="good-info" >
 								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
 							</td>
@@ -118,13 +119,14 @@
     	<br><br>
      	<div id="container">
             <div>
-                <h6 id="oriprice">기본가 : 0원  + </h6>
+                <h6 id="oriprice">기본가 : <%=(int)(total*0.1+total) %>원  + </h6>
             </div>
             <div >
-                <h6 style="color:blue" id="saleprice">할인가 : 0원 = </h6>
+                <h6 style="color:blue" id="saleprice">할인가 : <%=(int)(total*0.1) %>원 = </h6>
             </div>
             <div>
-                <h6 id="totalprice">0원</h6>
+                <h6 id="totalprice"><%=total %></h6>
+                <input type="hidden" value="<%=total %>" id="totalprice2">
             </div>
    		 </div>
    		 
@@ -146,7 +148,7 @@
             location.replace("<%=request.getContextPath() %>/ShoppingBaguniDeleteServlet.do?value=" + value);
         })
         
-     	   $("#check_all").click(function(){
+     	  /*  $("#check_all").click(function(){
 	        var chk = $(this).is(":checked");//.attr('checked');
 	        if(chk){ $(".select_subject").prop('checked', true);
 		        
@@ -158,32 +160,48 @@
 		        $("#oriprice").html("기본가 : "+(test+test*0.1)+"원 + ")
 		        $("#saleprice").html("할인가 : -"+test*0.1+"원= ")
 		        $("#totalprice").html(test+"원");
-	        
+	        	$("#totalprice2").attr("value",test);
 	        } else { $(".select_subject").prop('checked', false)
 	        	$("#oriprice").html("기본가 : 0원 + ")
 		        $("#saleprice").html("할인가 : -0원= ")
 	        	 $("#totalprice").html(" 0원");
+	        	$("#totalprice2").attr("value",0);
 	        	test=0;
 	        };
 	        
 	       
 	    });
-    	
+        
+        $(".select_subject").on("click",function(){
+        	
+        	test=0;
+	        
+	        $("input[name=check]:checked").each(function() {
+
+				test += parseInt($(this).val());
+
+			});
+	        
+	        $("#oriprice").html("기본가 : "+(test+test*0.1)+"원 + ")
+	        $("#saleprice").html("할인가 : -"+test*0.1+"원= ")
+	        $("#totalprice").html(test+"원");
+	        $("#totalprice2").attr("value",test);
+        });
+    	 */
 
 
-출처:
         	
         	//결제버튼 클릭시 결제 API 실행
     		$("#paymentBtn").on("click", function(){
-			var totalPrice="<%=total%>";
+			var totalPrice=$("#totalprice2").val();
 			alert("totalPrice="+totalPrice);
             var userMail = "<%=logginMember.getM_EMAIL() %>";
             var userName = "<%=logginMember.getM_NAME() %>";
             var userTel = "<%=logginMember.getM_PHONE() %>";
             var userAddr = "<%=logginMember.getM_ADDRESS() %>";
-            /* $("#baguniForm").submit(); */
+              $("#baguniForm").submit();  
                IMP.request_pay({
-                pg: 'html5_inicis', // version 1.1.0부터 지원.
+               /*  pg: 'html5_inicis', // version 1.1.0부터 지원.
                 pay_method: 'card',
                 merchant_uid: 'merchant_' + new Date().getTime(),
                 name: '빠짐:회원권 결제',
@@ -191,7 +209,7 @@
                 buyer_email: userMail,
                 buyer_name: userName,
                 buyer_tel: userTel,
-                buyer_addr: userAddr
+                buyer_addr: userAddr */
             }, function (rsp) { //callback 함수
                 if (rsp.success) {
                     var msg = '결제가 완료되었습니다.';

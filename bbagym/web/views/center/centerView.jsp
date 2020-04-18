@@ -38,7 +38,7 @@
                         <a class="nav-link dropdown-toggle"  id="asort" data-toggle="dropdown" href="#">정렬</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="<%=request.getContextPath() %>/center/score.do">평점순</a> <!--평점순으로 페이징 처리-->
-                        <%--     <a class="dropdown-item" href="<%=request.getContextPath() %>/center/review.do">리뷰순</a> <!--리뷰가 많은순으로 페이징처리--> --%> 
+                            <a class="dropdown-item" href="<%=request.getContextPath() %>/center/review.do">리뷰순</a> <!--리뷰가 많은순으로 페이징처리--> 
                             <a class="dropdown-item" href="<%=request.getContextPath() %>/center/sysdate.do">최신순</a> <!--최신순으로 페이징처리-->
                         </div>
                     </li>
@@ -81,7 +81,9 @@
         <h1 style="margin-top: 50px; text-align:center;">시설 정보</h1>
         <div class="row box-content" >
         	<%if(centerList.isEmpty()) {%>
+        	<div style="margin-top : 50px;width: 1000px; text-align:center;">
         		<h1>정보가 없습니다</h1>
+        		</div>
         	<%} else{ for(CenterEnroll c: centerList){%>
             <div class="content-box-outer"><!-- for문 돌려서 페이징 처리해야합니다 pagebarNo=5,numPerpage=5-->
                 <div class="content-box-inner"></div>
@@ -94,6 +96,7 @@
                         </tr>
                         <tr>
                             <td colspan="2"><h2><%=c.getName() %></h2></td> <!-- 제목-->
+                           	<%if(logginMember==null||logginMember.getM_LEVEL()==1){ %>
                             <td><h2>
                             <%if(c.getPrefer()==false){ %>
                             <i class="far fa-heart" style='color:red'>
@@ -101,6 +104,7 @@
                             <i class='fas fa-heart'  style='color:red'></i>
                             <%} %>
                             </i></h2></td><!-- 찜목록 ON/OFF-->
+                            <%} %>
                         </tr>
                         <tr>
                             <td colspan="3"><%=c.getAddress() %></td><!-- 위치 API-->
