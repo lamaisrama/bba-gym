@@ -9,9 +9,12 @@
  ::placeholder{
             padding-left : 10px;
        }
-
+#search-id{
+	width : 500px;
+	margin : auto;
+}
 #bt1 {
-	width: 85%;
+	width: 40%;
 	padding: 10px 30px;
 	padding-left: 40px;
 	cursor: pointer;
@@ -22,10 +25,7 @@
 	outline: none;
 }
 
-#search-id{
-	width : 500px;
-	margin : auto;
-}
+
 
 #bt2{
 	display : flex;

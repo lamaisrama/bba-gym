@@ -26,7 +26,7 @@
 
 	<div id="container">
 		<div>
-			<h1 class="mt-4" style="text-align: center;">ID/PW SEARCH</h1>
+			<h1 class="mt-4" style="text-align: center;">ID SEARCH</h1>
 			<h3 style="text-align: center;">
 				<p>아이디는 가입시 입력하신 이메일을 통해 찾을 수 있습니다.</p>
 			</h3>
@@ -45,7 +45,7 @@
 
 					</div>
 
-					<button id="bt1" style="">아이디 찾기</button>
+					<button id="bt1" >아이디 찾기</button>
 				
 
 

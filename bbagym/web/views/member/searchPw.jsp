@@ -18,7 +18,7 @@
 
 	<div class="container">
 		<div>
-			<h1 class="mt-4" style="text-align: center;">ID/PW SEARCH</h1>
+			<h1 class="mt-4" style="text-align: center;">PW SEARCH</h1>
 			<h3 style="text-align: center;">
 				<p>비밀번호는 이름, 가입한 아이디, 이메일을 통해 찾으실 수 있습니다.</p>
 			</h3>
@@ -39,7 +39,9 @@
 					</div><br>
 					<button class="bt1" style="">찾기</button><br>
 				</form>
+				
 			<div id="bt2">
+			
 				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logoutgologin.do')">로그인페이지로 이동</button>
 				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logout.do')">메인 화면으로 돌아가기</button>
 			</div>

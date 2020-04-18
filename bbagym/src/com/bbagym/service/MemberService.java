@@ -99,18 +99,35 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-
-
-
-
-	public int updatePassword(String id, String pw,String changePw) {
+	public int updatePassword4(String id, String pw,String changePw) {
 		// TODO Auto-generated method stub
 		Connection conn=getConnection();
 		Member m = dao.login(conn,id,pw);
 		
 		int result=-1;
 	
+		System.out.println("m= "+m);
+		if(m !=null) {
+			result=dao.updatePassword(conn, id, changePw);
+			if (result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
+
+	public int updatePassword(String id, String pw,String changePw) {
+		// TODO Auto-generated method stub
+		Connection conn=getConnection();
+		Member m = dao.login2(conn,id);
 		
+		int result=-1;
+	
+		System.out.println("m= "+m);
 		if(m !=null) {
 			result=dao.updatePassword(conn, id, changePw);
 			if (result > 0)

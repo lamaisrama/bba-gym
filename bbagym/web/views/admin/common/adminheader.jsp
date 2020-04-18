@@ -53,8 +53,8 @@
     <section>
 
         <div >
-            <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
-
+            <aside id="menu" style="width:20%"><!-- 관리자페이지 메뉴바 -->
+<br><br><br>
                 <table >
                 	<tr >
                         <td><a class="updateMyProfile" href="<%=request.getContextPath()%>" >홈페이지 메인화면가기</a></td>
