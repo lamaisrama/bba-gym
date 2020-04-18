@@ -67,9 +67,8 @@ div#search-gender {
 	
 		<thead>
 			<tr style="text-align: center;">
-
-				<th>아이디</th>
 				<th>이름</th>
+				<th>아이디</th>				
 				<th>성별</th>
 				<th>나이</th>
 				<th>이메일</th>
@@ -94,9 +93,10 @@ div#search-gender {
 			%>
 			<tr>
 				<input name="CODE" type="hidden" style="width: 50px" value="<%=m.getM_CODE()%>" readonly>
+				<th><%=m.getM_NAME()%></th>
 				<td><a
-					href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=m.getM_ID()%>"><%=m.getM_ID()%></a></td>
-				<td><%=m.getM_NAME()%></td>
+					href="<%=request.getContextPath()%>/member/memberEnrollView2.do?M_ID=<%=m.getM_ID()%>"><%=m.getM_ID()%></a></td>
+				
 				<td><%=m.getM_GENDER()%></td>
 				<td><%=m.getM_AGE()%></td>
 				<td><%=m.getM_EMAIL()%></td>
