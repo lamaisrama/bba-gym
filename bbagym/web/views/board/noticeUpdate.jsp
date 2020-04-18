@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <th>첨부파일</th>
-                            <td>
+                            <td style="text-align:left;">
                             	<%if(n.getOriFileName()!=null){ %>
 			            			<input type="file" name="upfile">
 			            			<span id="fname"><%=n.getOriFileName() %></span>

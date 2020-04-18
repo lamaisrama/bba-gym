@@ -83,7 +83,7 @@
                 		TrainerProgram tp2=td.getTrainerPrograms().get(j);
                 		if(preName.equals(tp2.getpName())){%>
                 		<del>정상가 <%=tp2.getCount()%>회 <%=(int)(tp2.getPrice()+(tp2.getPrice()*0.1))%>원</del><br>
-                 	 빠짐회원가  <%=tp2.getCount()%>회  <%=tp2.getPrice() %>원<br><br>
+                 	 <small style="color: #9A9A9A; line-height: 1.5em; font-size: 100%; font-weight: 400;">빠짐회원가  <%=tp2.getCount()%>회  <%=tp2.getPrice() %>원</small><br><br>
                   	<%}
                 	}%>
                 </small>
@@ -320,31 +320,10 @@
 						</div>    
 					</div>
 				 </div> 
-
-<!--         <div class="tab-pane text-center" id="following" role="tabpanel">
-          <h3 class="text-muted">트레이너상담연결뭐몰라ㅣ</h3>
-          <button class="btn btn-warning btn-round">1:1 상담하기</button>
-        </div> -->
-
       </div>
     </div>
   </div>
-  
 
-<!--   <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="credits ml-auto">
-          <span class="copyright">
-            ©
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, made with <i class="fa fa-heart heart"></i> by Creative 빠GYM
-          </span>
-        </div>
-      </div>
-    </div>
-  </footer> -->
   
   <script>
   
@@ -406,20 +385,35 @@
 	
 	      $(".custom-select>option").each(function (i, item) {
 	          let a = $(item).text();
-	          console.log(reg.exec(a)[0]);
+	          /* console.log(reg.exec(a)[0]); */
 	          $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
 	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
 	      });
 	      
-	      let reg1 = new RegExp(/\d{4,}+/);
-	      $("#program-price").next(function (i, item) {
-	          let a = $(item).text();
-	          console.log(reg1.exec(a)[0]);
+	  })
+	  
+	  $(function () {  
+	            let reg1 = new RegExp(/\d{4,}/);
+	           $("#program-price>small").each(function (i,item) {
+	        	   let a = $(item).text();
+	                console.log(reg1.exec(a)[0]);
+	                $(item).html(a.replace(reg1.exec(a)[0], reg1.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));
+	          		/* console.log($(item).html(a.replace(reg1.exec(a)[0],reg1.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")))); */
+
+	            })
+	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+	      })
+	  
+	  	  $(function () {  
+	  	      let reg1 = new RegExp(/\d{4,}/);
+	      $("#program-price>del").each(function (i, item) {
+              let a = $(item).text();
+              /* console.log(reg1.exec(a)[0]); */
 	          $(item).html(a.replace(reg1.exec(a)[0],reg1.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
 	          //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
 	      })
 	  })
-  	
+	 	
   </script>
   
 
