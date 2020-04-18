@@ -33,8 +33,9 @@ header{
 }
 
 #menu{
-  	 width: 130px;
+  	 width: 300px;
     height: 100%;
+    display:flex; justify-content:center;
     
 }
 
@@ -46,6 +47,8 @@ header{
 section{
     width: 100%;
     height:auto;
+   	
+   		margin-right:100px;
 }
 
 

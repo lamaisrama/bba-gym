@@ -51,7 +51,7 @@ div#search-gender {
 }
 </style>
 <!--회원 관리-->
-<div class="" style="width: 100%; padding-left: 20px;">
+<div class="" style="width: 100%; padding-left: 20px;margin-right:200px;">
 	<div
 		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
 		<br>
