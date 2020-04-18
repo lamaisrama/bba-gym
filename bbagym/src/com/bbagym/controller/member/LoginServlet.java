@@ -37,18 +37,16 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("M_ID");
-		String pw = request.getParameter("M_PW");
-		
-
-		
-		if(pw==null) {
+		String pw = null;
+		try {
+		 pw = request.getParameter("M_PW");
+		}catch(NullPointerException e) {
 			String pw2= new MemberService().searchPW2(id);
 			if(!pw2.equals("")) {
 				pw=pw2;
 			}
 		}
 		
-
 		if(pw!=null) {
 			Member m = new MemberService().login(id, pw);
 			Member m2 = new MemberService().login2(id);
