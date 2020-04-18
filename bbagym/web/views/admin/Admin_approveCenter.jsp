@@ -16,6 +16,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <!--===============================================================================================-->	
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=PT+Sans:700' rel='stylesheet' type='text/css'>
 <style type="text/css">
 
 section#memberList-container {
@@ -70,13 +72,14 @@ div#search-gender {
 	
 		<thead>
 			<tr>
+				<th>확인</th>
 				<th>시설 코드</th>
 				<th>시설 이름</th>
 				<th>시설 주소</th>
 				<th>연락처</th>
 				
 				<th>승인 상태</th>
-				<th>확인</th>
+			
 				<th >사업자 시설승인</th>
 			</tr>
 		</thead>
@@ -95,6 +98,28 @@ div#search-gender {
 
 			<tr>
 				<input name="CODE" type="hidden" value="<%=c.getCode()%>">
+				<%
+					if (c.getApproval() == null) {
+				%>
+					<td>
+					
+						<button class="w3-panel w3-round-xxlarge w3-teal">심사중</button>
+					
+					</td>
+				
+				<%
+					} else if (c.getApproval() != null) {
+				%>
+					<td>
+					
+						<i style="color:red;"class="fa fa-check hvr-icon"></i>
+				
+					</td>
+
+				
+				<%
+					}
+				%>
 				<td><%=c.getCode()%></td>
 				<td><%=c.getName()%></td>
 				<td><%=c.getAddress()%></td>
@@ -108,32 +133,40 @@ div#search-gender {
 				
 				
 				
-				<%
-					if (c.getApproval() == null) {
-				%>
-					<td>
-					
-						<button onclick=""class="w3-panel w3-round-xxlarge w3-teal">심사중</button>
-					
-					</td>
 				
-				<%
-					} else if (c.getApproval() != null) {
-				%>
-					<td>
-					
-						<button class="w3-panel w3-round-xxlarge w3-teal" onclick="" >Confirm</button>
-					
-					</td>
-
-				
-				<%
-					}
-				%>
-				<td>
-					<button  class="w3-panel w3-green" onclick="updateCheck();">승인</button>
-					<button  class="w3-panel w3-red" onclick="noCheck();">거절</button>
+					<td>				
+					<button class="btn btn-sunflower"  onclick="updateCheck();">승인</button>
+					<button class="btn btn-dark-blue" onclick="noCheck();">거절</button>
 				</td>
+				<style>
+				
+/*All the button styles*/
+
+* {-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+a{text-decoration:none;}
+
+/********************
+GENERIC BUTTON STYLES
+********************/
+
+.btn {font-size: 18px; white-space:nowrap; width:70px; padding:.8em ;font-family: Open Sans, Helvetica,Arial,sans-serif; line-height:18px; display: inline-block;zoom: 1; color: #fff; text-align: center; position:relative; -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear; transition: border .25s linear, color .25s linear, background-color .25s linear;}
+
+/*DARK BLUE BUTTON STYLES*/		
+.btn.btn-dark-blue{background-color: #237fbc; border-color: #237fbc; -webkit-box-shadow: 0 3px 0 #1a5c87; box-shadow: 0 3px 0 #1a5c87;}
+.btn.btn-dark-blue:hover{background-color:#166ea8;}
+.btn.btn-dark-blue:active{ top: 3px; outline: none; -webkit-box-shadow: none; box-shadow: none;}
+
+
+/*SUNFLOWER BUTTON STYLES*/		
+.btn.btn-sunflower{background-color: #f2c500; border-color: #f2c500; -webkit-box-shadow: 0 3px 0 #b19001; box-shadow: 0 3px 0 #b19001;}
+.btn.btn-sunflower:hover{background-color:#e3ba02;}
+.btn.btn-sunflower:active{top: 3px; outline: none; -webkit-box-shadow: none; box-shadow: none;}
+
+	
+
+
+		
+				</style>
 
 				<script>
 				function updateCheck() {

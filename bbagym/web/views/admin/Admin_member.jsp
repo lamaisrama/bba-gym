@@ -76,6 +76,7 @@ div#search-gender {
 				<th>전화번호</th>
 				<th>주소</th>
 				<th>상태</th>
+				<th>탈퇴시키기</th>
 
 
 			</tr>
@@ -101,17 +102,15 @@ div#search-gender {
 				<td><%=m.getM_EMAIL()%></td>
 				<td><%=m.getM_PHONE()%></td>
 				<td><%=m.getM_ADDRESS()%></td>
-				<td style="width: 80px"><%=m.getM_STATUS()%> <br> <%
- 	if (m.getM_STATUS() == 'N') {
- %>
-					<button style="background-color: red; color: white;"
-						onclick="removeCheck();">탈퇴</button> <%
- 	} else {
- %>
-					<button style="background-color: black; color: yellow;" onclick="">탈퇴완료</button>
-					<%
-						}
-					%> <script>
+				<td style="width: 80px;display:flex; justify-content:center;"><%=m.getM_STATUS()%></td>
+				<td> 
+					<button style="width:65px;background-color: red; color: white;"
+						onclick="removeCheck();"><br>탈퇴<br><br></button>
+				</td>
+					
+					
+					
+					<script>
 				function removeCheck() {
 					if (confirm("'탈퇴'하시겠습니까??") == true){    //확인
 						

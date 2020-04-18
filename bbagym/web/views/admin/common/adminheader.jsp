@@ -70,7 +70,7 @@
                         <td><a class="hvr-sweep-to-right" href="<%=request.getContextPath()%>"  style="text-decoration: none;display:flex; justify-content:center;">홈페이지 메인화면가기</a></td>
                     </tr>
                     <tr >
-                        <td><a style="cursor:pointer;text-decoration: none;display:flex; justify-content:center;"class="hvr-sweep-to-right"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >관리자 비밀번호 수정</a></td>
+                        <td><a style="text-decoration: none;display:flex; justify-content:center;"class="hvr-sweep-to-right"href="<%=request.getContextPath()%>/admin/passwordModify.do?M_Id=<%=logginMember.getM_ID()%>')" >관리자 비밀번호 수정</a></td>
                     </tr>
                     <tr>
                         <td><a style="text-decoration: none;display:flex; justify-content:center;"class="hvr-sweep-to-right"href="<%=request.getContextPath()%>/admin/centerList.do" >시설 등록 승인</a></td>
