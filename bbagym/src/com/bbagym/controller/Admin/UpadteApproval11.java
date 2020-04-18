@@ -17,14 +17,14 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 /**
  * Servlet implementation class UpadteApproval
  */
-@WebServlet("/admin/updateaApproval")
-public class UpadteApproval extends HttpServlet {
+@WebServlet("/admin/updateaApproval11")
+public class UpadteApproval11 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpadteApproval() {
+    public UpadteApproval11() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,9 +35,9 @@ public class UpadteApproval extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 int c_code = Integer.parseInt(request.getParameter("CODE"));	
 		 
-		 int result=new AdminService().updateApproval(c_code);
+		 
+		 int result=new AdminService().updateApproval11();
 		 
 		 
 		 String msg="";
@@ -45,7 +45,7 @@ public class UpadteApproval extends HttpServlet {
 
 
 			if(result>0) {
-				msg="[센터] 등록요청을 승인했습니다.";
+				msg="[모든 시설] 등록요청을 승인했습니다.";
 				loc="/admin/centerList.do";
 			}else {
 				msg="승인실패.";

@@ -181,6 +181,19 @@ GENERIC BUTTON STYLES
 						}
 
 					}
+				function updateCheck2() {
+					if (confirm("'모든트레이너' 등록을 승인하시겠습니까??") == true){    //확인
+						
+						
+					
+						location.replace('<%=request.getContextPath()%>/admin/updateaApproval22');
+
+						} else { //취소
+
+							return false;
+						}
+
+					}
 				function noCheck() {
 					if (confirm("'거절'하시겠습니까??") == true){    //확인
 						
@@ -208,6 +221,99 @@ GENERIC BUTTON STYLES
 	%>
 	</tbody>
 	</table>
+	<div style="float:right;margin-right:50px;width:150px;">
+		
+	 		<a class="button12" style="text-decoration: none;" onclick="updateCheck2();">
+   				<em> </em>   
+    			<span>
+     			ALL 승인
+      			</span>
+ 		 	</a>
+ 	</div>
+ 		 	<style>
+ 		 	
+
+.btn:hover::before {
+  -webkit-transform-origin: right top;
+  -ms-transform-origin: right top;
+  transform-origin: right top;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1)
+}
+
+
+/* Btn 12 */
+
+.button12 {
+  cursor: pointer;
+  background-color: #000;
+  width: 130px;
+  height: 64px;
+  padding:7px ;
+  line-height: 64px;
+  position: relative;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  z-index: 0;
+  background:#9A8A62;
+  text-decoration: none;
+}
+.button12 span {
+  color: #fff;
+  display: inline;
+
+  text-transform: uppercase;
+  transform: scaleX(0.6);
+  letter-spacing: 3px;
+  transform-origin: center left;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.button12:before,
+.button12:after {
+  content: '';
+  background: #fff;
+  height: 50%;
+  width: 0;
+  position: absolute;
+  text-decoration: none;
+  transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  -webkit-transition:0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+.button12:before {
+  top: 0;
+  left: 0;
+ 
+}
+.button12:after {
+  bottom: 0;
+  right: 0;
+  left: auto;
+}
+.button12:hover:before {
+  width: 100%;
+  right: 0;
+  left: auto;
+}
+.button12:hover:after {
+  width: 100%;
+  left: 0;
+  right: auto;
+}
+.button12:hover span {
+  color: black;
+  text-decoration: none;
+}
+.button12:hover em {
+  background: #000;
+  transform: scaleX(.51);
+  transform: scaleX(.51);
+}
+ 		 	
+ 		 	</style>
 <br>
 	<div class="container" style="display:flex; justify-content:center;">
 	  <ul class="pagination" ><li>
