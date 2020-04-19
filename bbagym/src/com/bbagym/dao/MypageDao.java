@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.bbagym.model.vo.Member;
+import com.bbagym.model.vo.Msg;
 import com.bbagym.model.vo.MypageUser;
 
 public class MypageDao {
@@ -179,5 +180,139 @@ public class MypageDao {
 		return m;
 	}
 	
+	public int getreceivernum(Connection conn,String receiver) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int rec = 0;
+		
+		String sql = prop.getProperty("getreceivernum");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, receiver);
+			rs=pstmt.executeQuery();
+			rs.next();
+			rec= rs.getInt(1);
+			
+		}catch(SQLException e) {
+			rec=0;
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return rec;
+	}
+	
+	public int sendmsg(Connection conn,String title,int receivernum,int sender,String content) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+	
+		String sql = prop.getProperty("sendmsg");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			;
+			pstmt.setInt(1, receivernum);
+			pstmt.setInt(2, sender);
+			pstmt.setString(3, title);
+			pstmt.setString(4, content);
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public List<Msg> getmsg(Connection conn ,int mcode){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Msg> list = new ArrayList<Msg>();
+		String sql = prop.getProperty("getmsg");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, mcode);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Msg m = new Msg();
+				m.setTitle(rs.getString("title"));
+				m.setReadstatus(rs.getString("recv_read").charAt(0));
+				m.setName(rs.getString("m_name"));
+				m.setDate(rs.getDate("date_sent"));
+				m.setMsgcode(rs.getInt("msg_code"));
+				
+				list.add(m);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public boolean checkdelte(Connection conn, int msgcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean flag= false;
+		String sql = prop.getProperty("checkdelte");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, msgcode);
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			char status = rs.getString(1).charAt(0);
+		
+			if(status=='N') {
+				flag= false; //안지운거
+			}else {
+				flag= true; //지운거
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return flag;
+	}
+	
+	public int deletemsg(Connection conn,int msgcode,boolean flag) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+	
+		String sql ="";
+		
+		if(flag) {
+			sql=prop.getProperty("msgdelete");
+		}else {
+			sql=prop.getProperty("msgupdatedelete");
+		}
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			;
+			pstmt.setInt(1, msgcode);
+
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 }

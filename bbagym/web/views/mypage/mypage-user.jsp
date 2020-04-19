@@ -37,6 +37,7 @@
 				<a class="updateMyProfile" onclick="se1();">나의 센터 회원권</a>
 				<a class="updateMyProfile" onclick="se2();">나의 트레이너 회원권</a>
 				<a class="updateMyProfile" onclick="se3();">My 찜</a>
+				<a class="updateMyProfile" onclick="se5();">쪽지함</a>
 				<a class="updateMyProfile" onclick="se4();">전체보기</a>
 				<a class="updateMyProfile" onclick="removeCheck();" >회원탈퇴</a>
 			</div>
@@ -112,73 +113,165 @@
 		</div>
 		</div>
 		
-		
+		<div class="my-3" style="display:none">쪽지함
+			<div style="width: 95%; height: auto; margin: auto;" id="container">
+				
+			</div>
+			<div id="msg">
+				<button class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">쪽지보내기</button>
+				
+								<!-- The Modal -->
+				<div class="modal" id="myModal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				
+				      <!-- Modal Header -->
+				      <div class="modal-header">
+				        <h4 class="modal-title">쪽지 보내기</h4>
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				      </div>
+				
+				      <!-- Modal body -->
+				      <div class="modal-body">
+				        <div class="form-group">
+						  <label for="usr">제목:</label>
+						  <input type="text" class="form-control" id="msgtitle">
+						</div>
+						<div class="form-group">
+						  <label for="usr">받는이:</label>
+						  <input type="text" class="form-control" id="msgrec">
+						  <input type="hidden" class="form-control" id="msgsend" value="<%=logginMember.getM_CODE() %>">
+						</div>
+				        
+				        <div class="form-group">
+						  <label for="comment">내용 :</label>
+						  <textarea class="form-control" rows="5" id="comment"></textarea>
+						</div>
+				      </div>
+				
+				      <!-- Modal footer -->
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-danger" data-dismiss="modal" id="send">쪽지보내기</button>
+				        <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+				      </div>
+				
+				    </div>
+				  </div>
+				</div>
+			</div>
+			
+						
+	
+		</div>
 		
 
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 </section>
+
 
 <a class="top" href="#" title="맨위로">TOP</a>
 
+
 	<script>
-			function removeCheck() {
-	
-				 if (confirm("정말 '탈퇴'하시겠습니까??") == true){    //확인
-					location.replace('<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>');
-				 }else{   //취소
-					 return false;
-				 }
 
+
+		$("#send").on("click",function(){
+			
+			var msgtitle = $("#msgtitle").val();
+			var msgrec = $("#msgrec").val();
+			var msgsend = $("#msgsend").val();
+			var comment = $("#comment").val();
+			
+			var data = {"title":msgtitle,"receiver":msgrec,"sender":msgsend,"content":comment};
+			$.ajax({
+				url : "<%=request.getContextPath() %>/msg/send.do",
+				data : data,
+				success : function(data){
+					self.close();
+					alert(data);
 				}
+			})
+			
+		})
+
+
+
+			function se5(){
 		
-				var isUsClicked = false;
-				function updateMyProfile() {
-					var el = document.getElementsByClassName("userinfo-update")[0];
-					var back = document
-							.querySelectorAll(".content-container>*:not(.popup)");
-					console.log(back);
-					// back.chi.style = "filter: blur(4px);";
-					if (isUsClicked) {
-						el.style = "visibility: hidden;";
-						isUsClicked = false;
-					} else {
-						el.style = "visibility: visible;";
-						isUsClicked = true;
-					}
-				}
-				
-				function se1(){
-					$($(".my-3")[0]).css("display","flex");
-					$($(".my-3")[1]).css("display","none");
-					$($(".my-3")[2]).css("display","none");
-				}
-				
-				function se2(){
-					$($(".my-3")[0]).css("display","none");
-					$($(".my-3")[1]).css("display","flex");
-					$($(".my-3")[2]).css("display","none");			
-				}
-								
-				function se3(){
-					$($(".my-3")[0]).css("display","none");
-					$($(".my-3")[1]).css("display","none");
-					$($(".my-3")[2]).css("display","flex");
-				}
-				
-				function se4(){
-					$($(".my-3")[0]).css("display","flex");
-					$($(".my-3")[1]).css("display","flex");
-					$($(".my-3")[2]).css("display","flex");
-				}
-		</script>
+				$($(".my-3")[0]).css("display","none");
+				$($(".my-3")[1]).css("display","none");
+				$($(".my-3")[2]).css("display","none");
+				$($(".my-3")[3]).css("display","flex");
+			}
 
-<!-- <div class="paging">
-			<a href="##" class="btn_arr prev"> <span class="hide">이전페이지</span>
-			</a> <a href="##" class="on">1</a>
-			D : 활성화페이지일 경우 : on 처리
-			<a href="##">2</a> <a href="##">3</a> <a href="##">4</a> <a href="##">5</a>
-			<a href="##" class="btn_arr next"> <span class="hide">다음페이지</span>
-			</a> <br> <br> <br>
-		</div> -->
+
+	
+		function removeCheck() {
+
+			 if (confirm("정말 '탈퇴'하시겠습니까??") == true){    //확인
+				location.replace('<%=request.getContextPath()%>/member/memberDelete.do?M_ID=<%=logginMember.getM_ID()%>');
+			 }else{   //취소
+				 return false;
+			 }
+
+			}
+	
+			
+		$(function(){
+			var code={"code":<%=logginMember.getM_CODE() %>};
+			
+			$.ajax({
+				url : "<%=request.getContextPath() %>/msg/msgget.do",
+				data : code,
+				dataType : "json",
+				type : "post",
+				success : function(data){
+					let table=$("<table>").attr("id","myprefer");
+					let th=$("<tr>").append($("<th>").html("제목"))
+									.append($("<th>").html("읽음여부"))
+									.append($("<th>").html("보낸이"))
+									.append($("<th>").html("보낸날짜"))
+									.append($("<th>").html("삭제"));
+					table.append(th);
+					for(let i=0;i<data.length;i++){
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href","#").html(data[i]["title"])))
+									.append($("<td>").html(data[i]["readstatus"]))
+									.append($("<td>").html(data[i]["name"]))
+									.append($("<td>").html(data[i]["date"]))
+									.append($("<input>").attr({"type":"hidden","value":data[i]["msgcode"]}))
+									.append($("<td>").append($("<button>").attr({"onclick":"deletemsg();","type":"button"}).html("삭제")));
+						table.append(tr);
+					}
+					$("#container").html(table);
+				}
+			})
+			
+			
+			
+		})
+		
+		function deletemsg(){
+				var code = $(event.target).parent().prev().val();
+				
+				$.ajax({
+					url : "<%=request.getContextPath() %>/msg/msgdelete.do",
+					data : {"code":code},
+					type : "post",
+					success : function(data){
+						location.reload();
+					}
+				})
+			}
+			
+		</script>
+		<script src="<%=request.getContextPath() %>/js/userpage.js"></script>
 
 <%@ include file="/views/common/footer.jsp"%>
