@@ -157,12 +157,12 @@
 					
 				%>
 							<div class="carousel-item active">
-								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(0)%>" alt="centerImg1" style="max-width:500px; min-width:500px">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(0)%>" alt="centerImg1" style="max-width:500px; min-width:500px; min-height: 650px;">
 							</div>													
                            	<% if(td.getT_img().size()>1){
                            		for(int i=1;i<td.getT_img().size();i++) { %>
 							<div class="carousel-item">
-								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(i)%>" alt="centerImg" style="max-width:500px; min-width:500px">
+								<img src="<%=request.getContextPath() %>/upload/trainer/<%=td.getT_img().get(i)%>" alt="centerImg" style="max-width:500px; min-width:500px; min-height: 650px;">
 							</div>
 					<%} 
 					}%>
