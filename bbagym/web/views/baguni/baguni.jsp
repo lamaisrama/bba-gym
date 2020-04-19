@@ -221,6 +221,39 @@
              });   
             
 		});
+    	 
+ 		$(function () {
+            let reg = new RegExp(/\d{4,}/);
+
+            $(".content-container>div>h6").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+        
+        $(function () {
+            let reg = new RegExp(/\d{4,}/);
+
+            $("table>tbody>tr>td>h6").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
+        
+        $(function () {
+            let reg = new RegExp(/\d{4,}/);
+
+            $("#container>div>h6").each(function (i, item) {
+                let a = $(item).text();
+                console.log(reg.exec(a)[0]);
+                $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
+                //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
+            })
+        })
 
 
     </script>   
