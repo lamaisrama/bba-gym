@@ -2,6 +2,7 @@
 body * {
 	     /*  border: 1px solid red;  */      
 	font-family: 'Gothic A1', sans-serif;
+
 }
 
 .section-container {
@@ -48,8 +49,8 @@ body * {
 .left-menu-container>.profile-img {
 	border: 1px solid white;
 	box-sizing: border-box;
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 	margin-top: 10px;
 	margin-left: auto;
 	margin-right: auto;
@@ -105,16 +106,17 @@ body * {
 
 #my {
 	display: flex;
+	height: 40px;
 	font-size: 18px;
 }
 
 #my-1 {
-
 	display: flex;
 	padding: 10px;
 	margin-top:10px;
 	margin-right: 20px;
 	margin-left: 20px;
+	width:200px;
 	font-weight: bolder;
 }
 
@@ -125,6 +127,7 @@ body * {
 	font-weight: bolder;
 	margin-top:10px;
 }
+
 
 .my-3{
 	display: flex;
@@ -188,6 +191,7 @@ h3 span {
 	border-bottom : 1px solid lightslategrey;
 }
 
+
 #mycenter td,#mytrainer td,#myprefer td{
 	border-top : 1px solid gainsboro;
 }
@@ -208,6 +212,7 @@ h3 span {
 	display: flex;
 	justify-content : flex-end;
 }
+
 
 
 

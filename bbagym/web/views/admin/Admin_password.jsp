@@ -57,8 +57,7 @@ h4{
 	display:flex;
 			
     position:absolute; 
-    top:34%; left:50%;
-    margin-top:-100px; 
+    top:320px; left:50%; 
     margin-left:-100px; 
     width:200px; height:200px; 
  	">

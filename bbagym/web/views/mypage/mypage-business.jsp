@@ -85,10 +85,11 @@
 			}%>
 			</table>
 			<br>
+			<hr>
 			<div class="MyEnroll2">
 				<h4 id="2" style="color:#6E675F; font-weight:bolder">트레이너 등록 현황</h4>
 			</div>
-			
+			<hr>
 			<table id="table" class="table table-hover" style="text-align:center;">
 				<tr id="tr" class="table-secondary">
 					<th>트레이너이름</th>

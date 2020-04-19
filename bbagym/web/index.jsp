@@ -148,12 +148,12 @@
 	</section>
 	
 	<script>
-/* 
+
 		onload=function(){
 
 			navigator.geolocation.getCurrentPosition(handleGeoSucces, handleGeoError);
 
-		} */
+		}
 
 		function log(){
 			location.href= "<%=request.getContextPath()%>/member/memberloginview.do";

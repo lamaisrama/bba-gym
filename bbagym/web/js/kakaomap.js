@@ -10,7 +10,7 @@
 	
 	var container = document.getElementById('map-kakao'); //지도 담을 영역
 	var options = { //지도 생성에 필요한 기본 옵션
-	center: new kakao.maps.LatLng(33.450701, 126.570667), //지도 중심 좌표 -> 사용자 위치 넣으면 될 듯
+	center: new kakao.maps.LatLng(37.50133440959408, 127.04059989569686), //지도 중심 좌표 -> 사용자 위치 넣으면 될 듯
 	level: 3  //지도의 확대 축소 정도
 	};
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
@@ -22,12 +22,11 @@
 	});
 	//마커가 지도 위에 표시되도록 설정
 	marker.setMap(map);
-	
+
 	//지도에 클릭 이벤트 등록
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent){
 	var latlng = mouseEvent.latLng;
 	marker.setPosition(latlng);
-	
 	//위도 가져오기
 		latitude = latlng.getLat();
 		longitude = latlng.getLng();
@@ -61,6 +60,7 @@
 	function searchLocation(){
 		var keyword = document.querySelector("#locKeyword").value;
 		ps.keywordSearch(keyword, placesSearchCB); 	
+		
 	}
 	
 	
@@ -79,6 +79,7 @@
 	
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	        map.setBounds(bounds);
+
 	    } 
 	}
 

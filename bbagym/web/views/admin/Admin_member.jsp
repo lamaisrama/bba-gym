@@ -76,8 +76,6 @@ div#search-gender {
 				<th>주소</th>
 				<th>상태</th>
 				<th>탈퇴시키기</th>
-
-
 			</tr>
 		</thead>
 		<tbody>
@@ -102,10 +100,10 @@ div#search-gender {
 				<td><%=m.getM_EMAIL()%></td>
 				<td><%=m.getM_PHONE()%></td>
 				<td><%=m.getM_ADDRESS()%></td>
-				<td style="width: 80px;display:flex; justify-content:center;"><%=m.getM_STATUS()%></td>
+				<td style="width: ;display:flex; justify-content:center;"><%=m.getM_STATUS()%></td>
 				<td> 
 					<button style="width:65px;background-color: red; color: white;"
-						onclick="removeCheck();"><br>탈퇴<br><br></button>
+						onclick="removeCheck();">탈퇴</button>
 				</td>
 					
 					

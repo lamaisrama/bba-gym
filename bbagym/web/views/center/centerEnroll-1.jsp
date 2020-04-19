@@ -157,7 +157,7 @@
 	    <div class="row">
 	      <div class="col-lg-8 col-md-8 col-sm-12 info-footer">
 	        <div class="info-footer-inner">
-	        	<input type="submit" name="제출" value="다음">
+	        	<input type="submit" class="btn btn-primary" name="제출" value="다음">
 		    </div>
 	      </div>
 	    </div>

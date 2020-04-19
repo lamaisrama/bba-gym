@@ -57,7 +57,7 @@ public class CenterEnrollFinalServlet extends HttpServlet {
 		c.getPhotos().add(mr.getFilesystemName("c-photo1"));
 		for(int i=0;i<4;i++) {	
 			if(mr.getFilesystemName("c-photo"+(i+2))!=null){
-				c.getPhotos().add(mr.getFilesystemName("c-photo"+(i+1)));
+				c.getPhotos().add(mr.getFilesystemName("c-photo"+(i+2)));
 			}
 		}
 		c.setSchedulePath(mr.getParameter("c-timetable"));

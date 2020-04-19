@@ -78,7 +78,10 @@
 					<td><%=my.getExpiredate() %></td>
 					<td><%=my.getScore() %></td>
 				</tr>
+					<%} if(cmembership.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;">사용중인 센터 회원권이 없습니다.</p></td>
 				<%} %>
+				
 			</table>
 		</div>
 		</div>
@@ -95,6 +98,8 @@
 					<td><%=my.getPaydate() %></td>
 					<td><%=my.getScore() %></td>
 				</tr>
+				<%} if(tmembership.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;">사용중인 트레이너 회원권이 없습니다.</p></td>
 				<%} %>
 				
 			</table>
@@ -112,6 +117,8 @@
 					<td><%=my.getPhone() %></td>
 					<td><%=my.getAvgscore() %></td>
 				</tr>
+				<%} if(myPerfer.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;"> 찜하신 센터가 존재하지 않습니다. 센터찾기를 둘러보세요</p></td>
 				<%} %>
 			</table>
 		</div>
