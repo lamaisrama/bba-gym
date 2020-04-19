@@ -62,9 +62,9 @@
             <aside id="menu" ><!-- 관리자페이지 메뉴바 -->
 
                 <table style="width:400px;" >
-                <tr>
-                        <td><p style="color:black;font-size:20px;font-family: 'Abril Fatface', cursive;text-decoration: none;display:flex; justify-content:center;"href="">
-                        KIM SANGHAK<br>PARK NAJUNG<br>KIM BEOMSHIN<br>KIMGAYOUNG<br>SEO WON</p></td>
+              <tr>
+                        <td width="100%" height="80px"display="flex" justify-content="center"></td>
+                    
                     </tr>
                 	<tr >
                         <td><a class="hvr-sweep-to-right" href="<%=request.getContextPath()%>"  style="text-decoration: none;display:flex; justify-content:center;">홈페이지 메인화면가기</a></td>
@@ -83,10 +83,7 @@
                         <td><a style="text-decoration: none;display:flex; justify-content:center;"class="hvr-sweep-to-right"href="<%=request.getContextPath()%>/admin/memberlist.do">회원 관리</a></td>
                     </tr>
                     
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/resources/img/shshsh.png" width="100%" height="150px"display="flex" justify-content="center"></td>
-                    
-                    </tr>
+                  
                     <!--  <tr><span style="font-family: 'Dancing Script', cursive;display:flex; justify-content:center;">naasda josdsdunh</span></tr>
                		  <tr> -->
                   

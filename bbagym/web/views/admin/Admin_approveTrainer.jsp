@@ -322,7 +322,7 @@ GENERIC BUTTON STYLES
 	
 </ul>
 </div>
-	<br>
+
 </div>
 
 
