@@ -141,7 +141,7 @@
                                         				   	<%for(int j=0; j<cd.getCenterPrograms().size(); j++) { 
 	                                        					CenterPrograms cp2 = cd.getCenterPrograms().get(j);
 	                                        					if(preName1.equals(cp2.getpName())) {%>
-																	<td><%=(int)(cp2.getPrice()+(cp2.getPrice()*0.1)) %>원</td>						
+																	<td><p style="margin-bottom:0px; font-size:17px"><%=(int)(cp2.getPrice()+(cp2.getPrice()*0.1)) %>원</p></td>						
                                                 				<%} 
                                         						}%>
                                         				   	</tr>
@@ -442,7 +442,7 @@
 
             $(".custom-select>option").each(function (i, item) {
                 let a = $(item).text();
-                console.log(reg.exec(a)[0]);
+                /* console.log(reg.exec(a)[0]); */
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
                 //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
             })
@@ -453,7 +453,7 @@
 
             $("#price_table>tbody>tr>td>b").each(function (i, item) {
                 let a = $(item).text();
-                console.log(reg.exec(a)[0]);
+                /* console.log(reg.exec(a)[0]); */
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
                 //text에 숫자만 받아오기 (여기서 정규표현식으로 comma추가해주기)
             })
@@ -462,7 +462,7 @@
         		$(function () {
             let reg = new RegExp(/\d{4,}/);
 
-            $("#price_table>tbody>tr").each(function (i, item) {
+            $("#price_table>tbody>tr>td>p").each(function (i, item) {
                 let a = $(item).text();
                 console.log(reg.exec(a)[0]);
                 $(item).html(a.replace(reg.exec(a)[0],reg.exec(a)[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")));  
