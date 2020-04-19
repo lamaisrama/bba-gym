@@ -245,13 +245,25 @@
                             </div>
                         </div>
                        <hr>
+                 	<%if(cd.getCenterSchedule()!=null){ %>
+                        <div id="schedule" class="container-fluid"><br>
+                        	<div id="schedule-title">
+                        		<h5> <b> 시간표 </b></h5>
+                        		<div id="schedu-img" style="width:700px; margin:0px auto">
+                        			<img src="<%=request.getContextPath() %>/upload/center/<%=cd.getCenterSchedule() %>" width=500px >
+                       			
+                        		</div>
+                        	</div>
+                        </div>
+                        <br>
+                        <hr>  
+					<%} %>
                         <div id="section4" class="container-fluid"> <br>
 
                             <div id="map-title"><h5><b>위치</b></h5></div>
                             <br>
                            	<div id="map-api" style="width:600px; height:400px;"></div>
                         </div>
-                          
                         <div id="section3" class="container-fluid" style="height:auto;">
                             <hr><div id="review-zone">
                             	<div id="review-title"><h5>리뷰</h5></div>
