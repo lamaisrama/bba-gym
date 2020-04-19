@@ -142,7 +142,7 @@
 						  <input type="text" class="form-control" id="msgtitle">
 						</div>
 						<div class="form-group">
-						  <label for="usr">받는이:</label>
+						  <label for="usr">받는이(이메일):</label>
 						  <input type="text" class="form-control" id="msgrec">
 						  <input type="hidden" class="form-control" id="msgsend" value="<%=logginMember.getM_CODE() %>">
 						</div>
@@ -256,7 +256,7 @@
 									.append($("<th>").html("삭제"));
 					table.append(th);
 					for(let i=0;i<data.length;i++){
-					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]).html(data[i]["title"])))
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=u").html(data[i]["title"])))
 									.append($("<td>").html(data[i]["readstatus"]))
 									.append($("<td>").html(data[i]["name"]))
 									.append($("<td>").html(data[i]["date"]))
@@ -294,7 +294,7 @@
 									.append($("<th>").html("삭제"));
 					table.append(th);
 					for(let i=0;i<data.length;i++){
-					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]).html(data[i]["title"])))
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=u").html(data[i]["title"])))
 									.append($("<td>").html(data[i]["readstatus"]))
 									.append($("<td>").html(data[i]["name"]))
 									.append($("<td>").html(data[i]["date"]))

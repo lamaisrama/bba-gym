@@ -5,7 +5,7 @@
 
 <% 
 	Msg	 msg= (Msg)request.getAttribute("msg");
-
+	char who = (char)request.getAttribute("who");
 %>
     
 <%@ include file="/views/common/header.jsp"%>
@@ -33,7 +33,11 @@
 			<div>
 				<hr />
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
+				<%if(who=='u') {%>
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/mypage/mypageUser.do">돌아가기</a>
+				<%} else {%>
+				<a class="updateMyProfile" href="<%=request.getContextPath()%>/mypage/mypageBusiness.do">돌아가기</a>
+				<%} %>
 				<a class="updateMyProfile" onclick="removeCheck();" >회원탈퇴</a>
 			</div>
 	</nav>
@@ -54,8 +58,11 @@
 		
 		<div id="msg">
 				<button class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">답장하기</button>&nbsp&nbsp
+				<%if(who=='u') {%>
 				<button class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/mypage/mypageUser.do')" >돌아가기</button>
-				
+				<%} else { %>
+				<button class="btn btn-outline-info" onclick="location.replace('<%=request.getContextPath()%>/mypage/mypageBusiness.do')" >돌아가기</button>
+				<%} %>
 								<!-- The Modal -->
 				<div class="modal" id="myModal">
 				  <div class="modal-dialog">
@@ -74,7 +81,7 @@
 						  <input type="text" class="form-control" id="msgtitle">
 						</div>
 						<div class="form-group">
-						  <label for="usr">받는이:</label>
+						  <label for="usr">받는이(이메일):</label>
 						  <input type="text" class="form-control" id="msgrec" value="<%=msg.getEmail() %>">
 						  <input type="hidden" class="form-control" id="msgsend" value="<%=logginMember.getM_CODE() %>">
 						</div>
@@ -133,6 +140,8 @@
 					}
 				})
 			}
+		
+		
 </script>
 
 <style>

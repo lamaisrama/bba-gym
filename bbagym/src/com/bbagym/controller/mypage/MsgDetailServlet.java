@@ -31,11 +31,12 @@ public class MsgDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int code = Integer.parseInt(request.getParameter("code"));
-		
+		char who= request.getParameter("who").charAt(0);
 		Msg msg = new MypageService().getmsgdetail(code);
 		
 
 		request.setAttribute("msg", msg);
+		request.setAttribute("who", who);
 		request.getRequestDispatcher("/views/mypage/msgdetail.jsp").forward(request, response);
 	}
 
