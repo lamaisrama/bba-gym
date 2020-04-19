@@ -32,7 +32,9 @@ public class MsgDetailServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		int code = Integer.parseInt(request.getParameter("code"));
 		char who= request.getParameter("who").charAt(0);
-		Msg msg = new MypageService().getmsgdetail(code);
+		String flag =request.getParameter("read");
+		System.out.println(flag);
+		Msg msg = new MypageService().getmsgdetail(code,flag);
 		
 
 		request.setAttribute("msg", msg);

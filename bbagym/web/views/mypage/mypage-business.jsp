@@ -313,7 +313,7 @@
 									.append($("<th>").html("삭제"));
 					table.append(th);
 					for(let i=0;i<data.length;i++){
-					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=b").html(data[i]["title"])))
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=b&read=0").html(data[i]["title"])))
 									.append($("<td>").html(data[i]["readstatus"]))
 									.append($("<td>").html(data[i]["name"]))
 									.append($("<td>").html(data[i]["date"]))
@@ -351,7 +351,7 @@
 									.append($("<th>").html("삭제"));
 					table.append(th);
 					for(let i=0;i<data.length;i++){
-					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=b").html(data[i]["title"])))
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]+"&who=b&read=1").html(data[i]["title"])))
 									.append($("<td>").html(data[i]["readstatus"]))
 									.append($("<td>").html(data[i]["name"]))
 									.append($("<td>").html(data[i]["date"]))

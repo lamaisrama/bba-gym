@@ -110,10 +110,10 @@ public class MypageService {
 		return result;
 	}
 	
-	public Msg getmsgdetail(int code) {
+	public Msg getmsgdetail(int code,String flag) {
 		Connection conn = getConnection();
 		Msg msg= dao.getmsgdetail(conn,code);
-		if(msg!=null&&msg.getReadstatus()=='N') {
+		if(msg!=null&&msg.getReadstatus()=='N'&&!flag.equals("1")) {
 			int result = dao.updatemsg(conn,code);
 			if(result>0) commit(conn);
 			else rollback(conn);
