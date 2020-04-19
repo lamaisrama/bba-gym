@@ -1,6 +1,6 @@
 
 body * {
-	     /* border: 1px solid red;  */     
+	     /*  border: 1px solid red;  */      
 	font-family: 'Gothic A1', sans-serif;
 }
 
@@ -16,6 +16,12 @@ body * {
 
 .modal-backdrop {
     background-color: rgb(0,0,0,0);
+}
+
+.badge-pill{
+	padding-right: .2em; 
+     padding-left: .2em;
+	border-radius: 10rem;
 }
 
 /********* 왼쪽 메뉴 *********/
@@ -49,6 +55,7 @@ body * {
 	margin-right: auto;
 	font-weight: bold;
 }
+
 
 .left-menu-container>.profile-info {
 	box-sizing: border-box;

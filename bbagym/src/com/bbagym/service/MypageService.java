@@ -1,8 +1,8 @@
 package com.bbagym.service;
 
 import static com.bbagym.common.JDBCTemplate.close;
-import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.commit;
+import static com.bbagym.common.JDBCTemplate.getConnection;
 import static com.bbagym.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
@@ -82,6 +82,14 @@ public class MypageService {
 		return list;
 	}
 	
+	public List<Msg> getmsg2(int mcode){
+		Connection conn = getConnection();
+		List<Msg> list = dao.getmsg2(conn,mcode);
+	
+		close(conn);
+		return list;
+	}
+	
 	public int deletemsg(int msgcode) {
 		Connection conn = getConnection();
 		boolean flag = dao.checkdelte(conn,msgcode);
@@ -90,6 +98,28 @@ public class MypageService {
 		else rollback(conn);
 		close(conn);
 		return result;
+	}
+	
+	public int deletemsg2(int msgcode) {
+		Connection conn = getConnection();
+		boolean flag = dao.checkdelte2(conn,msgcode);
+		int result = dao.deletemsg2(conn,msgcode,flag);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public Msg getmsgdetail(int code) {
+		Connection conn = getConnection();
+		Msg msg= dao.getmsgdetail(conn,code);
+		if(msg!=null&&msg.getReadstatus()=='N') {
+			int result = dao.updatemsg(conn,code);
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}
+		close(conn);
+		return msg;
 	}
 	
 }

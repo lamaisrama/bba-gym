@@ -3,6 +3,8 @@ function se1(){
 					$($(".my-3")[1]).css("display","none");
 					$($(".my-3")[2]).css("display","none");
 					$($(".my-3")[3]).css("display","none");
+					$($(".my-3")[4]).css("display","none");
+
 				}
 				
 				function se2(){
@@ -10,6 +12,8 @@ function se1(){
 					$($(".my-3")[1]).css("display","flex");
 					$($(".my-3")[2]).css("display","none");
 					$($(".my-3")[3]).css("display","none");
+					$($(".my-3")[4]).css("display","none");
+
 				}
 								
 				function se3(){
@@ -17,6 +21,8 @@ function se1(){
 					$($(".my-3")[1]).css("display","none");
 					$($(".my-3")[2]).css("display","flex");
 					$($(".my-3")[3]).css("display","none");
+					$($(".my-3")[4]).css("display","none");
+
 				}
 				
 				function se4(){
@@ -24,6 +30,8 @@ function se1(){
 					$($(".my-3")[1]).css("display","flex");
 					$($(".my-3")[2]).css("display","flex");
 					$($(".my-3")[3]).css("display","none");
+					$($(".my-3")[4]).css("display","none");
+
 				}
 				
 				

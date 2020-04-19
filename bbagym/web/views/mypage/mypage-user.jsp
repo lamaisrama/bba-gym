@@ -28,7 +28,11 @@
 			<div class="profile-info">
 				<div>
 					<span><%=m.getM_NAME()%>님 환영합니다</span>
+					<button type="button" class="btn btn-primary" onclick="se5();">
+					  Messages <span class="badge badge-dark" id="count" ></span>
+					</button>
 				</div>
+	
 			</div>
 			
 			<div>
@@ -113,7 +117,7 @@
 		</div>
 		</div>
 		
-		<div class="my-3" style="display:none">쪽지함
+		<div class="my-3" style="display:none">받은 쪽지함
 			<div style="width: 95%; height: auto; margin: auto;" id="container">
 				
 			</div>
@@ -164,6 +168,13 @@
 	
 		</div>
 		
+		<div class="my-3" style="display:none">보낸 쪽지함
+		<div style="width: 95%; height: auto; margin: auto;" id="container2">
+		
+		
+		</div>
+		</div>
+		
 
 	</div>
 	
@@ -197,6 +208,7 @@
 				success : function(data){
 					self.close();
 					alert(data);
+					location.reload();
 				}
 			})
 			
@@ -210,6 +222,7 @@
 				$($(".my-3")[1]).css("display","none");
 				$($(".my-3")[2]).css("display","none");
 				$($(".my-3")[3]).css("display","flex");
+				$($(".my-3")[4]).css("display","flex");
 			}
 
 
@@ -227,7 +240,8 @@
 			
 		$(function(){
 			var code={"code":<%=logginMember.getM_CODE() %>};
-			
+			var url = "<%=request.getContextPath() %>/msg/msgdetail.do?code=";
+			var count=0;
 			$.ajax({
 				url : "<%=request.getContextPath() %>/msg/msgget.do",
 				data : code,
@@ -242,34 +256,87 @@
 									.append($("<th>").html("삭제"));
 					table.append(th);
 					for(let i=0;i<data.length;i++){
-					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href","#").html(data[i]["title"])))
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]).html(data[i]["title"])))
 									.append($("<td>").html(data[i]["readstatus"]))
 									.append($("<td>").html(data[i]["name"]))
 									.append($("<td>").html(data[i]["date"]))
 									.append($("<input>").attr({"type":"hidden","value":data[i]["msgcode"]}))
-									.append($("<td>").append($("<button>").attr({"onclick":"deletemsg();","type":"button"}).html("삭제")));
+									.append($("<td>").append($("<button>").attr({"onclick":"deletemsg1();","type":"button"}).html("삭제")));
 						table.append(tr);
+						
+						if(data[i]["readstatus"]=='N'){
+							count++;
+						}
+						
 					}
 					$("#container").html(table);
+					$("#count").html(count);
+					if(count>0){
+						$("#count").remove("class","badge badge-dark");
+						$("#count").attr("class","badge badge-danger");
+					}
+				}
+			})
+			
+			
+
+			$.ajax({
+				url : "<%=request.getContextPath() %>/msg/msgget2.do",
+				data : code,
+				dataType : "json",
+				type : "post",
+				success : function(data){
+					let table=$("<table>").attr("id","myprefer");
+					let th=$("<tr>").append($("<th>").html("제목"))
+									.append($("<th>").html("읽음여부"))
+									.append($("<th>").html("보낸이"))
+									.append($("<th>").html("보낸날짜"))
+									.append($("<th>").html("삭제"));
+					table.append(th);
+					for(let i=0;i<data.length;i++){
+					let tr=$("<tr>").append($("<td>").append($("<a>").attr("href",url+data[i]["msgcode"]).html(data[i]["title"])))
+									.append($("<td>").html(data[i]["readstatus"]))
+									.append($("<td>").html(data[i]["name"]))
+									.append($("<td>").html(data[i]["date"]))
+									.append($("<input>").attr({"type":"hidden","value":data[i]["msgcode"]}))
+									.append($("<td>").append($("<button>").attr({"onclick":"deletemsg2();","type":"button"}).html("삭제")));
+						table.append(tr);
+					}
+					$("#container2").html(table);
+			
 				}
 			})
 			
 			
 			
+			
 		})
 		
-		function deletemsg(){
-				var code = $(event.target).parent().prev().val();
-				
-				$.ajax({
-					url : "<%=request.getContextPath() %>/msg/msgdelete.do",
-					data : {"code":code},
-					type : "post",
-					success : function(data){
-						location.reload();
-					}
-				})
-			}
+		function deletemsg1(){
+			var code = $(event.target).parent().prev().val();
+		
+			$.ajax({
+				url : "<%=request.getContextPath() %>/msg/msgdelete.do",
+				data : {"code":code,"flag":"r"},
+				type : "post",
+				success : function(data){
+					location.reload();
+				}
+			})
+		}
+		
+		function deletemsg2(){
+			var code = $(event.target).parent().prev().val();
+
+			$.ajax({
+				url : "<%=request.getContextPath() %>/msg/msgdelete.do",
+				data : {"code":code,"flag":"c"},
+				type : "post",
+				success : function(data){
+					location.reload();
+				}
+			})
+		}
 			
 		</script>
 		<script src="<%=request.getContextPath() %>/js/userpage.js"></script>

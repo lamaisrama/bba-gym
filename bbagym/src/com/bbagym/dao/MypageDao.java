@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -258,11 +259,71 @@ public class MypageDao {
 		return list;
 	}
 	
+	public List<Msg> getmsg2(Connection conn ,int mcode){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Msg> list = new ArrayList<Msg>();
+		String sql = prop.getProperty("getmsg2");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, mcode);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Msg m = new Msg();
+				m.setTitle(rs.getString("title"));
+				m.setReadstatus(rs.getString("recv_read").charAt(0));
+				m.setName(rs.getString("m_name"));
+				m.setDate(rs.getDate("date_sent"));
+				m.setMsgcode(rs.getInt("msg_code"));
+				
+				list.add(m);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public boolean checkdelte(Connection conn, int msgcode) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		boolean flag= false;
 		String sql = prop.getProperty("checkdelte");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, msgcode);
+			
+			rs=pstmt.executeQuery();
+			
+			rs.next();
+			char status = rs.getString(1).charAt(0);
+		
+			if(status=='N') {
+				flag= false; //안지운거
+			}else {
+				flag= true; //지운거
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return flag;
+	}
+	
+	public boolean checkdelte2(Connection conn, int msgcode) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean flag= false;
+		String sql = prop.getProperty("checkdelte2");
 
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -315,4 +376,85 @@ public class MypageDao {
 		return result;
 	}
 	
+	public int deletemsg2(Connection conn,int msgcode,boolean flag) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+	
+		String sql ="";
+		
+		if(flag) {
+			sql=prop.getProperty("msgdelete");
+		}else {
+			sql=prop.getProperty("msgupdatedelete2");
+		}
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			;
+			pstmt.setInt(1, msgcode);
+
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public Msg getmsgdetail(Connection conn, int code) {
+		PreparedStatement pstmt = null;
+		ResultSet rs=null;
+		Msg msg = null;
+		String sql= prop.getProperty("getmsgdetail");
+		System.out.println(sql);
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				msg = new Msg();
+				msg.setTitle(rs.getString("title"));
+				msg.setDate(rs.getDate("date_sent"));
+				msg.setContent(rs.getString("note"));
+				msg.setSendcode(rs.getInt("sent_id"));
+				msg.setReccode(rs.getInt("recv_id"));
+				msg.setName(rs.getString("m_name"));
+				msg.setReadstatus(rs.getString("recv_read").charAt(0));
+				msg.setEmail(rs.getString("m_email"));
+				msg.setMsgcode(rs.getInt("msg_code"));
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return msg;
+	}
+	
+	public int updatemsg(Connection conn,int code) {
+		PreparedStatement pstmt = null;
+		int result=0;
+		String sql= prop.getProperty("updatemsg");
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, code);
+			
+			result=pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

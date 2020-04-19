@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bbagym.model.vo.Msg;
 import com.bbagym.service.MypageService;
 
 /**
- * Servlet implementation class MsgDeleteServlet
+ * Servlet implementation class MsgDetailServlet
  */
-@WebServlet("/msg/msgdelete.do")
-public class MsgDeleteServlet extends HttpServlet {
+@WebServlet("/msg/msgdetail.do")
+public class MsgDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MsgDeleteServlet() {
+    public MsgDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +30,13 @@ public class MsgDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int msgcode = Integer.parseInt(request.getParameter("code"));
-		String flag = request.getParameter("flag");
-		System.out.println(flag);
-		if(flag.equals("r")) {
-			int result = new MypageService().deletemsg(msgcode);
-		}else {
-			int result = new MypageService().deletemsg2(msgcode);
-		}
+		int code = Integer.parseInt(request.getParameter("code"));
+		
+		Msg msg = new MypageService().getmsgdetail(code);
+		
+
+		request.setAttribute("msg", msg);
+		request.getRequestDispatcher("/views/mypage/msgdetail.jsp").forward(request, response);
 	}
 
 	/**

@@ -12,15 +12,15 @@ public class Msg {
 	private String content;
 	private Date date;
 	private char readstatus;
+	private String email;
 	
 	public Msg() {
 		// TODO Auto-generated constructor stub
 	}
 
-	
 
 	public Msg(int msgcode, String name, int reccode, String title, int sendcode, String content, Date date,
-			char readstatus) {
+			char readstatus, String email) {
 		super();
 		this.msgcode = msgcode;
 		this.name = name;
@@ -30,8 +30,24 @@ public class Msg {
 		this.content = content;
 		this.date = date;
 		this.readstatus = readstatus;
+		this.email = email;
 	}
 
+
+
+
+
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 
 	public int getMsgcode() {
