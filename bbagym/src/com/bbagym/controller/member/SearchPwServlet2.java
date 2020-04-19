@@ -16,7 +16,7 @@ import com.bbagym.service.MemberService;
 /**
  * Servlet implementation class SearchPwServlet1
  */
-@WebServlet("/member/searchPw.do")
+@WebServlet(name="SearchPwServlet2",urlPatterns="/member/searchPw.do")
 public class SearchPwServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,9 +36,7 @@ public class SearchPwServlet2 extends HttpServlet {
 		String id=request.getParameter("M_ID");
 		String name=request.getParameter("M_NAME");
 		String email=request.getParameter("M_EMAIL");
-		System.out.println(id);
-		System.out.println(name);
-		System.out.println(email);
+	
 		Member m=new MemberService().searchPW(id,name,email);
 		
 		if(m!=null) {

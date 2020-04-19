@@ -1,6 +1,6 @@
 	
 	* {
-		    /*  border : 1px solid red;    */  
+		     /* border : 1px solid red;  */    
 		  font-family: 'Nanum Square', Dotum, sans-serif;  
 	}
 
@@ -86,6 +86,12 @@
 #container h6{
 	font-size: 35px;
 }
+
+#title{
+	margin-top : 50px;
+	text-align : center;
+}
+
 
         
 

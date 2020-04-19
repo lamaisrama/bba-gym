@@ -166,6 +166,20 @@ public class AdminDao {
 			close(pstmt);
 		}return result;
 	}
+	public int updateApproval11(Connection conn) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateApproval11");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	
 	public int noApproval(Connection conn, int c_code) {
 		PreparedStatement pstmt=null;
 		int result=0;
@@ -189,6 +203,19 @@ public class AdminDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, c_code);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
+	public int updateApproval22(Connection conn) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateApproval22");
+		try {
+			pstmt=conn.prepareStatement(sql);
 			result=pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -290,6 +317,7 @@ public class AdminDao {
 		}
 		return result;
 	}
+
 	
 	
 

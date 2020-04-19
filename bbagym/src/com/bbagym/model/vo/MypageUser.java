@@ -132,12 +132,16 @@ public class MypageUser {
 		this.avgscore = avgscore;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "MypageUser [cname=" + cname + ", pname=" + pname + ", month=" + month + ", paydate=" + paydate
-				+ ", expiredate=" + expiredate + ", score=" + score + ", count=" + count + ", address=" + address
-				+ ", phone=" + phone + ", avgscore=" + avgscore + "]";
+		return "MypageUser [ccode=" + ccode + ", cname=" + cname + ", pname=" + pname + ", month=" + month
+				+ ", paydate=" + paydate + ", expiredate=" + expiredate + ", score=" + score + ", count=" + count
+				+ ", address=" + address + ", phone=" + phone + ", avgscore=" + avgscore + "]";
 	}
+
+	
 
 	
 	

@@ -57,14 +57,14 @@ public class AdminMemberList extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<span>이전    </span>";
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+(pageNo-1)+"'>[이전]>&nbsp</a>";
+			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+(pageNo-1)+"'>이전>&nbsp</a>";
 			
 		}
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(pageNo==cPage) {
 				pageBar+="<span>"+pageNo+"</span>";
 			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'&nbsp>&nbsp"+pageNo+"&nbsp&nbsp</a>";
+				pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'&nbsp>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -73,7 +73,7 @@ public class AdminMemberList extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<span>   다음</span>";
 		}else {
-			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'>   [다음]</a>";  //pageNo+1 아님 하면 7나옴.
+			pageBar+="<a href='"+request.getContextPath()+"/admin/memberlist.do?cPage="+pageNo+"'>   다음</a>";  //pageNo+1 아님 하면 7나옴.
 		}
 		//pageBar 만들기 끝.!
 	

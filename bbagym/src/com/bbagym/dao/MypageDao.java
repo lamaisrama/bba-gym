@@ -47,6 +47,7 @@ public class MypageDao {
 				my.setPaydate(rs.getDate("order_date"));
 				my.setExpiredate(rs.getDate("order_expire_date"));
 				my.setScore(rs.getInt("score"));
+				my.setCcode(rs.getInt("c_code"));
 				
 				list.add(my);
 			}
@@ -74,6 +75,7 @@ public class MypageDao {
 			
 			while(rs.next()) {
 				MypageUser my = new MypageUser();
+				my.setCcode(rs.getInt("t_code"));
 				my.setCname(rs.getString("c_name"));
 				my.setPname(rs.getString("p_name"));
 				my.setCount(rs.getInt("count"));

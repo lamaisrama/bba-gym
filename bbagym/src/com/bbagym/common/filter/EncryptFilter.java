@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 				"LoginServlet", 
 				"MemberEnrollEndServlet",
 				"BusinessEnrollEndServlet",
-				"AdminPasswordEndServlet"
+				"AdminPasswordEndServlet",
+				"SearchPwServlet2"
 		})
 public class EncryptFilter implements Filter {
 

@@ -51,7 +51,7 @@ div#search-gender {
 }
 </style>
 <!--회원 관리-->
-<div class="" style="width: 100%; padding-left: 20px;">
+<div class="" style="width: 100%; padding-left: 20px;margin-right:200px;">
 	<div
 		style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
 		<br>
@@ -67,15 +67,15 @@ div#search-gender {
 	
 		<thead>
 			<tr style="text-align: center;">
-
-				<th>아이디</th>
 				<th>이름</th>
+				<th>아이디</th>				
 				<th>성별</th>
 				<th>나이</th>
 				<th>이메일</th>
 				<th>전화번호</th>
 				<th>주소</th>
 				<th>상태</th>
+				<th>탈퇴시키기</th>
 
 
 			</tr>
@@ -93,25 +93,24 @@ div#search-gender {
 			%>
 			<tr>
 				<input name="CODE" type="hidden" style="width: 50px" value="<%=m.getM_CODE()%>" readonly>
+				<th><%=m.getM_NAME()%></th>
 				<td><a
-					href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=m.getM_ID()%>"><%=m.getM_ID()%></a></td>
-				<td><%=m.getM_NAME()%></td>
+					href="<%=request.getContextPath()%>/member/memberEnrollView2.do?M_ID=<%=m.getM_ID()%>"><%=m.getM_ID()%></a></td>
+				
 				<td><%=m.getM_GENDER()%></td>
 				<td><%=m.getM_AGE()%></td>
 				<td><%=m.getM_EMAIL()%></td>
 				<td><%=m.getM_PHONE()%></td>
 				<td><%=m.getM_ADDRESS()%></td>
-				<td style="width: 80px"><%=m.getM_STATUS()%> <br> <%
- 	if (m.getM_STATUS() == 'N') {
- %>
-					<button style="background-color: red; color: white;"
-						onclick="removeCheck();">탈퇴</button> <%
- 	} else {
- %>
-					<button style="background-color: black; color: yellow;" onclick="">탈퇴완료</button>
-					<%
-						}
-					%> <script>
+				<td style="width: 80px;display:flex; justify-content:center;"><%=m.getM_STATUS()%></td>
+				<td> 
+					<button style="width:65px;background-color: red; color: white;"
+						onclick="removeCheck();"><br>탈퇴<br><br></button>
+				</td>
+					
+					
+					
+					<script>
 				function removeCheck() {
 					if (confirm("'탈퇴'하시겠습니까??") == true){    //확인
 						

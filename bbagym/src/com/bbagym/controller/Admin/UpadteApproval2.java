@@ -45,7 +45,7 @@ public class UpadteApproval2 extends HttpServlet {
 
 
 			if(result>0) {
-				msg="트레이너 등록요청을 승인했습니다.";
+				msg="[트레이너] 등록요청을 승인했습니다.";
 				loc="/admin/trainerList.do";
 			}else {
 				msg="승인실패.";

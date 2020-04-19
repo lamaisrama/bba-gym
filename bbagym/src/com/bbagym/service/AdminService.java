@@ -64,6 +64,21 @@ public int updateApproval(int c_code) {
 
 	return result;
 }
+
+public int updateApproval11() {
+	Connection conn=getConnection();
+	int result=dao.updateApproval11(conn);
+	if (result > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+
+	return result;
+}
+
+
+
 public int noApproval(int c_code) {
 	Connection conn=getConnection();
 	int result=dao.noApproval(conn,c_code);
@@ -76,6 +91,7 @@ public int noApproval(int c_code) {
 	return result;
 }
 
+
 public int updateApproval2(int c_code) {
 	Connection conn=getConnection();
 	int result=dao.updateApproval2(conn,c_code);
@@ -87,6 +103,19 @@ public int updateApproval2(int c_code) {
 
 	return result;
 }
+
+public int updateApproval22() {
+	Connection conn=getConnection();
+	int result=dao.updateApproval22(conn);
+	if (result > 0)
+		commit(conn);
+	else
+		rollback(conn);
+	close(conn);
+
+	return result;
+}
+
 
 public int noApproval2(int c_code) {
 	// TODO Auto-generated method stub
@@ -130,6 +159,11 @@ public int updateStatus(int userId) {
 
 	return result;
 }
+
+
+
+
+
 
 
 

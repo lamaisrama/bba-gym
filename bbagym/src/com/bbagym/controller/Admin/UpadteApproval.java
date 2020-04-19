@@ -45,7 +45,7 @@ public class UpadteApproval extends HttpServlet {
 
 
 			if(result>0) {
-				msg="사업자가 등록요청한 시설을 승인했습니다.";
+				msg="[센터] 등록요청을 승인했습니다.";
 				loc="/admin/centerList.do";
 			}else {
 				msg="승인실패.";

@@ -70,7 +70,7 @@ public class CenterListServlet extends HttpServlet {
 		//페이지바의 이미지는
 		// [이전] 1 2 3 4 5 [다음]
 		if(pageNo==1) {
-			pageBar+="<span>[이전]    </span>";
+			pageBar+="<span>이전    </span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()+"/admin/centerList.do?cPage="+(pageNo-1)+"'>[이전]>&nbsp</a>";
 			
@@ -79,14 +79,14 @@ public class CenterListServlet extends HttpServlet {
 			if(pageNo==cPage) {
 				pageBar+="<span>"+pageNo+"</span>";
 			}else {
-				pageBar+="<a href='"+request.getContextPath()+"/admin/centerList.do?cPage="+pageNo+"'&nbsp>&nbsp"+pageNo+"&nbsp&nbsp</a>";
+				pageBar+="<a href='"+request.getContextPath()+"/admin/centerList.do?cPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		
 		//다음
 		if(pageNo>totalPage) {
-			pageBar+="<span>   [다음]</span>";
+			pageBar+="<span>   다음</span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()
 			+"/admin/centerList.do?cPage="+pageNo+"'>   [다음]</a>";  //pageNo+1 아님 하면 7나옴.
