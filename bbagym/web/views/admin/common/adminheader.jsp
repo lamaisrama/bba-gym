@@ -48,6 +48,14 @@
             <div id="welcome"><!-- 관리자페이지 타이틀 -->
                 <nav>
                     <h1 style="font-size: 50px; color: white;">빠짐 관리자페이지<i class="fa fa-heart heart"></i></h1>
+                    
+			     <MARQUEE  scrollamount="10"><p style="color:white;font-size:20px;font-family: 'Abril Fatface', cursive;text-decoration: none;display:flex; justify-content:center;"href="">
+                        &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp KIM SANGHAK &nbsp &nbsp &nbsp
+                        PARK NAJUNG&nbsp &nbsp &nbsp
+                        KIM BEOMSHIN&nbsp &nbsp &nbsp
+                        CHOI GAYOUNG&nbsp &nbsp &nbsp
+                        SEO WON</MARQUEE></p></MARQUEE>
+                    
                 </nav>
             </div>
         </div>
