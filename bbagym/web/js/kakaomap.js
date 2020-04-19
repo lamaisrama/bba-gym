@@ -22,7 +22,7 @@
 	});
 	//마커가 지도 위에 표시되도록 설정
 	marker.setMap(map);
-	
+
 	//지도에 클릭 이벤트 등록
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent){
 	var latlng = mouseEvent.latLng;
@@ -60,6 +60,7 @@
 	function searchLocation(){
 		var keyword = document.querySelector("#locKeyword").value;
 		ps.keywordSearch(keyword, placesSearchCB); 	
+		
 	}
 	
 	
@@ -78,6 +79,7 @@
 	
 	    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 	        map.setBounds(bounds);
+
 	    } 
 	}
 

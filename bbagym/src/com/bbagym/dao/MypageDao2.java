@@ -325,7 +325,7 @@ public class MypageDao2 {
 	
 	public int insertCenterOrderHistory(Connection conn, int mCode, String pCode, String month) {
 		PreparedStatement pstmt= null;
-		String sql="insert into c_order_history values(seq_coh.nextval, sysdate, add_months(sysdate, ?), ?, ?, ?, 0, null)";
+		String sql="insert into c_order_history values(seq_coh.nextval, sysdate, add_months(sysdate, ?), ?, ?, ?, null, null)";
 		int result=0;
 		try{
 			pstmt=conn.prepareStatement(sql);

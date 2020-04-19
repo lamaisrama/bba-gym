@@ -203,7 +203,6 @@
                 searchLocation();
             }
         }
-
         
 		//장소 변경 후 검색하는 ftn
 		function relocation(){
