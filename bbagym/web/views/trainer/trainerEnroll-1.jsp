@@ -18,7 +18,7 @@
 		            </div>
 		            <br>
 			            <div class="form-group">
-			              <label for="t-name">트레이너명 <small> &nbsp; 가입시 입력하신 사업장 주소로 등록됩니다.</small></label>
+			              <label for="t-name">트레이너주소 <small> &nbsp; 가입시 입력하신 사업장 주소로 등록됩니다.</small></label>	
 			              <!-- <button type="button" class="btn btn-warning" onclick="goPopup()">수업주소 </button> -->
 			              <!-- <input type="text" class="form-control" name="t-address" id="t-address" placeholder="Enter Addr" required readonly style="margin-top:10px;"> --> <!-- 주소 api를 통해 오는 데이터   -->
 			              <input type="text" class="form-control" name="t-address2" value="<%=logginMember.getM_ADDRESS_2() %>" readonly>

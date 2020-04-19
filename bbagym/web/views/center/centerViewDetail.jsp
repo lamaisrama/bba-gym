@@ -203,10 +203,9 @@
 												<ul class="carousel-indicators">
 												<%if(cd.getCenterImgs()!=null &&!cd.getCenterImgs().isEmpty()) { %>
 													<li data-target="#demo" data-slide-to="0" class="active"></li>
-												
-												<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
-													<li data-target="#demo" data-slide-to=<%=i %>></li>
-												<%}
+													<%for(int i=1;i<cd.getCenterImgs().size();i++) { %>
+														<li data-target="#demo" data-slide-to=<%=i %>></li>
+													<%}
 												
 												}%>
 												</ul>
