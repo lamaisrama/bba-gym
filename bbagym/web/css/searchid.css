@@ -27,15 +27,10 @@
 
 
 
-#bt2{
-	display : flex;
-	justify-content :center;
-	border-top : 1px solid black;
-	margin-top : 30px;
-}
+
 
 #bt2 button{
-	margin-left : 15px;
+	margin-left : 10px;
 	border : 0;
 	outline : none;
 	background-color : white;
