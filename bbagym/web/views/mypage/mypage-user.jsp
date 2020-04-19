@@ -27,16 +27,17 @@
 			</div>
 			<div class="profile-info">
 				<div>
-					<span><%=m.getM_NAME()%>님 환영합니다</span>
+					<span style="color:#D5B942;"><%=m.getM_NAME()%>님 환영합니다❤️</span>
 				</div>
 			</div>
 			
 			<div>
 				<hr />
-				<a class="updateMyProfile">나의 회원권</a>
-				<a class="updateMyProfile">나의 찜</a>
+				<a class="updateMyProfile" href="#my-3">나의 회원권</a>
+				<a class="updateMyProfile" href=".prefer">나의 찜</a>
 				<a class="updateMyProfile" href="<%=request.getContextPath()%>/member/memberEnrollView.do?M_ID=<%=logginMember.getM_ID()%>">회원정보수정</a>
 				<a class="updateMyProfile" onclick="removeCheck();" >회원탈퇴</a>
+				<hr />	
 			</div>
 	</nav>
 	
@@ -48,27 +49,25 @@
 		<br>
 
 		<h3>
-			<span>M</span> <span>Y</span> <span>P</span> <span>A</span> <span>G</span>
+			<span>M</span> <span>Y</span><span>&nbsp;</span><span>P</span> <span>A</span> <span>G</span>
 			<span>E</span>
 		</h3>
 		<br>
 		<br>
-		<div style="text-align: center; margin-bottom: 20px;">-사용자-</div>
 
-		<div id="table">
-			<div id="my">
-				<div id="my-1" width="200px">나의 회원권</div>
-				<div id="my-2"><span><%=cmembership.size()+tmembership.size() %>개</span></div>
-			</div>
-			<hr>
-			<div id="my">	
-				<div id="my-1"  width="200px">My 찜</div>
-				<div id="my-2"><span><%=myPerfer.size() %>개</span></div>
-			</div>
+		<div id="my">
+			<div id="my-1">나의 회원권</div>
+			<div id="my-2" style="margin-right:50px;"><span><%=cmembership.size()+tmembership.size() %>개</span></div>
+			<div id="my-1">My 찜</div>
+			<div id="my-2"><span><%=myPerfer.size() %>개</span></div>
 		</div>
-		<div id="my-3">나의 센터 회원권</div>
+		<div id="my">	
+		</div>
+		<hr>
+		<div id="my-3">나의 센터
+		 회원권</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
-			<table id="mycenter">
+			<table id="mycenter" class="table table-striped table-hover">
 				<tr><th>센터명</th><th>프로그램명</th><th>이용달수</th><th>결제일</th><th>만료일</th><th>내점수</th></tr>
 				<%for(MypageUser my : cmembership) {%>
 				<tr>
@@ -79,13 +78,15 @@
 					<td><%=my.getExpiredate() %></td>
 					<td><%=my.getScore() %></td>
 				</tr>
+				<%} if(cmembership.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;">사용중인 센터 회원권이 없습니다.</p></td>
 				<%} %>
 			</table>
 		</div>
-		
+
 		<div id="my-3">나의 트레이너 회원권</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
-			<table id="mytrainer">
+			<table id="mytrainer" class="table table-striped table-hover">
 				<tr><th>센터명</th><th>프로그램명</th><th>PT이용횟수</th><th>결제일</th><th>내점수</th></tr>
 				<%for(MypageUser my : tmembership) {%>
 				<tr>
@@ -95,14 +96,16 @@
 					<td><%=my.getPaydate() %></td>
 					<td><%=my.getScore() %></td>
 				</tr>
+				<%} if(tmembership.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;">사용중인 트레이너 회원권이 없습니다.</p></td>
 				<%} %>
 				
 			</table>
 		</div>
 		
-		<div id="my-3">My 찜</div>
+		<div id="my-3" class="prefer">나의 찜</div>
 		<div style="width: 95%; height: auto; margin: 0 auto;">
-			<table id="myprefer">
+			<table id="myprefer" class="table table-striped table-hover">
 				<tr><th>센터명</th><th>주소</th><th>연락처</th><th>평점</th></tr>
 				<%for(MypageUser my : myPerfer) {%>
 				<tr>
@@ -111,6 +114,8 @@
 					<td><%=my.getPhone() %></td>
 					<td><%=my.getAvgscore() %></td>
 				</tr>
+				<%} if(myPerfer.size()==0){%>
+					<td colspan="6"><p style="color:lightgrey; text-align: center;"> 찜하신 센터가 존재하지 않습니다. 센터찾기를 둘러보세요</p></td>
 				<%} %>
 			</table>
 		</div>
