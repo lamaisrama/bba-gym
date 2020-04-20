@@ -65,7 +65,7 @@
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-4">
-                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="c-cat" value="4">골프
+                  <input type="checkbox" class="form-check-input" id="c-cat-4" name="c-cat" value="4">격투기
                 </label>
               </div>
               <div class="form-check-inline">
@@ -81,6 +81,11 @@
               <div class="form-check-inline">
                 <label class="form-check-label" for="c-cat-7">
                   <input type="checkbox" class="form-check-input" id="c-cat-7" name="c-cat" value="7">테니스
+                </label>
+              </div>
+              <div class="form-check-inline">
+                <label class="form-check-label" for="c-cat-8">
+                  <input type="checkbox" class="form-check-input" id="c-cat-8" name="c-cat" value="8">기타
                 </label>
               </div>
             </div>
