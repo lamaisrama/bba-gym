@@ -85,7 +85,7 @@
 	        					<input type="checkbox" name="check" class="select_subject" value="<%=ba.getPrice() %>" style="margin-left:20px;">
 	        				</td> --%>
 							<td id="good-info" >
-								<img class="img-container" src="<%=request.getContextPath() %>/upload/center/<%=ba.getTmainimage() %>" alt="">
+								<img class="img-container" src="<%=request.getContextPath() %>/upload/trainer/<%=ba.getTmainimage() %>" alt="">
 							</td>
 							<td>	
 								<div class="content-container">
