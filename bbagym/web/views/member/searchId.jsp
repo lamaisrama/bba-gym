@@ -57,7 +57,16 @@
 				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/logout.do')">메인 화면으로돌아가기</button>
 				<button type="button"class="submit" onclick="location.replace('<%=request.getContextPath()%>/member/pw.do')">비밀번호찾기</button>
 			</div>
+<style>
+#bt2{
+	display : flex;
+	justify-content :center;
+		border-top : 1px solid black;
+	margin-top : 30px;
+	padding-top:10px;
+}
 
+</style>
 		</div>
 
 	</div>

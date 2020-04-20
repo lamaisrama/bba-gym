@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 					String saveId = request.getParameter("saveId");
 					Cookie c = new Cookie("saveId", m.getM_ID());
 					if (saveId != null) {
-						c.setMaxAge(3 * 24 * 60 * 60);
+						c.setMaxAge(60 * 60 * 24 *7);
 						response.addCookie(c);
 					} else {
 						c.setMaxAge(0);
